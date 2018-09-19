@@ -1,0 +1,4 @@
+---
+
+ansible_managed: "Warning: file is managed by Ansible"
+ansible_python_interpreter: /usr/bin/python3

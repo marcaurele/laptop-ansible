@@ -1,0 +1,9 @@
+---
+
+- name: Dist upgrade and reboot if required
+  hosts: [laptop]
+  become: true
+  roles:
+    - common/upgrade
+  tags: upgrade
+
