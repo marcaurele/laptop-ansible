@@ -47,9 +47,9 @@
   vars:
     username: marco
     packages_directory: "~/soft"
-  vars_prompt:
-    - name: "user_password"
-      prompt: "Give a password for {{ username }}"
-      private: yes
-      encrypt: "sha512_crypt"
+  # vars_prompt:
+  #   - name: "user_password"
+  #     prompt: "Give a password for {{ username }}"
+  #     private: yes
+  #     encrypt: "sha512_crypt"
       # confirm: yes

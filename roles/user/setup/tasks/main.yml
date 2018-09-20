@@ -1,13 +1,27 @@
 ---
 
+- name: check home diretory for {{ username }}
+  stat:
+    path: "/home/{{ username }}"
+    get_checksum: no
+  register: user_home
+
+- name: prompting for {{ username }} password if needed
+  pause:
+    prompt: "Give a password for {{ username }}"
+    echo: no
+  when: not user_home.stat.exists
+  register: user_password
+
 - name: create user {{ username }}
   become: yes
   user:
     name: "{{ username }}"
     shell: "/usr/bin/zsh"
     state: present
-    password: "{{ user_password }}"
+    password: "{{ user_password.user_input |password_hash('sha512') }}"
     update_password: on_create
+  when: user_password is defined
 
 - name: change home persmissions for {{ username }}
   become: yes
