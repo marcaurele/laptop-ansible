@@ -12,8 +12,15 @@
   become: true
   roles:
     - packages/apt-debian
+    - packages/firefox
 #    - packages/dropbox
     - packages/sublime
     - packages/yarn
   vars:
-    debian_release: testing
+    debian_releases:
+      - name: testing
+        priority: 800
+        security: yes
+      - name: unstable
+        priority: -1
+        security: no

@@ -1,0 +1,28 @@
+---
+
+- name: set package preferences for firefox quantum
+  when: ansible_os_family == "Debian"
+  become: yes
+  copy:
+    src: "1000.firefox-quantum.pref"
+    dest: /etc/apt/preferences.d/1000.firefox-quantum.pref
+  register: firefox_pkg_pref
+
+- name: update package cache
+  when: ansible_os_family == "Debian"
+  become: yes
+  apt:
+    update_cache: true
+  when: firefox_pkg_pref.changed
+
+- name: remove firefox-esr
+  become: yes
+  package:
+    pkg: firefox-esr
+    state: absent
+
+- name: install firefox quantum
+  become: yes
+  package:
+    pkg: firefox
+    state: latest

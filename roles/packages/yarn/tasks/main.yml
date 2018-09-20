@@ -20,6 +20,6 @@
 
 - name: install Yarn
   become: yes
-  apt:
+  package:
     pkg: yarn
     state: latest

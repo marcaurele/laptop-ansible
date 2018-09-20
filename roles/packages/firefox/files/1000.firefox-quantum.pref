@@ -1,0 +1,27 @@
+###################################
+# Firefox Quantum, and dependencies
+###################################
+
+Package: firefox
+Pin: release a=unstable
+Pin-Priority: 1000
+
+Package: libfontconfig1
+Pin: release a=unstable
+Pin-Priority: 1000
+
+Package: fontconfig-config
+Pin: release a=unstable
+Pin-Priority: 1000
+
+Package: libevent-2.1-6
+Pin: release a=unstable
+Pin-Priority: 1000
+
+Package: libhunspell-1.6-0
+Pin: release a=unstable
+Pin-Priority: 1000
+
+Package: libnss3
+Pin: release a=unstable
+Pin-Priority: 1000

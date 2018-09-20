@@ -1,0 +1,8 @@
+####################################
+# {{ ansible_managed }}
+# Default {{ item.name }} priorities
+####################################
+
+Package: *
+Pin: release a={{ item.name }}
+Pin-Priority: {{ item.priority }}

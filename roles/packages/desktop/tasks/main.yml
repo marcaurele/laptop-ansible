@@ -1,0 +1,24 @@
+---
+
+- name: install desktop
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - suckless-tools
+    - xsettingsd
+    - network-manager
+    - blueman
+    - pulseaudio
+    - pavucontrol
+    - network-manager-gnome
+
+- name: install i3 packages
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - i3
+    - i3status
+    - i3lock
+

@@ -5,6 +5,7 @@
 
 - name: download Dropbox
   become: yes
+  when: ansible_os_family == "Debian"
   apt:
     deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
     state: present
@@ -13,7 +14,7 @@
 - name: fix dropbox missing dependencies
   become: yes
   command: apt install -fy
-  when: dropbox_install.changed
+  when: dropbox_install.changed and ansible_os_family == "Debian"
 
 - name: configure a systemd service for Dropbox
   become: yes
