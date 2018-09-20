@@ -5,7 +5,7 @@
   package:
     pkg: "{{ item }}"
     state: latest
-  with_items:
+  with_together:
     - blueman
     - brightnessctl
     - calibre
@@ -25,6 +25,7 @@
     - treesheets
     - vlc
     - suckless-tools
+    - x11-xkb-utils
     - xfce4-terminal
     - xinput
     - xsettingsd
@@ -34,7 +35,7 @@
   package:
     pkg: "{{ item }}"
     state: latest
-  with_items:
+  with_together:
     - i3
     - i3status
     - i3lock

@@ -5,8 +5,13 @@
   package:
     pkg: "{{ item }}"
     state: latest
-  with_items:
+  with_together:
     - python
     - python-pip
     - python3
     - python3-pip
+
+- name: install global python modules
+  pip:
+    name: virtualenv
+    state: present

@@ -5,7 +5,7 @@
   package:
     pkg: "{{ item }}"
     state: latest
-  with_items:
+  with_together:
     - ack
     - apt-transport-https
     - byobu

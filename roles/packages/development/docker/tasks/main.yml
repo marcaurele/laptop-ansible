@@ -5,6 +5,6 @@
   package:
     pkg: "{{ item }}"
     state: latest
-  with_items:
+  with_together:
     - docker.io
     - docker-compose

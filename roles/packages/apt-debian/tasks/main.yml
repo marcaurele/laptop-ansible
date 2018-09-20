@@ -27,7 +27,7 @@
   package:
     pkg: "{{ item }}"
     state: present
-  with_items:
+  with_together:
     - software-properties-common
     - apt-transport-https
     - gpg
