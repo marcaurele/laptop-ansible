@@ -24,6 +24,7 @@
     - oathtool
     - openssl
     - pass
+    - pass-extension-otp
     - pigz
     - pssh
     - pwgen
