@@ -64,3 +64,5 @@
         extra: sphinx-rtd-theme recommonmark
       - name: runstatus-cli
       - name: black
+      - name: ansible
+        extra: passlib
