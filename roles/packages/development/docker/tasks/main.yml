@@ -1,0 +1,10 @@
+---
+
+- name: install docker packages
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - docker.io
+    - docker-compose

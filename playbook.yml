@@ -9,12 +9,20 @@
 
 - name: Configure laptop
   hosts: [laptop]
+  # become: true
   roles:
     - packages/apt-debian
+    - packages/common
+    - packages/desktop
     - packages/firefox
 #    - packages/dropbox
     - packages/sublime
-    - packages/yarn
+    - packages/python
+    - packages/virtualization
+    - packages/development/toolbox
+    - packages/development/java
+    - packages/development/docker
+    - packages/development/yarn
   vars:
     debian_releases:
       - name: testing

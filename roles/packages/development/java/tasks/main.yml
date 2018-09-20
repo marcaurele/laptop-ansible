@@ -1,0 +1,12 @@
+---
+
+- name: install java packages
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - maven
+    - openjdk-8-jdk
+    - openjdk-10-jdk
+    - openjdk-11-jdk

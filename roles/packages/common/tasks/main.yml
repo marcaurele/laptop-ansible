@@ -1,0 +1,35 @@
+---
+
+- name: install common packages
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - ack
+    - apt-transport-https
+    - byobu
+    - curl
+    - dnsutils
+    - git
+    - gpg
+    - gpg-agent
+    - htop
+    - iftop
+    - inputplug
+    - ipcalc
+    - man
+    - mtr
+    - net-tools
+    - oathtool
+    - openssl
+    - pass
+    - pigz
+    - pssh
+    - pwgen
+    - qrencode
+    - sudo
+    - wget
+    - whois
+    - xz-utils
+    - zsh

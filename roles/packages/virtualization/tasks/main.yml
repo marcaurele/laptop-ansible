@@ -1,0 +1,14 @@
+---
+
+- name: install virtualization packages
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - qemu
+    - qemu-kvm
+    - libvirt-clients
+    - libvirt-daemon
+    - vagrant
+    - virt-manager

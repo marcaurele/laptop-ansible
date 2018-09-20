@@ -6,13 +6,27 @@
     pkg: "{{ item }}"
     state: latest
   with_items:
-    - suckless-tools
-    - xsettingsd
-    - network-manager
     - blueman
-    - pulseaudio
-    - pavucontrol
+    - brightnessctl
+    - calibre
+    - chromium
+    - fonts-symbola
+    - gimp
+    - gocryptfs
+    - inkscape
+    - libreoffice
+    - network-manager
     - network-manager-gnome
+    - pavucontrol
+    - pulseaudio
+    - remmina
+    - rdesktop
+    - treesheets
+    - vlc
+    - suckless-tools
+    - xfce4-terminal
+    - xinput
+    - xsettingsd
 
 - name: install i3 packages
   become: yes
@@ -23,4 +37,3 @@
     - i3
     - i3status
     - i3lock
-
