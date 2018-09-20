@@ -1,0 +1,14 @@
+---
+
+- name: create locales
+  become: yes
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ locales }}"
+
+- name: configure default locales
+  become: yes
+  template:
+    src: locale.j2
+    dest: /etc/default/locale

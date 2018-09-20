@@ -13,18 +13,6 @@
 - name: install unattended-upgrades
   apt: pkg=unattended-upgrades state=latest
 
-- name: check if a reboot is required
-  stat:
-    path: /var/run/reboot-required
-    get_md5: no
-  failed_when: False
-  register: reboot_required
-  changed_when: reboot_required.stat.exists == true
-  notify:
-    - reboot
-    - wait for host to reboot
-  tags: upgrade
-
 - name: remove useless packages from the cache
   apt:
     autoclean: yes

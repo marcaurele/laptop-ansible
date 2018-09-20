@@ -1,0 +1,20 @@
+---
+
+- name: switching APT sources to Debian testing
+  when: ansible_os_family == "Debian"
+  become: yes
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+
+- name: installing required packages for playbook
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - software-properties-common
+    - apt-transport-https
+    - gpg
+    - curl
+    - wget

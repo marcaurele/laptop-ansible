@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+
+# Debian {{ debian_release }} APT sources using ethz.ch mirror
+deb http://debian.ethz.ch/debian {{ debian_release }} main contrib non-free
+deb-src http://debian.ethz.ch/debian {{ debian_release }} main contrib non-free
+
+# Debian security APT sources
+deb http://security.debian.org/debian-security {{ debian_release }}/updates main contrib non-free
+deb-src http://security.debian.org/debian-security {{ debian_release }}/updates main contrib non-free

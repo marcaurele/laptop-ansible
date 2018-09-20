@@ -1,0 +1,30 @@
+---
+
+# Install and configure a systemd service for Dropbox
+# https://www.dropbox.com/install
+
+- name: download Dropbox
+  become: yes
+  apt:
+    deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
+    state: present
+  register: dropbox_install
+
+- name: fix dropbox missing dependencies
+  become: yes
+  command: apt install -fy
+  when: dropbox_install.changed
+
+- name: configure a systemd service for Dropbox
+  become: yes
+  template:
+    src: dropbox.service.j2
+    dest: /lib/systemd/system/dropbox@.service
+
+- name: enable systemd Dropbox service for {{ username }}
+  become: yes
+  systemd:
+    enable: yes
+    name: "dropbox@{{ username }}.service"
+    state: started
+    daemon_reload: yes

@@ -1,9 +1,19 @@
 ---
 
-- name: Dist upgrade and reboot if required
+- name: Dist upgrade
   hosts: [laptop]
   become: true
   roles:
     - common/upgrade
-  tags: upgrade
+    - locales
 
+- name: Configure laptop
+  hosts: [laptop]
+  become: true
+  roles:
+    - packages/apt-debian
+#    - packages/dropbox
+    - packages/sublime
+    - packages/yarn
+  vars:
+    debian_release: testing

@@ -1,0 +1,25 @@
+---
+
+- name: add repository GPG key for Yarn
+  become: yes
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+  when: ansible_os_family == "Debian"
+
+- name: add repository for Yarn
+  become: yes
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+  when: ansible_os_family == "Debian"
+  register: yarn_repo
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: yarn_repo.changed
+
+- name: install Yarn
+  become: yes
+  apt:
+    pkg: yarn
+    state: latest

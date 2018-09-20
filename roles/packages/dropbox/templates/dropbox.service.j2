@@ -1,0 +1,19 @@
+#
+# {{ ansible_managed }}
+#
+[Unit]
+Description=Dropbox as a system service user %i
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/dropbox start
+ExecStop=/usr/bin/dropbox stop
+User=%i
+Group=%i
+# 'LANG' might be unnecessary, since systemd already sets the
+# locale for all services according to "/etc/locale.conf".
+# Run `systemctl show-environment` to make sure.
+# Environment=LANG=en_US.utf-8
+
+[Install]
+WantedBy=multi-user.target

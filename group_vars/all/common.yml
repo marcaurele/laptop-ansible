@@ -1,4 +1,8 @@
 ---
 
-ansible_managed: "Warning: file is managed by Ansible"
 ansible_python_interpreter: /usr/bin/python3
+username: marco
+locales:
+  - fr_CH.UTF-8
+  - en_US.UTF-8
+  - en_CA.UTF-8
