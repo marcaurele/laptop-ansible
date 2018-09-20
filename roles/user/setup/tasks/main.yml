@@ -21,7 +21,7 @@
     state: present
     password: "{{ user_password.user_input |password_hash('sha512') }}"
     update_password: on_create
-  when: user_password is defined
+  when: user_password.changed
 
 - name: change home permissions for {{ username }}
   become: yes
