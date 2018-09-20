@@ -23,3 +23,6 @@
   package:
     pkg: yarn
     state: latest
+  with_items:
+    - nodejs
+    - yarn

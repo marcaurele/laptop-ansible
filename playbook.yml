@@ -22,7 +22,7 @@
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
-    - packages/development/yarn
+    - packages/development/javascript
   vars:
     debian_releases:
       - name: testing
