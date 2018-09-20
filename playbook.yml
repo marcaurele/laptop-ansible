@@ -48,21 +48,3 @@
     - user
   vars:
     username: marco
-    packages_directory: "~/soft"
-    pyenv:
-      versions:
-        - 2.7.15
-        - 3.5.6
-        - 3.6.6
-      default: 3.6.6
-    pipsi_tools:
-      - name: cs
-      - name: flake8
-        extra: flake8-import-order flake8-bugbear
-      - name: pip-tools
-      - name: sphinx
-        extra: sphinx-rtd-theme recommonmark
-      - name: runstatus-cli
-      - name: black
-      - name: ansible
-        extra: passlib
