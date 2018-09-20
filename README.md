@@ -1,5 +1,7 @@
 # Ansible playbook to configure my laptop
 
+This playbook is my laptop installer done nicely. It features the possibility to install all extra requirements after having done the basic Debian installation with either a SSH connection to the new latop, or by cloning and executing this playbook. The former is the prefered way.
+
 ## First remote run
 
 `ansible-playbook -K -i host.remote playbook.yml`
