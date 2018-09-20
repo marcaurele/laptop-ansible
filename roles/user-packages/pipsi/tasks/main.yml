@@ -34,10 +34,11 @@
 - name: install extra modules for python tools
   become: yes
   become_user: "{{ username }}"
-  command: ~/.local/venvs/{{ item.item.name }}/bin/pip install {{ item.item.extra }}
-  args:
-    creates: "~/.local/{{ item.item.name }}"
+  pip:
+    executable: "~/.local/venvs/{{ item.item.name }}/bin/pip"
+    name: "{{ item.item.extra }}"
+    state: present
   loop: "{{ pipsi_install_exec.results }}"
   loop_control:
     label: "{{ item.item}}"
-  when: item.changed and item.item.extra is defined
+  when: item.item.extra is defined
