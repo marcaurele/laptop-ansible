@@ -1,0 +1,33 @@
+---
+
+- name: create user {{ username }}
+  become: yes
+  user:
+    name: "{{ username }}"
+    shell: "/usr/bin/zsh"
+    state: present
+    password: "{{ user_password }}"
+    update_password: on_create
+
+- name: change home persmissions for {{ username }}
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "~/"
+    state: directory
+    mode: 0750
+
+- name: create directory for ansible to skip warning
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "~/.ansible/tmp"
+    state: directory
+    mode: 0750
+
+- name: create directory for manual packages
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "{{ packages_directory }}"
+    state: directory

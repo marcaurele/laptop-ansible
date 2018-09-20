@@ -1,0 +1,20 @@
+---
+
+- name: fetch release info for IntelliJ
+  uri:
+    url: "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release&build="
+    return_content: yes
+  register: intellij_release
+
+# - name: debug
+#   debug:
+#     var: intellij_release
+
+- name: "install IntelliJ {{ intellij_release.json.IIU[0].version }} - build: {{ intellij_release.json.IIU[0].build }}"
+  become: yes
+  become_user: "{{ username }}"
+  unarchive:
+    remote_src: yes
+    src: "{{ intellij_release.json.IIU[0].downloads.linux.link }}"
+    dest: "{{ packages_directory }}/"
+    creates: "{{ packages_directory }}/idea-IU-{{ intellij_release.json.IIU[0].build }}/"

@@ -6,6 +6,11 @@
   roles:
     - common/upgrade
     - locales
+  vars:
+    locales:
+      - fr_CH.UTF-8
+      - en_US.UTF-8
+      - en_CA.UTF-8
 
 - name: Configure laptop
   hosts: [laptop]
@@ -31,3 +36,20 @@
       - name: unstable
         priority: -1
         security: no
+
+- name: Configure laptop for {{ username }}
+  hosts: [laptop]
+  roles:
+    - user/setup
+    - packages/intellij
+  tags:
+    - user
+  vars:
+    username: marco
+    packages_directory: "~/soft"
+  vars_prompt:
+    - name: "user_password"
+      prompt: "Give a password for {{ username }}"
+      private: yes
+      encrypt: "sha512_crypt"
+      # confirm: yes
