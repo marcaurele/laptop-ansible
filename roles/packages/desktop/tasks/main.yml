@@ -1,6 +1,7 @@
 ---
 
 - name: install desktop
+  become: yes
   package:
     pkg: "{{ item }}"
     state: latest
@@ -14,6 +15,7 @@
     - network-manager-gnome
 
 - name: install i3 packages
+  become: yes
   package:
     pkg: "{{ item }}"
     state: latest

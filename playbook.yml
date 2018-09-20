@@ -9,7 +9,6 @@
 
 - name: Configure laptop
   hosts: [laptop]
-  become: true
   roles:
     - packages/apt-debian
     - packages/firefox

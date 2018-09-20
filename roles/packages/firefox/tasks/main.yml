@@ -9,11 +9,10 @@
   register: firefox_pkg_pref
 
 - name: update package cache
-  when: ansible_os_family == "Debian"
   become: yes
   apt:
     update_cache: true
-  when: firefox_pkg_pref.changed
+  when: firefox_pkg_pref.changed and ansible_os_family == "Debian"
 
 - name: remove firefox-esr
   become: yes
