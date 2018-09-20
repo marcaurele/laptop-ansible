@@ -1,0 +1,43 @@
+---
+
+# https://github.com/mitsuhiko/pipsi
+- name: check if pipsi is already installed
+  become: yes
+  become_user: "{{ username }}"
+  stat:
+    path: "~/.local/venvs/pipsi"
+  register: pipsi_install
+
+- name: download pipsi installer
+  become: yes
+  become_user: "{{ username }}"
+  get_url:
+    url: https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py
+    dest: /tmp/get-pipsi.py
+  when: not pipsi_install.stat.exists
+
+- name: execute pipsi installer
+  become: yes
+  become_user: "{{ username }}"
+  command: python3 /tmp/get-pipsi.py --src git+https://github.com/mitsuhiko/pipsi.git#egg=pipsi
+  when: not pipsi_install.stat.exists
+
+- name: install python tools with pipsi
+  become: yes
+  become_user: "{{ username }}"
+  command: ~/.local/bin/pipsi install --python ~/.pyenv/versions/{{ pyenv.default }}/bin/python {{ item.name }}
+  args:
+    creates: "~/.local/venvs/{{ item.name }}"
+  loop: "{{ pipsi_tools }}"
+  register: pipsi_install_exec
+
+- name: install extra modules for python tools
+  become: yes
+  become_user: "{{ username }}"
+  command: ~/.local/venvs/{{ item.item.name }}/bin/pip install {{ item.item.extra }}
+  args:
+    creates: "~/.local/{{ item.item.name }}"
+  loop: "{{ pipsi_install_exec.results }}"
+  loop_control:
+    label: "{{ item.item}}"
+  when: item.changed and item.item.extra is defined
