@@ -66,6 +66,13 @@
     state: present
     user: "{{ username }}"
 
+# - name: add github.com hosts for SSH operation
+#   known_hosts:
+#     key: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+#     state: present
+#     name: github.com
+#     hash_host : yes
+
 - name: create directories
   become: yes
   become_user: "{{ username }}"
