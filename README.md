@@ -12,3 +12,8 @@ This playbook is my laptop installer done nicely. It features the possibility to
 
 ## Testing on a cloud provider
 `ansible-playbook -i host.test playbook.yml`
+
+## Things to do
+
+- configure crontab to auto fetch update
+- move dotfiles project into this one
