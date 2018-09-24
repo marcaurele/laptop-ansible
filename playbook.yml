@@ -5,6 +5,7 @@
   roles:
     - locales
     - packages/apt-debian
+    - common/configuration
     - common/upgrade
     - common/hardware
     - packages/sshd
