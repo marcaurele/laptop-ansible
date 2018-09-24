@@ -28,8 +28,10 @@
     pkg: "{{ item }}"
     state: present
   with_together:
-    - software-properties-common
     - apt-transport-https
-    - gpg
     - curl
+    - gpg
+    - python3-apt
+    - python3-selinux
+    - software-properties-common
     - wget
