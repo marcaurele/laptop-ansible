@@ -1,11 +1,10 @@
 ---
 
 - name: reboot
+  become: yes
   shell: sleep 2 && /sbin/reboot
   poll: 0
   async: 1
-  become: yes
-  become_method: sudo
   ignore_errors: true
 
 - name: wait for host to reboot
