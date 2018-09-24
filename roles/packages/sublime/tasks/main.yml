@@ -14,6 +14,7 @@
   register: sublime_repo
 
 - name: update apt cache
+  become: yes
   apt:
     update_cache: yes
   when: sublime_repo.changed
