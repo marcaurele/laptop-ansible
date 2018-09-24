@@ -1,8 +1,7 @@
 ---
 
-- name: Configure laptop
+- name: Configure system
   hosts: [laptop]
-  # become: true
   roles:
     - locales
     - packages/apt-debian
@@ -11,7 +10,7 @@
     - packages/common
     - packages/desktop
     - packages/firefox
-#    - packages/dropbox
+    - packages/dropbox
     - packages/sublime
     - packages/python
     - packages/virtualization
@@ -34,16 +33,17 @@
         priority: -1
         security: no
 
-- name: Configure laptop
+- name: Configure user environment
   hosts: [laptop]
   roles:
     - user-packages/intellij
     - user-packages/pyenv
     - user-packages/pipsi
+    - user-packages/dropbox
   tags:
     - user
 
-- name: Configure laptop for Exoscale
+- name: Configure user environment for Exoscale
   hosts: [laptop]
   roles:
     - exoscale/setup

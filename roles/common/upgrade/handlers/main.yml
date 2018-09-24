@@ -11,4 +11,3 @@
   wait_for_connection:
     sleep: 5
     delay: 30
-#  delegate_to: localhost
