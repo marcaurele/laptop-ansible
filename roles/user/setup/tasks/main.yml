@@ -31,6 +31,15 @@
     state: directory
     mode: 0750
 
+- name: add authorized ssh keys
+  become: yes
+  become_user: "{{ username }}"
+  authorized_key:
+    key: https://github.com/marcaurele.keys
+    comment: "github user key for marcaurele"
+    state: present
+    user: "{{ username }}"
+
 - name: create directory for ansible remote_tmp to skip warning
   become: yes
   become_user: "{{ username }}"
@@ -39,9 +48,12 @@
     state: directory
     mode: 0750
 
-- name: create directory for manual packages
+- name: create directories
   become: yes
   become_user: "{{ username }}"
   file:
-    path: "{{ packages_directory }}"
+    path: "{{ item }}"
     state: directory
+  loop:
+    - "{{ packages_directory }}"
+    - "{{ code_directory }}"

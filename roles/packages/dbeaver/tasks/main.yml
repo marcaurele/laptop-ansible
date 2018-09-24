@@ -1,0 +1,8 @@
+---
+
+- name: install DBeaver
+  become: yes
+  when: ansible_os_family == "Debian"
+  apt:
+    deb: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+    state: present

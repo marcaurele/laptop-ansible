@@ -1,22 +1,13 @@
 ---
 
-- name: Dist upgrade
-  hosts: [laptop]
-  become: true
-  roles:
-    - common/upgrade
-    - locales
-  vars:
-    locales:
-      - fr_CH.UTF-8
-      - en_US.UTF-8
-      - en_CA.UTF-8
-
 - name: Configure laptop
   hosts: [laptop]
   # become: true
   roles:
+    - locales
     - packages/apt-debian
+    - common/upgrade
+    - packages/sshd
     - packages/common
     - packages/desktop
     - packages/firefox
@@ -24,11 +15,17 @@
     - packages/sublime
     - packages/python
     - packages/virtualization
+    - packages/dbeaver
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
     - packages/development/javascript
+    - user/setup
   vars:
+    locales:
+      - fr_CH.UTF-8
+      - en_US.UTF-8
+      - en_CA.UTF-8
     debian_releases:
       - name: testing
         priority: 800
@@ -37,14 +34,23 @@
         priority: -1
         security: no
 
-- name: Configure laptop for {{ username }}
+- name: Configure laptop
   hosts: [laptop]
   roles:
-    - user/setup
     - user-packages/intellij
     - user-packages/pyenv
     - user-packages/pipsi
   tags:
     - user
+
+- name: Configure laptop for Exoscale
+  hosts: [laptop]
+  roles:
+    - exoscale/setup
+    - exoscale/projects
+  vars_files:
+    - roles/exoscale/common.yml
   vars:
-    username: marco
+    ansible_user: marco
+  tags:
+    - exoscale

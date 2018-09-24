@@ -1,22 +1,27 @@
 ---
 
 - name: apt cache update
+  become: yes
   apt:
     update_cache: yes
   tags: upgrade
 
 - name: apt dist-upgrade
+  become: yes
   apt:
     upgrade: dist
   tags: upgrade
 
 - name: install unattended-upgrades
+  become: yes
   apt: pkg=unattended-upgrades state=latest
 
 - name: remove useless packages from the cache
+  become: yes
   apt:
     autoclean: yes
 
 - name: remove dependencies that are no longer required
+  become: yes
   apt:
     autoremove: yes

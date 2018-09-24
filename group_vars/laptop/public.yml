@@ -1,5 +1,6 @@
 ---
 packages_directory: "~/soft"
+code_directory: "~/code"
 pyenv:
   versions:
     - 2.7.15
