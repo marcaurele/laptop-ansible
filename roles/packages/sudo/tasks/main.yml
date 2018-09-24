@@ -1,0 +1,16 @@
+---
+
+- name: install sudo
+  become: yes
+  package:
+    pkg: sudo
+    state: latest
+
+- name: configure sudo
+  become: yes
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo	ALL=(ALL:ALL) ALL'
+    validate: '/usr/sbin/visudo -cf %s'

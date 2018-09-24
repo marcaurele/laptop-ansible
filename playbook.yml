@@ -8,6 +8,7 @@
     - common/upgrade
     - common/hardware
     - packages/sshd
+    - packages/sudo
     - packages/common
     - packages/desktop
     - packages/firefox
