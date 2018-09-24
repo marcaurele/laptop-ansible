@@ -30,6 +30,8 @@
     - pwgen
     - qrencode
     - sudo
+    - task-print-server
+    - task-ssh-server
     - wget
     - whois
     - xz-utils
