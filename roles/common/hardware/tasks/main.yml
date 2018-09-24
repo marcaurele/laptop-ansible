@@ -1,0 +1,5 @@
+---
+
+- name: import tasks for hardware based on form factor
+  include_tasks: "{{ ansible_form_factor | lower }}.yml"
+  when: ansible_form_factor != "Other"

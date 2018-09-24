@@ -6,6 +6,7 @@
     - locales
     - packages/apt-debian
     - common/upgrade
+    - common/hardware
     - packages/sshd
     - packages/common
     - packages/desktop
