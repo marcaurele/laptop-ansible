@@ -1,0 +1,18 @@
+---
+
+- name: install dropbox daemon 
+  become: yes
+  become_user: "{{ username }}"
+  command: dropbox start -i -y
+  args:
+    creates: "~/.dropbox-dist"
+  when: dropbox_install is defined
+
+- name: enable systemd Dropbox service for {{ username }}
+  become: yes
+  systemd:
+    enabled: yes
+    name: "dropbox@{{ username }}.service"
+    state: started
+    daemon_reload: yes
+  when: dropbox_install is defined

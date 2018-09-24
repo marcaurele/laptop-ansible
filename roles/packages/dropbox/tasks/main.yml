@@ -21,11 +21,3 @@
   template:
     src: dropbox.service.j2
     dest: /lib/systemd/system/dropbox@.service
-
-- name: enable systemd Dropbox service for {{ username }}
-  become: yes
-  systemd:
-    enable: yes
-    name: "dropbox@{{ username }}.service"
-    state: started
-    daemon_reload: yes
