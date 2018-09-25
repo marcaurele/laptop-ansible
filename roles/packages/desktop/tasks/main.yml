@@ -25,6 +25,8 @@
     - treesheets
     - vlc
     - suckless-tools
+    - task-desktop
+    - task-gnome-desktop
     - x11-xkb-utils
     - xfce4-terminal
     - xinput

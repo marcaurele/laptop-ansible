@@ -8,3 +8,4 @@
   with_together:
     - firmware-linux
     - firmware-atheros
+    - task-laptop
