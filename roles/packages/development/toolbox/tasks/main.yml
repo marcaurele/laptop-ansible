@@ -9,6 +9,7 @@
     - automake
     - build-essential
     - cmake
+    - default-mysql-client
     - git
     - gpg
     - gpg-agent
