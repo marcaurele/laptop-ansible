@@ -18,3 +18,4 @@ pipsi_tools:
   - name: black
   - name: ansible
     extra: passlib
+  - name: python-gist
