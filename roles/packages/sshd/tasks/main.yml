@@ -9,3 +9,11 @@
     group: root
     mode: 0644
   notify: restart ssh
+
+- name: add authorized ssh keys for root
+  become: yes
+  authorized_key:
+    key: https://github.com/marcaurele.keys
+    comment: "github user key for marcaurele"
+    state: present
+    user: root

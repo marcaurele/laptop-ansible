@@ -57,7 +57,7 @@
     state: directory
     mode: 0750
 
-- name: add authorized ssh keys
+- name: add authorized ssh keys for {{ username }}
   become: yes
   become_user: "{{ username }}"
   authorized_key:
@@ -65,13 +65,6 @@
     comment: "github user key for marcaurele"
     state: present
     user: "{{ username }}"
-
-# - name: add github.com hosts for SSH operation
-#   known_hosts:
-#     key: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
-#     state: present
-#     name: github.com
-#     hash_host : yes
 
 - name: create directories
   become: yes
