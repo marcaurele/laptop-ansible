@@ -1,0 +1,40 @@
+---
+
+- name: change home permissions for {{ username }}
+  file:
+    path: "~/"
+    state: directory
+    mode: 0750
+
+- name: create directory for ansible remote_tmp to skip warning
+  file:
+    path: "~/.ansible/tmp"
+    state: directory
+    mode: 0750
+
+- name: add authorized ssh keys for {{ username }}
+  authorized_key:
+    key: https://github.com/marcaurele.keys
+    comment: "github user key for marcaurele"
+    state: present
+    user: "{{ username }}"
+
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ packages_directory }}"
+    - "{{ code_directory }}"
+    - "~/.config"
+
+- name: install config files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode | default('0644')}}"
+  loop:
+    - src: wgetrc.j2
+      dest: "~/.wgetrc"
+    - src: zshrc.j2
+      dest: "~/.zshrc"

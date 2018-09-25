@@ -52,6 +52,7 @@
 - name: Configure user environment
   hosts: [laptop]
   roles:
+    - user/config
     - user-packages/desktop
     - user-packages/intellij
     - user-packages/pyenv
