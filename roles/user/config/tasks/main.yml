@@ -24,9 +24,10 @@
     path: "{{ item }}"
     state: directory
   loop:
+    - "~/.config"
+    - "~/Private"
     - "{{ packages_directory }}"
     - "{{ code_directory }}"
-    - "~/.config"
 
 - name: install config dot files
   template:
@@ -44,3 +45,20 @@
       dest: "~/.wgetrc"
     - src: zshrc.j2
       dest: "~/.zshrc"
+
+- name: install extra config dot files
+  file:
+    state: link
+    path: "{{ item.dest }}"
+    src: "~/Private/{{ item.src }}"
+  loop:
+    - src: "config/cloudstack.ini"
+      dest: "~/.cloudstack.ini"
+    - src: "config/gist"
+      dest: "~/.gist"
+    - src: "config/runstatus"
+      dest: "~/.runstatus"
+    - src: "config/runstatus-ma-pp"
+      dest: "~/.runstatus-ma-pp"
+    - src: "config/remmina.pref"
+      dest: "~/.config/remmina/remmina.pref"
