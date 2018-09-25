@@ -28,12 +28,18 @@
     - "{{ code_directory }}"
     - "~/.config"
 
-- name: install config files
+- name: install config dot files
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode | default('0644')}}"
   loop:
+    - src: curlrc.j2
+      dest: "~/.curlrc"
+    - src: gitconfig.j2
+      dest: "~/.gitconfig"
+    - src: gitignore_global.j2
+      dest: "~/.gitignore_global"
     - src: wgetrc.j2
       dest: "~/.wgetrc"
     - src: zshrc.j2
