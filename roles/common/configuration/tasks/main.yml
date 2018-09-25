@@ -1,9 +1,5 @@
 ---
 
-- name: fetch packages information
-  package_facts:
-    manager: auto
-
 # Known bug: https://github.com/ansible/ansible/issues/29363
 - name: setup global known_hosts
   become: yes

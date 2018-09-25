@@ -1,5 +1,16 @@
 ---
 
+- name: Gathering packages facts
+  hosts: [laptop]
+  tasks:
+    - name: fetch packages information
+      package_facts:
+        manager: auto
+  tags:
+    - system
+    - user
+    - exoscale
+
 - name: Configure system
   hosts: [laptop]
   roles:
