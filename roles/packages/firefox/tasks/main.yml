@@ -25,3 +25,17 @@
   package:
     pkg: firefox
     state: latest
+
+- name: check browser preferences
+  command: xdg-mime query default {{ item }}
+  loop:
+    - x-scheme-handler/http
+    - x-scheme-handler/https
+    - x-scheme-handler/ftp
+  register: browser_prefs
+  changed_when: browser_prefs.rc != 0
+
+- name: set browser preferences for firefox
+  command: xdg-mime default firefox.desktop {{ item.item }}
+  loop: "{{ browser_prefs.results }}"
+  when: item.stdout != "firefox.desktop"
