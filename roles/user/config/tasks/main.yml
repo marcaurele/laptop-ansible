@@ -43,8 +43,8 @@
       dest: "~/.gitignore_global"
     - src: wgetrc.j2
       dest: "~/.wgetrc"
-    - src: zshrc.j2
-      dest: "~/.zshrc"
+    # - src: zshrc.j2
+    #   dest: "~/.zshrc"
 
 - name: install extra config dot files
   file:
