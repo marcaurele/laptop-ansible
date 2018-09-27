@@ -29,6 +29,5 @@
     - make
     - qtbase5-dev
     - qttools5-dev-tools
-    - tk-dev
     - weechat
     - zlib1g-dev
