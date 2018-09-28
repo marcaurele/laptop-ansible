@@ -53,6 +53,7 @@
   hosts: [laptop]
   roles:
     - user/config
+    - user-packages/zsh
     - user-packages/desktop
     - user-packages/intellij
     - user-packages/pyenv

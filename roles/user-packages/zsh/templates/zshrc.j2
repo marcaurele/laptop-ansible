@@ -1,9 +1,9 @@
 # {{ ansible_managed }}
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+export ZSH=$HOME/.zsh_config
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/workspaces
+export PROJECTS=~/code
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -51,6 +51,3 @@ unset config_files
 # Activate zsh-completions
 #fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(${HOME}/.zsh $fpath)
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

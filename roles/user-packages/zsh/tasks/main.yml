@@ -1,0 +1,21 @@
+---
+
+- name: create ZSH alias config directory
+  file:
+    path: "~/.zsh_config"
+    state: directory
+
+- name: copy ZSH config files
+  copy:
+    src: "."
+    dest: "~/.zsh_config/"
+
+- name: install config dot files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode | default('0644')}}"
+  loop:
+    - src: zshrc.j2
+      dest: "~/.zshrc"
+
