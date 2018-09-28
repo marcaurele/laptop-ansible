@@ -13,6 +13,7 @@
     - git
     - gpg
     - gpg-agent
+    - jq
     - kafkacat
     - libbz2-dev
     - libmariadbclient-dev-compat
