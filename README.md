@@ -4,16 +4,15 @@ This playbook is my laptop installer done nicely. It features the possibility to
 
 ## First remote run
 
-`ansible-playbook -K -i host.remote playbook.yml`
+`ansible-playbook -K -i host.remote playbook.yml --vault-password-file=...`
 
 ## Local runs after 1st installation
 
-`ansible-playbook -K -c local -i host.local playbook.yml`
+`ansible-playbook -K -c local -i host.local playbook.yml --vault-password-file=...`
 
 ## Testing on a cloud provider
-`ansible-playbook -i host.test playbook.yml`
+`ansible-playbook -i host.test playbook.yml --vault-password-file=...`
 
 ## Things to do
 
 - configure crontab to auto fetch update
-- move dotfiles project into this one
