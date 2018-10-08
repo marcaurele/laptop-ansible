@@ -10,7 +10,12 @@
   become: yes
   apt:
     upgrade: dist
+  register: apt_upgrade
   tags: upgrade
+
+- name: show dist apt upgrade output
+  debug:
+    var: apt_upgrade
 
 - name: install unattended-upgrades
   become: yes
