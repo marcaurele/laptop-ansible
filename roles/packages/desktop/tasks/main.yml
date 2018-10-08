@@ -28,6 +28,7 @@
     - task-desktop
     - task-gnome-desktop
     - x11-xkb-utils
+    - xclip
     - xfce4-terminal
     - xinput
     - xsettingsd
