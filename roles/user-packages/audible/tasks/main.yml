@@ -1,0 +1,34 @@
+---
+
+# For Audible, to extract audiobook to standard files and listen to it everywhere
+# https://en.code-bude.net/2017/02/12/how-to-convert-audible-aax-files-to-mp3-in-linux/
+
+- name: directory for audible tools
+  file:
+    path: ~/audible
+    state: directory
+
+- name: install audible tools to easily move to non-DRM files
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_together:
+    - ffmpeg
+    - libmp3lame0
+    - mp4v2-utils
+
+- name: install tools to extract Audible info
+  git:
+    clone: yes
+    accept_hostkey: yes
+    dest: "~/audible/{{ item.dest }}/"
+    repo: "{{ item.url }}"
+    update: yes
+    verify_commit: no
+  loop:
+    - url: https://github.com/KrumpetPirate/AAXtoMP3.git
+      dest: AAXtoMP3
+    - url: https://github.com/inAudible-NG/audible-activator.git
+      dest: audible-activator
+

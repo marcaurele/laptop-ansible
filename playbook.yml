@@ -59,6 +59,7 @@
     - user-packages/pyenv
     - user-packages/pipsi
     - user-packages/dropbox
+    - user-packages/audible
   tags:
     - user
 
