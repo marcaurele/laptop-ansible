@@ -4,6 +4,7 @@
   file:
     path: "~/.config/i3"
     state: directory
+  when: ansible_facts.packages['i3'] is defined
 
 - name: configure i3
   template:
@@ -16,3 +17,15 @@
     src: i3-status.conf.j2
     dest: ~/.i3status.conf
   when: ansible_facts.packages['i3status'] is defined
+
+- name: install python-nofity2 for weechat plugin
+  become: yes
+  apt:
+    pkg: python-notify2
+  when: ansible_facts.packages['weechat'] is defined
+
+- name: install weechat plugin notify
+  get_url:
+    url: https://weechat.org/files/scripts/notify.py
+    dest: ~/.weechat/python/autoload/notify.py
+  when: ansible_facts.packages['weechat'] is defined
