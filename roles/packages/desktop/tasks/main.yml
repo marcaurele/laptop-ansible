@@ -10,6 +10,7 @@
     - brightnessctl
     - calibre
     - chromium
+    - evolution
     - fonts-symbola
     - gimp
     - gocryptfs
@@ -25,6 +26,7 @@
     - treesheets
     - vlc
     - suckless-tools
+    - syncevolution
     - task-desktop
     - task-gnome-desktop
     - x11-xkb-utils
