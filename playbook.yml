@@ -62,15 +62,3 @@
     - user-packages/audible
   tags:
     - user
-
-- name: Configure user environment for Exoscale
-  hosts: [laptop]
-  roles:
-    - exoscale/setup
-    - exoscale/projects
-  vars_files:
-    - roles/exoscale/common.yml
-  vars:
-    ansible_user: marco
-  tags:
-    - exoscale
