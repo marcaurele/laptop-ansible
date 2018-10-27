@@ -19,3 +19,5 @@ pipsi_tools:
   - name: ansible
     extra: passlib
   - name: python-gist
+
+code_projects: '{{ vault_code_projects }}'
