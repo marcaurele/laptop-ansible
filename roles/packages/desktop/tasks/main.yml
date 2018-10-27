@@ -10,10 +10,13 @@
     - brightnessctl
     - calibre
     - chromium
+    - dictionaries-common
     - evolution
     - fonts-symbola
     - gimp
     - gocryptfs
+    - hunspell-en-us
+    - hunspell-fr-modern
     - inkscape
     - libreoffice
     - network-manager
