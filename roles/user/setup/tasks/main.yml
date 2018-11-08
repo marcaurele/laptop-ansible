@@ -1,6 +1,6 @@
 ---
 
-- name: check home diretory for {{ username }}
+- name: check home directory for {{ username }}
   stat:
     path: "/home/{{ username }}"
     get_checksum: no
