@@ -47,3 +47,9 @@
     - i3
     - i3status
     - i3lock
+
+- name: configure a i3lock on sleep
+  become: yes
+  template:
+    src: i3lock-sleep.service.j2
+    dest: /lib/systemd/system/i3lock-sleep@.service

@@ -1,0 +1,15 @@
+#
+# {{ ansible_managed }}
+#
+[Unit]
+Description=i3lock on sleep for %i
+Before=sleep.target
+
+[Service]
+Type=forking
+User=%i
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock
+
+[Install]
+WantedBy=sleep.target

@@ -18,6 +18,14 @@
     dest: ~/.i3status.conf
   when: ansible_facts.packages['i3status'] is defined
 
+- name: enable i3lock on sleep service for {{ username }}
+  become: yes
+  systemd:
+    enabled: yes
+    name: "i3lock-sleep@{{ username }}.service"
+    daemon_reload: yes
+  when: ansible_facts.packages['i3lock'] is defined
+
 - name: install python-nofity2 for weechat plugin
   become: yes
   apt:
