@@ -57,8 +57,8 @@
       dest: "~/.runstatus"
     - src: "config/runstatus-ma-pp"
       dest: "~/.runstatus-ma-pp"
-    - src: "config/remmina.pref"
-      dest: "~/.config/remmina/remmina.pref"
+    # - src: "config/remmina.pref"
+    #   dest: "~/.config/remmina/remmina.pref"
 
 - name: import code related tasks
   import_tasks: code.yml
