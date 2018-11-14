@@ -18,7 +18,7 @@ pipsi_tools:
   - name: runstatus-cli
   - name: black
   - name: ansible
-    extra: passlib
+    extra: passlib, jmespath, cs
   - name: python-gist
 
 code_projects: '{{ vault_code_projects }}'
