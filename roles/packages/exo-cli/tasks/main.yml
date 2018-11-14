@@ -1,0 +1,39 @@
+---
+
+- name: check exoscale cli releases
+  uri:
+    url: https://api.github.com/repos/exoscale/cli/releases
+    return_content: yes
+  register: exocli_release
+
+- name: set fact for exocli latest release
+  set_fact:
+    exocli_latest_release: "{{exocli_release.json | first}}"
+
+- name: set fact for exocli deb release
+  set_fact:
+    exocli_deb_release : "{{ exocli_latest_release.assets
+    | selectattr('content_type', 'equalto', 'application/x-debian-package')
+    | list
+    | first }}"
+
+# - name: set fact for exocli deb PGP sig release
+#   set_fact:
+#     exocli_deb_pgp : "{{ exocli_latest_release.assets
+#     | selectattr('content_type', 'equalto', 'application/pgp-signature')
+#     | selectattr('name', 'equalto', exocli_deb_release.name + '.sig')
+#     | list
+#     | first }}"
+
+- name: download latest exocli release
+  get_url:
+    url: '{{ exocli_deb_release.browser_download_url }}'
+    dest: '/tmp/{{ exocli_deb_release.name }}'
+  when: ansible_facts.packages['exocli'] is not defined or ansible_facts.packages['exocli'][0].version != exocli_latest_release.tag_name
+
+- name: install or upgrade exo cli {{ exocli_release.json[0].name }}
+  become: yes
+  apt:
+    deb: '/tmp/{{ exocli_deb_release.name }}'
+    state: present
+  when: ansible_facts.packages['exocli'] is not defined or ansible_facts.packages['exocli'][0].version != exocli_latest_release.tag_name
