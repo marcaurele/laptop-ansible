@@ -28,6 +28,7 @@
     - libtool
     - llvm
     - make
+    - postgresql-client
     - qtbase5-dev
     - qttools5-dev-tools
     - weechat
