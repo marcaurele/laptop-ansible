@@ -9,7 +9,6 @@
   tags:
     - system
     - user
-    - exoscale
 
 - name: Configure system
   hosts: [laptop]
