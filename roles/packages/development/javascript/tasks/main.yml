@@ -11,13 +11,6 @@
   apt_repository:
     repo: deb https://dl.yarnpkg.com/debian/ stable main
   when: ansible_os_family == "Debian"
-  register: yarn_repo
-
-- name: update apt cache
-  become: yes
-  apt:
-    update_cache: yes
-  when: yarn_repo.changed
 
 - name: install Yarn
   become: yes

@@ -11,13 +11,6 @@
   apt_repository:
     repo: deb https://download.sublimetext.com/ apt/stable/
   when: ansible_os_family == "Debian"
-  register: sublime_repo
-
-- name: update apt cache
-  become: yes
-  apt:
-    update_cache: yes
-  when: sublime_repo.changed
 
 - name: install Sublime
   become: yes
