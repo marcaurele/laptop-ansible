@@ -16,3 +16,7 @@ This playbook is my laptop installer done nicely. It features the possibility to
 ## Things to do
 
 - configure crontab to auto fetch update
+- fix su/sudo when installing on a fresh new laptop
+- fix dropbox install and initial sync required for some config files
+- add initial requirement on python3.6 installed on the machine
+- fix GPG key import with ultimate trust
