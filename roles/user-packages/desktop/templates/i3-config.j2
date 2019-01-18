@@ -177,8 +177,8 @@ bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl suspend
 # Switch capslock to ctrl key - done in /etc/X11/xorg.conf.d/20-keyboard.conf
 #exec --no-startup-id setxkbmap -option ctrl:swapcap && setxkbmap -option ctrl:nocaps
 exec --no-startup-id setxkbmap -option ctrl:nocaps
-exec --no-startup-id xinput set-prop "DLL075B:01 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "DLL075B:01 06CB:76AF Touchpad" "libinput Accel Speed" 1
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Accel Speed" 1
 
 # Activate NetworkManager applet
 exec --no-startup-id nm-applet
