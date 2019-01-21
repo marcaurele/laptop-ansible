@@ -34,6 +34,7 @@
     - task-english
     - task-print-server
     - task-ssh-server
+    - vim
     - wget
     - whois
     - xz-utils
