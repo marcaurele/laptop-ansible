@@ -20,4 +20,4 @@
   become: yes
   template:
     src: dropbox.service.j2
-    dest: /lib/systemd/system/dropbox@.service
+    dest: /etc/systemd/system/dropbox@.service
