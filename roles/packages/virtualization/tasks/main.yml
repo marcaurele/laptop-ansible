@@ -12,3 +12,5 @@
     - libvirt-daemon
     - vagrant
     - virt-manager
+    - virtualbox
+    - virtualbox-guest-additions-iso
