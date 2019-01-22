@@ -8,8 +8,8 @@ Description=Dropbox as a system service for user %i
 Type=forking
 ExecStart=/usr/bin/dropbox start
 ExecStop=/usr/bin/dropbox stop
-User=%i
-Group=%i
+User=%I
+Group=%I
 # 'LANG' might be unnecessary, since systemd already sets the
 # locale for all services according to "/etc/locale.conf".
 # Run `systemctl show-environment` to make sure.
