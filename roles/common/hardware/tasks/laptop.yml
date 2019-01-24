@@ -9,3 +9,13 @@
     - firmware-linux
     - firmware-atheros
     - task-laptop
+
+- name: install firmwares for ThinkPad X1 Carbon 6th
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  when: ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th"
+  with_together:
+    - firmware-linux
+    - firmware-iwlwifi
+    - task-laptop

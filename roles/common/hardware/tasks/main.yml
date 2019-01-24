@@ -1,5 +1,5 @@
 ---
 
-- name: import tasks for hardware based on form factor
+- name: import tasks for laptop hardware
   include_tasks: laptop.yml
-  when: ansible_form_factor != "Other"
+  when: ansible_form_factor == "Notebook"
