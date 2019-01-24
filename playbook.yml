@@ -28,7 +28,6 @@
     - packages/python
     - packages/virtualization
     - packages/dbeaver
-#    - packages/exo-cli
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
