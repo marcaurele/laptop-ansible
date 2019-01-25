@@ -16,8 +16,7 @@ export LC_COLLATE=C
 #export MANPAGER="less -X"
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
+	export GREP_OPTIONS="--color=auto"
 	# Sorry Brew, but that's not something I want
 	export HOMEBREW_NO_ANALYTICS=1
 fi
-
-export GREP_OPTIONS="--color=auto"
