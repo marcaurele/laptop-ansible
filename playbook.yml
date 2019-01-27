@@ -1,7 +1,7 @@
 ---
 
 - name: Gathering packages facts
-  hosts: [laptop]
+  hosts: [all]
   tasks:
     - name: fetch packages information
       package_facts:
@@ -11,7 +11,7 @@
     - user
 
 - name: Configure system
-  hosts: [laptop]
+  hosts: [all]
   roles:
     - locales
     - packages/apt-debian
@@ -49,7 +49,7 @@
     - system
 
 - name: Configure user environment
-  hosts: [laptop]
+  hosts: [all]
   roles:
     - user/config
     - user-packages/zsh
