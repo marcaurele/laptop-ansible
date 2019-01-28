@@ -6,6 +6,8 @@
     pkg: "{{ item }}"
     state: latest
   with_together:
+    - cloud-image-utils
+    - genisoimage
     - qemu
     - qemu-kvm
     - libvirt-clients
