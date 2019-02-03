@@ -1,6 +1,7 @@
 ---
 
 - name: install firmwares for Dell XPS 13 9360
+  become: yes
   apt:
     pkg: "{{ item }}"
     state: latest
@@ -11,6 +12,7 @@
     - task-laptop
 
 - name: install firmwares for ThinkPad X1 Carbon 6th
+  become: yes
   apt:
     pkg: "{{ item }}"
     state: latest
