@@ -1,39 +1,8 @@
 ---
 
-- name: create i3 config directory
-  file:
-    path: "~/.config/i3"
-    state: directory
-  when: ansible_facts.packages['i3'] is defined
-
-- name: configure i3
-  template:
-    src: i3-config.j2
-    dest: ~/.config/i3/config
-  when: ansible_facts.packages['i3'] is defined
-
-- name: configure i3 status
-  template:
-    src: i3-status.conf.j2
-    dest: ~/.i3status.conf
-  when: ansible_facts.packages['i3status'] is defined
-
-- name: enable i3lock on sleep service for {{ username }}
-  become: yes
-  systemd:
-    enabled: yes
-    name: "i3lock-sleep@{{ username }}.service"
-    daemon_reload: yes
-  when: ansible_facts.packages['i3lock'] is defined
-
-- name: install python-nofity2 for weechat plugin
-  become: yes
-  apt:
-    pkg: python-notify2
-  when: ansible_facts.packages['weechat'] is defined
-
-- name: install weechat plugin notify
-  get_url:
-    url: https://weechat.org/files/scripts/notify.py
-    dest: ~/.weechat/python/autoload/notify.py
-  when: ansible_facts.packages['weechat'] is defined
+- name: import i3 tasks
+  import_tasks: i3.yml
+# - name: import weechat tasks
+#   import_tasks: weechat.yml
+- name: import xfce tasks
+  import_tasks: xfce.yml

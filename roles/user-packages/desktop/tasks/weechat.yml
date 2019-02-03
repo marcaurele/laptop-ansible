@@ -1,0 +1,13 @@
+---
+
+- name: install python-nofity2 for weechat plugin
+  become: yes
+  apt:
+    pkg: python-notify2
+  when: ansible_facts.packages['weechat'] is defined
+
+- name: install weechat plugin notify
+  get_url:
+    url: https://weechat.org/files/scripts/notify.py
+    dest: ~/.weechat/python/autoload/notify.py
+  when: ansible_facts.packages['weechat'] is defined

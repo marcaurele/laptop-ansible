@@ -1,0 +1,13 @@
+---
+
+- name: create xfce config directory
+  file:
+    path: "~/.config/xfce4/terminal"
+    state: directory
+  when: ansible_facts.packages['xfce4-terminal'] is defined
+
+- name: configure xfce
+  template:
+    src: xfce-terminalrc.j2
+    dest: ~/.config/xfce4/terminal/terminalrc
+  when: ansible_facts.packages['xfce4-terminal'] is defined
