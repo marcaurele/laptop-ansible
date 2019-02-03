@@ -24,14 +24,14 @@
     - packages/desktop
     - packages/firefox
     - packages/dropbox
-    - packages/sublime
+#     - packages/sublime
     - packages/python
     - packages/virtualization
     - packages/dbeaver
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
-    - packages/development/javascript
+#     - packages/development/javascript
     - user/setup
   vars:
     locales:
