@@ -22,6 +22,8 @@
     - man
     - mtr
     - net-tools
+    - ocrmypdf
+    - tesseract-ocr-fra
     - oathtool
     - openssl
     - pass
