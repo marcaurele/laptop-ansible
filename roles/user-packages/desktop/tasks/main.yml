@@ -6,3 +6,5 @@
 #   import_tasks: weechat.yml
 - name: import xfce tasks
   import_tasks: xfce.yml
+- name: import sublime tasks
+  import_tasks: sublime.yml
