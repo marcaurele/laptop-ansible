@@ -1,6 +1,7 @@
 ---
 
 - name: check home directory for {{ username }}
+  become: yes
   stat:
     path: "/home/{{ username }}"
     get_checksum: no
@@ -26,7 +27,6 @@
   become: yes
   user:
     name: "{{ username }}"
-    shell: "/usr/bin/zsh"
     state: present
     append: yes
     groups:
@@ -37,15 +37,5 @@
       - floppy
       - plugdev
       - netdev
-      - sudo
       - video
       # - scanner
-
-- name: add {{ username }} to docker group
-  become: yes
-  user:
-    name: "{{ username }}"
-    append: yes
-    groups:
-      - docker
-  when: ansible_facts.packages['docker.io'] is defined

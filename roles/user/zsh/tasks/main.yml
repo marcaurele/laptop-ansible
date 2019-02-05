@@ -19,3 +19,8 @@
     - src: zshrc.j2
       dest: "~/.zshrc"
 
+- name: change {{ username }} shell to ZSH
+  become: yes
+  user:
+    name: "{{ username }}"
+    shell: "/usr/bin/zsh"

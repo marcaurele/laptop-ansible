@@ -1,16 +1,16 @@
 ---
 
-- name: switching APT sources to Debian testing
-  when: ansible_os_family == "Debian"
+- name: configuring APT sources
   become: yes
+  when: ansible_os_family == "Debian"
   template:
     src: sources.list.j2
     dest: /etc/apt/sources.list
   register: apt_source
 
 - name: set package preferences
-  when: ansible_os_family == "Debian"
   become: yes
+  when: ansible_os_family == "Debian"
   template:
     src: apt-preferences.j2
     dest: "/etc/apt/preferences.d/{{ item.name }}-default.pref"

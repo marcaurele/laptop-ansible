@@ -14,3 +14,11 @@
     regexp: '^%sudo'
     line: '%sudo	ALL=(ALL:ALL) ALL'
     validate: '/usr/sbin/visudo -cf %s'
+
+- name: add {{ username }} to sudo group
+  become: yes
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups:
+      - sudo
