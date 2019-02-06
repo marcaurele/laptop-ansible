@@ -52,13 +52,3 @@
         priority: -1
         security: no
     user_preferences: yes
-  tags:
-    - system
-
-- name: Configure user environment
-  hosts: [all]
-  roles:
-    - user-packages/desktop
-    - user-packages/dropbox
-  tags:
-    - user
