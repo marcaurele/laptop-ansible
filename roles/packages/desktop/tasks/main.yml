@@ -34,9 +34,11 @@
     - task-gnome-desktop
     - x11-xkb-utils
     - xclip
-    - xfce4-terminal
     - xinput
     - xsettingsd
 
 - name: import i3 tasks
   import_tasks: i3.yml
+
+- name: import xfce4 tasks
+  import_tasks: xfce.yml
