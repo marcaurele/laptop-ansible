@@ -1,5 +1,13 @@
 ---
 
+- name: install weechat
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_together:
+    - weechat
+
 - name: install python-nofity2 for weechat plugin
   become: yes
   apt:
@@ -7,6 +15,8 @@
   when: ansible_facts.packages['weechat'] is defined
 
 - name: install weechat plugin notify
+  become: yes
+  become_user: "{{ username }}"
   get_url:
     url: https://weechat.org/files/scripts/notify.py
     dest: ~/.weechat/python/autoload/notify.py
