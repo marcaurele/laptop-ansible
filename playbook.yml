@@ -28,6 +28,7 @@
 #     - packages/sublime
     - packages/python
     - packages/pyenv
+    - packages/pipsi
     - packages/virtualization
     - packages/dbeaver
     - packages/development/toolbox
@@ -58,7 +59,6 @@
   hosts: [all]
   roles:
     - user-packages/desktop
-    - user-packages/pipsi
     - user-packages/dropbox
   tags:
     - user
