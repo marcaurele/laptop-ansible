@@ -38,18 +38,5 @@
     - xinput
     - xsettingsd
 
-- name: install i3 packages
-  become: yes
-  package:
-    pkg: "{{ item }}"
-    state: latest
-  with_together:
-    - i3
-    - i3status
-    - i3lock
-
-- name: configure a i3lock on sleep
-  become: yes
-  template:
-    src: i3lock-sleep.service.j2
-    dest: /etc/systemd/system/i3lock-sleep@.service
+- name: import i3 tasks
+  import_tasks: i3.yml
