@@ -19,6 +19,7 @@
     - common/upgrade
     - common/hardware
     - packages/sshd
+    - user/setup
     - packages/sudo
     - packages/common
     - packages/desktop
@@ -26,13 +27,18 @@
     - packages/dropbox
 #     - packages/sublime
     - packages/python
+    - packages/pyenv
+    - packages/pipsi
     - packages/virtualization
     - packages/dbeaver
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
 #     - packages/development/javascript
-    - user/setup
+    - packages/audible
+    - user/config
+    - user/zsh
+    - packages/intellij
   vars:
     locales:
       - fr_CH.UTF-8
@@ -45,19 +51,4 @@
       - name: unstable
         priority: -1
         security: no
-  tags:
-    - system
-
-- name: Configure user environment
-  hosts: [all]
-  roles:
-    - user/config
-    - user-packages/zsh
-    - user-packages/desktop
-    - user-packages/intellij
-    - user-packages/pyenv
-    - user-packages/pipsi
-    - user-packages/dropbox
-    - user-packages/audible
-  tags:
-    - user
+    user_preferences: yes

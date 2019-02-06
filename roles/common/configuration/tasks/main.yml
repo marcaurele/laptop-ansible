@@ -1,6 +1,5 @@
 ---
 
-# Known bug: https://github.com/ansible/ansible/issues/29363
 - name: setup global known_hosts
   become: yes
   known_hosts:

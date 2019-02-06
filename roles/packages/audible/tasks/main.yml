@@ -4,6 +4,8 @@
 # https://en.code-bude.net/2017/02/12/how-to-convert-audible-aax-files-to-mp3-in-linux/
 
 - name: directory for audible tools
+  become: yes
+  become_user: "{{ username }}"
   file:
     path: ~/audible
     state: directory
@@ -19,6 +21,8 @@
     - mp4v2-utils
 
 - name: install tools to extract Audible info
+  become: yes
+  become_user: "{{ username }}"
   git:
     clone: yes
     accept_hostkey: yes

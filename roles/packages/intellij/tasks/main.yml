@@ -6,10 +6,6 @@
     return_content: yes
   register: intellij_release
 
-# - name: debug
-#   debug:
-#     var: intellij_release
-
 - name: "install IntelliJ {{ intellij_release.json.IIU[0].version }} - build: {{ intellij_release.json.IIU[0].build }}"
   become: yes
   become_user: "{{ username }}"
