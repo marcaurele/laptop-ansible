@@ -49,6 +49,9 @@
       dest: "~/.vimrc"
     - src: wgetrc.j2
       dest: "~/.wgetrc"
+    - src: ssh_config.j2
+      dest: "~ /.ssh/config"
+  tags: user
 
 - name: install extra config dot files
   file:
