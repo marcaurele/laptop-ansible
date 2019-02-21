@@ -21,12 +21,17 @@
 
 - name: create directories
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: directory
+    mode: "{{ item.mode|default('') }}"
   loop:
-    - "~/.config"
-    - "~/Private"
-    - "{{ packages_directory }}"
+    - path: "~/.config"
+    - path: "~/Private"
+    - path: "{{ packages_directory }}"
+    - path: "~/.ssh"
+      mode: '0700'
+    - path: "{{ code_directory }}"
+  tags: user
 
 - name: install config dot files
   template:
