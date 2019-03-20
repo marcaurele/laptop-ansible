@@ -7,6 +7,7 @@
     src: sources.list.j2
     dest: /etc/apt/sources.list
   register: apt_source
+  tags: system, root
 
 - name: set package preferences
   become: yes
@@ -15,12 +16,14 @@
     src: apt-preferences.j2
     dest: "/etc/apt/preferences.d/{{ item.name }}-default.pref"
   with_items: "{{ debian_releases }}"
+  tags: system, root
 
 - name: update package cache
   become: yes
   apt:
     update_cache: yes
   when: apt_source.changed
+  tags: system, root
 
 - name: installing required packages for playbook
   become: yes
@@ -35,3 +38,4 @@
     - python3-selinux
     - software-properties-common
     - wget
+  tags: system, root

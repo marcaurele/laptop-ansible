@@ -6,6 +6,7 @@
     path: "/home/{{ username }}"
     get_checksum: no
   register: user_home
+  tags: system, root
 
 - name: prompting for {{ username }} password if needed
   pause:
@@ -13,6 +14,7 @@
     echo: no
   when: not user_home.stat.exists
   register: user_password
+  tags: system, root
 
 - name: set user {{ username }} password
   become: yes
@@ -22,6 +24,7 @@
     password: "{{ user_password.user_input |password_hash('sha512') }}"
     update_password: on_create
   when: not user_home.stat.exists
+  tags: system, root
 
 - name: verify user configuration
   become: yes
@@ -39,3 +42,4 @@
       - netdev
       - video
       # - scanner
+  tags: user, root

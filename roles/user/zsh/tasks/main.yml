@@ -4,11 +4,13 @@
   file:
     path: "~/.zsh_config"
     state: directory
+  tags: user
 
 - name: copy ZSH config files
   copy:
     src: "."
     dest: "~/.zsh_config/"
+  tags: user
 
 - name: install config dot files
   template:
@@ -18,9 +20,11 @@
   loop:
     - src: zshrc.j2
       dest: "~/.zshrc"
+  tags: user
 
 - name: change {{ username }} shell to ZSH
   become: yes
   user:
     name: "{{ username }}"
     shell: "/usr/bin/zsh"
+  tags: user, root

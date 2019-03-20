@@ -11,3 +11,4 @@
     - github.com
     - bitbucket.org
     - gitlab.com
+  tags: system, root

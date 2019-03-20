@@ -10,6 +10,7 @@
     - firmware-linux
     - firmware-atheros
     - task-laptop
+  tags: system, root
 
 - name: install firmwares for ThinkPad X1 Carbon 6th
   become: yes
@@ -21,3 +22,4 @@
     - firmware-linux
     - firmware-iwlwifi
     - task-laptop
+  tags: system, root

@@ -6,9 +6,11 @@
     name: "{{ item }}"
     state: present
   with_items: "{{ locales }}"
+  tags: system, root
 
 - name: configure default locales
   become: yes
   template:
     src: locale.j2
     dest: /etc/default/locale
+  tags: system, root
