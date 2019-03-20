@@ -16,3 +16,4 @@
     - virt-manager
     - virtualbox
     - virtualbox-guest-additions-iso
+    - virtualbox-guest-dkms
