@@ -25,7 +25,7 @@
     - packages/desktop
     - packages/firefox
     - packages/dropbox
-#     - packages/sublime
+    - packages/sublime
     - packages/python
     - packages/pyenv
     - packages/pipsi
@@ -34,7 +34,7 @@
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
-#     - packages/development/javascript
+    - packages/development/javascript
     - packages/audible
     - packages/calibre
     - user/config
