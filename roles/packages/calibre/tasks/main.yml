@@ -1,0 +1,10 @@
+---
+
+- name: install calibre
+  become: yes
+  apt:
+    pkg: calibre
+  tags: system, root
+
+# Install DeDRM plugin
+# Configure plugin ?
