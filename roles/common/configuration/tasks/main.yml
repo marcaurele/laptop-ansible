@@ -12,3 +12,6 @@
     - bitbucket.org
     - gitlab.com
   tags: system, root
+
+#- name: install custom fonts
+# sudo fc-cache -fv
