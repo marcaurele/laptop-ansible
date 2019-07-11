@@ -29,7 +29,7 @@
   become: yes
   package:
     pkg: "{{ item }}"
-    state: present
+    state: latest
   with_together:
     - apt-transport-https
     - curl
