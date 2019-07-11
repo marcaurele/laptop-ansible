@@ -5,8 +5,8 @@ pyenv:
   versions:
     - 2.7.15
     - 3.6.8
-    - 3.7.2
-  default: 3.6.7
+    - 3.7.4
+  default: 3.7.4
 pipsi_tools:
   - name: cs
   - name: flake8
