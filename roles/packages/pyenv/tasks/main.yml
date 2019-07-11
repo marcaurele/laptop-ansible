@@ -16,6 +16,14 @@
     dest: /tmp/pyenv-installer
   when: not pyenv_install.stat.exists
 
+- name: upgrade pyenv
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/pyenv/pyenv
+    dest: "{{ pyenv_install.stat.path }}"
+  when: pyenv_install.stat.exists
+
 - name: execute pyenv installer
   become: yes
   become_user: "{{ username }}"
