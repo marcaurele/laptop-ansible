@@ -6,8 +6,8 @@ deb http://debian.ethz.ch/debian {{ release.name }} main contrib non-free
 deb-src http://debian.ethz.ch/debian {{ release.name }} main contrib non-free
 {% if release.security %}
 # Debian security APT sources
-deb http://security.debian.org/debian-security {{ release.name }}/updates main contrib non-free
-deb-src http://security.debian.org/debian-security {{ release.name }}/updates main contrib non-free
+deb http://security.debian.org {{ release.name }}-security main contrib non-free
+deb-src http://security.debian.org {{ release.name }}-security main contrib non-free
 {% endif %}
 
 {% endfor %}
