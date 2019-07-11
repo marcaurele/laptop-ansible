@@ -1,0 +1,17 @@
+---
+
+- name: add repository GPG key for Signal
+  become: yes
+  apt_key:
+    url: https://updates.signal.org/desktop/apt/keys.asc
+
+- name: add reposiroty for Signal
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
+
+- name: install Signal
+  become: yes
+  apt:
+    pkg: signal-desktop
+    state: latest
