@@ -1,5 +1,10 @@
 ---
 
+- name: install pipsi requirements
+  become: yes
+  apt:
+    name: python3-virtualenv
+
 # https://github.com/mitsuhiko/pipsi
 - name: check if pipsi is already installed
   become: yes
