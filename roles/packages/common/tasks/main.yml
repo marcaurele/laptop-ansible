@@ -12,6 +12,7 @@
     - curl
     - dnsutils
     - git
+    - git-lfs
     - gpg
     - gpg-agent
     - htop
