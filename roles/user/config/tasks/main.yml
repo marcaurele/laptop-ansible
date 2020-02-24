@@ -29,6 +29,7 @@
     mode: "{{ item.mode|default('') }}"
   loop:
     - path: "~/.config"
+    - path: "~/.configi/nvim"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
     - path: "~/.ssh"
@@ -50,6 +51,8 @@
       dest: "~/.gitignore_global"
     - src: vimrc.j2
       dest: "~/.vimrc"
+    - src: nvim.j2
+      dest: "~/.config/nvim/init.vim"
     - src: wgetrc.j2
       dest: "~/.wgetrc"
     - src: ssh_config.j2
