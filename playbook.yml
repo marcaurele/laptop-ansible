@@ -40,7 +40,6 @@
     - user/config
     - user/zsh
     - packages/intellij
-    - packages/atlassian-sdk
   vars:
     locales:
       - fr_CH.UTF-8
