@@ -34,7 +34,6 @@
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
-    - packages/development/javascript
     - packages/signal
     - packages/audible
     - packages/calibre
