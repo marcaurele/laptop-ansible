@@ -31,4 +31,5 @@
     - postgresql-client
     - qtbase5-dev
     - qttools5-dev-tools
+    - tidy
     - zlib1g-dev
