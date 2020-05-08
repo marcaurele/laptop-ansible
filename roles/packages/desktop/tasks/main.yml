@@ -11,7 +11,7 @@
     - calibre
     - chromium
     - dictionaries-common
-    - evolution
+      # - evolution
     - fonts-symbola
     - gimp
     - gocryptfs
