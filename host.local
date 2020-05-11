@@ -1,2 +1,2 @@
 [laptop]
-liskam ansible_host=localhost ansible_connection=local
+x1 ansible_host=localhost ansible_connection=local
