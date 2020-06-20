@@ -13,4 +13,5 @@
     - libvirt-clients
     - libvirt-daemon
     - vagrant
+    - vagrant-libvirt
     - virt-manager
