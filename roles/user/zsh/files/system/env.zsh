@@ -15,8 +15,3 @@ export LC_COLLATE=C
 # Don’t clear the screen after quitting a manual page
 #export MANPAGER="less -X"
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-	export GREP_OPTIONS="--color=auto"
-	# Sorry Brew, but that's not something I want
-	export HOMEBREW_NO_ANALYTICS=1
-fi

@@ -8,13 +8,13 @@ export PROJECTS=~/code
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
+if [[ -e ~/.localrc ]]
 then
   source ~/.localrc
 fi
 
 # Create $HOME/.zsh if missing
-if [[ ! -a ~/.zsh ]]
+if [[ ! -e ~/.zsh ]]
 then
   echo "creating .zsh"
   mkdir ~/.zsh
@@ -51,3 +51,9 @@ unset config_files
 # Activate zsh-completions
 #fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(${HOME}/.zsh $fpath)
+
+# Load zsh-autosuggestions if package is present
+if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]
+then
+	source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
