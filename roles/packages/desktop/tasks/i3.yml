@@ -9,6 +9,8 @@
     - i3
     - i3status
     - i3lock
+    - fonts-powerline
+    - powerline
 
 - name: configure a i3lock on sleep
   become: yes
