@@ -12,8 +12,16 @@
   become: yes
   become_user: "{{ username }}"
   file:
-    path: "~/.config/xfce4/terminal"
+    path: "~/.config/xfce4/terminal/colorschemes"
     state: directory
+  when: ansible_facts.packages['xfce4-terminal'] is defined
+
+- name: install selected xfce themes
+  become: yes
+  become_user: "{{ username }}"
+  copy:
+    src: "xfce-themes/"
+    dest: "~/.config/xfce4/terminal/colorschemes"
   when: ansible_facts.packages['xfce4-terminal'] is defined
 
 - name: configure xfce
