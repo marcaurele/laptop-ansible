@@ -65,10 +65,5 @@ unset config_files
 #fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(${HOME}/.zsh $fpath)
 
-# Load zsh-autosuggestions if package is present
-if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]
-then
-	source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
+# Set prompt, thanks vinz!
 _vbe_setprompt

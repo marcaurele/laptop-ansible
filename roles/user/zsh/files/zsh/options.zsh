@@ -23,6 +23,8 @@ WORDCHARS=${WORDCHARS:s#/#}
 
 if (( ${termcap[Co]:-0} > 8)); then
     # Enable and configure autosuggest
-    # source $ZSH/third-party/zsh-autosuggestions.zsh
-    ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+    if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+    fi
 fi

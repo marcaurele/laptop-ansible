@@ -55,7 +55,6 @@
     }
 
     # Asynchronous VCS status
-    # source $ZSH/third-party/async.zsh
     async_init
     _vbe_vcs_async_start
     add-zsh-hook precmd (){
