@@ -26,6 +26,8 @@
     - ocrmypdf
     - tesseract-ocr-fra
     - oathtool
+    - openssh-client
+    - openssh-server
     - openssl
     - pass
     - pass-extension-otp
@@ -37,7 +39,6 @@
     - sudo
     - task-english
     - task-print-server
-    - task-ssh-server
     - vim
     - wget
     - whois
