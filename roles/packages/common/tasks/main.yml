@@ -9,6 +9,8 @@
     - ack
     - apt-transport-https
     - byobu
+    - cups
+    - cups-client
     - curl
     - dnsutils
     - git
@@ -38,7 +40,6 @@
     - qrencode
     - sudo
     - task-english
-    - task-print-server
     - vim
     - wget
     - whois
