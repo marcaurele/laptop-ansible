@@ -1,6 +1,6 @@
 ---
 
-- name: install firefox quantum
+- name: install firefox
   become: yes
   package:
     pkg: firefox
