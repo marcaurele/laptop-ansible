@@ -6,21 +6,24 @@
 - name: download Dropbox
   become: yes
   when: ansible_os_family == "Debian"
-  apt:
-    deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
-    state: present
+  get_url:
+    dest: /usr/bin/dropbox
+    mode: 0755
+    url: https://www.dropbox.com/download?dl=packages/dropbox.py
   register: dropbox_install
-
-- name: fix dropbox missing dependencies
-  become: yes
-  command: apt install -fy
-  when: dropbox_install.changed and ansible_os_family == "Debian"
 
 - name: configure a systemd service for Dropbox
   become: yes
   template:
     src: dropbox.service.j2
     dest: /etc/systemd/system/dropbox@.service
+  register: dropbox_service
+
+- name: service daemon reload
+  become: yes
+  systemd:
+    daemon_reload: yes
+  when: dropbox_service.changed
 
 - name: install dropbox daemon 
   become: yes
@@ -28,7 +31,7 @@
   command: dropbox start -i -y
   args:
     creates: "~/.dropbox-dist"
-  when: dropbox_install is defined
+  when: dropbox_service.changed
   register: dropbox_daemon
 
 - name: enable systemd Dropbox service for {{ username }}
@@ -37,5 +40,4 @@
     enabled: yes
     name: "dropbox@{{ username }}.service"
     state: started
-    daemon_reload: yes
   when: dropbox_install is defined and dropbox_daemon is defined and dropbox_daemon.changed
