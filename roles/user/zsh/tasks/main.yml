@@ -1,5 +1,14 @@
 ---
 
+- name: install ZSH
+  become: yes
+  package:
+    pkg: "{{ item }}"
+    state: latest
+  with_together:
+    - zplug
+    - zsh
+
 - name: create ZSH alias config directory
   file:
     path: "~/.zsh_config"

@@ -44,5 +44,3 @@
     - wget
     - whois
     - xz-utils
-    - zsh
-    - zsh-autosuggestions
