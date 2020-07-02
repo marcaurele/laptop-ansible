@@ -21,10 +21,3 @@ autoload run-help-ip
 # Remove / from WORDCHARS (more like bash)
 WORDCHARS=${WORDCHARS:s#/#}
 
-if (( ${termcap[Co]:-0} > 8)); then
-    # Enable and configure autosuggest
-    if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
-    fi
-fi
