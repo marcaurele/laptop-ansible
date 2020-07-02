@@ -1,12 +1,6 @@
 ---
 packages_directory: "~/soft"
 code_directory: "~/code"
-pyenv:
-  versions:
-    - 3.6.10
-    - 3.7.6
-    - 3.8.1
-  default: 3.8.1
 pipsi_tools:
   - name: cs
   - name: flake8

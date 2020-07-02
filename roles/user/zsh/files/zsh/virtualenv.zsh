@@ -5,6 +5,10 @@
 
 WORKON_HOME=${WORKON_HOME:-~/.virtualenvs}
 
+if [[ -e /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ]]; then
+    source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
+fi
+
 _virtualenv () {
     local interpreter
     case $1 in

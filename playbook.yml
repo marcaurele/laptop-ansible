@@ -27,7 +27,6 @@
     - packages/dropbox
     - packages/sublime
     - packages/python
-    - packages/pyenv
     - packages/pipsi
     - packages/virtualization
     - packages/dbeaver

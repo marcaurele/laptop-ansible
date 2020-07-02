@@ -1,10 +1,5 @@
 ---
 
-- name: install pipsi requirements
-  become: yes
-  apt:
-    name: python3-virtualenv
-
 # https://github.com/mitsuhiko/pipsi
 - name: check if pipsi is already installed
   become: yes
@@ -30,7 +25,7 @@
 - name: install python tools with pipsi
   become: yes
   become_user: "{{ username }}"
-  command: ~/.local/bin/pipsi install --python ~/.pyenv/versions/{{ pyenv.default }}/bin/python {{ item.name }}
+  command: ~/.local/bin/pipsi install {{ item.name }}
   args:
     creates: "~/.local/venvs/{{ item.name }}"
   loop: "{{ pipsi_tools }}"
