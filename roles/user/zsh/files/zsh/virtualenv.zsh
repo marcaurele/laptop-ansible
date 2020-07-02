@@ -4,6 +4,7 @@
 # Simplified version of virtualenvwrapper.
 
 WORKON_HOME=${WORKON_HOME:-~/.virtualenvs}
+PROJECT_HOME=${PROJECT_HOME:-~/code}
 
 if [[ -e /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ]]; then
     source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
