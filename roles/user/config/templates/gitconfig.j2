@@ -1,15 +1,16 @@
 # {{ ansible_managed }}
 
+# Default identity
 [user]
 	name = Marc-Aurèle Brothier
 	email = m@brothier.org
         signingkey = 9E5E851AF9FCCFA20FA49965887CC10F998EBC42
+# Adfinis override when working in ~/code/adfinis/
+[includeIf "gitdir:~/code/adfinis/**/.git"]
+	path = .gitconfig_adfinis
 [github]
         user = marcaurele
         name = marcaurele
-
-[credential]
-        helper = osxkeychain
 [alias]
         co = checkout
         ci = commit
