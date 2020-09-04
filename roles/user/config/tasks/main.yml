@@ -45,6 +45,8 @@
   loop:
     - src: curlrc.j2
       dest: "~/.curlrc"
+    - src: gitconfig_adfinis.j2
+      dest: "~/.gitconfig_adfinis"
     - src: gitconfig.j2
       dest: "~/.gitconfig"
     - src: gitignore_global.j2
