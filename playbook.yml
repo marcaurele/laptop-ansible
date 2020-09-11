@@ -34,6 +34,7 @@
     - packages/development/java
     - packages/development/docker
     - packages/signal
+    - packages/brave
     - packages/audible
     - packages/calibre
     - user/config

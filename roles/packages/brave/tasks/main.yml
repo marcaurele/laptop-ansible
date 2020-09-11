@@ -1,0 +1,17 @@
+---
+
+- name: add repository GPG key for Brave
+  become: yes
+  apt_key:
+    url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+
+- name: add reposiroty for Brave
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
+
+- name: install Brave
+  become: yes
+  apt:
+    pkg: brave-browser
+    state: latest
