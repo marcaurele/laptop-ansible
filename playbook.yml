@@ -30,6 +30,7 @@
     - packages/pipsi
     - packages/virtualization
     - packages/dbeaver
+    - packages/drawio
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
