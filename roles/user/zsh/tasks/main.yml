@@ -19,6 +19,7 @@
   copy:
     src: "."
     dest: "~/.zsh_config/"
+    mode: preserve
   tags: user
 
 - name: install config dot files

@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# If gopass exists use it, fall back to pass otherwise
+PASS=$(hash gopass 2>/dev/null && echo gopass || echo pass)
+
+SOURCES="consul vault nomad"
+
+env=$1
+
+deactivate () {
+	if [ -n "${_OLD_VIRTUAL_PS1:-}" ]
+	then
+		PS1="${_OLD_VIRTUAL_PS1:-}"
+		export PS1
+		unset _OLD_VIRTUAL_PS1
+	fi
+
+	if [ -n "${_VARIABLES_TO_BE_CLEANED_UP:-}" ]
+	then
+		for var in $_VARIABLES_TO_BE_CLEANED_UP;
+		do
+			echo "unset ${var}"
+			unset "${var}"
+		done
+		unset _VARIABLES_TO_BE_CLEANED_UP
+	fi
+}
+
+deactivate
+
+if [ -z "$env" ]
+then
+	echo "environment is needed, e.g. source hashienv AD"
+else
+	shift
+
+	# Selecting the Terraform workspace for you.
+	export TF_WORKSPACE=$(echo $env | tr '[:upper:]' '[:lower:]')
+	echo export TF_WORKSPACE=$TF_WORKSPACE
+	_VARIABLES_TO_BE_CLEANED_UP="TF_WORKSPACE"
+
+	for s in $SOURCES
+	do
+		for f in $($PASS show "${env}/${s}")
+		do
+			value=${f#*=*}
+			var=${f%?$value}
+			if [ -n "${value}" -a -n "${var}" ]
+			then
+				echo "export ${var}"
+				export ${var}=${value}
+				_VARIABLES_TO_BE_CLEANED_UP="${_VARIABLES_TO_BE_CLEANED_UP} ${var}"
+			fi
+		done
+	done
+
+	_OLD_VIRTUAL_PS1="${PS1:-}"
+	PS1="($env) ${PS1:-}"
+	export PS1
+
+	if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ]
+	then
+		hash -r
+	fi
+fi
