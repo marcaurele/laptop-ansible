@@ -59,6 +59,8 @@
       dest: "~/.wgetrc"
     - src: ssh_config.j2
       dest: "~ /.ssh/config"
+    - src: gist.j2
+      dest: "~/.gist"
   tags: user
 
 - name: install extra config dot files
@@ -69,8 +71,6 @@
   loop:
     - src: "config/cloudstack.ini"
       dest: "~/.cloudstack.ini"
-    - src: "config/gist"
-      dest: "~/.gist"
   tags: user
 
 - name: clone projects
