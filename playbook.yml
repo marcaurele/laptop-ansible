@@ -42,6 +42,7 @@
     - user/zsh
     - packages/intellij
     - packages/mattermost-desktop
+    - packages/joplin
   vars:
     locales:
       - fr_CH.UTF-8
