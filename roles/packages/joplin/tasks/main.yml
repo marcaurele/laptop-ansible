@@ -1,5 +1,7 @@
 ---
 
+# Require sudo sysctl kernel.unprivileged_userns_clone=1 for now
+
 - name: check joplin releases
   uri:
     url: https://api.github.com/repos/laurent22/joplin/releases/latest
