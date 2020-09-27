@@ -7,6 +7,7 @@
     state: latest
   with_together:
     - i3
+    - i3blocks
     - i3status
     - i3lock
     - fonts-powerline
@@ -41,6 +42,13 @@
     src: i3-status.conf.j2
     dest: ~/.i3status.conf
   when: ansible_facts.packages['i3status'] is defined
+
+- name: configure i3blocks
+  become: yes
+  become_user: "{{ username }}"
+  template:
+    src: i3-blocks.conf.j2
+    dest: ~/.i3blocks.conf
 
 - name: enable i3lock on sleep service for {{ username }}
   become: yes

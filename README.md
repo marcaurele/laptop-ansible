@@ -18,3 +18,4 @@ This playbook is my laptop installer done nicely. It features the possibility to
 - configure crontab to auto fetch update
 - fix su/sudo when installing on a fresh new laptop
 - fix GPG key import with ultimate trust
+- move to i3blocks (https://github.com/vivien/i3blocks)
