@@ -41,6 +41,7 @@
     - user/config
     - user/zsh
     - packages/intellij
+    - packages/mattermost-desktop
   vars:
     locales:
       - fr_CH.UTF-8
