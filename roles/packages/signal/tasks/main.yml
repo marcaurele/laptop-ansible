@@ -1,22 +1,23 @@
 ---
 
 - name: add repository GPG key for Signal
-  become: yes
+  become: true
   apt_key:
     url: https://updates.signal.org/desktop/apt/keys.asc
 
 - name: add reposiroty for Signal
-  become: yes
+  become: true
   apt_repository:
     repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
 
 - name: install Signal
-  become: yes
+  become: true
   apt:
     pkg: signal-desktop
     state: latest
 
 - name: Fix chrome-sandbox
+  become: true
   file:
     path: /opt/Signal/chrome-sandbox
     state: file

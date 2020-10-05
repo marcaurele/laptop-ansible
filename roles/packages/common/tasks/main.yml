@@ -1,7 +1,7 @@
 ---
 
 - name: install common packages
-  become: yes
+  become: true
   package:
     pkg: "{{ item }}"
     state: latest
@@ -44,3 +44,17 @@
     - wget
     - whois
     - xz-utils
+
+- name: create SKS directory
+  become: true
+  file:
+    path: /etc/sks
+    state: directory
+    mode: "0755"
+
+- name: download SKS CA file
+  become: true
+  get_url:
+    url: https://sks-keyservers.net/sks-keyservers.netCA.pem
+    dest: /etc/sks/sks-keyservers.netCA.pem
+    mode: "0644"

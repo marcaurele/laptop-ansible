@@ -1,0 +1,33 @@
+# {{ ansible_managed }}
+no-greeting
+
+default-key 9E5E851AF9FCCFA20FA49965887CC10F998EBC42
+#default-recipient some-user-id
+default-recipient-self
+
+require-cross-certification
+display-charset utf-8
+utf8-strings
+keyid-format 0xlong
+auto-key-retrieve
+
+#keyserver
+keyserver hkps://hkps.pool.sks-keyservers.net
+keyserver-options no-honor-keyserver-url
+
+use-agent
+
+# This silences the "you need a passphrase" message once the passphrase handling is all set.
+# # Use at your own discretion - may prevent the successful interactive use of some operations.
+# # It is working fine for my use cases though.
+#batch
+no-emit-version
+cert-digest-algo SHA512
+no-comments 
+personal-cipher-preferences AES AES256 AES192 CAST5
+personal-digest-preferences SHA512 SHA384 SHA256 SHA224
+default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 BZIP2 ZLIB ZIP Uncompressed
+#ignore-time-conflict
+#allow-freeform-uid
+armor
+fixed-list-mode

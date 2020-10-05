@@ -65,6 +65,12 @@
     - src: docking.j2
       dest: "~/bin/docking"
       mode: "0755"
+    - src: gpg.conf.j2
+      dest: "~/.gnupg/gpg.conf"
+      mode: "0600"
+    - src: gpg-agent.conf.j2
+      dest: "~/.gnupg/gpg-agent.conf"
+      mode: "0600"
   tags: user
 
 - name: install extra config dot files
