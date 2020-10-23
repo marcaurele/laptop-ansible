@@ -16,7 +16,7 @@
     - gpg-agent
     - jq
     - kafkacat
-    - kubernetes-client
+    #- kubernetes-client
     - libbz2-dev
     - libmariadbclient-dev-compat
     - libncurses5-dev

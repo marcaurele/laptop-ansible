@@ -21,6 +21,8 @@
     - libreoffice
     - network-manager
     - network-manager-gnome
+    - network-manager-openvpn-gnome
+    - network-manager-l2tp-gnome
     - pavucontrol
     - pulseaudio
     - remmina

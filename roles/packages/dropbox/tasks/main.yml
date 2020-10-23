@@ -25,14 +25,14 @@
     daemon_reload: yes
   when: dropbox_service.changed
 
-- name: install dropbox daemon 
-  become: yes
-  become_user: "{{ username }}"
-  command: dropbox start -i -y
-  args:
-    creates: "~/.dropbox-dist"
-  when: dropbox_service.changed
-  register: dropbox_daemon
+#- name: install dropbox daemon 
+#  become: yes
+#  become_user: "{{ username }}"
+#  command: dropbox start -i -y
+#  args:
+#    creates: "~/.dropbox-dist"
+#  when: dropbox_service.changed
+#  register: dropbox_daemon
 
 - name: enable systemd Dropbox service for {{ username }}
   become: yes

@@ -10,12 +10,16 @@
     - zsh
 
 - name: create ZSH alias config directory
+  become: yes
+  become_user: "{{ username }}"
   file:
     path: "~/.zsh_config"
     state: directory
   tags: user
 
 - name: copy ZSH config files
+  become: yes
+  become_user: "{{ username }}"
   copy:
     src: "."
     dest: "~/.zsh_config/"
@@ -23,6 +27,8 @@
   tags: user
 
 - name: install config dot files
+  become: yes
+  become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"

@@ -1,6 +1,8 @@
 ---
 
 - name: change home permissions for {{ username }}
+  become: yes
+  become_user: "{{ username }}"
   file:
     path: "~/"
     state: directory
@@ -8,6 +10,8 @@
   tags: user
 
 - name: create directory for ansible remote_tmp to skip warning
+  become: yes
+  become_user: "{{ username }}"
   file:
     path: "~/.ansible/tmp"
     state: directory
@@ -15,6 +19,7 @@
   tags: user
 
 - name: add authorized ssh keys for {{ username }}
+  become: yes
   authorized_key:
     key: https://github.com/marcaurele.keys
     comment: "github user key for marcaurele"
@@ -23,22 +28,28 @@
   tags: user
 
 - name: create directories
+  become: yes
+  become_user: "{{ username }}"
   file:
     path: "{{ item.path }}"
     state: directory
     mode: "{{ item.mode|default('') }}"
   loop:
     - path: "~/.config"
-    - path: "~/.configi/nvim"
+    - path: "~/.config/nvim"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
+    - path: "~/.gnupg"
+      mode: "0700"
     - path: "~/.ssh"
-      mode: '0700'
+      mode: "0700"
     - path: "{{ code_directory }}"
     - path: "~/bin"
   tags: user
 
 - name: install config dot files
+  become: yes
+  become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -74,6 +85,8 @@
   tags: user
 
 - name: install extra config dot files
+  become: yes
+  become_user: "{{ username }}"
   file:
     state: link
     path: "{{ item.dest }}"
@@ -82,8 +95,11 @@
     - src: "config/cloudstack.ini"
       dest: "~/.cloudstack.ini"
   tags: user
+  ignore_errors: yes
 
 - name: clone projects
+  become: yes
+  become_user: "{{ username }}"
   git:
     clone: yes
     accept_hostkey: yes
@@ -93,3 +109,4 @@
     verify_commit: no
   loop: "{{ code_projects }}"
   tags: user
+  ignore_errors: yes

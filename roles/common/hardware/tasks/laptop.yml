@@ -23,3 +23,10 @@
     - firmware-iwlwifi
     - task-laptop
   tags: system, root
+
+- name: install firmware for Realtek devices
+  become: yes
+  apt:
+    pkg: firmware-realtek
+    state: latest
+  tags: system, root
