@@ -15,6 +15,8 @@ This playbook is my laptop installer done nicely. It features the possibility to
 
 ## Things to do
 
+- fix `pass` init on empty machine to rerun ansible
+- clean git pull repos
 - configure crontab to auto fetch update
 - fix su/sudo when installing on a fresh new laptop
 - fix GPG key import with ultimate trust
