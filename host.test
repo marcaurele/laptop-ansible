@@ -1,2 +1,2 @@
 [laptop]
-liskam-test ansible_host=159.100.241.238 ansible_user=debian
+vagrant-vm ansible_host=192.168.121.252 ansible_user=root
