@@ -38,6 +38,7 @@
       - cdrom
       - dip
       - floppy
+      - libvirt
       - plugdev
       - netdev
       - video
