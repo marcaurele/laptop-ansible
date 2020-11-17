@@ -441,3 +441,7 @@ colortest() {
     done
     printf "\e[0m\n"
 }
+
+# Extra command aliases
+(( $+commands[docker] )) && alias youtube-dl='docker run --rm -v "$(pwd):/data" -u "$(id -u):$(id -g)" vimagick/youtube-dl'
+(( $+commands[docker] )) && alias ocrmypdf='docker run --rm -v "$(pwd):/app" -u "$(id -u):$(id -g)" jbarlow83/ocrmypdf'
