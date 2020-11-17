@@ -12,6 +12,7 @@
     - qemu-kvm
     - libvirt-clients
     - libvirt-daemon
+    - libvirt-daemon-system
     - vagrant
     - vagrant-libvirt
     - virt-manager
