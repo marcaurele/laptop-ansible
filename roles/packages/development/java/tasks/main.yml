@@ -7,9 +7,9 @@
     state: latest
   with_together:
     - maven
-    - openjdk-8-jdk
     - openjdk-11-jdk
+    - openjdk-14-jdk
 
-- name: change default java alternatives
-  become: yes
-  command: update-java-alternatives -s java-1.8.0-openjdk-amd64
+#- name: change default java alternatives
+#  become: yes
+#  command: update-java-alternatives -s java-1.8.0-openjdk-amd64

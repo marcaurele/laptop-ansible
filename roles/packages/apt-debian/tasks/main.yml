@@ -22,6 +22,7 @@
   become: yes
   apt:
     update_cache: yes
+    upgrade: yes
   when: apt_source.changed
   tags: system, root
 
@@ -35,7 +36,7 @@
     - curl
     - gpg
     - python3-apt
-    - python3-selinux
+    #- python3-selinux
     - software-properties-common
     - wget
   tags: system, root

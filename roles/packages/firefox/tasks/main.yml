@@ -3,7 +3,7 @@
 - name: install firefox
   become: yes
   package:
-    pkg: firefox
+    pkg: firefox-esr
     state: latest
 
 - name: check browser preferences
