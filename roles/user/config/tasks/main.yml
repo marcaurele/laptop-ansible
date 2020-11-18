@@ -84,19 +84,6 @@
       mode: "0600"
   tags: user
 
-- name: install extra config dot files
-  become: yes
-  become_user: "{{ username }}"
-  file:
-    state: link
-    path: "{{ item.dest }}"
-    src: "~/Private/{{ item.src }}"
-  loop:
-    - src: "config/cloudstack.ini"
-      dest: "~/.cloudstack.ini"
-  tags: user
-  ignore_errors: yes
-
 - name: clone projects
   become: yes
   become_user: "{{ username }}"
