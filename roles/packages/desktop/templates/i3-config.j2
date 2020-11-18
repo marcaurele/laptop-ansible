@@ -178,8 +178,14 @@ bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl suspend
 # Switch capslock to ctrl key - done in /etc/X11/xorg.conf.d/20-keyboard.conf
 #exec --no-startup-id setxkbmap -option ctrl:swapcap && setxkbmap -option ctrl:nocaps
 exec --no-startup-id setxkbmap -option ctrl:nocaps
+
+{% if ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th" %}
 exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Accel Speed" 0.6
+{% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "Latitude 3301" %}
+exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Accel Speed" 0.6
+{% endif %}
 
 # Activate NetworkManager applet
 exec --no-startup-id nm-applet
