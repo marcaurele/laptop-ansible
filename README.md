@@ -21,3 +21,4 @@ This playbook is my laptop installer done nicely. It features the possibility to
 - move to i3blocks (https://github.com/vivien/i3blocks)
 - add package `tmate`
 - flag _work_ packages and don't install them on personal laptop
+- luniistore app for the kids
