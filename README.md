@@ -12,13 +12,3 @@ This playbook is my laptop installer done nicely. It features the possibility to
 
 ## Testing on a cloud provider
 `ansible-playbook -i host.test playbook.yml`
-
-## Things to do
-
-- fix `pass` init on empty machine to rerun ansible
-- fix su/sudo when installing on a fresh new laptop
-- fix GPG key import with ultimate trust
-- move to i3blocks (https://github.com/vivien/i3blocks)
-- add package `tmate`
-- flag _work_ packages and don't install them on personal laptop
-- luniistore app for the kids
