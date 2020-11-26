@@ -44,6 +44,7 @@
     - wget
     - whois
     - xz-utils
+    - zbar-tools
 
 - name: create SKS directory
   become: true
