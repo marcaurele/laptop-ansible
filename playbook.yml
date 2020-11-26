@@ -34,16 +34,16 @@
     - packages/development/toolbox
     - packages/development/java
     - packages/development/docker
-    - packages/minikube
+      #- packages/minikube
     - packages/signal
     - packages/brave
     #- packages/audible
     - packages/calibre
     - user/config
     - user/zsh
-    - packages/intellij
-    - packages/mattermost-desktop
-    - packages/joplin
+      #- packages/intellij
+      #- packages/mattermost-desktop
+      #- packages/joplin
   vars:
     locales:
       - fr_CH.UTF-8
