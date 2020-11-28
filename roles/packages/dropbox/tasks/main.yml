@@ -25,25 +25,27 @@
     daemon_reload: yes
   when: dropbox_service.changed
 
-#- name: install dropbox daemon 
-#  become: yes
-#  become_user: "{{ username }}"
-#  command: dropbox start -i -y
-#  args:
-#    creates: "~/.dropbox-dist"
-#  when: dropbox_service.changed
-#  register: dropbox_daemon
+- name: install dropbox daemon 
+  become: yes
+  become_user: "{{ username }}"
+  command: dropbox start -i -y
+  args:
+    creates: "~/.dropbox-dist"
+  when: dropbox_service.changed
+  register: dropbox_daemon
 
-#- name: get link to activate account
-#  become: yes
-#  become: "{{ username }}"
-#  command: dropbox status
-#  register: dropbox_status
-#
-#- name: dropbox activation link
-#  debug:
-#    var: dropbox_status.output
-#
+- name: get link to activate account
+  become: yes
+  become: "{{ username }}"
+  command: dropbox status
+  register: dropbox_status
+  when: dropbox_daemon.changed
+
+- name: dropbox activation link
+  pause:
+    prompt: "Open the link to activate this device: {{ dropbox_status.stdout }}"
+  when: dropbox_daemon.changed
+
 - name: enable systemd Dropbox service for {{ username }}
   become: yes
   systemd:
