@@ -25,6 +25,7 @@
     - packages/desktop
     - packages/firefox
     - packages/dropbox
+    - packages/kdrive
     #- packages/sublime
     - packages/python
     #- packages/pipsi

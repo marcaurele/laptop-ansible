@@ -1,0 +1,17 @@
+---
+
+- name: check kdrive local binary
+  stat:
+    path: "~/bin/kDrive-{{ kdrive.version }}.AppImage"
+  register: kdrive_stat
+
+- name: download kDrive app image
+  become: yes
+  become_user: "{{ username }}"
+  get_url:
+    dest: "~/bin/"
+    url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{ kdrive.version }}.AppImage"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0750"
+  when: not kdrive_stat.stat.exists

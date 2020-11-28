@@ -12,3 +12,6 @@ pipsi_tools:
   - name: python-gist
 
 code_projects: '{{ vault_code_projects }}'
+
+kdrive:
+  version: "3.0.10.20200908"
