@@ -6,6 +6,9 @@
     - name: fetch packages information
       package_facts:
         manager: auto
+    - name: set platform type
+      set_fact:
+        private_node : "{{ ansible_nodename in ('play', 'x1') }}"
   tags:
     - system
     - user
@@ -68,6 +71,7 @@
       #  tags: audible
     - role: packages/calibre
       tags: calibre
+      when: private_node
     - role: user/config
       tags: user, config
     - role: user/zsh
@@ -76,6 +80,7 @@
       #  tags: intellij
       #- role: packages/mattermost-desktop
       #  tags: mattermost
+      #  when: not private_node
       #- role: packages/joplin
       #  tags: joplin
   tags:
