@@ -1,0 +1,26 @@
+---
+
+- name: install/upgrade pipx
+  become: true
+  become_user: "{{ username }}"
+  command: "/usr/bin/python3 -m pip install --user --upgrade pipx"
+  args:
+    creates: "~/.local/pipx"
+
+- name: install tools with pipx
+  become: true
+  become_user: "{{ username }}"
+  command: "~/.local/bin/pipx install {{ item.name }}"
+  args:
+    creates: "~/.local/pipx/venvs/{{ item.name }}"
+  loop: "{{ python_tools }}"
+  register: pipx_install
+
+- name: install extra modules for python tools
+  become: yes
+  become_user: "{{ username }}"
+  command: "~/.local/bin/pipx inject {{ item.item.name }} {{ item.item.extra }}"
+  loop: "{{ pipx_install.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.item.extra is defined and item.changed

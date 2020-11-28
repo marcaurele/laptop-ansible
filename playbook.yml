@@ -44,8 +44,8 @@
       #  tags: sublime
     - role: packages/python
       tags: python
-      #- role: packages/pipsi
-      #  tags: pipsi
+    - role: packages/pipx
+      tags: pipx
     - role: packages/virtualization
       tags: virtualization
     - role: packages/dbeaver

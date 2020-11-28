@@ -1,13 +1,13 @@
 ---
 packages_directory: "~/soft"
 code_directory: "~/code"
-pipsi_tools:
+python_tools:
   - name: cs
   - name: flake8
-    extra: flake8-import-order, flake8-bugbear
+    extra: flake8-import-order flake8-bugbear
   - name: pip-tools
   - name: sphinx
-    extra: sphinx-rtd-theme, recommonmark
+    extra: sphinx-rtd-theme recommonmark
   - name: black
   - name: python-gist
 
