@@ -7,18 +7,10 @@
   register: releases
   tags: system
 
-- name: debug releases
-  debug:
-    var: releases
-
-- name: debug facts
-  debug:
-    var: ansible_facts.packages
-
 - name: install or upgrade draw.io desktop
   become: yes
   apt:
     deb: "https://github.com/jgraph/drawio-desktop/releases/download/{{ releases.json.tag_name }}/draw.io-amd64-{{ releases.json.name }}.deb"
     state: present
-  when: ansible_facts.packages['draw.io'] is not defined or ansible_facts.packages['draw.io'][0].version != releases.json.name
+  when: ansible_facts.packages['draw.io'] is not defined or not ansible_facts.packages['draw.io'][0]['version'].startswith(releases.json.name)
   tags: system
