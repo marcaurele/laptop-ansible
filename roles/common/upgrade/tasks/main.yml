@@ -4,14 +4,12 @@
   become: yes
   apt:
     update_cache: yes
-  tags: never, upgrade
 
 - name: apt dist-upgrade
   become: yes
   apt:
     upgrade: dist
   register: apt_upgrade
-  tags: never, upgrade
 
 - name: show dist apt upgrade output
   debug:
@@ -21,16 +19,13 @@
 - name: install unattended-upgrades
   become: yes
   apt: pkg=unattended-upgrades state=latest
-  tags: never, upgrade
 
 - name: remove useless packages from the cache
   become: yes
   apt:
     autoclean: yes
-  tags: never, upgrade
 
 - name: remove dependencies that are no longer required
   become: yes
   apt:
     autoremove: yes
-  tags: never, upgrade

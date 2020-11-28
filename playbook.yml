@@ -9,42 +9,77 @@
   tags:
     - system
     - user
+    - always
 
 - name: Configure system
   hosts: [all]
   roles:
-    - locales
-    - packages/apt-debian
-    - common/configuration
-    - common/upgrade
-    - common/hardware
-    - packages/sshd
-    - user/setup
-    - packages/sudo
-    - packages/common
-    - packages/desktop
-    - packages/firefox
-    - packages/dropbox
-    - packages/kdrive
-    #- packages/sublime
-    - packages/python
-    #- packages/pipsi
-    - packages/virtualization
-    - packages/dbeaver
-    - packages/drawio
-    - packages/development/toolbox
-    - packages/development/java
-    - packages/development/docker
-      #- packages/minikube
-    - packages/signal
-    - packages/brave
-    #- packages/audible
-    - packages/calibre
-    - user/config
-    - user/zsh
-      #- packages/intellij
-      #- packages/mattermost-desktop
-      #- packages/joplin
+    - role: locales
+      tags: locales
+    - role: packages/apt-debian
+      tags: apt
+    - role: common/configuration
+      tags: configuration
+    - role: common/upgrade
+      tags: upgrade, never
+    - role: common/hardware
+      tags: hardware, system
+    - role: packages/sshd
+      tags: ssh
+    - role: user/setup
+      tags: user
+    - role: packages/sudo
+      tags: sudo
+    - role: packages/common
+      tags: common
+    - role: packages/desktop
+      tags: desktop
+    - role: packages/firefox
+      tags: firefox
+    - role: packages/dropbox
+      tags: dropbox
+    - role: packages/kdrive
+      tags: kdrive
+      #- role: packages/sublime
+      #  tags: sublime
+    - role: packages/python
+      tags: python
+      #- role: packages/pipsi
+      #  tags: pipsi
+    - role: packages/virtualization
+      tags: virtualization
+    - role: packages/dbeaver
+      tags: dbeaver
+    - role: packages/drawio
+      tags: drawio
+    - role: packages/development/toolbox
+      tags: dev, toolbox
+    - role: packages/development/java
+      tags: dev, java
+    - role: packages/development/docker
+      tags: dev, docker
+      #- role: packages/minikube
+      #  tags: minikube
+    - role: packages/signal
+      tags: signal
+    - role: packages/brave
+      tags: brave
+      #- role: packages/audible
+      #  tags: audible
+    - role: packages/calibre
+      tags: calibre
+    - role: user/config
+      tags: user, config
+    - role: user/zsh
+      tags: user, zsh
+      #- role: packages/intellij
+      #  tags: intellij
+      #- role: packages/mattermost-desktop
+      #  tags: mattermost
+      #- role: packages/joplin
+      #  tags: joplin
+  tags:
+    - packages
   vars:
     locales:
       - fr_CH.UTF-8
