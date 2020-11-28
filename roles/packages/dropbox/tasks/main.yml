@@ -36,7 +36,7 @@
 
 - name: get link to activate account
   become: yes
-  become: "{{ username }}"
+  become_user: "{{ username }}"
   command: dropbox status
   register: dropbox_status
   when: dropbox_daemon.changed
