@@ -36,8 +36,8 @@
       tags: desktop
     - role: packages/firefox
       tags: firefox
-    - role: packages/dropbox
-      tags: dropbox
+      #- role: packages/dropbox
+      #  tags: dropbox
     - role: packages/kdrive
       tags: kdrive
       #- role: packages/sublime
