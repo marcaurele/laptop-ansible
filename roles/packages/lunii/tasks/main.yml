@@ -1,0 +1,14 @@
+---
+
+- name: install luniistore
+  become: true
+  apt:
+    deb: "https://storage.googleapis.com/storage.lunii.fr/public/deploy/installers/linux/64bits/luniistore-{{ lunii.version }}-64bits.deb"
+  when: ansible_facts.packages['luniistore'] is not defined or ansible_facts.packages['luniistore'][0]['version'] != lunii.version
+
+- name: install link in /usr/local/bin to luniistore
+  become: yes
+  file:
+    src: /opt/Luniistore/Luniistore
+    dest: /usr/local/bin/luniistore
+    state: link

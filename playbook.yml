@@ -72,6 +72,9 @@
     - role: packages/calibre
       tags: calibre
       when: private_node
+    - role: packages/lunii
+      tags: lunii
+      when: private_node
     - role: user/config
       tags: user, config
     - role: user/zsh
