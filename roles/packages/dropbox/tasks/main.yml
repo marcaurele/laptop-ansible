@@ -34,6 +34,16 @@
 #  when: dropbox_service.changed
 #  register: dropbox_daemon
 
+#- name: get link to activate account
+#  become: yes
+#  become: "{{ username }}"
+#  command: dropbox status
+#  register: dropbox_status
+#
+#- name: dropbox activation link
+#  debug:
+#    var: dropbox_status.output
+#
 - name: enable systemd Dropbox service for {{ username }}
   become: yes
   systemd:
