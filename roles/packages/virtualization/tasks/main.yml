@@ -16,3 +16,13 @@
     - vagrant
     - vagrant-libvirt
     - virt-manager
+
+- name: add libvirt group to {{ username }}
+  become: yes
+  user:
+    name: "{{ username }}"
+    state: present
+    append: yes
+    groups:
+      - libvirt
+  tags: user, root
