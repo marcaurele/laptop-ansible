@@ -1,0 +1,25 @@
+---
+
+- name: configuring APT sources
+  become: yes
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+  register: apt_source
+  tags: system, root
+
+- name: set package preferences
+  become: yes
+  template:
+    src: apt-preferences.j2
+    dest: "/etc/apt/preferences.d/{{ item.name }}-default.pref"
+  with_items: "{{ debian_releases }}"
+  tags: system, root
+
+- name: update package cache
+  become: yes
+  apt:
+    update_cache: yes
+    upgrade: yes
+  when: apt_source.changed
+  tags: system, root

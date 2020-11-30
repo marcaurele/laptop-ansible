@@ -1,15 +1,23 @@
 ---
 
+- name: install Debian packages
+  become: yes
+  package:
+    pkg: "{{ item }}"
+  with_together:
+    - task-desktop
+    - task-gnome-desktop
+  when: ansible_distribution == "Debian"
+
 - name: install desktop
   become: yes
   package:
     pkg: "{{ item }}"
-    state: latest
   with_together:
     - blueman
     - brightnessctl
     - calibre
-    - chromium
+    - "chromium{% if ansible_distribution == 'Ubuntu' %}-browser{% endif %}"
     - dictionaries-common
       # - evolution
     - fonts-symbola
@@ -31,8 +39,6 @@
     - treesheets
     - vlc
     - suckless-tools
-    - task-desktop
-    - task-gnome-desktop
     - x11-xkb-utils
     - xclip
     - xinput

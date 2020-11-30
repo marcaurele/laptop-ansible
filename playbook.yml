@@ -19,8 +19,9 @@
   roles:
     - role: locales
       tags: locales
-    - role: packages/apt-debian
+    - role: packages/apt
       tags: apt
+      when: ansible_os_family == "Debian"
     - role: common/configuration
       tags: configuration
     - role: common/upgrade

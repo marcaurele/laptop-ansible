@@ -3,8 +3,7 @@
 - name: install firefox
   become: yes
   package:
-    pkg: firefox-esr
-    state: latest
+    pkg: "firefox{% if ansible_distribution == 'Debian' %}-esr{% endif %}"
 
 - name: check browser preferences
   command: xdg-mime query default {{ item }}

@@ -4,7 +4,6 @@
   become: true
   package:
     pkg: "{{ item }}"
-    state: latest
   with_together:
     - ack
     - apt-transport-https
@@ -39,10 +38,18 @@
     - qpdf
     - qrencode
     - sudo
-    - task-english
     - tmate
     - vim
     - wget
     - whois
     - xz-utils
+    - yubikey-manager
     - zbar-tools
+
+- name: install Debian package
+  become: true
+  package:
+    pkg: "{{ item }}"
+  with_together:
+    - task-english
+  when: ansible_distribution == "Debian"

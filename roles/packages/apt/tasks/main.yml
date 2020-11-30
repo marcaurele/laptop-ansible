@@ -1,42 +1,16 @@
 ---
 
-- name: configuring APT sources
-  become: yes
-  when: ansible_os_family == "Debian"
-  template:
-    src: sources.list.j2
-    dest: /etc/apt/sources.list
-  register: apt_source
-  tags: system, root
+- name: include distribution APT configuration
+  include_tasks: "{{ ansible_distribution | lower }}.yml"
 
-- name: set package preferences
-  become: yes
-  when: ansible_os_family == "Debian"
-  template:
-    src: apt-preferences.j2
-    dest: "/etc/apt/preferences.d/{{ item.name }}-default.pref"
-  with_items: "{{ debian_releases }}"
-  tags: system, root
-
-- name: update package cache
+- name: install required packages for playbook
   become: yes
   apt:
-    update_cache: yes
-    upgrade: yes
-  when: apt_source.changed
-  tags: system, root
-
-- name: installing required packages for playbook
-  become: yes
-  package:
-    pkg: "{{ item }}"
-    state: latest
-  with_together:
-    - apt-transport-https
-    - curl
-    - gpg
-    - python3-apt
-    #- python3-selinux
-    - software-properties-common
-    - wget
+    name:
+      - apt-transport-https
+      - curl
+      - gpg
+      - python3-apt
+      - software-properties-common
+      - wget
   tags: system, root
