@@ -1,6 +1,8 @@
 ---
 packages_directory: "~/soft"
+
 code_directory: "~/code"
+
 python_tools:
   - name: cs
   - name: flake8
@@ -10,6 +12,7 @@ python_tools:
     extra: sphinx-rtd-theme recommonmark
   - name: black
   - name: python-gist
+  - name: sslyze
 
 code_projects: '{{ vault_code_projects }}'
 
