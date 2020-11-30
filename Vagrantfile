@@ -45,10 +45,4 @@ sudo cp /home/vagrant/.ssh/authorized_keys /root/.ssh/authorized_keys
 EOF
     end
   end
-
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbook.yml"
-    ansible.verbose = "v"
-    #ansible.vault_password_file = "pass"
-  end
 end

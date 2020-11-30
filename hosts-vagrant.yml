@@ -1,0 +1,8 @@
+---
+all:
+  children:
+    laptop:
+      children:
+        vagrant:
+  vars:
+    ansible_user: root
