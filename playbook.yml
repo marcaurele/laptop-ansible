@@ -41,8 +41,6 @@
       tags: firefox
       #- role: packages/dropbox
       #  tags: dropbox
-    - role: packages/kdrive
-      tags: kdrive
       #- role: packages/sublime
       #  tags: sublime
     - role: packages/python
@@ -69,16 +67,18 @@
       tags: brave
       #- role: packages/audible
       #  tags: audible
-    - role: packages/calibre
-      tags: calibre
-      when: private_node
-    - role: packages/lunii
-      tags: lunii
-      when: private_node
     - role: user/config
       tags: user, config
     - role: user/zsh
       tags: user, zsh
+    - role: packages/kdrive
+      tags: kdrive
+    - role: packages/lunii
+      tags: lunii
+      when: private_node
+    - role: packages/calibre
+      tags: calibre
+      when: private_node
       #- role: packages/intellij
       #  tags: intellij
       #- role: packages/mattermost-desktop
