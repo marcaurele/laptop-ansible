@@ -50,6 +50,9 @@
       tags: pipx
     - role: packages/virtualization
       tags: virtualization
+    #- role: packages/helm
+    #  tags: helm, k8s
+    #  when: not private_node
     - role: packages/dbeaver
       tags: dbeaver
     - role: packages/drawio
