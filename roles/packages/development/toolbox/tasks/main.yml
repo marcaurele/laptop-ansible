@@ -4,7 +4,6 @@
   become: yes
   package:
     pkg: "{{ item }}"
-    state: latest
   with_together:
     - automake
     - build-essential
@@ -16,7 +15,6 @@
     - gpg-agent
     - jq
     - kafkacat
-    #- kubernetes-client
     - libbz2-dev
     - libmariadbclient-dev-compat
     - libncurses5-dev

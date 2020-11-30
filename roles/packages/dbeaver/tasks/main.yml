@@ -2,7 +2,7 @@
 
 - name: check dbeaver releases
   uri:
-    url: https://api.github.com/repos/dbeaver/dbeaver/releases
+    url: https://api.github.com/repos/dbeaver/dbeaver/releases/latest
     return_content: yes
   register: dbeaver_release
   tags: system

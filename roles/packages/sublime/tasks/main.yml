@@ -16,7 +16,6 @@
   become: yes
   apt:
     pkg: sublime-text
-    state: latest
 
 - name: create sublime config directory
   become: yes

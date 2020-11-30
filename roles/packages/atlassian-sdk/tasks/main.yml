@@ -16,5 +16,4 @@
   become: yes
   apt:
     pkg: atlassian-plugin-sdk
-    state: latest
   tags: atlassian

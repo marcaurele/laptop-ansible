@@ -14,4 +14,3 @@
   become: yes
   apt:
     pkg: brave-browser
-    state: latest

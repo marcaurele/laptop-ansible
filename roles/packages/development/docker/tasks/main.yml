@@ -4,7 +4,6 @@
   become: yes
   package:
     pkg: "{{ item }}"
-    state: latest
   with_together:
     - docker.io
     - docker-compose

@@ -14,7 +14,6 @@
   become: true
   apt:
     pkg: signal-desktop
-    state: latest
 
 - name: fix chrome-sandbox
   become: true

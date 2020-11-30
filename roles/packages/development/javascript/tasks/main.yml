@@ -16,7 +16,6 @@
   become: yes
   package:
     pkg: yarn
-    state: latest
   with_together:
     - nodejs
     - yarn

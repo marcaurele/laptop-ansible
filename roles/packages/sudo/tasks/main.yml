@@ -4,7 +4,6 @@
   become: yes
   package:
     pkg: sudo
-    state: latest
 
 - name: configure sudo
   become: yes
