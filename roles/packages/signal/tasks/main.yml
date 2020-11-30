@@ -5,7 +5,7 @@
   apt_key:
     url: https://updates.signal.org/desktop/apt/keys.asc
 
-- name: add reposiroty for Signal
+- name: add repository for Signal
   become: true
   apt_repository:
     repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
@@ -16,7 +16,7 @@
     pkg: signal-desktop
     state: latest
 
-- name: Fix chrome-sandbox
+- name: fix chrome-sandbox
   become: true
   file:
     path: /opt/Signal/chrome-sandbox
