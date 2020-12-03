@@ -37,6 +37,7 @@
     - pwgen
     - qpdf
     - qrencode
+    - scdaemon
     - sudo
     - tmate
     - vim
