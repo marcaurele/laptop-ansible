@@ -45,6 +45,7 @@
     - whois
     - xz-utils
     - yubikey-manager
+    - yubikey-personalization
     - zbar-tools
 
 - name: install Debian package
