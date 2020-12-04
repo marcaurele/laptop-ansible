@@ -61,43 +61,55 @@
     #- role: packages/helm
     #  tags: helm, k8s
     #  when: not private_node
-    - role: packages/dbeaver
-      tags: dbeaver
+    #- role: packages/dbeaver
+    #  tags: dbeaver
     - role: packages/drawio
       tags: drawio
     - role: packages/development/toolbox
       tags: dev, toolbox
-    - role: packages/development/java
-      tags: dev, java
+    #- role: packages/development/java
+    #  tags: dev, java
+
     - role: packages/development/docker
       tags: dev, docker
-      #- role: packages/minikube
-      #  tags: minikube
+
+    #- role: packages/minikube
+    #  tags: minikube
+
     - role: packages/signal
       tags: signal
+
     - role: packages/brave
       tags: brave
-      #- role: packages/audible
-      #  tags: audible
+
+    #- role: packages/audible
+    #  tags: audible
+
     - role: user/config
       tags: user, config
+
     - role: user/zsh
       tags: user, zsh
+
     - role: packages/kdrive
       tags: kdrive
+      when: private_node
+
     - role: packages/lunii
       tags: lunii
       when: private_node
+
     - role: packages/calibre
       tags: calibre
       when: private_node
-      #- role: packages/intellij
-      #  tags: intellij
-      #- role: packages/mattermost-desktop
-      #  tags: mattermost
-      #  when: not private_node
-      #- role: packages/joplin
-      #  tags: joplin
+
+    #- role: packages/intellij
+    #  tags: intellij
+    #- role: packages/mattermost-desktop
+    #  tags: mattermost
+    #  when: not private_node
+    #- role: packages/joplin
+    #  tags: joplin
   tags:
     - packages
   vars:
