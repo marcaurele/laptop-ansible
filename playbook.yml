@@ -27,46 +27,66 @@
   roles:
     - role: locales
       tags: locales
+
     - role: packages/apt
       tags: apt
       when: ansible_os_family == "Debian"
+
     - role: common/configuration
       tags: configuration
+
     - role: common/upgrade
       tags: upgrade, never
+
     - role: common/hardware
       tags: hardware, system
+
     - role: packages/sshd
       tags: ssh
+
     - role: user/setup
       tags: user
+
     - role: packages/sudo
       tags: sudo
+
     - role: packages/common
       tags: common
+
     - role: packages/desktop
       tags: desktop
+
     - role: packages/firefox
       tags: firefox
-      #- role: packages/dropbox
-      #  tags: dropbox
-      #- role: packages/sublime
-      #  tags: sublime
+
+    #- role: packages/dropbox
+    #  tags: dropbox
+
+    #- role: packages/sublime
+    #  tags: sublime
+
     - role: packages/python
       tags: python
+
     - role: packages/pipx
       tags: pipx
+
     - role: packages/virtualization
       tags: virtualization
+
     #- role: packages/helm
     #  tags: helm, k8s
     #  when: not private_node
-    #- role: packages/dbeaver
-    #  tags: dbeaver
+
+    - role: packages/dbeaver
+      tags: dbeaver
+
     - role: packages/drawio
       tags: drawio
+
     - role: packages/development/toolbox
       tags: dev, toolbox
+
     #- role: packages/development/java
     #  tags: dev, java
 
@@ -105,11 +125,14 @@
 
     #- role: packages/intellij
     #  tags: intellij
+
     #- role: packages/mattermost-desktop
     #  tags: mattermost
     #  when: not private_node
+
     #- role: packages/joplin
     #  tags: joplin
+
   tags:
     - packages
   vars:
