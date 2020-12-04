@@ -1,16 +1,16 @@
 ---
 
-- name: check dbeaver releases
+- name: check DBeaver releases
   uri:
     url: https://api.github.com/repos/dbeaver/dbeaver/releases/latest
     return_content: yes
-  register: dbeaver_release
+  register: latest_release
   tags: system
 
-- name: install or upgrade DBeaver
+- name: install latest DBeaver
   become: yes
   apt:
-    deb: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+    deb: "{{ latest_release.json |to_json|from_json| json_query('assets[?content_type==`application/x-deb`].browser_download_url | [0]') }}"
     state: present
-  when: ansible_facts.packages['dbeaver-ce'] is not defined or ansible_facts.packages['dbeaver-ce'][0].version != dbeaver_release.json[0].tag_name
+  when: ansible_facts.packages['dbeaver-ce'] is not defined or ansible_facts.packages['dbeaver-ce'][0]['version'] != latest_release.json['tag_name']
   tags: system
