@@ -24,7 +24,6 @@
   file:
     path: "~/.config/i3"
     state: directory
-  when: ansible_facts.packages['i3'] is defined
 
 - name: configure i3
   become: yes
@@ -32,7 +31,6 @@
   template:
     src: i3-config.j2
     dest: ~/.config/i3/config
-  when: ansible_facts.packages['i3'] is defined
 
 - name: configure i3 status
   become: yes
@@ -40,7 +38,6 @@
   template:
     src: i3-status.conf.j2
     dest: ~/.i3status.conf
-  when: ansible_facts.packages['i3status'] is defined
 
 - name: configure i3blocks
   become: yes
@@ -55,4 +52,3 @@
     enabled: yes
     name: "i3lock-sleep@{{ username }}.service"
     daemon_reload: yes
-  when: ansible_facts.packages['i3lock'] is defined
