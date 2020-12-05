@@ -59,8 +59,6 @@
   loop:
     - src: curlrc.j2
       dest: "~/.curlrc"
-    - src: gitconfig_pix4d.j2
-      dest: "~/.gitconfig_pix4d"
     - src: gitconfig.j2
       dest: "~/.gitconfig"
     - src: gitignore_global.j2
@@ -85,6 +83,18 @@
       dest: "~/.gnupg/gpg-agent.conf"
       mode: "0600"
   tags: user
+
+- name: install config dot files on work node
+  become: yes
+  become: "{{ username }}"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode | default('0644')}}"
+  when: not private_node
+  loop:
+    - src: gitconfig_pix4d.j2
+      dest: "~/.gitconfig_pix4d"
 
 - name: clone projects
   become: yes
