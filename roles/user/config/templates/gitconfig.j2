@@ -3,11 +3,16 @@
 # Default identity
 [user]
 	name = Marc-Aurèle Brothier
+{% if private_node %}
 	email = m@brothier.org
-        signingkey = 9E5E851AF9FCCFA20FA49965887CC10F998EBC42
+	signingkey = 9E5E851AF9FCCFA20FA49965887CC10F998EBC42
 # Override when working in ~/code/pix4d/
 [includeIf "gitdir:~/code/pix4d/**/.git"]
 	path = .gitconfig_pix4d
+{% else %}
+	email = marc-aurele.brothier@pix4d.com
+	signingkey = XXXX
+{% endif %}
 [github]
         user = marcaurele
         name = marcaurele

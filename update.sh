@@ -1,2 +1,5 @@
 #!/bin/sh -ex
-ansible-playbook -K -c local -i host.local playbook.yml $@
+ansible-playbook --ask-become-pass \
+	--connection local \
+	--limit $(hostname -s) \
+	playbook.yml $@
