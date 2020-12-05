@@ -43,6 +43,8 @@
       mode: "0700"
     - path: "~/.ssh"
       mode: "0700"
+    - path: "~/.sshi/socket"
+      mode: "0700"
     - path: "{{ code_directory }}"
     - path: "~/bin"
   tags: user
