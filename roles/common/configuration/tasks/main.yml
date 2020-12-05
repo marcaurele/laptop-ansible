@@ -17,7 +17,7 @@
     backrefs: true
     path: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=".*")$'
-    line: "\1 {{ grub_parameter }}"
+    line: '\1 {{ grub_parameter }}'
   when: grub_parameter is defined
   notify: update grub
 
