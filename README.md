@@ -1,14 +1,20 @@
 # Ansible playbook to configure my laptop
 
-This playbook is my laptop installer done nicely. It features the possibility to install all extra requirements after having done the basic Debian installation with either a SSH connection to the new latop, or by cloning and executing this playbook. The former is the prefered way.
+This playbook is my laptop's configuration for both private and work, running
+Debian or Ubuntu distributions. You should install the base OS with a SSH server
+and run the playbook from another host initialy which will create the user.
+After the 1st run, you can run the `update.sh` script from the user home.
 
-## First remote run
 
-`ansible-playbook -K -i host.remote playbook.yml`
+## Run the installation
 
-## Local runs after 1st installation
+```console
+$ ./update.sh
+```
 
-`ansible-playbook -K -c local -i host.local playbook.yml`
 
-## Testing on a cloud provider
-`ansible-playbook -i host.test playbook.yml`
+## Test on vagrant box
+
+```console
+$ ./vagrant-test.sh
+```
