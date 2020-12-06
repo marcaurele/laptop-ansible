@@ -3,8 +3,8 @@
 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/debian10"
-  #config.vm.box = "generic/ubuntu2004"
+  #config.vm.box = "generic/debian10"
+  config.vm.box = "generic/ubuntu2004"
 
   config.vm.box_check_update = true
 
