@@ -6,20 +6,8 @@
     - name: fetch packages information
       package_facts:
         manager: auto
-    - name: set platform type
-      set_fact:
-        private_node : "{{ ansible_nodename in ('play', 'x1') }}"
-    - name: set work facts
-      set_fact:
-        username: mbrothie
-      when: not private_node
-    - name: set private facts
-      set_fact:
-        username: marco
-      when: private_node
   tags:
     - system
-    - user
     - always
 
 - name: Configure system
