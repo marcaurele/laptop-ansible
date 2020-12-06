@@ -1,7 +1,10 @@
 ---
 all:
   children:
-    laptop:
+    private:
+      children:
+        vagrant:
+    work:
       children:
         vagrant:
   vars:

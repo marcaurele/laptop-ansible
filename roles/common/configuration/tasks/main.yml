@@ -1,7 +1,7 @@
 ---
 
 - name: setup global known_hosts
-  become: yes
+  become: true
   known_hosts:
     path=/etc/ssh/known_hosts
     name="{{ item }}"
@@ -10,7 +10,16 @@
   with_items:
     - github.com
     - gitlab.com
-  tags: system, root
+
+- name: insert grub customization
+  become: true
+  lineinfile:
+    backrefs: true
+    path: /etc/default/grub
+    regexp: '^(GRUB_CMDLINE_LINUX=".*")$'
+    line: '\1 {{ grub_parameter }}'
+  when: grub_parameter is defined
+  notify: update grub
 
 #- name: install custom fonts
 # sudo fc-cache -fv

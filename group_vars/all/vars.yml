@@ -14,7 +14,9 @@ python_tools:
   - name: python-gist
   - name: sslyze
 
-code_projects: '{{ vault_code_projects }}'
+code_projects: "{{ vault_code_projects }}"
+
+git: "{{ vault_git }}"
 
 kdrive:
   version: "3.0.10.20200908"
