@@ -1,29 +1,27 @@
 ---
 
+- name: install firmware for Debian devices
+  become: yes
+  apt:
+    pkg:
+      - firmware-linux
+      - firmware-realtek
+      - task-laptop
+  tags: system, root
+  when: ansible_distribution == 'Debian'
+
 - name: install firmwares for Dell XPS 13 9360
   become: yes
   apt:
-    pkg: "{{ item }}"
-  when: ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 13 9360"
-  with_together:
-    - firmware-linux
+    pkg:
     - firmware-atheros
-    - task-laptop
   tags: system, root
+  when: ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 13 9360"
 
 - name: install firmwares for ThinkPad X1 Carbon 6th
   become: yes
   apt:
-    pkg: "{{ item }}"
-  when: ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th"
-  with_together:
-    - firmware-linux
+    pkg:
     - firmware-iwlwifi
-    - task-laptop
   tags: system, root
-
-- name: install firmware for Realtek devices
-  become: yes
-  apt:
-    pkg: firmware-realtek
-  tags: system, root
+  when: ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th"
