@@ -86,7 +86,7 @@
 
 - name: install config dot files on work node
   become: yes
-  become: "{{ username }}"
+  become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
