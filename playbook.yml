@@ -135,13 +135,3 @@
 
   tags:
     - packages
-  vars:
-    locales:
-      - fr_CH.UTF-8
-      - en_US.UTF-8
-      - en_CA.UTF-8
-    debian_releases:
-      - name: testing
-        priority: 800
-        security: yes
-    user_preferences: yes

@@ -1,4 +1,9 @@
 ---
+locales:
+  - fr_CH.UTF-8
+  - en_US.UTF-8
+  - en_CA.UTF-8
+
 packages_directory: "~/soft"
 
 code_directory: "~/code"

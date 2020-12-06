@@ -1,2 +1,12 @@
 ---
 
+apt_releases:
+  - name: testing
+    mirror: http://debian.ethz.ch/debian
+    archive: main contrib non-free
+  - name: testing-security
+    mirror: http://security.debian.org
+    archive: main contrib non-free
+
+private_node: true
+username: marco

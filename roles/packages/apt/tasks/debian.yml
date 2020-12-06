@@ -8,14 +8,6 @@
   register: apt_source
   tags: system, root
 
-- name: set package preferences
-  become: yes
-  template:
-    src: apt-preferences.j2
-    dest: "/etc/apt/preferences.d/{{ item.name }}-default.pref"
-  with_items: "{{ debian_releases }}"
-  tags: system, root
-
 - name: update package cache
   become: yes
   apt:

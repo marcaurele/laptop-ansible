@@ -1,13 +1,6 @@
 # {{ ansible_managed }}
+{% for release in apt_releases %}
 
-{% for release in debian_releases %}
-# Debian {{ release.name }} APT sources using ethz.ch mirror
-deb http://debian.ethz.ch/debian {{ release.name }} main contrib non-free
-deb-src http://debian.ethz.ch/debian {{ release.name }} main contrib non-free
-{% if release.security %}
-# Debian security APT sources
-deb http://security.debian.org {{ release.name }}-security main contrib non-free
-deb-src http://security.debian.org {{ release.name }}-security main contrib non-free
-{% endif %}
-
+###### {{ release.name }} APT sources
+deb {{ release.mirror }} {{ release.name }} {{ release.archive }}
 {% endfor %}

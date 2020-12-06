@@ -1,3 +1,16 @@
 ---
 
+apt_releases:
+  - name: focal
+    mirror: http://ch.archive.ubuntu.com/ubuntu
+    archive: main restricted universe multiverse
+  - name: focal-security
+    mirror: http://ch.archive.ubuntu.com/ubuntu
+    archive: main restricted universe multiverse
+  - name: focal-updates
+    mirror: http://ch.archive.ubuntu.com/ubuntu
+    archive: main restricted universe multiverse
+
 grub_parameter: ""
+private_node: false
+username: mbrothie

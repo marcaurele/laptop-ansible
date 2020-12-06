@@ -1,10 +1,22 @@
 ---
 
-- name: include distribution APT configuration
-  include_tasks: "{{ ansible_distribution | lower }}.yml"
+- name: configuring APT sources
+  become: true
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+  register: apt_source
+  tags: system, root
+
+- name: update package cache
+  become: true
+  apt:
+    update_cache: true
+  when: apt_source.changed
+  tags: system, root
 
 - name: install required packages for playbook
-  become: yes
+  become: true
   apt:
     name:
       - apt-transport-https
