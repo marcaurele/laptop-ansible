@@ -92,12 +92,19 @@
 
     #- role: packages/audible
     #  tags: audible
+    #  when: private_node
 
     - role: user/config
       tags: user, config
 
     - role: user/zsh
       tags: user, zsh
+
+    #- role: packages/intellij
+    #  tags: intellij
+
+    #- role: packages/joplin
+    #  tags: joplin
 
     - role: packages/kdrive
       tags: kdrive
@@ -111,15 +118,13 @@
       tags: calibre
       when: private_node
 
-    #- role: packages/intellij
-    #  tags: intellij
-
     #- role: packages/mattermost-desktop
     #  tags: mattermost
     #  when: not private_node
 
-    #- role: packages/joplin
-    #  tags: joplin
+    - role: packages/awsvault
+      tags: awsvault
+      when: not private_node
 
   tags:
     - packages

@@ -1,0 +1,31 @@
+---
+
+- name: check aws-vault releases
+  uri:
+    url: https://api.github.com/repos/99designs/aws-vault/releases/latest
+    return_content: yes
+  register: releases
+
+- name: check aws-vault locally
+  become: true
+  become_user: "{{ username }}"
+  stat:
+    path: ~/bin/aws-vault
+  register: awsvault_stat
+
+- name: check aws-vault local version
+  become: true
+  become_user: "{{ username }}"
+  command: ~/bin/aws-vault --version
+  register: awsvault_version
+  changed_when: false
+  when: awsvault_stat.stat.exists
+
+- name: install or upgrade aws-vault {{ releases.json.tag_name[1:] }}
+  become: yes
+  become_user: "{{ username }}"
+  get_url:
+    dest: "~/bin/aws-vault"
+    mode: 0755
+    url: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
+  when: not awsvault_stat.stat.exists or awsvault_version.stderr != releases.json.tag_name
