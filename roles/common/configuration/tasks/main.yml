@@ -11,6 +11,17 @@
     - github.com
     - gitlab.com
 
+- name: add custom CA
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/share/ca-certificates/{{ item }}"
+    # Validate the CA will not expire in less than 4 months
+    validate: openssl x509 -noout -checkend 10520000 -enddate -in %s
+  loop: "{{ certificates_extra }}"
+  when: certificates_extra is defined
+  notify: update-ca-certificates
+
 - name: check grub customization
   lineinfile:
     path: /etc/default/grub

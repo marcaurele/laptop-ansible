@@ -11,6 +11,8 @@ apt_releases:
     mirror: http://ch.archive.ubuntu.com/ubuntu
     archive: main restricted universe multiverse
 
+certificates_extra: "{{ vault_certificates_extra }}"
+
 grub_parameter: "mem_sleep_default=deep"
 
 packages_extra:

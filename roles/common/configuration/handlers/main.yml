@@ -1,5 +1,9 @@
 ---
 
+- name: update-ca-certificates
+  become: true
+  command: update-ca-certificates
+
 - name: update grub
   become: true
   command: update-grub
