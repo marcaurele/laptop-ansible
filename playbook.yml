@@ -44,14 +44,8 @@
     - role: packages/desktop
       tags: desktop
 
-    - role: packages/firefox
-      tags: firefox
-
-    #- role: packages/dropbox
-    #  tags: dropbox
-
-    #- role: packages/sublime
-    #  tags: sublime
+    - role: packages/hashicorp
+      tags: hashicorp
 
     - role: packages/python
       tags: python
@@ -66,12 +60,6 @@
     #  tags: helm, k8s
     #  when: not private_node
 
-    - role: packages/dbeaver
-      tags: dbeaver
-
-    - role: packages/drawio
-      tags: drawio
-
     - role: packages/development/toolbox
       tags: dev, toolbox
 
@@ -83,6 +71,21 @@
 
     #- role: packages/minikube
     #  tags: minikube
+
+    - role: packages/firefox
+      tags: firefox
+
+    #- role: packages/dropbox
+    #  tags: dropbox
+
+    #- role: packages/sublime
+    #  tags: sublime
+
+    - role: packages/dbeaver
+      tags: dbeaver
+
+    - role: packages/drawio
+      tags: drawio
 
     - role: packages/signal
       tags: signal

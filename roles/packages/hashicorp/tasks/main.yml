@@ -1,0 +1,20 @@
+---
+
+- name: add repository GPG key for HashiCorp
+  become: yes
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+- name: add reposiroty for HashiCorp
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }}  main
+
+- name: install HashiCorp tools
+  become: yes
+  apt:
+    pkg:
+      - consul
+      - terraform
+      - vagrant
+      - vault
