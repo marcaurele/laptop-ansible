@@ -11,6 +11,10 @@ apt_releases:
     mirror: http://ch.archive.ubuntu.com/ubuntu
     archive: main restricted universe multiverse
 
-grub_parameter: ""
+grub_parameter: "mem_sleep_default=deep"
+
+packages_extra:
+  - awscli
+
 private_node: false
 username: mbrothie

@@ -8,5 +8,8 @@ apt_releases:
     mirror: http://security.debian.org
     archive: main contrib non-free
 
+packages_extra: # Debian packages
+  - task-english
+
 private_node: true
 username: marco
