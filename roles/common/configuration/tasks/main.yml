@@ -3,10 +3,10 @@
 - name: setup global known_hosts
   become: true
   known_hosts:
-    path=/etc/ssh/known_hosts
-    name="{{ item }}"
-    key="{{ lookup('pipe', 'ssh-keyscan -T 10 -H -t rsa ' + item) }}"
-    state=present
+    path: /etc/ssh/known_hosts
+    name: "{{ item }}"
+    key: "{{ lookup('pipe', 'ssh-keyscan -T 10 -H -t rsa ' + item) }}"
+    state: present
   with_items:
     - github.com
     - gitlab.com
