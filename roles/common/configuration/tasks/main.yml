@@ -11,6 +11,16 @@
     - github.com
     - gitlab.com
 
+- name: check grub customization
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=".*{{ grub_parameter }}'
+    state: absent
+  check_mode: true
+  register: grub_cmdline_check
+  changed_when: false
+  when: grub_parameter is defined
+
 - name: insert grub customization
   become: true
   lineinfile:
@@ -18,7 +28,7 @@
     path: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=".*)"$'
     line: '\1 {{ grub_parameter }}"'
-  when: grub_parameter is defined
+  when: grub_parameter is defined and grub_cmdline_check.found == 0
   notify: update grub
 
 #- name: install custom fonts
