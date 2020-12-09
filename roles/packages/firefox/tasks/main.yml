@@ -17,4 +17,4 @@
 - name: set browser preferences for firefox
   command: xdg-mime default firefox.desktop {{ item.item }}
   loop: "{{ browser_prefs.results }}"
-  when: item.stdout != "firefox.desktop"
+  when: not item.skipped and item.stdout != "firefox.desktop"

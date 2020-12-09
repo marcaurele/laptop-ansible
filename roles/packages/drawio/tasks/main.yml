@@ -12,5 +12,5 @@
   apt:
     deb: "https://github.com/jgraph/drawio-desktop/releases/download/{{ releases.json.tag_name }}/draw.io-amd64-{{ releases.json.name }}.deb"
     state: present
-  when: ansible_facts.packages['draw.io'] is not defined or not ansible_facts.packages['draw.io'][0]['version'].startswith(releases.json.name)
+  when: not release.skipped and ( ansible_facts.packages['draw.io'] is not defined or not ansible_facts.packages['draw.io'][0]['version'].startswith(releases.json.name) )
   tags: system
