@@ -185,6 +185,9 @@ exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Accel Spee
 {% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "Latitude 3301" %}
 exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Accel Speed" 0.6
+{% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 15 9500" %}
+exec --no-startup-id xinput set-prop "DELL097D:00 04F3:311C Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "DELL097D:00 04F3:311C Touchpad" "libinput Accel Speed" 0.6
 {% endif %}
 
 # Activate NetworkManager applet
