@@ -18,6 +18,9 @@ fi
 if [[ "$ACTION" == "home" ]]; then
 	xrandr --output eDP-1-1 --primary --mode 1920x1200 --rotate normal --output DP-1-1 --mode 3440x1440 --rotate normal --left-of eDP-1-1 --output DP-1-2 --off --output DP-1-3 --off
 
+elif [[ "$ACTION" == "office" ]]; then
+	xrandr --output eDP-1-1 --primary --mode 1920x1200 --rotate normal --output DP-1-1 --mode 1920x1200 --rotate normal --left-of eDP-1-1 --output DP-1-2 --off --output DP-1-3 --off
+
 elif [[ "$ACTION" == "laptop" ]]; then
 	xrandr --output eDP-1-1 --primary --mode 1920x1200 --rotate normal --output DP-1-1 --off --output DP-1-2 --off --output DP-1-3 --off
 
