@@ -25,3 +25,10 @@
     - firmware-iwlwifi
   tags: system, root
   when: ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th"
+
+- name: configure bluetooth
+  become: true
+  lineinfile:
+    path: /etc/bluetooth/main.conf
+    regexp: '#?AutoEnable='
+    line: "AutoEnable={{ bluetooth.Policy.AutoEnable | lower }}"

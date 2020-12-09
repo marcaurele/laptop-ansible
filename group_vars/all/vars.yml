@@ -1,12 +1,25 @@
 ---
+bluetooth:
+  Policy:
+    AutoEnable: false
+
+code_directory: "~/code"
+code_projects: "{{ vault_code_projects }}"
+
+git: "{{ vault_git }}"
+
+kdrive:
+  version: "3.0.10.20200908"
+
+lunii:
+  version: "2.2.271"
+
 locales:
   - fr_CH.UTF-8
   - en_US.UTF-8
   - en_CA.UTF-8
 
 packages_directory: "~/soft"
-
-code_directory: "~/code"
 
 python_tools:
   - name: cs
@@ -18,13 +31,3 @@ python_tools:
   - name: black
   - name: python-gist
   - name: sslyze
-
-code_projects: "{{ vault_code_projects }}"
-
-git: "{{ vault_git }}"
-
-kdrive:
-  version: "3.0.10.20200908"
-
-lunii:
-  version: "2.2.271"
