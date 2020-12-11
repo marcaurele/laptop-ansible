@@ -90,8 +90,8 @@
     mode: "{{ item.mode | default('0644')}}"
   when: not private_node
   loop:
-    - src: gitconfig_pix4d.j2
-      dest: "~/.gitconfig_pix4d"
+    - src: aws_config.j2
+      dest: "~/.aws/config"
 
 - name: clone projects
   become: yes

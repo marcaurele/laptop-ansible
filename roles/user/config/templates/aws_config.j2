@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+{% for group, config in aws_config.items() %}
+
+[profile {{ group }}]
+{% for key, value in config.items() %}
+{{ key }} = {{ value }}
+{% endfor %}
+{% endfor %}

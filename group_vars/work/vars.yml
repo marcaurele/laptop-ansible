@@ -11,6 +11,8 @@ apt_releases:
     mirror: http://ch.archive.ubuntu.com/ubuntu
     archive: main restricted universe multiverse
 
+aws_config : "{{ vault_aws_config }}"
+
 certificates_extra: "{{ vault_certificates_extra }}"
 
 company: "{{ vault_company }}"
