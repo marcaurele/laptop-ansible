@@ -5,11 +5,6 @@
 	name = Marc-Aurèle Brothier
 	email = {{ git.email }}
 	signingkey = {{ git.gpg_key }}
-{% if private_node %}
-# Override when working in ~/code/pix4d/
-[includeIf "gitdir:~/code/pix4d/**/.git"]
-	path = .gitconfig_pix4d
-{% endif %}
 [github]
         user = marcaurele
         name = marcaurele
