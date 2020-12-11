@@ -72,7 +72,7 @@
     - src: ssh_config.j2
       dest: "~ /.ssh/config"
     - src: gist.j2
-      dest: "~/.gist"
+      dest: "~/config/.gist"
     - src: gpg.conf.j2
       dest: "~/.gnupg/gpg.conf"
       mode: "0600"
