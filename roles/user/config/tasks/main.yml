@@ -73,9 +73,6 @@
       dest: "~ /.ssh/config"
     - src: gist.j2
       dest: "~/.gist"
-    - src: docking.j2
-      dest: "~/bin/docking"
-      mode: "0755"
     - src: gpg.conf.j2
       dest: "~/.gnupg/gpg.conf"
       mode: "0600"
