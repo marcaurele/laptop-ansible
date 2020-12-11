@@ -63,6 +63,9 @@
     - role: packages/development/toolbox
       tags: dev, toolbox
 
+    - role: packages/gh
+      tags: gh
+
     #- role: packages/development/java
     #  tags: dev, java
 
