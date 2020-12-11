@@ -13,6 +13,8 @@ apt_releases:
 
 certificates_extra: "{{ vault_certificates_extra }}"
 
+company: "{{ vault_company }}"
+
 grub_parameter: "mem_sleep_default=deep"
 
 packages_extra:
