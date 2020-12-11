@@ -106,3 +106,14 @@
   loop: "{{ code_projects }}"
   tags: user
   ignore_errors: yes
+
+- name: install custom scripts
+  become: true
+  copy:
+    dest: "/usr/local/bin/{{ company }}chat"
+    mode: 0755
+    owner: root
+    group: root
+    content: |
+      #!/bin/sh -e
+      /snap/bin/chromium --profile-directory=Default --app-id=chfbpgnooceecdoohagngmjnndbbaeip
