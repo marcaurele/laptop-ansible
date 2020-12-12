@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 {% for release in apt_releases %}
 
-###### {{ release.name }} APT sources
+# ##### {{ release.name }} APT sources
 deb {{ release.mirror }} {{ release.name }} {{ release.archive }}
 {% endfor %}

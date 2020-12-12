@@ -117,3 +117,4 @@
     content: |
       #!/bin/sh -e
       /snap/bin/chromium --profile-directory=Default --app-id=chfbpgnooceecdoohagngmjnndbbaeip
+  when: not private_node

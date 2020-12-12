@@ -172,9 +172,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 10%-
 
 ## Lock
 bindsym $mod+x exec i3lock -c 000000
+{% if private_node %}
 ### Lock & suspend
 bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl suspend
-
+{% else %}
+### Lock & hibernate
+bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl hibernate
+{% endif %}
 # Switch capslock to ctrl key - done in /etc/X11/xorg.conf.d/20-keyboard.conf
 #exec --no-startup-id setxkbmap -option ctrl:swapcap && setxkbmap -option ctrl:nocaps
 exec --no-startup-id setxkbmap -option ctrl:nocaps
@@ -203,3 +207,7 @@ exec --no-startup-id xsetroot -solid "#333333"
 
 # Telegram
 exec /usr/bin/telegram-desktop -startintray
+{% if private_node and kdrive_stat is defined and kdrive_stat.stat.exists %}
+# kDrive
+exec --no-startup-id /usr/local/bin/kDrive
+{% endif %}

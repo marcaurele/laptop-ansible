@@ -6,10 +6,17 @@
     keyserver: keyserver.ubuntu.com
     id: C99B11DEB97541F0
 
-- name: add reposiroty for GitHub CLI
+- name: add reposiroty for GitHub CLI for Ubuntu
   become: yes
   apt_repository:
-    repo: deb https://cli.github.com/packages {{ ansible_distribution_release }}  main
+    repo: "deb https://cli.github.com/packages {{ ansible_distribution_version }}  main"
+  when: ansible_distribution == "Debian"
+
+- name: add reposiroty for GitHub CLI for Ubuntu
+  become: yes
+  apt_repository:
+    repo: "deb https://cli.github.com/packages {{ ansible_distribution_release }}  main"
+  when: ansible_distribution == "Ubuntu"
 
 - name: install GitHub CLI
   become: yes

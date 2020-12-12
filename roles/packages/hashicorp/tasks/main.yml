@@ -5,10 +5,17 @@
   apt_key:
     url: https://apt.releases.hashicorp.com/gpg
 
-- name: add reposiroty for HashiCorp
+- name: add reposiroty for HashiCorp on Debian
   become: yes
   apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }}  main
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com buster main
+  when: ansible_distribution == "Debian"
+
+- name: add reposiroty for HashiCorp on Ubuntu
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+  when: ansible_distribution == "Ubuntu"
 
 - name: install HashiCorp tools
   become: yes

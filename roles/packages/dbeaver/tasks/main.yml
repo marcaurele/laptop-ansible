@@ -12,5 +12,7 @@
   apt:
     deb: "{{ latest_release.json |to_json|from_json| json_query('assets[?content_type==`application/x-deb`].browser_download_url | [0]') }}"
     state: present
-  when: not latest_release.skipped and ( ansible_facts.packages['dbeaver-ce'] is not defined or ansible_facts.packages['dbeaver-ce'][0]['version'] != latest_release.json['tag_name'] )
+  when:
+    - not ansible_check_mode
+    - ansible_facts.packages['dbeaver-ce'] is not defined or ansible_facts.packages['dbeaver-ce'][0]['version'] != latest_release.json['tag_name']
   tags: system
