@@ -207,7 +207,7 @@ exec --no-startup-id xsetroot -solid "#333333"
 
 # Telegram
 exec /usr/bin/telegram-desktop -startintray
-{% if private_node and kdrive_stat is defined and kdrive_stat.stat.exists %}
+{% if private_node %}
 # kDrive
 exec --no-startup-id /usr/local/bin/kDrive
 {% endif %}
