@@ -79,6 +79,9 @@
     - src: gpg-agent.conf.j2
       dest: "~/.gnupg/gpg-agent.conf"
       mode: "0600"
+    - src: sshcontrol.j2
+      dest: "~/.gnupg/sshcontrol"
+      mode: "0600"
   tags: user
 
 - name: install config dot files on work node
