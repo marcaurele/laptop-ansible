@@ -1,0 +1,39 @@
+---
+
+- name: create directories
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode|default('') }}"
+  loop:
+    - path: "~/.gnupg"
+      mode: "0700"
+  tags: user
+
+- name: install config dot files
+  become: yes
+  become_user: "{{ username }}"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode | default('0644')}}"
+  loop:
+    - src: gpg.conf.j2
+      dest: "~/.gnupg/gpg.conf"
+      mode: "0600"
+    - src: gpg-agent.conf.j2
+      dest: "~/.gnupg/gpg-agent.conf"
+      mode: "0600"
+    - src: sshcontrol.j2
+      dest: "~/.gnupg/sshcontrol"
+      mode: "0600"
+  tags: user
+
+- name: disable ssh-agent in X11 session
+  become: true
+  lineinfile:
+    path: /etc/X11/Xsession.options
+    line: use-ssh-agent
+    state: absent
