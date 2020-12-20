@@ -29,21 +29,11 @@ Vagrant.configure("2") do |config|
     sudo apt-get update
     sudo apt-get upgrade -qy
     # To install bluetooth group
-    sudo apt-get install -qy bluetooth
+    sudo apt-get install -qy gpg bluetooth
+    if [ ! $(gpg -k | grep CC5D549DBE7E9162) ]; then
+        gpg --batch --keyserver keys.openpgp.org  --recv-keys CC5D549DBE7E9162
+        gpg --export-ssh-key CC5D549DBE7E9162 >> /home/vagrant/.ssh/authorized_keys
+    fi
   SHELL
 
-  if ENV.has_key?('SSH_KEY')
-    SSH_KEY = ENV['SSH_KEY']
-    puts("Inserting SSH key #{Dir.home}/.ssh/#{SSH_KEY}.pub into vagrant box")
-    config.vm.provision "shell" do |s|
-      s.privileged = false
-      ssh_pub_key = File.readlines("#{Dir.home}/.ssh/#{SSH_KEY}.pub").first.strip
-      s.inline = <<-EOF
-echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
-sudo mkdir -p /root/.ssh/
-sudo chmod 0700 /root/.ssh/
-sudo cp /home/vagrant/.ssh/authorized_keys /root/.ssh/authorized_keys
-EOF
-    end
-  end
 end
