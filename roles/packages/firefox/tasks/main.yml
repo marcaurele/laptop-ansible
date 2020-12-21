@@ -1,9 +1,13 @@
 ---
 
+- name: set firefox package name
+  set_fact:
+    firefox_package: "firefox{% if ansible_distribution == 'Debian' %}-esr{% endif %}"
+
 - name: install firefox
   become: true
   package:
-    pkg: "firefox{% if ansible_distribution == 'Debian' %}-esr{% endif %}"
+    pkg: "{{ firefox_package }}"
 
 - name: check browser preferences
   command: xdg-settings get default-web-browser
@@ -11,7 +15,7 @@
   changed_when: false
 
 - name: set browser preferences for firefox
-  command: xdg-settings set default-web-browser firefox-esr.desktop
+  command: "xdg-settings set default-web-browser {{ firefox_package }}.desktop"
   when:
     - not ansible_check_mode
-    - browser_prefs.stdout != "firefox-esr.desktop"
+    - browser_prefs.stdout != "{{ firefox_package }}.desktop"
