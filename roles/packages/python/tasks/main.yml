@@ -5,8 +5,8 @@
   package:
     pkg: "{{ item }}"
   with_together:
+    - pipenv
     - python3
     - python3-pip
-    - python3-venv
     - python3-virtualenv
     - python3-virtualenvwrapper
