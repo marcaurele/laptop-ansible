@@ -19,12 +19,26 @@
   tags: user
 
 - name: add authorized ssh keys for {{ username }}
-  become: yes
+  become: true
+  become_user: "{{ username }}"
   authorized_key:
     key: https://github.com/marcaurele.keys
     comment: "github user key for marcaurele"
     state: present
     user: "{{ username }}"
+  when: private_node
+  tags: user
+
+- name: add authorized ssh keys for {{ username }} in jumpcloud file
+  become: true
+  become_user: "{{ username }}"
+  authorized_key:
+    path: "~/.ssh/authorized_keys.jcorig"
+    key: https://github.com/marcaurele.keys
+    comment: "github user key for marcaurele"
+    state: present
+    user: "{{ username }}"
+  when: not private_node
   tags: user
 
 - name: create directories
