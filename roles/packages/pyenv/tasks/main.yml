@@ -1,0 +1,20 @@
+---
+
+- name: fetch latest release for pyenv
+  uri:
+    url: https://api.github.com/repos/pyenv/pyenv/releases/latest
+    return_content: true
+  register: release
+  tags: system
+
+- name: install pyenv as git checkout
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    clone: yes
+    dest: "~/.pyenv"
+    repo: "https://github.com/pyenv/pyenv.git"
+    update: no
+    verify_commit: no
+    version: "{{ release.json.tag_name }}"
+  when: not ansible_check_mode
