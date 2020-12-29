@@ -23,6 +23,7 @@
     - keychain
     - man
     - mtr
+    - neovim
     - net-tools
     - ocrmypdf
     - tesseract-ocr-fra
@@ -40,7 +41,6 @@
     - scdaemon
     - sudo
     - tmate
-    - vim
     - wget
     - whois
     - xz-utils
