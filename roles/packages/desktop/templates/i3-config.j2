@@ -177,7 +177,7 @@ bindsym $mod+x exec i3lock -c 000000
 bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl suspend
 {% else %}
 ### Lock & hibernate
-bindsym $mod+Shift+x exec i3lock -c 000000 && systemctl hibernate
+bindsym $mod+Shift+x exec i3lock -c 000000 && sudo systemctl hibernate
 {% endif %}
 # Switch capslock to ctrl key - done in /etc/X11/xorg.conf.d/20-keyboard.conf
 #exec --no-startup-id setxkbmap -option ctrl:swapcap && setxkbmap -option ctrl:nocaps
