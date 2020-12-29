@@ -75,6 +75,10 @@
     - role: packages/development/docker
       tags: dev, docker
 
+    - role: packages/development/yarn
+      tags: dev, javascript, yarn
+      when: not private_node
+
     #- role: packages/minikube
     #  tags: minikube
 

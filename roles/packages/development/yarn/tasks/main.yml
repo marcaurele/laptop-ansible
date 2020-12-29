@@ -16,6 +16,3 @@
   become: yes
   package:
     pkg: yarn
-  with_together:
-    - nodejs
-    - yarn
