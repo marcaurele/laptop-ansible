@@ -18,4 +18,4 @@
   command: "xdg-settings set default-web-browser {{ firefox_package }}.desktop"
   when:
     - not ansible_check_mode
-    - browser_prefs.stdout != "{{ firefox_package }}.desktop"
+    - browser_prefs.stdout != firefox_package + ".desktop"
