@@ -19,6 +19,9 @@ company: "{{ vault_company }}"
 
 grub_parameter: "mem_sleep_default=deep"
 
+nodejs:
+  version: 14.x
+
 packages_extra:
   - awscli
 
