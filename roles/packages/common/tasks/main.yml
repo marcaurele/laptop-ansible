@@ -16,6 +16,7 @@
     - git-lfs
     - gpg
     - gpg-agent
+    - hcloud-cli
     - htop
     - iftop
     - inputplug

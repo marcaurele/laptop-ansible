@@ -6,3 +6,7 @@ passladb() {
   PASSWORD_STORE_DIR=$HOME/code/lairdubois-pass pass $@
 }
 
+# Hetzner cloud completion if present
+if type hcloud > /dev/null; then
+	eval "$(hcloud completion zsh)"
+fi
