@@ -5,7 +5,7 @@
   become_user: "{{ username }}"
   command: "/usr/bin/python3 -m pip install --user --upgrade pipx"
   args:
-    creates: "~/.local/pipx"
+    creates: "~/.local/bin/pipx"
 
 - name: install tools with pipx
   become: true
