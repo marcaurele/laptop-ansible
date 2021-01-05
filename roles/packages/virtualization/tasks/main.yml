@@ -12,8 +12,8 @@
     - libvirt-clients
     - libvirt-daemon
     - libvirt-daemon-system
+    - libvirt-dev
     - vagrant
-    - vagrant-libvirt
     - virt-manager
 
 - name: add libvirt group to {{ username }}
