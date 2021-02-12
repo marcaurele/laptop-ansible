@@ -44,3 +44,12 @@
 
 #- name: install custom fonts
 # sudo fc-cache -fv
+
+- name: install NetworkManager scripts
+  become: true
+  copy:
+    src: 70-wifi-wired-exclusive.sh
+    dest: /etc/NetworkManager/dispatcher.d/70-wifi-wired-exclusive.sh
+    owner: root
+    group: root
+    mode: '0755'
