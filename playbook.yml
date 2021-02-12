@@ -83,6 +83,10 @@
       tags: dev, javascript, yarn
       when: not private_node
 
+    - role: work
+      tags: work
+      when: not private_node
+
     #- role: packages/minikube
     #  tags: minikube
 

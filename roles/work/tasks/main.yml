@@ -1,0 +1,7 @@
+---
+
+- name: install packages for work
+  become: true
+  package:
+    pkg:
+      - mumble
