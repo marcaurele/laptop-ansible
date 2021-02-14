@@ -128,7 +128,7 @@
     #  tags: joplin
 
     - role: packages/kdrive
-      tags: kdrive
+      tags: kdrive, never
       when: private_node
 
     - role: packages/lunii
