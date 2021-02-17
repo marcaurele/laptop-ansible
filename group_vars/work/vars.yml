@@ -26,4 +26,8 @@ packages_extra:
   - awscli
 
 private_node: false
+
+sudo:
+  - /bin/systemctl hibernate
+
 username: mbrothie

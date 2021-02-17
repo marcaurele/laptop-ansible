@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for cmd in sudo %}
+{{ username }}    ALL=NOPASSWD: {{ cmd }}
+{% endfor %}
