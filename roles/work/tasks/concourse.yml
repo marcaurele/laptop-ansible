@@ -1,0 +1,32 @@
+---
+
+- name: check current version
+  uri:
+    url: "{{ vault_ci_address }}/api/v1/info"
+    return_content: true
+    timeout: 1
+  register: concourse_api_info
+  ignore_errors: yes
+
+- name: check if fly is already installed
+  stat:
+    path: /usr/local/bin/fly
+  register: fly_stat
+
+- name: check local fly version
+  command: /usr/local/bin/fly --version
+  register: fly_version
+  when: fly_stat.stat.exists
+
+- name: download latest fly cli
+  become: true
+  get_url:
+    url: "{{ vault_ci_address }}/api/v1/cli?arch=amd64&platform=linux"
+    dest: /usr/local/bin/fly
+    mode: 0755
+    owner: root
+    group: root
+  when:
+    - not ansible_check_mode
+    - not concourse_api_info.failed
+    - not fly_stat.stat.exists or (concourse_api_info.json.version not in fly_version.stdout_lines[0])
