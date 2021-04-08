@@ -9,14 +9,14 @@ After the 1st run, you can run the `update.sh` script from the user home.
 ## Run the installation
 
 ```console
-$ ./update.sh
+./update.sh
 ```
 
 
 ## Test on vagrant box
 
 ```console
-$ ./vagrant-test.sh
+./vagrant-test.sh
 ```
 
 
@@ -73,6 +73,7 @@ LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#
 To add the AWS network ranges to go through the VPN, download the latest
 file at https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html.
 Insert them in the VPN entry with:
+
 ```console
 # IPv4
 curl --silent https://ip-ranges.amazonaws.com/ip-ranges.json \
