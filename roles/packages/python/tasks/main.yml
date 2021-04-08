@@ -5,8 +5,13 @@
   package:
     pkg: "{{ item }}"
   with_together:
-    - pipenv
     - python3
     - python3-pip
-    - python3-virtualenv
-    - python3-virtualenvwrapper
+
+- name: install some python mackages through pip
+  become: yes
+  pip:
+    name:
+      - pipenv
+      - virtualenv
+    state: latest
