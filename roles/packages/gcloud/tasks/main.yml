@@ -1,0 +1,17 @@
+---
+
+- name: add repository GPG key for Google Cloud
+  become: yes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: add repository for Google Cloud
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.cloud.google.com/apt cloud-sdk main
+
+- name: install Google cloud SDK gcloud
+  become: yes
+  apt:
+    pkg:
+      - google-cloud-sdk

@@ -59,6 +59,9 @@
     - role: packages/virtualization
       tags: virtualization
 
+    - role: packages/gcloud
+      tags: gcloud
+
     #- role: packages/helm
     #  tags: helm, k8s
     #  when: not private_node
