@@ -1,0 +1,47 @@
+---
+
+- name: check pulumi releases
+  uri:
+    url: https://api.github.com/repos/pulumi/pulumi/releases/latest
+    return_content: yes
+  register: releases
+
+- name: check if pulumi is already installed
+  stat:
+    path: /usr/local/bin/pulumi
+  register: pulumi_stat
+
+- name: check local pulumi version
+  command: /usr/local/bin/pulumi version
+  register: pulumi_version
+  when: pulumi_stat.stat.exists
+
+- name: download latest pulumi release
+  unarchive:
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x64`)].browser_download_url | [0]') }}"
+    remote_src: true
+    dest: /tmp/
+  when:
+    - not ansible_check_mode
+    - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
+
+- name: move pulumi binaries
+  become: true
+  copy:
+    src: /tmp/pulumi/
+    remote_src: true
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+  when:
+    - not ansible_check_mode
+    - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
+
+- name: clean pulumi download
+  become: true
+  file:
+    path: /tmp/pulumi
+    state: absent
+  when:
+    - not ansible_check_mode
+    - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
