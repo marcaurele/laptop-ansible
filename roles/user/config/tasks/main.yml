@@ -73,6 +73,8 @@
       dest: "~/.curlrc"
     - src: gitconfig.j2
       dest: "~/.gitconfig"
+    - src: gitconfig_work.j2
+      dest: "~/.gitconfig_work"
     - src: gitignore_global.j2
       dest: "~/.gitignore_global"
     - src: vimrc.j2

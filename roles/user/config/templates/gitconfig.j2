@@ -3,8 +3,14 @@
 # Default identity
 [user]
 	name = Marc-Aurèle Brothier
-	email = {{ git.email }}
-	signingkey = {{ git.gpg_key }}
+	email = {{ git.private_email }}
+	signingkey = {{ git.private_gpg_signing_key }}
+{% if not private_node %}
+[includeIf "gitdir:~/code/**/.git"]
+	path = .gitconfig_work
+[includeIf "gitdir:~/.password-store/.git"]
+	path = .gitconfig_work
+{% endif %}
 [alias]
         co = checkout
         ci = commit
@@ -57,7 +63,5 @@
 [pull]
 	rebase = true
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
         default = current
 	gpgsign = if-asked
