@@ -50,9 +50,6 @@
     - role: packages/python
       tags: python
 
-    - role: packages/pyenv
-      tags: pyenv
-
     - role: packages/pipx
       tags: pipx
 
