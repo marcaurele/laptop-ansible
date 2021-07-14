@@ -28,7 +28,6 @@ python_tools:
   - name: flake8
     extra: flake8-import-order flake8-bugbear
   - name: pip-tools
-  - name: pyenv
   - name: sphinx
     extra: sphinx-rtd-theme recommonmark
   - name: black
