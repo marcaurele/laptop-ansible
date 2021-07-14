@@ -15,10 +15,3 @@
   apt:
     pkg: signal-desktop
     state: latest
-
-- name: fix chrome-sandbox
-  become: true
-  file:
-    path: /opt/Signal/chrome-sandbox
-    state: file
-    mode: '4755'
