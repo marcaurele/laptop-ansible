@@ -3,7 +3,7 @@
 - name: add repository GPG key for Brave
   become: yes
   apt_key:
-    url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
 - name: add reposiroty for Brave
   become: yes
