@@ -1,4 +1,8 @@
 # {{ ansible_managed }}
+
+[default]
+cli_follow_urlparam = false
+
 {% for group, config in aws_config.items() %}
 
 [profile {{ group }}]
