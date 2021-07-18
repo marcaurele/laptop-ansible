@@ -2,10 +2,10 @@
 
 apt_releases:
   - name: testing
-    mirror: http://debian.ethz.ch/debian
+    mirror: https://debian.ethz.ch/debian
     archive: main contrib non-free
   - name: testing-security
-    mirror: http://security.debian.org
+    mirror: https://security.debian.org
     archive: main contrib non-free
 
 packages_extra: # Debian packages
