@@ -1,2 +1,2 @@
-# tfenv configuration, in front in order to override system terraform
-export PATH="$HOME/.tfenv/bin:$PATH"
+# tfenv configuration
+export PATH="$PATH:$HOME/.tfenv/bin"
