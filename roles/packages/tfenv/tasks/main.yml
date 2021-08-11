@@ -1,0 +1,20 @@
+---
+
+- name: fetch latest release for tfenv
+  uri:
+    url: https://api.github.com/repos/tfutils/tfenv/releases/latest
+    return_content: true
+  register: release
+  tags: system
+
+- name: install tfenv as git checkout
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    clone: yes
+    dest: "~/.tfenv"
+    repo: "https://github.com/tfutils/tfenv.git"
+    update: no
+    verify_commit: no
+    version: "{{ release.json.tag_name }}"
+  when: not ansible_check_mode

@@ -47,6 +47,9 @@
     - role: packages/hashicorp
       tags: hashicorp
 
+    - role: packages/tfenv
+      tags: tfenv
+
     - role: packages/python
       tags: python
 
