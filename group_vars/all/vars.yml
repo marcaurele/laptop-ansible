@@ -32,5 +32,4 @@ python_tools:
   - name: sphinx
     extra: sphinx-rtd-theme recommonmark
   - name: black
-  - name: python-gist
   - name: sslyze
