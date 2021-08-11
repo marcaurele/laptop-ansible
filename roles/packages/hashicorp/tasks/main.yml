@@ -22,6 +22,5 @@
   apt:
     pkg:
       - consul
-      - terraform
       - vagrant
       - vault
