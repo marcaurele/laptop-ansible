@@ -14,3 +14,7 @@ fi
 alias chmodfix='chmod -R u+rwX,go+rX,go-w'
 
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+
+# Keyboard
+alias kus="setxkbmap -option ctrl:nocaps us"
+alias kch="setxkbmap -option ctrl:nocaps ch fr"
