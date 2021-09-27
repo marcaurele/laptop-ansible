@@ -89,3 +89,10 @@ curl --silent https://ip-ranges.amazonaws.com/ip-ranges.json \
   | sed 's/,$//' \
   | xargs nmcli connection modify <vpn-name> ipv6.routes
 ```
+
+## Alternatives
+
+### Desktop
+
+The default desktop is i3, but if it seems too _raw_, there's an alternative easier to
+use: <https://regolith-linux.org/>.
