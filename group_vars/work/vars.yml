@@ -17,6 +17,8 @@ certificates_extra: "{{ vault_certificates_extra }}"
 
 company: "{{ vault_company }}"
 
+git_work: "{{ vault_git_work }}"
+
 grub_parameter: "mem_sleep_default=deep"
 
 nodejs:
