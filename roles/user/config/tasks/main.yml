@@ -83,8 +83,6 @@
       dest: "~/.wgetrc"
     - src: ssh_config.j2
       dest: "~ /.ssh/config"
-    - src: gist.j2
-      dest: "~/.config/.gist"
     - src: tmux.conf.j2
       dest: "~/.tmux.conf"
   tags: user
