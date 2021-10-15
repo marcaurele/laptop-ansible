@@ -34,19 +34,19 @@ CD before performing the installation. After booting on the live CD:
 3. Open the container: `cryptsetup luksOpen /dev/nvmen0p3 cryptlvm`
 4. Create a physical volume on top of the opnened LUKFS container:
    `pvcreate /dev/mapper/cryptlvm`
-5. Create a volume group: `vgcreate MyVolGrp /dev/mapper/cryptlvm`
+5. Create a volume group: `vgcreate vglaptop /dev/mapper/cryptlvm`
 6. Create the logical volumes for `/root`, `/home`...:
-   - `lvcreate -L 70G MyVolGrp -n root`
-   - `lvcreate -L 8G MyVolGrp -n swap`
-   - `lvcreate -l 100%FREE MyVolGrp -n home`
+   - `lvcreate -L 70G vglaptop -n root`
+   - `lvcreate -L 8G vglaptop -n swap`
+   - `lvcreate -l 100%FREE vglaptop -n home`
 7. Format the filesystems:
-   - `mkfs.ext4 /dev/MyVolGrp/root`
-   - `mkfs.ext4 /dev/MyVolGrp/home`
-   - `mkswap /dev/MyVolGrp/swap`
+   - `mkfs.ext4 /dev/vglaptop/root`
+   - `mkfs.ext4 /dev/vglaptop/home`
+   - `mkswap /dev/vglaptop/swap`
 8. Install the system on the corresponding mount points
 9. Perform those operations to configure the LUKS opening from the live CD:
-   - `mount /dev/MyVolGrp/root /mnt`
-   - `mount /dev/MyVolGrp/home /mnt/home`
+   - `mount /dev/vglaptop/root /mnt`
+   - `mount /dev/vglaptop/home /mnt/home`
    - `mount /dev/nvmen0p2 /mnt/boot`
    - `mount --bind /dev /mnt/dev`
    - `mount --bind /run/lvm /mnt/run/lvm`
@@ -57,10 +57,10 @@ CD before performing the installation. After booting on the live CD:
     - `mount -t sysfs sys /sys`
     - `mount -t devpts devpts /dev/pts`
 11. Setup crypttab (grep uuid from `blkid | grep LUKS`):
-    `echo "nvme0n1p3_crypt UUID=94797838-25bd-4a74-83f8-883b9f39022a none luks" > /etc/crypttab`
+    `echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'` none luks" > /etc/crypttab`
 12. Rebuild boot files:
     - `update-initramfs -c -k all`
-    - `update-grub`
+    - `update-grub` or `grub-mkconfig -o /boot/grub/grub.cfg`
 
 In case there's some info on [Archlinux - LVM on
 LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS).
