@@ -47,6 +47,9 @@
     - role: packages/hashicorp
       tags: hashicorp
 
+    - role: packages/visualcode
+      tags: vscode
+
     - role: packages/tfenv
       tags: tfenv
 

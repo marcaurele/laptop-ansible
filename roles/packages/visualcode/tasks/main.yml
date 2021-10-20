@@ -1,0 +1,17 @@
+---
+
+- name: add repository GPG key for Visual Studio Code
+  become: yes
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: add repository for Visual Studio Code
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
+
+- name: install code
+  become: yes
+  apt:
+    pkg:
+      - code
