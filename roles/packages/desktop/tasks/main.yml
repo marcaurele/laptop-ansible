@@ -32,6 +32,7 @@
     - network-manager-gnome
     - network-manager-openvpn-gnome
     - network-manager-l2tp-gnome
+    - pasystray
     - pavucontrol
     - pulseaudio
     - remmina

@@ -198,6 +198,7 @@ exec --no-startup-id xinput set-prop "pointer:Logitech MX Ergo" "libinput Accel 
 # Activate NetworkManager applet
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id pasystray --notify=all
 
 # Run xsettings to configure DPI
 exec --no-startup-id ~/.config/bin/xsettingsd-setup
