@@ -21,11 +21,14 @@
     - iftop
     - inputplug
     - ipcalc
+    - iptraf
+    - iptraf-ng
     - keychain
     - man
     - mtr
     - neovim
     - net-tools
+    - nethogs
     - ocrmypdf
     - tesseract-ocr-fra
     - oathtool
