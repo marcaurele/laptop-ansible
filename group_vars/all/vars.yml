@@ -24,10 +24,10 @@ locales:
 packages_directory: "~/soft"
 
 python_tools:
-  - name: cs
   - name: flake8
     extra: flake8-import-order flake8-bugbear
   - name: pip-tools
+  - name: poetry
   - name: pre-commit
   - name: sphinx
     extra: sphinx-rtd-theme recommonmark
