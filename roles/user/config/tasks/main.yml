@@ -51,6 +51,7 @@
   loop:
     - path: "~/.config"
     - path: "~/.config/nvim"
+    - path: "~/.config/pypoetry"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
     - path: "~/.ssh"
@@ -85,6 +86,8 @@
       dest: "~ /.ssh/config"
     - src: tmux.conf.j2
       dest: "~/.tmux.conf"
+    - src: pypoetry.config.toml.j2
+      dest: "~/.config/pypoetry/config.toml"
   tags: user
 
 - include_tasks: gpg.yml
