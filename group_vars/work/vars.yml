@@ -19,7 +19,7 @@ company: "{{ vault_company }}"
 
 git_work: "{{ vault_git_work }}"
 
-grub_parameter: "mem_sleep_default=deep"
+grub_parameter: "mem_sleep_default=deep resume=UUID=468a7c6e-054d-49c2-b44d-39e88f3121d6"
 
 nodejs:
   version: 14.x
