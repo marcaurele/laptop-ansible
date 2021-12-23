@@ -15,6 +15,7 @@
   command: /usr/local/bin/pulumi version
   register: pulumi_version
   when: pulumi_stat.stat.exists
+  changed_when: false
 
 - name: download latest pulumi release
   unarchive:
