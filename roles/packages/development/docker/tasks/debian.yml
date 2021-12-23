@@ -1,0 +1,8 @@
+---
+
+- name: install docker packages
+  become: yes
+  package:
+    pkg:
+    - docker.io
+    - docker-compose

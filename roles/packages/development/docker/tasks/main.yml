@@ -1,34 +1,7 @@
 ---
 
-- name: add repository GPG key for Docker
-  become: true
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-
-- name: add docker repository
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    state: present
-    update_cache: yes
-
-- name: remove old docker packages
-  become: yes
-  package:
-    pkg: "{{ item }}"
-    state: absent
-  with_together:
-    - docker.io
-    - docker-compose
-
-- name: install docker packages
-  become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
+- name: include distribution based Docker installation
+  include_tasks: "{{ ansible_distribution | lower }}.yml"
 
 - name: add {{ username }} to docker group
   become: yes
