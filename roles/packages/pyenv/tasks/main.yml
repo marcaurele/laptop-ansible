@@ -8,13 +8,13 @@
   tags: system
 
 - name: install pyenv as git checkout
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
-    clone: yes
+    clone: true
     dest: "~/.pyenv"
     repo: "https://github.com/pyenv/pyenv.git"
-    update: no
-    verify_commit: no
+    update: true
+    verify_commit: false
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
