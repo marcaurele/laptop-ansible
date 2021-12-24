@@ -5,7 +5,7 @@ export PATH="$HOME/.pyenv/shims:${PATH}"
 #	eval "$(pyenv init -)"
 #fi
 export PYENV_SHELL=zsh
-source '/home/mbrothie/.pyenv/libexec/../completions/pyenv.zsh'
+source "$HOME/.pyenv/libexec/../completions/pyenv.zsh"
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
