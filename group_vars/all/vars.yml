@@ -26,11 +26,15 @@ packages_directory: "~/soft"
 python_tools:
   - name: docker-compose
   - name: flake8
-    extra: flake8-import-order flake8-bugbear
+    extra:
+      - flake8-import-order
+      - flake8-bugbear
   - name: pip-tools
   - name: poetry
   - name: pre-commit
   - name: sphinx
-    extra: sphinx-rtd-theme recommonmark
+    extra:
+      - sphinx-rtd-theme
+      - recommonmark
   - name: black
   - name: sslyze
