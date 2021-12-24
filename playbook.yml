@@ -95,6 +95,9 @@
       tags: dev, javascript, yarn
       when: not private_node
 
+    - role: packages/development/utouch
+      tags: dev, utouch, mobile
+
     - role: work
       tags: work
       when: not private_node
