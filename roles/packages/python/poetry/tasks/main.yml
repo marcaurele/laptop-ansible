@@ -1,0 +1,13 @@
+---
+
+- name: install poetry through pipx
+  community.general.pipx:
+    name: poetry
+
+- name: install poetry configuration files
+  become: yes
+  become_user: "{{ username }}"
+  template:
+    src: pypoetry.config.toml
+    dest: ~/.config/pypoetry/config.toml
+    mode: '0644'

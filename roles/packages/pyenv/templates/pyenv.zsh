@@ -1,11 +1,9 @@
+# {{ ansible_managed }}
 # pyenv configuration
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/shims:${PATH}"
-#if command -v pyenv 1>/dev/null 2>&1; then
-#	eval "$(pyenv init -)"
-#fi
 export PYENV_SHELL=zsh
-source "$HOME/.pyenv/libexec/../completions/pyenv.zsh"
+source "$HOME/.pyenv/completions/pyenv.zsh"
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command

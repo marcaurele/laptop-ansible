@@ -47,11 +47,12 @@
     - role: packages/hashicorp
       tags: hashicorp
 
-    - role: packages/visualcode
-      tags: vscode
-
     - role: packages/tfenv
       tags: tfenv
+      when: not private_node
+
+    - role: packages/visualcode
+      tags: vscode
 
     - role: packages/python
       tags: python
@@ -61,6 +62,9 @@
 
     - role: packages/pipx
       tags: pipx
+
+    - role: packages/python/poetry
+      tags: poetry
 
     - role: packages/pulumi
       tags: pulumi

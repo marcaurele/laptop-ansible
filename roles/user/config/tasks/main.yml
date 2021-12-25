@@ -1,23 +1,5 @@
 ---
 
-- name: change home permissions for {{ username }}
-  become: yes
-  become_user: "{{ username }}"
-  file:
-    path: "~/"
-    state: directory
-    mode: 0750
-  tags: user
-
-- name: create directory for ansible remote_tmp to skip warning
-  become: yes
-  become_user: "{{ username }}"
-  file:
-    path: "~/.ansible/tmp"
-    state: directory
-    mode: 0750
-  tags: user
-
 - name: add authorized ssh keys for {{ username }}
   become: true
   become_user: "{{ username }}"
@@ -39,27 +21,6 @@
     state: present
     user: "{{ username }}"
   when: not private_node
-  tags: user
-
-- name: create directories
-  become: yes
-  become_user: "{{ username }}"
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    mode: "{{ item.mode|default('') }}"
-  loop:
-    - path: "~/.config"
-    - path: "~/.config/nvim"
-    - path: "~/.config/pypoetry"
-    - path: "~/Private"
-    - path: "{{ packages_directory }}"
-    - path: "~/.ssh"
-      mode: "0700"
-    - path: "~/.ssh/socket"
-      mode: "0700"
-    - path: "{{ code_directory }}"
-    - path: "~/bin"
   tags: user
 
 - name: install config dot files
@@ -86,8 +47,6 @@
       dest: "~ /.ssh/config"
     - src: tmux.conf.j2
       dest: "~/.tmux.conf"
-    - src: pypoetry.config.toml.j2
-      dest: "~/.config/pypoetry/config.toml"
   tags: user
 
 - include_tasks: gpg.yml

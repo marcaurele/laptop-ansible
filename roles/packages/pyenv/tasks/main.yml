@@ -18,3 +18,8 @@
     verify_commit: false
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
+
+- name: install pyenv shell completion
+  ansible.builtin.template:
+    src: pyenv.zsh
+    dest: ~/.zsh_config/python/pyenv.zsh
