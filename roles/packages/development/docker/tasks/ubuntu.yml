@@ -12,16 +12,14 @@
     state: present
     update_cache: true
 
-- name: remove old docker packages
-  become: yes
-  package:
-    state: absent
-    pkg:
-    - docker.io
-    - docker-compose
-
 - name: install docker packages
   become: yes
   package:
     pkg:
     - docker-ce-cli
+
+- name: install docker-compose through pipx
+  become: true
+  become_user: "{{ username }}"
+  community.general.pipx:
+    name: docker-compose

@@ -10,7 +10,3 @@
     append: yes
     groups:
       - docker
-
-- name: install docker-compose through pipx
-  community.general.pipx:
-    name: docker-compose
