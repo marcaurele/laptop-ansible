@@ -1,26 +1,33 @@
 ---
 
 - name: add repository GPG key for HashiCorp
-  become: yes
+  become: true
   apt_key:
     url: https://apt.releases.hashicorp.com/gpg
 
 - name: add reposiroty for HashiCorp on Debian
-  become: yes
+  become: true
   apt_repository:
     repo: deb [arch=amd64] https://apt.releases.hashicorp.com buster main
   when: ansible_distribution == "Debian"
 
 - name: add reposiroty for HashiCorp on Ubuntu
-  become: yes
+  become: true
   apt_repository:
     repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
   when: ansible_distribution == "Ubuntu"
 
 - name: install HashiCorp tools
-  become: yes
+  become: true
   apt:
     pkg:
       - consul
       - vagrant
       - vault
+
+- name: install Terraform
+  become: true
+  apt:
+    pkg:
+      - terraform
+  when: private_node
