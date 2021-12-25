@@ -44,16 +44,6 @@
     - role: packages/desktop
       tags: desktop
 
-    - role: packages/hashicorp
-      tags: hashicorp
-
-    - role: packages/tfenv
-      tags: tfenv
-      when: not private_node
-
-    - role: packages/visualcode
-      tags: vscode
-
     - role: packages/python
       tags: python
 
@@ -74,6 +64,16 @@
 
     - role: packages/gcloud
       tags: gcloud
+
+    - role: packages/hashicorp
+      tags: hashicorp
+
+    - role: packages/hashicorp/tfenv
+      tags: tfenv
+      when: not private_node
+
+    - role: packages/visualcode
+      tags: vscode
 
     #- role: packages/helm
     #  tags: helm, k8s
