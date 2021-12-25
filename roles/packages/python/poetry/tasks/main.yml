@@ -1,11 +1,20 @@
 ---
 
 - name: install poetry through pipx
+  become: true
+  become_user: "{{ username }}"
   community.general.pipx:
     name: poetry
 
+- name: create poetry configuration directory
+  become: true
+  become_user: "{{ username }}"
+  file:
+    path: "~/.config/pypoetry"
+    state: directory
+
 - name: install poetry configuration files
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: pypoetry.config.toml
