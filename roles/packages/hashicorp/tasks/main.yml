@@ -22,6 +22,7 @@
   apt:
     pkg:
       - consul
+      - nomad
       - vagrant
       - vault
 
@@ -31,3 +32,9 @@
     pkg:
       - terraform
   when: private_node
+
+- name: deactivate nomad service
+  ansible.builtin.systemd:
+    name: nomad
+    state: stopped
+    enabled: no
