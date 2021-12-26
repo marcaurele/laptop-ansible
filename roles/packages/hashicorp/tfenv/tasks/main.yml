@@ -18,3 +18,10 @@
     verify_commit: no
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
+
+- name: tfenv configuration
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: tfenv.zsh
+    dest: "{{ config.zsh }}/hashicorp/tfenv.zsh"
