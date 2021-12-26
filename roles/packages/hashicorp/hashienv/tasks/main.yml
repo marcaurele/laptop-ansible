@@ -1,0 +1,9 @@
+---
+
+- name: copy hashienv script
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    src: hashienv
+    dest: "~/.local/bin/"
+    mode: preserve

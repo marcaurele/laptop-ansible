@@ -72,6 +72,9 @@
       tags: tfenv
       when: not private_node
 
+    - role: packages/hashicorp/hashienv
+      tags: hashienv
+
     - role: packages/visualcode
       tags: vscode
 
