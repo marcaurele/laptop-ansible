@@ -36,3 +36,9 @@ python_tools:
       - recommonmark
   - name: black
   - name: sslyze
+
+sudo:
+  - /bin/systemctl hibernate
+  - /usr/sbin/reboot
+  - /usr/sbin/shutdown
+  - /usr/sbin/halt

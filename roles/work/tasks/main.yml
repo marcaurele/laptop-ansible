@@ -1,10 +1,3 @@
 ---
 
-- name: deploy sudoers configuration
-  become: true
-  template:
-    src: sudoers.j2
-    dest: /etc/sudoers.d/zzz-custom
-    validate: /usr/sbin/visudo -c %s
-
 - import_tasks: concourse.yml

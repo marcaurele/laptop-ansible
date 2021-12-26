@@ -29,10 +29,4 @@ packages_extra:
 
 private_node: false
 
-sudo:
-  - /bin/systemctl hibernate
-  - /usr/sbin/reboot
-  - /usr/sbin/shutdown
-  - /usr/sbin/halt
-
 username: mbrothie
