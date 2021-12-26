@@ -6,6 +6,13 @@
     name: pipx
     state: latest
 
+- name: pipx autocompletion
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: completion-pipx.zsh
+    dest: ~/.zsh_config/python/completion-pipx.zsh
+
 - name: install tools with pipx
   community.general.pipx:
     name: "{{ item.name }}"

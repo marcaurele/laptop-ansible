@@ -13,3 +13,10 @@
     name:
     - pipenv
     state: latest
+
+- name: python configuration
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: env.zsh
+    dest: ~/.zsh_config/python/env.zsh
