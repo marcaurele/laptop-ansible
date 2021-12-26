@@ -2,9 +2,8 @@
 
 - name: install virtualization packages
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - cloud-image-utils
     - genisoimage
     - qemu

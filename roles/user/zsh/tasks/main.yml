@@ -2,9 +2,8 @@
 
 - name: install ZSH
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - zplug
     - zsh
 

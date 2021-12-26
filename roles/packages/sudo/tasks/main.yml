@@ -2,8 +2,8 @@
 
 - name: install sudo
   become: yes
-  package:
-    pkg: sudo
+  ansible.builtin.apt:
+    name: sudo
 
 - name: configure sudo
   become: yes

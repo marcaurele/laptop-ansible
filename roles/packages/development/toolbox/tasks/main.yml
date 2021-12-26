@@ -2,9 +2,8 @@
 
 - name: install development toolbox packages
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - automake
     - build-essential
     - cmake

@@ -2,7 +2,7 @@
 
 - name: install docker packages
   become: yes
-  package:
-    pkg:
+  ansible.builtin.apt:
+    name:
     - docker.io
     - docker-compose

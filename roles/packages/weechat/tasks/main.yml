@@ -1,17 +1,11 @@
 ---
 
-- name: install weechat
+- name: install weechat and plugins
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - weechat
-
-- name: install python-nofity2 for weechat plugin
-  become: yes
-  apt:
-    pkg: python-notify2
-  when: ansible_facts.packages['weechat'] is defined
+    - python-notify2
 
 - name: install weechat plugin notify
   become: yes

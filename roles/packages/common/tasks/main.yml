@@ -2,9 +2,8 @@
 
 - name: install common packages
   become: true
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - ack
     - apt-transport-https
     - byobu
@@ -43,7 +42,6 @@
     - qpdf
     - qrencode
     - scdaemon
-    - sudo
     - tmate
     - wget
     - whois
@@ -54,5 +52,5 @@
 
 - name: install extra packages
   become: true
-  package:
-    pkg: "{{ packages_extra | join(',') }}"
+  ansible.builtin.apt:
+    name: "{{ packages_extra | join(',') }}"

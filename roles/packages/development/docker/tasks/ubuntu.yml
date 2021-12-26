@@ -14,8 +14,8 @@
 
 - name: install docker packages
   become: yes
-  package:
-    pkg:
+  ansible.builtin.apt:
+    name:
     - docker-ce-cli
 
 - name: install docker-compose through pipx

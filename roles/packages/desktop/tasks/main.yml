@@ -2,18 +2,16 @@
 
 - name: install Debian packages
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name: 
     - task-desktop
     - task-gnome-desktop
   when: ansible_distribution == "Debian"
 
 - name: install desktop
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - autorandr
     - blueman
     - brightnessctl

@@ -1,11 +1,5 @@
 ---
 
-- name: install packages for work
-  become: true
-  package:
-    pkg:
-      - mumble
-
 - name: deploy sudoers configuration
   become: true
   template:

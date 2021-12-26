@@ -6,8 +6,8 @@
 
 - name: install firefox
   become: true
-  package:
-    pkg: "{{ firefox_package }}"
+  ansible.builtin.apt:
+    name: "{{ firefox_package }}"
 
 - name: check browser preferences
   command: xdg-settings get default-web-browser

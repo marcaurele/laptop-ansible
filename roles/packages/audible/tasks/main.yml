@@ -12,9 +12,8 @@
 
 - name: install audible tools to easily move to non-DRM files
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - ffmpeg
     - libmp3lame0
     - mp4v2-utils

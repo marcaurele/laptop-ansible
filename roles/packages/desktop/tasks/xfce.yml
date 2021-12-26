@@ -2,9 +2,8 @@
 
 - name: install xfce4 terminal
   become: yes
-  package:
-    pkg: "{{ item }}"
-  with_together:
+  ansible.builtin.apt:
+    name:
     - xfce4-terminal
 
 - name: create xfce config directory

@@ -14,5 +14,5 @@
 
 - name: install Yarn
   become: yes
-  package:
-    pkg: yarn
+  ansible.builtin.apt:
+    name: yarn
