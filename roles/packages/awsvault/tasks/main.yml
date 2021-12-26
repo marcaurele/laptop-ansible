@@ -29,3 +29,15 @@
   when:
     - not ansible_check_mode
     - not awsvault_stat.stat.exists or awsvault_version.stderr != releases.json.tag_name
+
+- name: awsvault zsh configuration
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - src: completion.zsh
+      dest: "~/{{ config.zsh }}/awsvault/completion.zsh"
+    - src: env.zsh
+      dest: "~/{{ config.zsh }}/awsvault/env.zsh"

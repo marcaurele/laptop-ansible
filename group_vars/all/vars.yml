@@ -6,6 +6,10 @@ bluetooth:
 code_directory: "~/code"
 code_projects: "{{ vault_code_projects }}"
 
+config:
+  dir: ~/.config
+  zsh: ~/.zsh_config
+
 git: "{{ vault_git }}"
 
 gpg: "{{ vault_gpg }}"

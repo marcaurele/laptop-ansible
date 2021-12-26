@@ -1,5 +1,5 @@
 #compdef aws-vault
-
+# {{ ansible_managed }}
 _aws-vault() {
     local i
     for (( i=2; i < CURRENT; i++ )); do
