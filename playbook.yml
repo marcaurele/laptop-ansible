@@ -82,6 +82,9 @@
     - role: packages/development/toolbox
       tags: dev, toolbox
 
+    - role: packages/development/golang
+      tags: dev, golang
+
     - role: packages/gh
       tags: gh
 

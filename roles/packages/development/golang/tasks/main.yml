@@ -1,0 +1,14 @@
+---
+
+- name: install golang tools
+  become: yes
+  ansible.builtin.apt:
+    name:
+    - golang
+
+- name: golang configuration
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: env.zsh
+    dest: "{{ config.zsh }}/go/env.zsh"

@@ -9,7 +9,6 @@
     - cmake
     - default-mysql-client
     - git
-    - golang
     - gpg
     - gpg-agent
     - jq
