@@ -19,4 +19,4 @@
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: env.zsh
-    dest: ~/.zsh_config/python/env.zsh
+    dest: "{{ config.zsh }}/python/env.zsh"

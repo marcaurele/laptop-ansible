@@ -22,4 +22,4 @@
 - name: install pyenv shell completion
   ansible.builtin.template:
     src: pyenv.zsh
-    dest: ~/.zsh_config/python/pyenv.zsh
+    dest: "{{ config.zsh }}/python/pyenv.zsh"

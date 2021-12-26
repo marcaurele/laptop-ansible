@@ -38,6 +38,6 @@
     dest: "{{ item.dest }}"
   loop:
     - src: completion.zsh
-      dest: "~/{{ config.zsh }}/awsvault/completion.zsh"
+      dest: "{{ config.zsh }}/awsvault/completion.zsh"
     - src: env.zsh
-      dest: "~/{{ config.zsh }}/awsvault/env.zsh"
+      dest: "{{ config.zsh }}/awsvault/env.zsh"

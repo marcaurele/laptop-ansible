@@ -11,7 +11,7 @@
   become: yes
   become_user: "{{ username }}"
   file:
-    path: "~/.zsh_config"
+    path: "{{ config.zsh }}"
     state: directory
   tags: user
 
@@ -20,7 +20,7 @@
   become_user: "{{ username }}"
   copy:
     src: "."
-    dest: "~/.zsh_config/"
+    dest: "{{ config.zsh }}/"
     mode: preserve
   tags: user
 
