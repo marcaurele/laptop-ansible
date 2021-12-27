@@ -14,6 +14,13 @@
     - pipenv
     state: latest
 
+- name: python configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ config.zsh }}/python"
+    state: directory
+
 - name: python configuration
   become: yes
   become_user: "{{ username }}"

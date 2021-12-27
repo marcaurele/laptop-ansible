@@ -19,6 +19,13 @@
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
 
+- name: hashicorp configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ config.zsh }}/hashicorp"
+    state: directory
+
 - name: tfenv configuration
   become: yes
   become_user: "{{ username }}"

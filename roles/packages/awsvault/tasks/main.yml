@@ -8,6 +8,7 @@
 
 - name: check aws-vault locally
   become: true
+  become_user: "{{ username }}"
   stat:
     path: /usr/local/bin/aws-vault
   register: awsvault_stat
@@ -21,7 +22,7 @@
   when: awsvault_stat.stat.exists
 
 - name: install or upgrade aws-vault {{ releases.json.tag_name[1:] }}
-  become: yes
+  become: true
   get_url:
     dest: "/usr/local/bin/aws-vault"
     mode: 0755
@@ -30,8 +31,15 @@
     - not ansible_check_mode
     - not awsvault_stat.stat.exists or awsvault_version.stderr != releases.json.tag_name
 
+- name: awsvault configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ config.zsh }}/awsvault"
+    state: directory
+
 - name: awsvault zsh configuration
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: "{{ item.src }}"

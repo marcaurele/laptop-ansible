@@ -11,7 +11,7 @@
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: completion-pipx.zsh
-    dest: "{{ config.zsh }}/python/completion-pipx.zsh"
+    dest: "{{ config.zsh }}/python/completion.zsh"
 
 - name: install tools with pipx
   community.general.pipx:

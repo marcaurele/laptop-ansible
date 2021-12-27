@@ -6,9 +6,16 @@
     name:
     - golang
 
+- name: golang configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ config.zsh }}/golang"
+    state: directory
+
 - name: golang configuration
   become: yes
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: env.zsh
-    dest: "{{ config.zsh }}/go/env.zsh"
+    dest: "{{ config.zsh }}/golang/env.zsh"
