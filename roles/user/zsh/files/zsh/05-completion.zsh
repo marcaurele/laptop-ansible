@@ -7,6 +7,9 @@ autoload compinit && {
     compinit -i -d $ZSH/run/u/$HOST-$UID/zcompdump
 }
 
+autoload -U bashcompinit
+bashcompinit
+
 setopt auto_menu
 setopt auto_remove_slash
 setopt complete_in_word
