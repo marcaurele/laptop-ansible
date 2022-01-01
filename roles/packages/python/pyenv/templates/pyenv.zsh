@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 # pyenv configuration
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/shims:${PATH}"
+export PATH="${PATH}:$HOME/.pyenv/bin:$HOME/.pyenv/shims"
 export PYENV_SHELL=zsh
 source "$HOME/.pyenv/completions/pyenv.zsh"
 command pyenv rehash 2>/dev/null
