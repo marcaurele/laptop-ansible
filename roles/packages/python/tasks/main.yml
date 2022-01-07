@@ -7,6 +7,16 @@
     - python3
     - python3-pip
 
+- name: python configuration directories
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ config.zsh }}/python"
+    - "{{ config.dir }}/pip"
+
 - name: configure pip
   become: yes
   become_user: "{{ username }}"
@@ -21,13 +31,6 @@
     name:
     - pipenv
     state: latest
-
-- name: python configuration directory
-  become: true
-  become_user: "{{ username }}"
-  ansible.builtin.file:
-    path: "{{ config.zsh }}/python"
-    state: directory
 
 - name: python configuration
   become: yes
