@@ -124,6 +124,9 @@
     #- role: packages/sublime
     #  tags: sublime
 
+    - role: packages/pandoc
+      tags: pandoc
+
     - role: packages/dbeaver
       tags: dbeaver
 
