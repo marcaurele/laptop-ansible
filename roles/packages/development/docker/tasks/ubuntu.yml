@@ -16,6 +16,7 @@
   become: yes
   ansible.builtin.apt:
     name:
+    - docker-ce
     - docker-ce-cli
 
 - name: install docker-compose through pipx
