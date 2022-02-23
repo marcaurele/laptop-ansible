@@ -50,7 +50,15 @@
     - yubikey-personalization
     - zbar-tools
 
+- name: remove extra packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages_absent_extra | join(',') }}"
+    state: absent
+  when: packages_absent_extra is defined
+
 - name: install extra packages
   become: true
   ansible.builtin.apt:
     name: "{{ packages_extra | join(',') }}"
+  when: packages_extra is defined
