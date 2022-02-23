@@ -48,6 +48,7 @@
   when:
     - not ansible_check_mode
     - awscli_download is defined
+    - awscli_download.changed
     - not awscli_stat.stat.exists
 
 - name: upgrade awscli
@@ -57,10 +58,13 @@
   when:
     - not ansible_check_mode
     - awscli_download is defined
+    - awscli_download.changed
     - awscli_stat.stat.exists
 
 - name: clean temporary directory
   ansible.builtin.file:
     path: "{{ awscli_temp.path }}"
     state: absent
-  when: awscli_temp is defined
+  when:
+    - awscli_temp is defined
+    - awscli_temp.changed
