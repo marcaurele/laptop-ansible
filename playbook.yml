@@ -171,6 +171,9 @@
     #  tags: mattermost
     #  when: not private_node
 
+    - role: packages/awscli
+      tags: awscli
+
     - role: packages/awsvault
       tags: awsvault
       when: not private_node
