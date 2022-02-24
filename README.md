@@ -5,13 +5,11 @@ Debian or Ubuntu distributions. You should install the base OS with a SSH server
 and run the playbook from another host initialy which will create the user.
 After the 1st run, you can run the `update.sh` script from the user home.
 
-
 ## Run the installation
 
 ```console
 ./update.sh
 ```
-
 
 ## Test on vagrant box
 
@@ -19,6 +17,11 @@ After the 1st run, you can run the `update.sh` script from the user home.
 ./vagrant-test.sh
 ```
 
+## Get current host facts
+
+```console
+ansible localhost -m ansible.builtin.setup
+```
 
 ## LUKFS & LVM
 
@@ -57,7 +60,9 @@ CD before performing the installation. After booting on the live CD:
     - `mount -t sysfs sys /sys`
     - `mount -t devpts devpts /dev/pts`
 11. Setup crypttab (grep uuid from `blkid | grep LUKS`):
-    `echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'` none luks" > /etc/crypttab`
+        ```console
+        echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'`none luks" > /etc/crypttab`
+```
 12. Rebuild boot files:
     - `update-initramfs -c -k all`
     - `update-grub` or `grub-mkconfig -o /boot/grub/grub.cfg`
@@ -65,13 +70,12 @@ CD before performing the installation. After booting on the live CD:
 In case there's some info on [Archlinux - LVM on
 LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS).
 
-
 ## VPN connection
 
 ### AWS IP ranges in routes
 
 To add the AWS network ranges to go through the VPN, download the latest
-file at https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html.
+file at <https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html>.
 Insert them in the VPN entry with:
 
 ```console
