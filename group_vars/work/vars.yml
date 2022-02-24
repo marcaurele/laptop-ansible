@@ -24,7 +24,10 @@ git_work: "{{ vault_git_work }}"
 nodejs:
   version: 14.x
 
-packages_extra:
+#packages_extra:
+#  - awscli
+
+packages_absent_extra:
   - awscli
 
 pip_extra_index_url: "{{ vault_pip_extra_index_url }}"

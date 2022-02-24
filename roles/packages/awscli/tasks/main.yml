@@ -1,0 +1,71 @@
+---
+
+- name: check awscli local binary
+  stat:
+    path: /usr/local/bin/aws
+  register: awscli_stat
+
+- name: check local awscli version
+  command: /usr/local/bin/aws --version
+  register: awscli_version
+  when: awscli_stat.stat.exists
+  changed_when: false
+
+- name: check awscli tags
+  uri:
+    url: https://api.github.com/repos/aws/aws-cli/tags
+    return_content: yes
+  register: awscli_tags
+  tags: system
+
+- name: set latest awscli version
+  set_fact:
+    awscli_latest_version: "{{ awscli_tags.json[0].name }}"
+  when: not ansible_check_mode
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: awscli
+  register: awscli_temp
+  when:
+    - not ansible_check_mode
+    - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
+
+- name: download awscli archive
+  unarchive:
+    dest: "{{ awscli_temp.path }}"
+    src: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_latest_version }}.zip"
+    remote_src: true
+  register: awscli_download
+  when:
+    - not ansible_check_mode
+    - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
+
+- name: install awscli
+  become: true
+  ansible.builtin.command:
+    cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin"
+  when:
+    - not ansible_check_mode
+    - awscli_download is defined
+    - awscli_download.changed
+    - not awscli_stat.stat.exists
+
+- name: upgrade awscli
+  become: true
+  ansible.builtin.command:
+    cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin --update"
+  when:
+    - not ansible_check_mode
+    - awscli_download is defined
+    - awscli_download.changed
+    - awscli_stat.stat.exists
+
+- name: clean temporary directory
+  ansible.builtin.file:
+    path: "{{ awscli_temp.path }}"
+    state: absent
+  when:
+    - awscli_temp is defined
+    - awscli_temp.changed
