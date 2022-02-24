@@ -1,0 +1,21 @@
+---
+
+- name: install rust tools
+  become: yes
+  ansible.builtin.apt:
+    name:
+    - cargo
+
+- name: rust configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "{{ config.zsh }}/rust"
+    state: directory
+
+- name: rust configuration
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: env.zsh
+    dest: "{{ config.zsh }}/rust/env.zsh"
