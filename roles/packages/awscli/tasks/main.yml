@@ -55,7 +55,7 @@
 - name: upgrade awscli
   become: true
   ansible.builtin.command:
-    cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin --upgrade"
+    cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin --update"
   when:
     - not ansible_check_mode
     - awscli_download is defined
