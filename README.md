@@ -60,9 +60,7 @@ CD before performing the installation. After booting on the live CD:
     - `mount -t sysfs sys /sys`
     - `mount -t devpts devpts /dev/pts`
 11. Setup crypttab (grep uuid from `blkid | grep LUKS`):
-        ```console
-        echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'`none luks" > /etc/crypttab`
-```
+        ``echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'`none luks" > /etc/crypttab``
 12. Rebuild boot files:
     - `update-initramfs -c -k all`
     - `update-grub` or `grub-mkconfig -o /boot/grub/grub.cfg`
