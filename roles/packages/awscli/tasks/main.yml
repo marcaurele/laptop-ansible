@@ -5,10 +5,11 @@
     path: /usr/local/bin/aws
   register: awscli_stat
 
-- name: check awscli version
+- name: check local awscli version
   command: /usr/local/bin/aws --version
   register: awscli_version
   when: awscli_stat.stat.exists
+  changed_when: false
 
 - name: check awscli tags
   uri:
