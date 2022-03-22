@@ -98,3 +98,15 @@ curl --silent https://ip-ranges.amazonaws.com/ip-ranges.json \
 
 The default desktop is i3, but if it seems too _raw_, there's an alternative easier to
 use: <https://regolith-linux.org/>.
+
+## Bluetooth pairing
+
+To pair with a device:
+
+```console
+bluetoothctl
+devices
+pair A8:5B:78:A0:37:48
+<confirm the code>
+trust A8:5B:78:A0:37:48
+```
