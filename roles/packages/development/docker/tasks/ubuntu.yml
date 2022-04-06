@@ -19,8 +19,37 @@
     - docker-ce
     - docker-ce-cli
 
-- name: install docker-compose through pipx
+- name: create docker cli plugins directory
+  become: yes
+  file:
+    path: /usr/local/lib/docker/cli-plugins
+    state: directory
+
+- name: check docker compose latest release
+  uri:
+    url: https://api.github.com/repos/docker/compose/releases/latest
+    return_content: yes
+  register: latest_release
+  tags: system
+
+- name: check if docker compose plugin is already present
+  stat:
+    path: /usr/local/lib/docker/cli-plugins/docker-compose
+  register: local_compose_plugin_stat
+
+- name: check current local docker compose version
   become: true
-  become_user: "{{ username }}"
-  community.general.pipx:
-    name: docker-compose
+  command: docker compose version --short
+  register: docker_compose_local_version
+  ignore_errors: true
+  changed_when: false
+  when: local_compose_plugin_stat.stat.exists
+
+- name: download docker-compose binary {{ latest_release.json.tag_name }}
+  become: true
+  ansible.builtin.get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ latest_release.json.tag_name }}/docker-compose-linux-x86_64"
+    dest: /usr/local/lib/docker/cli-plugins/docker-compose
+    mode: 0755
+    force: true
+  when: not local_compose_plugin_stat.stat.exists or ('v' + docker_compose_local_version.stdout) != latest_release.json.tag_name
