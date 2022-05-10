@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Auto-refresh the next meeting
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target

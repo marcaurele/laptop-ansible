@@ -182,5 +182,9 @@
       tags: awsvault
       when: not private_node
 
+    - role: packages/gcalcli
+      tags: gcalcli
+      when: not private_node
+
   tags:
     - packages

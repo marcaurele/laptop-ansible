@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+# {{ ansible_managed }}
+t=$(mktemp)
+gcalcli \
+    agenda "$(date -d '-15 min' +'%F %R')" "$(date '+%F 23:59')" \
+    --tsv \
+    --nodeclined \
+    --nostarted \
+    --details location \
+  | head -1 | awk -F"\t" '{print $2"-"$4"|"$5"|"$6}' > $t
+mv $t ~/.next-meeting.txt

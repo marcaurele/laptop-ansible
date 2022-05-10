@@ -17,6 +17,8 @@ certificates_extra: "{{ vault_certificates_extra }}"
 
 company: "{{ vault_company }}"
 
+email_work: "{{ vault_email }}"
+
 git_work: "{{ vault_git_work }}"
 
 #grub_parameter: "resume=UUID=468a7c6e-054d-49c2-b44d-39e88f3121d6"
@@ -24,8 +26,8 @@ git_work: "{{ vault_git_work }}"
 nodejs:
   version: 14.x
 
-#packages_extra:
-#  - awscli
+# packages_extra:
+#  - gcalcli
 
 # packages_absent_extra:
 #   - awscli
