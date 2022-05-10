@@ -69,3 +69,4 @@
   when:
     - awscli_temp is defined
     - awscli_temp.changed
+  changed_when: false
