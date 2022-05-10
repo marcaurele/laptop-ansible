@@ -26,3 +26,8 @@
     state: inject
   loop: "{{ python_tools }}"
   when: item.extra is defined
+
+- name: include package task
+  include_tasks: "{{ item.name }}.yml"
+  when: "(item.name + '.yml') is file"
+  loop: "{{ python_tools }}"
