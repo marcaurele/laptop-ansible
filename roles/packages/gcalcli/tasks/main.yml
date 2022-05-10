@@ -60,4 +60,3 @@
     name: next-meeting.timer
     state: started
     scope: user
-

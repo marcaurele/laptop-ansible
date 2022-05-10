@@ -170,6 +170,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 10%-
 
+## Flameshot
+bindsym Print       exec flameshot full -p $HOME/Pictures
+bindsym Shift+Print exec flameshot gui -p $HOME/Pictures
+
 ## Lock
 bindsym $mod+x exec i3lock -c 000000
 {% if private_node %}

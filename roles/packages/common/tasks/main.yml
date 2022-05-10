@@ -11,6 +11,7 @@
     - cups-client
     - curl
     - dnsutils
+    - flameshot
     - git
     - git-lfs
     - gpg
