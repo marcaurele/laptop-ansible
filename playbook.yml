@@ -61,6 +61,7 @@
 
     - role: packages/virtualization
       tags: virtualization
+      when: private_node
 
     - role: packages/gcloud
       tags: gcloud
