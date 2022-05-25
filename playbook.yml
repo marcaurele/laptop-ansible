@@ -65,6 +65,7 @@
 
     - role: packages/gcloud
       tags: gcloud
+      when: private_node
 
     - role: packages/hashicorp
       tags: hashicorp
