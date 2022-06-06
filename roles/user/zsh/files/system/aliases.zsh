@@ -14,6 +14,7 @@ fi
 alias chmodfix='chmod -R u+rwX,go+rX,go-w'
 
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+alias sshskip="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 alias gensecret="< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;"
 
