@@ -29,6 +29,8 @@
         glog = log --graph --pretty=format:\"%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset\" --abbrev-commit --date=relative
         grog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''             %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	releaselog = log --pretty=oneline --abbrev-commit
+	releasetag-rc = tag --annotate -m "🔖 rc-$(date -I)" rc-$(date -I)
+	releasetag-v = tag --annotate -m "🔖 v-$(date -I)" v-$(date -I)
 [apply]
         whitespace = nowarn
 #[blame]
