@@ -1,13 +1,5 @@
 ---
 
-apt_releases:
-  - name: testing
-    mirror: https://debian.ethz.ch/debian
-    archive: main contrib non-free
-  - name: testing-security
-    mirror: https://security.debian.org
-    archive: main contrib non-free
-
 packages_extra: # Debian packages
   - task-english
 

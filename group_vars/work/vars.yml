@@ -1,16 +1,5 @@
 ---
 
-apt_releases:
-  - name: focal
-    mirror: http://ch.archive.ubuntu.com/ubuntu
-    archive: main restricted universe multiverse
-  - name: focal-security
-    mirror: http://ch.archive.ubuntu.com/ubuntu
-    archive: main restricted universe multiverse
-  - name: focal-updates
-    mirror: http://ch.archive.ubuntu.com/ubuntu
-    archive: main restricted universe multiverse
-
 aws_config : "{{ vault_aws_config }}"
 
 certificates_extra: "{{ vault_certificates_extra }}"

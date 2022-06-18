@@ -1,6 +1,19 @@
 # {{ ansible_managed }}
-{% for release in apt_releases %}
+{% if ansible_distribution == "Debian" %}
 
-# {{ release.name }} APT sources
-deb {{ release.mirror }} {{ release.name }} {{ release.archive }}
-{% endfor %}
+# testing APT sources
+deb https://debian.ethz.ch/debian testing main contrib non-free
+
+# testing security APT sources
+deb https://security.debian.org testing main contrib non-free
+{% elif ansible_distribution == "Ubuntu" %}
+
+# {{ ansible_distribution_release }} APT sources
+deb http://ch.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} main restricted universe multiverse
+
+# {{ ansible_distribution_release }}-security APT sources
+deb http://ch.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted universe multiverse
+
+# {{ ansible_distribution_release }}-updates APT sources
+deb http://ch.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates main restricted universe multiverse
+{% endif %}

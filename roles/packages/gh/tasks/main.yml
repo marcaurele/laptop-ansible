@@ -15,7 +15,7 @@
 - name: add repository for GitHub CLI for Ubuntu
   become: yes
   apt_repository:
-    repo: "deb https://cli.github.com/packages {{ ansible_distribution_release }}  main"
+    repo: "deb https://cli.github.com/packages stable main"
   when: ansible_distribution == "Ubuntu"
 
 - name: install GitHub CLI
