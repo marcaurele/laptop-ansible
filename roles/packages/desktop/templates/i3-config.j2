@@ -171,8 +171,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 10%-
 
 ## Flameshot
-bindsym Print       exec flameshot full -p $HOME/Pictures
-bindsym Shift+Print exec flameshot gui -p $HOME/Pictures
+exec --no-startup-id /usr/bin/flameshot
+bindsym Print       exec flameshot full  -p $HOME/Pictures
+bindsym Shift+Print exec flameshot gui
 
 ## Lock
 bindsym $mod+x exec i3lock -c 000000
