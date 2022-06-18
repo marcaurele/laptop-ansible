@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+[Unit]
+Description=XInput event monitor
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/inputplug -d -0 -c %h/.config/inputplug/input-event
+Restart=on-failure

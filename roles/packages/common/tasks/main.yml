@@ -19,7 +19,6 @@
     - hcloud-cli
     - htop
     - iftop
-    - inputplug
     - ipcalc
     - iptraf
     - iptraf-ng

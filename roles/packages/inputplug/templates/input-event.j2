@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Event handler for inputplug
+# {{ansible_managed }}
+
+event="$1"
+device="$2"
+use="$3"
+name="$4"
+
+# Load the given keymap
+#xkb() {
+#    xkbcomp -i ${device} -w 0 -I$HOME/.config/i3/xkb \
+#        $HOME/.config/i3/xkb/$1.xkb ${DISPLAY}
+#}
+
+case $event in
+        XIDeviceDisabled) exit 0 ;;
+        XISlaveRemoved) exit 0 ;;
+esac
+
+printf "input-event: $use: [%3d] $event $name\n" $device
+
+set +x
+case "$event,$use,$(uname -n),$name" in
+    *,XISlaveKeyboard,chocobo,"AT Translated Set 2 keyboard")
+        xkb x1gen2
+        ;;
+    *,XISlaveKeyboard,*)
+        # Todo: detect the fact it is a "classic" keyboard
+        xkb default
+        ;;
+    *,XIFloatingSlave,*,"Dell C3422WE")
+        setxkbmap -option ctrl:nocaps
+        autorandr --screen-only
+        ;;
+esac

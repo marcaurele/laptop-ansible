@@ -41,6 +41,9 @@
     - role: packages/common
       tags: common
 
+    - role: packages/inputplug
+      tags: inputplug
+
     - role: packages/desktop
       tags: desktop
 
