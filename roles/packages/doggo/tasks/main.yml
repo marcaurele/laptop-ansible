@@ -1,0 +1,82 @@
+---
+
+- name: check doggo releases
+  uri:
+    url: https://api.github.com/repos/mr-karan/doggo/releases/latest
+    return_content: yes
+  register: releases
+
+- name: set latest doggo version
+  set_fact:
+    doggo_latest_version: "{{ releases.json.tag_name }}"
+  when: not ansible_check_mode
+
+- name: check doggo locally
+  stat:
+    path: /usr/local/bin/doggo
+  register: doggo_stat
+
+- name: check doggo local version
+  command: /usr/local/bin/doggo --version
+  register: doggo_version
+  changed_when: false
+  when: doggo_stat.stat.exists
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: doggo
+  register: doggo_temp
+  when:
+    - not ansible_check_mode
+    - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+
+- name: download doggo {{ releases.json.tag_name }}
+  unarchive:
+    dest: "{{ doggo_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
+    remote_src: true
+  register: doggo_download
+  when:
+    - not ansible_check_mode
+    - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+
+- name: install dogo
+  become: true
+  copy:
+    src: "{{ doggo_temp.path }}/doggo"
+    dest: "/usr/local/bin/doggo"
+    mode: 0755
+  when:
+    - not ansible_check_mode
+    - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+
+# - name: doggo configuration directory
+#   become: true
+#   become_user: "{{ username }}"
+#   ansible.builtin.file:
+#     path: "{{ config.zsh }}/doggo"
+#     state: directory
+#   when:
+#     - not ansible_check_mode
+#     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+
+# - name: doggo zsh configuration
+#   become: true
+#   become_user: "{{ username }}"
+#   ansible.builtin.copy:
+#     src: "{{ doggo_temp.path }}/completions/doggo.zsh"
+#     dest: "{{ config.zsh }}/doggo/completion.zsh"
+#     mode: 0644
+#   when:
+#     - not ansible_check_mode
+#     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+
+- name: clean temporary directory
+  ansible.builtin.file:
+    path: "{{ doggo_temp.path }}"
+    state: absent
+  when:
+    - doggo_temp is defined
+    - doggo_temp.changed
+  changed_when: false
