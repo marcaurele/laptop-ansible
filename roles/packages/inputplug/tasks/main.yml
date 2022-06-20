@@ -20,6 +20,7 @@
     src: input-event.j2
     dest: "~/.config/inputplug/input-event"
     mode: "0750"
+  register: inputplug_script
 
 - name: install service file for inputplug
   become: yes
@@ -35,12 +36,13 @@
   systemd:
     daemon_reload: yes
     scope: user
-  when: inputplug_service.changed
+  when: inputplug_service.changed or inputplug_script.changed
 
-- name: configure inputplug service
+- name: activate inputplug service
   become: yes
   become_user: "{{ username }}"
   ansible.builtin.systemd:
     enabled: yes
+    state: started
     name: inputplug.service
     scope: user

@@ -23,13 +23,6 @@ printf "input-event: $use: [%3d] $event $name\n" $device
 
 set +x
 case "$event,$use,$(uname -n),$name" in
-    *,XISlaveKeyboard,chocobo,"AT Translated Set 2 keyboard")
-        xkb x1gen2
-        ;;
-    *,XISlaveKeyboard,*)
-        # Todo: detect the fact it is a "classic" keyboard
-        xkb default
-        ;;
     *,XIFloatingSlave,*,"Dell C3422WE")
         setxkbmap -option ctrl:nocaps
         autorandr --screen-only
