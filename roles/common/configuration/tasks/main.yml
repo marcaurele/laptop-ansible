@@ -32,7 +32,7 @@
   changed_when: false
   when: grub_parameter is defined
 
-- name: insert grub customization
+- name: restrict grub menu access
   become: true
   lineinfile:
     backrefs: true
@@ -40,6 +40,14 @@
     regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=".*)"$'
     line: '\1 {{ grub_parameter }}"'
   when: grub_parameter is defined and grub_cmdline_check.found == 0
+  notify: update grub
+
+- name: hide grub menu
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_FORCE_HIDDEN_MENU'
+    line: 'GRUB_FORCE_HIDDEN_MENU="true"'
   notify: update grub
 
 #- name: install custom fonts
