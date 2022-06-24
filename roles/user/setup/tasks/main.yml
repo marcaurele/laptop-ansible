@@ -73,6 +73,7 @@
     - path: "~/.config"
     - path: "~/.config/nvim"
     - path: "~/.config/pypoetry"
+    - path: "~/.config/systemd/user"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
     - path: "~/.ssh"
