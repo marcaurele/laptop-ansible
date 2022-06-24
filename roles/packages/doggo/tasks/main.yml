@@ -46,6 +46,7 @@
   copy:
     src: "{{ doggo_temp.path }}/doggo"
     dest: "/usr/local/bin/doggo"
+    remote_src: true
     mode: 0755
   when:
     - not ansible_check_mode
