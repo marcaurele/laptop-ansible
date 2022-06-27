@@ -190,13 +190,13 @@ exec --no-startup-id setxkbmap -option ctrl:nocaps
 
 {% if ansible_system_vendor == "LENOVO" and ansible_product_version == "ThinkPad X1 Carbon 6th" %}
 exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Accel Speed" 0.6
+exec --no-startup-id xinput set-prop "Synaptics TM3289-021" "libinput Accel Speed" 0.8
 {% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "Latitude 3301" %}
 exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Accel Speed" 0.6
-{% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 13 9380" %}
-exec --no-startup-id xinput set-prop "DELL08AF:00 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "DELL08AF:00 06CB:76AF Touchpad" "libinput Accel Speed" 0.6
+exec --no-startup-id xinput set-prop "DELL094F:00 27C6:01F0 Touchpad" "libinput Accel Speed" 0.8
+{% elif ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 13 9305" %}
+exec --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Accel Speed" 1
 {% endif %}
 exec --no-startup-id xinput set-prop "pointer:Logitech MX Ergo" "libinput Accel Speed" 1
 
