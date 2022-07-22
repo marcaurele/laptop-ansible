@@ -13,13 +13,6 @@ then
   source ~/.localrc
 fi
 
-# Create $HOME/.zsh if missing
-if [[ ! -e ~/.zsh ]]
-then
-  echo "creating .zsh"
-  mkdir ~/.zsh
-fi
-
 # Zplug initialization
 if [[ -e /usr/share/zplug/init.zsh ]]
 then
