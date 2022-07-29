@@ -8,7 +8,7 @@ passladb() {
 
 # WORK
 compdef _pass passpix4d
-passpix4d {
+passpix4d() {
   PASSWORD_STORE_DIR=$HOME/code/platform-cloud-services-passwordstore pass $@
 }
 
