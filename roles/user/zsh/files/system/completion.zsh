@@ -6,6 +6,12 @@ passladb() {
   PASSWORD_STORE_DIR=$HOME/code/lairdubois-pass pass $@
 }
 
+# WORK
+compdef _pass passpix4d
+passpix4d {
+  PASSWORD_STORE_DIR=$HOME/code/platform-cloud-services-passwordstore pass $@
+}
+
 # Hetzner cloud completion if present
 if type hcloud > /dev/null; then
 	eval "$(hcloud completion zsh)"
