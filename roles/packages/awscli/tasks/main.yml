@@ -33,11 +33,12 @@
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
 
 - name: download awscli archive
-  unarchive:
+  ansible.builtin.unarchive:
     dest: "{{ awscli_temp.path }}"
     src: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_latest_version }}.zip"
     remote_src: true
   register: awscli_download
+  diff: false
   when:
     - not ansible_check_mode
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]

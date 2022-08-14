@@ -18,6 +18,7 @@
     verify_commit: false
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
+  diff: false
 
 - name: install pyenv shell completion
   ansible.builtin.template:
