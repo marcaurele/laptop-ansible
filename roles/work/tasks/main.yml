@@ -1,3 +1,4 @@
 ---
 
+- import_tasks: fortinet.yml
 - import_tasks: concourse.yml
