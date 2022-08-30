@@ -1,4 +1,8 @@
 ---
 
 - import_tasks: fortinet.yml
+  tags:
+    - fortinet
+    - never
+
 - import_tasks: concourse.yml
