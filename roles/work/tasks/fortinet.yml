@@ -9,7 +9,7 @@
 - name: add reposiroty for Fortinet
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://repo.fortinet.com/repo/7.0/ubuntu bionic multiverse
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/fortinet.asc] https://repo.fortinet.com/repo/7.0/ubuntu bionic multiverse
   when: ansible_distribution == "Ubuntu"
 
 - name: install FortiClient
