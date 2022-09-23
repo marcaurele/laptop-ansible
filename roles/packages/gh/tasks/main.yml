@@ -2,20 +2,20 @@
 
 - name: add repository GPG key for GitHub CLI
   become: yes
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: C99B11DEB97541F0
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /etc/apt/trusted.gpg.d/githubcli.gpg
 
 - name: add repository for GitHub CLI for Debian
   become: yes
   apt_repository:
-    repo: "deb https://cli.github.com/packages {{ ansible_distribution_version }}  main"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages {{ ansible_distribution_version }}  main"
   when: ansible_distribution == "Debian"
 
 - name: add repository for GitHub CLI for Ubuntu
   become: yes
   apt_repository:
-    repo: "deb https://cli.github.com/packages stable main"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages stable main"
   when: ansible_distribution == "Ubuntu"
 
 - name: install GitHub CLI

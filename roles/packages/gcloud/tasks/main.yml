@@ -2,13 +2,14 @@
 
 - name: add repository GPG key for Google Cloud
   become: yes
-  apt_key:
+  ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /etc/apt/trusted.gpg.d/google-cloud.gpg
 
 - name: add repository for Google Cloud
   become: yes
   apt_repository:
-    repo: deb [arch=amd64] https://packages.cloud.google.com/apt cloud-sdk main
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/google-cloud.gpg] https://packages.cloud.google.com/apt cloud-sdk main
 
 - name: install Google cloud SDK gcloud
   become: yes

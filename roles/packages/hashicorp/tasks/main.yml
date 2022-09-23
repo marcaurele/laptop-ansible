@@ -2,19 +2,20 @@
 
 - name: add repository GPG key for HashiCorp
   become: true
-  apt_key:
+  ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
+    dest: /etc/apt/trusted.gpg.d/hashicorp.asc
 
 - name: add reposiroty for HashiCorp on Debian
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com buster main
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp.asc] https://apt.releases.hashicorp.com bullseye main
   when: ansible_distribution == "Debian"
 
 - name: add reposiroty for HashiCorp on Ubuntu
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
   when: ansible_distribution == "Ubuntu"
 
 - name: install HashiCorp tools

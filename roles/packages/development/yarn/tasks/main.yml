@@ -2,14 +2,15 @@
 
 - name: add repository GPG key for Yarn
   become: yes
-  apt_key:
+  ansible.builtin.get_url:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    dest: /etc/apt/trusted.gpg.d/yarn.asc
   when: ansible_os_family == "Debian"
 
 - name: add repository for Yarn
   become: yes
   apt_repository:
-    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    repo: deb [signed-by=/etc/apt/trusted.gpg.d/yarn.asc] https://dl.yarnpkg.com/debian/ stable main
   when: ansible_os_family == "Debian"
 
 - name: install Yarn

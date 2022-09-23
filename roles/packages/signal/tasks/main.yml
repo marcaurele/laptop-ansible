@@ -2,13 +2,14 @@
 
 - name: add repository GPG key for Signal
   become: true
-  apt_key:
+  ansible.builtin.get_url:
     url: https://updates.signal.org/desktop/apt/keys.asc
+    dest: /etc/apt/trusted.gpg.d/signal.asc
 
 - name: add repository for Signal
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/signal.asc] https://updates.signal.org/desktop/apt xenial main
 
 - name: install Signal
   become: true
