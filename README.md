@@ -70,6 +70,16 @@ LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#
 
 ## VPN connection
 
+### WireGuard
+
+To create the set of keys:
+
+    wg genkey | tee vpn-client-private.key | wg pubkey > vpn-client-public.key
+
+To import connection in the NetworkManager:
+
+    nmcli connection import type wireguard file <file.conf>
+
 ### AWS IP ranges in routes
 
 To add the AWS network ranges to go through the VPN, download the latest
