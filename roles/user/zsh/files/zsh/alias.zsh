@@ -443,5 +443,5 @@ colortest() {
 }
 
 # Extra command aliases
-(( $+commands[docker] )) && alias youtube-dl='docker run --rm -v "$(pwd):/home/alpine/downloads" -v "/etc/localtime:/etc/localtime:ro" -u "$(id -u):$(id -g)" -e PGID=$(id -g) -e PUID=$(id -u) woahbase/alpine-youtubedl'
+(( $+commands[docker] )) && alias youtube-dl='docker run --rm -v "$(pwd):/home/alpine/downloads" -v "/etc/localtime:/etc/localtime:ro" -u "$(id -u):$(id -g)" -e PGID=$(id -g) -e PUID=$(id -u) docker.io/marcaurele/youtube-dl'
 (( $+commands[docker] )) && alias ocrmypdf='docker run --rm -v "$(pwd):/app" -u "$(id -u):$(id -g)" jbarlow83/ocrmypdf'
