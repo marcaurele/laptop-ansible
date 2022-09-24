@@ -5,6 +5,7 @@
   ansible.builtin.apt:
     name:
     - ack
+    - apt-file
     - apt-transport-https
     - byobu
     - cups
@@ -46,6 +47,7 @@
     - tmate
     - wget
     - whois
+    - wireguard-tools
     - xz-utils
     - yubikey-manager
     - yubikey-personalization
