@@ -1,15 +1,15 @@
 ---
 
 - name: install Debian packages
-  become: yes
+  become: true
   ansible.builtin.apt:
-    name: 
+    name:
     - task-desktop
     - task-gnome-desktop
   when: ansible_distribution == "Debian"
 
 - name: install desktop
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - autorandr
@@ -28,8 +28,6 @@
     - libreoffice
     - network-manager
     - network-manager-gnome
-    - network-manager-openvpn-gnome
-    - network-manager-l2tp-gnome
     - pasystray
     - pavucontrol
     - pulseaudio
