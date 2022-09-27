@@ -70,7 +70,11 @@ volume master {
 }
 
 path_exists VPN {
+{% if private_node %}
         path = "/proc/sys/net/ipv4/conf/wg0"
+{% else %}
+        path = "/proc/sys/net/ipv4/conf/vpn00b90a6340"
+{% endif %}
         color_good = "#ffcf40"
 }
 
