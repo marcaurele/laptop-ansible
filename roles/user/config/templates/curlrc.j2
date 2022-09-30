@@ -1,10 +1,19 @@
 # {{ ansible_managed }}
 
 # Disguise as Firefox on Linux
-user-agent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0"
+user-agent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0"
 
 # When following a redirect, automatically set the previous URL as referer.
 referer = ";auto"
 
 # Wait 60 seconds before timing out.
 connect-timeout = 60
+
+# Always dump header to the sdtout
+dump-header = -
+
+# Accept header
+header = "Accept: application/json;q=0.99,text/yaml,application-x-yaml;q=0.95,text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+
+# Always show metrics values
+write-out = "\n\n     time_namelookup:  %{time_namelookup}s\n        time_connect:  %{time_connect}s\n     time_appconnect:  %{time_appconnect}s\n    time_pretransfer:  %{time_pretransfer}s\n       time_redirect:  %{time_redirect}s\n  time_starttransfer:  %{time_starttransfer}s\n                     ----------\n          time_total:  %{time_total}s\n"
