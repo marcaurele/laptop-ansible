@@ -30,6 +30,7 @@
   when:
     - not ansible_check_mode
     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+  diff: false
 
 - name: download doggo {{ releases.json.tag_name }}
   ansible.builtin.unarchive:
@@ -81,4 +82,4 @@
   when:
     - doggo_temp is defined
     - doggo_temp.changed
-  changed_when: false
+  diff: false

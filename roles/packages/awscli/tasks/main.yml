@@ -31,8 +31,9 @@
   when:
     - not ansible_check_mode
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
+  diff: false
 
-- name: download awscli archive
+- name: download awscli archive {{ awscli_latest_version }}
   ansible.builtin.unarchive:
     dest: "{{ awscli_temp.path }}"
     src: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_latest_version }}.zip"
@@ -42,8 +43,9 @@
   when:
     - not ansible_check_mode
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
+  diff: false
 
-- name: install awscli
+- name: install awscli {{ awscli_latest_version }}
   become: true
   ansible.builtin.command:
     cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin"
@@ -70,4 +72,4 @@
   when:
     - awscli_temp is defined
     - awscli_temp.changed
-  changed_when: false
+  diff: false
