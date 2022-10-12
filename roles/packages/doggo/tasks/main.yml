@@ -11,12 +11,12 @@
     doggo_latest_version: "{{ releases.json.tag_name }}"
   when: not ansible_check_mode
 
-- name: check doggo locally
+- name: check local doggo
   stat:
     path: /usr/local/bin/doggo
   register: doggo_stat
 
-- name: check doggo local version
+- name: check local doggo version
   command: /usr/local/bin/doggo --version
   register: doggo_version
   changed_when: false
@@ -31,6 +31,7 @@
     - not ansible_check_mode
     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
   diff: false
+  notify: clean doggo temporary download directory
 
 - name: download doggo {{ releases.json.tag_name }}
   ansible.builtin.unarchive:
@@ -40,10 +41,9 @@
   register: doggo_download
   diff: false
   when:
-    - not ansible_check_mode
-    - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+    - doggo_temp.path is defined
 
-- name: install dogo
+- name: install dogo {{ releases.json.tag_name }}
   become: true
   copy:
     src: "{{ doggo_temp.path }}/doggo"
@@ -51,8 +51,7 @@
     remote_src: true
     mode: 0755
   when:
-    - not ansible_check_mode
-    - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+    - doggo_temp.path is defined
 
 # - name: doggo configuration directory
 #   become: true
@@ -74,12 +73,3 @@
 #   when:
 #     - not ansible_check_mode
 #     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
-
-- name: clean temporary directory
-  ansible.builtin.file:
-    path: "{{ doggo_temp.path }}"
-    state: absent
-  when:
-    - doggo_temp is defined
-    - doggo_temp.changed
-  diff: false
