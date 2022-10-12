@@ -194,5 +194,9 @@
       tags: gcalcli
       when: not private_node
 
+    - role: packages/mani
+      tags: mani
+      when: not private_node
+
   tags:
     - packages

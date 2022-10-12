@@ -1,0 +1,7 @@
+---
+
+- name: clean mani temporary download directory
+  ansible.builtin.file:
+    path: "{{ mani_temp.path }}"
+    state: absent
+  diff: false
