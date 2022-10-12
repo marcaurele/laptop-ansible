@@ -32,6 +32,7 @@
     - not ansible_check_mode
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
   diff: false
+  notify: clean awscli temporary download directory
 
 - name: download awscli archive {{ awscli_latest_version }}
   ansible.builtin.unarchive:
@@ -41,34 +42,18 @@
   register: awscli_download
   diff: false
   when:
-    - not ansible_check_mode
-    - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
+    - awscli_temp.path is defined
 
 - name: install awscli {{ awscli_latest_version }}
   become: true
   ansible.builtin.command:
     cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin"
   when:
-    - not ansible_check_mode
-    - awscli_download is defined
-    - awscli_download.changed
-    - not awscli_stat.stat.exists
+    - awscli_temp.path is defined
 
 - name: upgrade awscli
   become: true
   ansible.builtin.command:
     cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin --update"
   when:
-    - not ansible_check_mode
-    - awscli_download is defined
-    - awscli_download.changed
-    - awscli_stat.stat.exists
-
-- name: clean temporary directory
-  ansible.builtin.file:
-    path: "{{ awscli_temp.path }}"
-    state: absent
-  when:
-    - awscli_temp is defined
-    - awscli_temp.changed
-  diff: false
+    - awscli_temp.path is defined

@@ -1,0 +1,7 @@
+---
+
+- name: clean pulumi temporary download directory
+  ansible.builtin.file:
+    path: "{{ pulumi_temp.path }}"
+    state: absent
+  diff: false

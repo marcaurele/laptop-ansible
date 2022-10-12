@@ -1,0 +1,7 @@
+---
+
+- name: clean awscli temporary download directory
+  ansible.builtin.file:
+    path: "{{ awscli_temp.path }}"
+    state: absent
+  diff: false
