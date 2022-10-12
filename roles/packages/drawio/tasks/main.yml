@@ -7,7 +7,7 @@
   register: releases
   tags: system
 
-- name: install or upgrade draw.io desktop
+- name: install or upgrade draw.io desktop {{ releases.json.name }}
   become: yes
   apt:
     deb: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `amd64`)].browser_download_url | [0]') }}"

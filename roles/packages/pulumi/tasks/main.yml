@@ -26,7 +26,7 @@
     - not ansible_check_mode
     - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
 
-- name: download latest pulumi release
+- name: download pulumi {{ releases.json.tag_name }}
   ansible.builtin.unarchive:
     src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x64`)].browser_download_url | [0]') }}"
     remote_src: true
