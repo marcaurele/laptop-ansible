@@ -6,3 +6,19 @@
     - never
 
 - import_tasks: concourse.yml
+  tags:
+    - concourse
+
+- import_tasks: keeper.yml
+  tags:
+    - keeper
+
+- name: copy configurations
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - src: aliases.zsh
+      dest: "{{ config.zsh }}/work/aliases.zsh"
+    - src: env.zsh
+      dest: "{{ config.zsh }}/work/env.zsh"

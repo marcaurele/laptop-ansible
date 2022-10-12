@@ -1,0 +1,7 @@
+---
+
+- name: create keeper configuration directory
+  ansible.builtin.file:
+    path: "~/.config/keeper"
+    state: directory
+    mode: 0700
