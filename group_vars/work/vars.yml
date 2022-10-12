@@ -25,4 +25,9 @@ nodejs:
 
 private_node: false
 
+python_tools_extra:
+  - name: keepercommander
+    extra:
+      - fido2
+
 username: mbrothie
