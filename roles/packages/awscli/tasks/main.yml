@@ -50,6 +50,7 @@
     cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin"
   when:
     - awscli_temp.path is defined
+    - not awscli_stat.stat.exists
 
 - name: upgrade awscli
   become: true
@@ -57,3 +58,4 @@
     cmd: "{{ awscli_temp.path }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin --update"
   when:
     - awscli_temp.path is defined
+    - awscli_stat.stat.exists
