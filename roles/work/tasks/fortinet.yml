@@ -1,19 +1,13 @@
 ---
 
-- name: add repository GPG key for Fortinet
-  become: true
-  ansible.builtin.get_url:
-    url:  https://repo.fortinet.com/repo/7.0/ubuntu/DEB-GPG-KEY
-    dest: /etc/apt/trusted.gpg.d/fortinet.asc
-
-- name: add reposiroty for Fortinet
-  become: true
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/fortinet.asc] https://repo.fortinet.com/repo/7.0/ubuntu xenial multiverse
-  when: ansible_distribution == "Ubuntu"
-
-- name: install FortiClient
+- name: install OpenFortiVPN
   become: true
   ansible.builtin.apt:
     pkg:
-      - forticlient
+      - openfortivpn
+
+- name: configure OpenFortiVPN
+  became: true
+  ansible.builtin.template:
+    src: openfortivpn.conf.j2
+    dest: /etc/openfortivpn/work
