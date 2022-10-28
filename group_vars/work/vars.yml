@@ -31,3 +31,5 @@ python_tools_extra:
       - fido2
 
 username: mbrothie
+
+vpn_ips: "{{vault_vpn_ips }}"

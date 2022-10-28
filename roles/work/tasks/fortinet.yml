@@ -7,7 +7,20 @@
       - openfortivpn
 
 - name: configure OpenFortiVPN
-  became: true
+  become: true
   ansible.builtin.template:
     src: openfortivpn.conf.j2
-    dest: /etc/openfortivpn/work
+    dest: /etc/openfortivpn/work.conf
+
+- name: configure OpenFortiVPN routes
+  become: true
+  ansible.builtin.template:
+    src: openfortivpn-pppd.j2
+    dest: /etc/ppp/ip-up.d/fortivpn
+    mode: 0755
+
+- name: enable systemd service for OpenFortiVPN
+  become: true
+  ansible.builtin.systemd:
+    name: "openfortivpn@work"
+    enabled: true
