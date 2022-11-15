@@ -5,4 +5,10 @@
   ansible.builtin.apt:
     name:
     - docker.io
+
+- name: install docker packages
+  become: yes
+  ansible.builtin.apt:
+    name:
     - docker-compose
+    state: absent

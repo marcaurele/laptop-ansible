@@ -3,6 +3,9 @@
 - name: include distribution based Docker installation
   include_tasks: "{{ ansible_distribution | lower }}.yml"
 
+- name: install docker compose plugin
+  include_tasks: compose.yml
+
 - name: add {{ username }} to docker group
   become: yes
   user:
