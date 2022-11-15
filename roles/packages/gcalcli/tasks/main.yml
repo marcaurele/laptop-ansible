@@ -39,10 +39,11 @@
 - name: service daemon reload
   become: yes
   become_user: "{{ username }}"
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
     scope: user
   when: nextmeeting_service.changed or nextmeeting_timer.changed
+  ignore_errors: yes
 
 - name: configure next-meeting service
   become: yes
@@ -51,6 +52,7 @@
     enabled: yes
     name: next-meeting.service
     scope: user
+  ignore_errors: yes
 
 - name: configure next-meeting timer
   become: yes
@@ -60,3 +62,4 @@
     name: next-meeting.timer
     state: started
     scope: user
+  ignore_errors: yes

@@ -46,3 +46,4 @@
     state: started
     name: inputplug.service
     scope: user
+  ignore_errors: yes
