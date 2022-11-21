@@ -24,3 +24,4 @@
   ansible.builtin.systemd:
     name: "openfortivpn@work"
     enabled: true
+  ignore_errors: true

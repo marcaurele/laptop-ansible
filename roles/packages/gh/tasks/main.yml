@@ -6,17 +6,10 @@
     url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
     dest: /etc/apt/trusted.gpg.d/githubcli.gpg
 
-- name: add repository for GitHub CLI for Debian
+- name: add repository for GitHub CLI
   become: yes
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages {{ ansible_distribution_version }}  main"
-  when: ansible_distribution == "Debian"
-
-- name: add repository for GitHub CLI for Ubuntu
-  become: yes
-  apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages stable main"
-  when: ansible_distribution == "Ubuntu"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages stable  main"
 
 - name: install GitHub CLI
   become: yes

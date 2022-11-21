@@ -106,7 +106,7 @@
       tags: dev, docker
 
     - role: packages/development/nodejs
-      tags: dev, javascript, nodejs
+      tags: dev, javascript, nodejs, never
       when: nodejs is defined
 
     - role: packages/development/yarn
