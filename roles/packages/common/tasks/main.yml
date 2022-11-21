@@ -44,7 +44,10 @@
     - qpdf
     - qrencode
     - scdaemon
+    - screenfetch
+    - sudo
     - tmate
+    - uuid
     - wget
     - whois
     - wireguard-tools
