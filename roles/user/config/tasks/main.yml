@@ -76,5 +76,5 @@
     group: root
     content: |
       #!/bin/sh -e
-      /snap/bin/chromium --profile-directory=Default --app-id=mdpkiolbdkhdjpekfbkbmhigcaggjagi
+      /usr/bin/chromium --profile-directory=Default --app-id=mdpkiolbdkhdjpekfbkbmhigcaggjagi
   when: not private_node
