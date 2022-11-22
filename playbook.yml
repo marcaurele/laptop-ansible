@@ -60,7 +60,7 @@
       tags: poetry
 
     - role: packages/pulumi
-      tags: pulumi
+      tags: pulumi, never
 
     - role: packages/virtualization
       tags: virtualization
