@@ -15,3 +15,5 @@ export LC_COLLATE=C
 # Don’t clear the screen after quitting a manual page
 #export MANPAGER="less -X"
 
+# Terminal mode only
+export DEBIAN_FRONTEND='noninteractive'
