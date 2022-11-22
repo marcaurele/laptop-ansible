@@ -47,6 +47,9 @@
     - role: packages/desktop
       tags: desktop
 
+    - role: packages/keyboardio
+      tags: keyboardio
+
     - role: packages/python
       tags: python
 
