@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+Section "InputClass"
+  Identifier "Topre RealForce 87"
+  Driver "libinput"
+  MatchIsKeyboard "on"
+  MatchProduct "Topre REALFORCE 87 US"
+  #MatchUSBID "0853:0146"
+
+  Option "XkbLayout" "us,ch"
+#  Option "XkbModel" "pc104"
+  Option "XkbVariant" "altgr-intl,fr"
+  Option "XkbOptions" ",ctrl:nocaps,grp:win_space_toggle"
+EndSection

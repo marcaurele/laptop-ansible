@@ -1,9 +1,8 @@
 # {{ ansible_managed }}
 Section "InputClass"
-	Identifier "libinput touchpad catchall"
+	Identifier "Default mouse"
 	MatchDriver "libinput"
-	MatchIsTouchpad "true"
-	MatchDevicePath "/dev/input/event*"
+	MatchIsPointer "true"
 	Option "NaturalScrolling" "true"
 	Option "AccelSpeed" "1"
 EndSection

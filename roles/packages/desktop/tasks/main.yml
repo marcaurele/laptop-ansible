@@ -49,12 +49,16 @@
     dest: "/etc/X11/xorg.conf.d/{{ item.dest }}"
     mode: 0644
   loop:
-    - src: 00-keyboard.conf.j2
-      dest: 00-keyboard.conf
+#    - src: 00-keyboard.conf.j2
+#      dest: 00-keyboard.conf
     - src: 30-touchpad.conf.j2
       dest: 30-touchpad.conf
-    - src: 30-mouse.conf.j2
-      dest: 30-mouse.conf
+    - src: 31-mouse.conf.j2
+      dest: 31-mouse.conf
+    - src: 32-mx-ergo.conf.j2
+      dest: 32-mx-ergo.conf
+#    - src: 40-topre-realforce.conf.j2
+#      dest: 40-topre-realforce.conf
 
 - name: import i3 tasks
   import_tasks: i3.yml
