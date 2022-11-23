@@ -42,6 +42,20 @@
     - xinput
     - xsettingsd
 
+- name: configure xorg rules
+  become: true
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "/etc/X11/xorg.conf.d/{{ item.dest }}"
+    mode: 0644
+  loop:
+    - src: 00-keyboard.conf.j2
+      dest: 00-keyboard.conf
+    - src: 30-touchpad.conf.j2
+      dest: 30-touchpad.conf
+    - src: 30-mouse.conf.j2
+      dest: 30-mouse.conf
+
 - name: import i3 tasks
   import_tasks: i3.yml
 
