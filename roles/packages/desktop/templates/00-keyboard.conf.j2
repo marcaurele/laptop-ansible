@@ -5,7 +5,17 @@ Section "InputClass"
   Option "XkbLayout" "us,ch"
   Option "XkbModel" "pc105"
   Option "XkbVariant" "altgr-intl,fr"
-  Option "XkbOptions" "grp:win_space_toggle"
-  Option "XkbOptions" "ctrl:nocaps"
-  #Option "XkbOptions" "eurosign:e"
+  Option "XkbOptions" "ctrl:nocaps,grp:win_space_toggle,eurosign:e"
+EndSection
+
+# Topre customization
+Section "InputClass"
+  Identifier "Topre RealForce 87"
+  MatchIsKeyboard "on"
+  MatchProduct "Topre REALFORCE 87 US"
+  MatchUSBID "0853:0146"
+  Option "XkbLayout" "us,ch"
+  Option "XkbModel" "pc104"
+  Option "XkbVariant" "altgr-intl,fr"
+  Option "XkbOptions" "ctrl:nocaps,grp:win_space_toggle,eurosign:e"
 EndSection
