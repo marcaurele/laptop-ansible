@@ -1,4 +1,8 @@
 # {{ ansible_managed }}
+# Encrypt with systemd-creds
+# 0. sudo systemd-creds setup
+# 1. Add the password field to this file
+# 2. sudo systemd-creds encrypt --name vpn-config /etc/openfortivpn/work.conf | sudo tee /etc/openfortivpn/work-password.conf
 
 host = vpn.lausanne.pix4d.com
 port = 11443
