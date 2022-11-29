@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenFortiVPN for %I
+After=network-online.target
+Wants=network-online.target
+Documentation=man:openfortivpn(1)
+
+[Service]
+Type=notify
+PrivateTmp=true
+ExecStart=/usr/bin/openfortivpn -c /etc/openfortivpn/%I.conf
+OOMScoreAdjust=-100
+
+[Install]
+WantedBy=multi-user.target

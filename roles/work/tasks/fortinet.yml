@@ -19,6 +19,12 @@
     dest: /etc/ppp/ip-up.d/fortivpn
     mode: 0755
 
+- name: install service file
+  become: true
+  ansible.builtin.template:
+    src: openfortivpn.service.j2
+    dest: /lib/systemd/system/openfortivpn@.service
+
 - name: enable systemd service for OpenFortiVPN
   become: true
   ansible.builtin.systemd:
