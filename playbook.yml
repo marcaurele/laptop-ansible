@@ -41,6 +41,9 @@
     - role: packages/common
       tags: common
 
+    - role: packages/fonts
+      tags: fonts
+
     - role: packages/inputplug
       tags: inputplug
 
