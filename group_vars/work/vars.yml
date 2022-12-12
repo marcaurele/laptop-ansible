@@ -32,4 +32,6 @@ python_tools_extra:
 
 username: mbrothie
 
+company_vpn: "{{ vault_company_vpn }}"
+
 vpn_ips: "{{vault_vpn_ips }}"
