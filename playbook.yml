@@ -169,6 +169,9 @@
     #- role: packages/intellij
     #  tags: intellij
 
+    - role: packages/pycharm
+      tags: pycharm
+
     #- role: packages/joplin
     #  tags: joplin
 
