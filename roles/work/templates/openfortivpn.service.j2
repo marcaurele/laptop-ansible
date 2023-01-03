@@ -9,6 +9,8 @@ Type=notify
 PrivateTmp=true
 ExecStart=/usr/bin/openfortivpn -c /etc/openfortivpn/%I.conf
 OOMScoreAdjust=-100
+Restart=on-failure
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
