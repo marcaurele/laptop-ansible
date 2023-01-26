@@ -9,7 +9,7 @@
 - name: add repository for HashiCorp on Debian
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp.asc] https://apt.releases.hashicorp.com bullseye main
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp.asc] https://apt.releases.hashicorp.com bookworm main
   when: ansible_distribution == "Debian"
 
 - name: add repository for HashiCorp on Ubuntu
