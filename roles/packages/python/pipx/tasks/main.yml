@@ -13,6 +13,12 @@
     src: completion-pipx.zsh
     dest: "{{ config.zsh }}/python/completion.zsh"
 
+- name: clear pipx install
+  community.general.pipx:
+    state: uninstall_all
+  tags:
+    - never
+
 - name: combine pipx tools to install
   set_fact:
     python_tools: "{{ python_tools + python_tools_extra }}"
