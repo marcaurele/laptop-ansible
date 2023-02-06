@@ -1,7 +1,7 @@
 ---
 
 - name: install python packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - python3
@@ -19,7 +19,7 @@
     - "{{ config.dir }}/pip"
 
 - name: configure pip
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: pip.conf
@@ -27,14 +27,14 @@
     mode: "0600"
 
 - name: install some python packages through pip
-  become: yes
+  become: true
   pip:
     name:
     - pipenv
     state: latest
 
 - name: python configuration
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: env.zsh
