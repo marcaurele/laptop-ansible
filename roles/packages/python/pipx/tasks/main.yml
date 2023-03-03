@@ -2,7 +2,7 @@
 
 - name: install/upgrade pipx
   become: true
-  pip:
+  apt:
     name: pipx
     state: latest
 
