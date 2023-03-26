@@ -12,8 +12,11 @@
     - libvirt-daemon
     - libvirt-daemon-system
     - libvirt-dev
+    - lxd
+    - lxd-tools
     - vagrant
     - virt-manager
+    - zfsutils-linux
 
 - name: add libvirt group to {{ username }}
   become: yes
