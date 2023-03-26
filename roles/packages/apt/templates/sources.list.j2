@@ -2,11 +2,11 @@
 {% if ansible_distribution == "Debian" %}
 
 # testing APT sources
-deb https://debian.ethz.ch/debian testing main contrib non-free
-deb https://debian.ethz.ch/debian testing-updates main contrib non-free
+deb https://debian.ethz.ch/debian testing main contrib non-free-firmware
+deb https://debian.ethz.ch/debian testing-updates main contrib non-free-firmware
 
 # testing security APT sources
-deb https://security.debian.org/debian-security testing-security main contrib non-free
+deb https://security.debian.org/debian-security testing-security main contrib non-free-firmware
 {% elif ansible_distribution == "Ubuntu" %}
 
 # {{ ansible_distribution_release }} APT sources
