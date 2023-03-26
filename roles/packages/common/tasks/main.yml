@@ -52,6 +52,7 @@
     - whois
     - wireguard-tools
     - xz-utils
+    - yt-dlp
     - yubikey-manager
     - yubikey-personalization
     - zbar-tools
