@@ -1,7 +1,7 @@
 ---
 
 - name: install virtualization packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - cloud-image-utils
@@ -18,12 +18,13 @@
     - virt-manager
     - zfsutils-linux
 
-- name: add libvirt group to {{ username }}
-  become: yes
+- name: add groups to {{ username }}
+  become: true
   user:
     name: "{{ username }}"
     state: present
-    append: yes
+    append: true
     groups:
       - libvirt
+      - lxd
   tags: user, root
