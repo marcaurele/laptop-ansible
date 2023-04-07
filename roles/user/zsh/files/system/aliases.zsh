@@ -19,5 +19,5 @@ alias ykforget='gpg-connect-agent "scd serialno" "learn --force" /bye'
 alias gensecret="< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;"
 
 # Keyboard
-alias kus="setxkbmap us -variant altgr-intl -option -option ctrl:nocaps -option compose:rctl-altgr -option eurosign:e"
+alias kus="setxkbmap us -variant altgr-intl -option -option ctrl:nocaps -option compose:rctl-altgr"
 alias kch="setxkbmap ch fr -option -option ctrl:nocaps"
