@@ -46,3 +46,4 @@ sudo:
   - /usr/sbin/reboot
   - /usr/sbin/shutdown
   - /usr/sbin/halt
+  - /usr/sbin/rfkill
