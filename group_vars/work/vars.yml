@@ -1,8 +1,8 @@
 ---
 
-aws_config : "{{ vault_aws_config }}"
+aws_config: "{{ vault_aws_config }}"
 
-certificates_extra: "{{ vault_certificates_extra }}"
+aws_config_extra: "{{ vault_aws_config_extra }}"
 
 company: "{{ vault_company }}"
 
@@ -30,7 +30,7 @@ python_tools_extra:
     extra:
       - fido2
 
-username: mbrothie
+username: "{{ vault_username }}"
 
 company_vpn: "{{ vault_company_vpn }}"
 

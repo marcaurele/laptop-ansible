@@ -59,3 +59,12 @@
   when:
     - awscli_temp.path is defined
     - awscli_stat.stat.exists
+
+- name: install aws config
+  become: yes
+  become_user: "{{ username }}"
+  template:
+    src: aws_config.j2
+    dest: "~/.aws/config"
+    mode: "0644"
+  when: not private_node
