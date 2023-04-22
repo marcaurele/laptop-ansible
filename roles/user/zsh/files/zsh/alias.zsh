@@ -3,9 +3,11 @@
 # Some generic aliases
 alias df='df -h'
 alias du='du -h'
-alias rm='rm -i'
+alias rm='rm -v'
 alias mv='mv -i'
 alias ll='ls -ltrh'
+alias screen-disable-blank='xset s noblank'
+alias screen-enable-blank='xset s blank'
 alias chown='chown -h'
 alias chgrp='chgrp -h'
 alias tailf='tail -F'           # not shipped in util-linux anymore
