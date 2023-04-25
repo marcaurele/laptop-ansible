@@ -206,5 +206,9 @@
       tags: mani
       when: not private_node
 
+    - role: packages/taskfile
+      tags: taskfile
+      when: not private_node
+
   tags:
     - packages

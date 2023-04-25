@@ -1,0 +1,18 @@
+---
+
+- name: check Task releases
+  uri:
+    url: https://api.github.com/repos/go-task/task/releases/latest
+    return_content: yes
+  register: releases
+  tags: system
+
+- name: install or upgrade Task {{ releases.json.name }}
+  become: yes
+  apt:
+    deb: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `linux_amd64`)].browser_download_url | [0]') }}"
+    state: present
+  when:
+    - not ansible_check_mode
+    - ansible_facts.packages['task'] is not defined or not ansible_facts.packages['task'][0]['version'].startswith(releases.json.name)
+  tags: system
