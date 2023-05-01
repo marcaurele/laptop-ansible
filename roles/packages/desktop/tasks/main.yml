@@ -57,8 +57,10 @@
       dest: 31-mouse.conf
     - src: 32-mx-ergo.conf.j2
       dest: 32-mx-ergo.conf
-#    - src: 40-topre-realforce.conf.j2
-#      dest: 40-topre-realforce.conf
+    - src: 40-topre-realforce.conf.j2
+      dest: 40-topre-realforce.conf
+    - src: 40-keyboardio-model100.conf.j2
+      dest: 40-keyboardio-model100.conf
 
 - name: import i3 tasks
   import_tasks: i3.yml

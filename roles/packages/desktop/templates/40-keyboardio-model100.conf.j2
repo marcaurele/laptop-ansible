@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+Section "InputClass"
+  Identifier "Keyboardio Model 100"
+  Driver "libinput"
+  MatchIsKeyboard "on"
+  MatchProduct "Keyboardio Model 100 Keyboard"
+  # New USB device found, idVendor=3496, idProduct=0006, bcdDevice= 1.00
+  #MatchUSBID "3496:0006"
+
+  Option "XkbLayout" "us,ch"
+  Option "XkbVariant" "altgr-intl,fr"
+  Option "XkbOptions" ",ctrl:nocaps,grp:win_space_toggle"
+EndSection
