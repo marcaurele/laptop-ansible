@@ -25,6 +25,10 @@ locales:
   - en_US.UTF-8
   - en_CA.UTF-8
 
+packages_absent_extra:
+  - pulseaudio
+  - remmina
+
 packages_directory: "~/soft"
 
 python_tools:
