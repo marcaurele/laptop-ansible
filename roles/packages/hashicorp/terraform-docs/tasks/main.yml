@@ -47,3 +47,10 @@
   diff: false
   when:
     - tfdocs_temp.path is defined
+
+- name: terraform-docs completion
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.shell: "terraform-docs completion zsh > {{ config.zsh }}/hashicorp/_terraform-docs"
+  when:
+    - tfdocs_temp.path is defined
