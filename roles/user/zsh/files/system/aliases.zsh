@@ -17,6 +17,7 @@ alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=
 alias sshskip="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias ykforget='gpg-connect-agent "scd serialno" "learn --force" /bye'
 alias gensecret="< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;"
+alias gitprune="git branch | grep -vFf <(git branch -r | cut -d'/' -f2-) | xargs git branch -d"
 
 # Keyboard
 alias kus="setxkbmap us -variant altgr-intl -option -option ctrl:nocaps -option compose:rctl-altgr"
