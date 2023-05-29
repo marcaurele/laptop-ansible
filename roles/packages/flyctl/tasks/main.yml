@@ -1,0 +1,29 @@
+---
+
+- name: check flyctl latest release
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/superfly/flyctl/releases/latest
+    return_content: yes
+  register: releases
+
+- name: check if flyctl is already installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/flyctl
+  register: flyctl_stat
+
+- name: check local flyctl version
+  ansible.builtin.command: /usr/local/bin/flyctl version
+  register: flyctl_version
+  when: flyctl_stat.stat.exists
+  changed_when: false
+
+- name: download flyctl {{ releases.json.tag_name }}
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `Linux`) && contains(name, `x86`)].browser_download_url | [0]') }}"
+    remote_src: true
+    dest: /usr/local/bin/
+  diff: false
+  when:
+    - not ansible_check_mode
+    - not flyctl_stat.stat.exists or (releases.json.tag_name[1:] not in flyctl_version.stdout_lines[0])

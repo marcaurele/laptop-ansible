@@ -68,6 +68,10 @@
     - role: packages/pulumi
       tags: pulumi, never
 
+    - role: packages/flyctl
+      tags: flyctl
+      when: private_node
+
     - role: packages/virtualization
       tags: virtualization
       when: private_node
