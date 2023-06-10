@@ -112,6 +112,9 @@
     #- role: packages/development/java
     #  tags: dev, java
 
+    - role: packages/development/container
+      tags: dev, container
+
     - role: packages/development/docker
       tags: dev, docker
 

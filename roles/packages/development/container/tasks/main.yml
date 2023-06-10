@@ -1,0 +1,8 @@
+---
+
+- name: install container packages
+  become: yes
+  ansible.builtin.apt:
+    name:
+    - buildah
+    - podman
