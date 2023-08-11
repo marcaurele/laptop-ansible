@@ -43,7 +43,7 @@
   when:
     - doggo_temp.path is defined
 
-- name: install dogo {{ releases.json.tag_name }}
+- name: install doggo {{ releases.json.tag_name }}
   become: true
   copy:
     src: "{{ doggo_temp.path }}/doggo"
