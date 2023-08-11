@@ -166,6 +166,9 @@
     - role: packages/obsidian
       tags: obsidian
 
+    - role: packages/cheat
+      tags: cheat, never
+
     #- role: packages/audible
     #  tags: audible
     #  when: private_node

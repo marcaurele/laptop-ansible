@@ -1,0 +1,7 @@
+---
+
+- name: clean cheat temporary download directory
+  ansible.builtin.file:
+    path: "{{ cheat_temp.path }}"
+    state: absent
+  diff: false
