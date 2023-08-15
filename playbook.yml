@@ -154,6 +154,9 @@
     - role: packages/dbeaver
       tags: dbeaver
 
+    - role: packages/balena-etcher
+      tags: balena-etcher, never
+
     - role: packages/drawio
       tags: drawio
 
