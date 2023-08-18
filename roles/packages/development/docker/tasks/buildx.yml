@@ -1,0 +1,36 @@
+---
+
+- name: create docker cli plugins directory
+  become: yes
+  file:
+    path: /usr/local/lib/docker/cli-plugins
+    state: directory
+
+- name: check docker buildx latest release
+  uri:
+    url: https://api.github.com/repos/docker/buildx/releases/latest
+    return_content: yes
+  register: latest_release
+  tags: system
+
+- name: check if docker buildx plugin is already present
+  stat:
+    path: /usr/local/lib/docker/cli-plugins/docker-buildx
+  register: local_buildx_plugin_stat
+
+- name: check current local docker buildx version
+  become: true
+  command: docker buildx version
+  register: docker_buildx_local_version
+  ignore_errors: true
+  changed_when: false
+  when: local_buildx_plugin_stat.stat.exists
+
+- name: download docker-buildx binary {{ latest_release.json.tag_name }}
+  become: true
+  ansible.builtin.get_url:
+    url: "https://github.com/docker/buildx/releases/download/{{ latest_release.json.tag_name }}/buildx-{{ latest_release.json.tag_name }}.linux-amd64"
+    dest: /usr/local/lib/docker/cli-plugins/docker-buildx
+    mode: 0755
+    force: true
+  when: not local_buildx_plugin_stat.stat.exists or ('v' + docker_buildx_local_version.stdout) != latest_release.json.tag_name

@@ -6,6 +6,9 @@
 - name: install docker compose plugin
   include_tasks: compose.yml
 
+- name: install docker buildx plugin
+  include_tasks: buildx.yml
+
 - name: add {{ username }} to docker group
   become: yes
   user:
