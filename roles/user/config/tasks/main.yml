@@ -34,7 +34,7 @@
     - src: ssh_config.j2
       dest: "~ /.ssh/config"
     - src: tmux.conf.j2
-      dest: "~/.tmux.conf"
+      dest: "~/.config/tmux/tmux.conf"
   tags: user
 
 - include_tasks: gpg.yml
