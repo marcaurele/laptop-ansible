@@ -24,6 +24,7 @@
     - iptraf
     - iptraf-ng
     - keychain
+    - libnotify-bin
     - man
     - mtr
     - neovim
