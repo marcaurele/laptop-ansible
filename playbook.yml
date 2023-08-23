@@ -167,7 +167,7 @@
       tags: obsidian
 
     - role: packages/cheat
-      tags: cheat, never
+      tags: cheat
 
     #- role: packages/audible
     #  tags: audible
