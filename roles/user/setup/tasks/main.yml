@@ -1,7 +1,7 @@
 ---
 
 - name: check home directory for {{ username }}
-  become: yes
+  become: true
   stat:
     path: "/home/{{ username }}"
     get_checksum: no
@@ -17,7 +17,7 @@
   tags: system, root
 
 - name: set user {{ username }} password
-  become: yes
+  become: true
   user:
     name: "{{ username }}"
     state: present
@@ -27,11 +27,11 @@
   tags: system, root
 
 - name: verify user configuration
-  become: yes
+  become: true
   user:
     name: "{{ username }}"
     state: present
-    append: yes
+    append: true
     groups:
       - audio
       - bluetooth
@@ -41,11 +41,10 @@
       - plugdev
       - netdev
       - video
-      # - scanner
   tags: user, root
 
 - name: change home permissions for {{ username }}
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "~/"
@@ -54,7 +53,7 @@
   tags: user
 
 - name: create directory for ansible remote_tmp to skip warning
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "~/.ansible/tmp"
@@ -63,7 +62,7 @@
   tags: user
 
 - name: create directories
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "{{ item.path }}"
@@ -74,6 +73,7 @@
     - path: "~/.config/nvim"
     - path: "~/.config/pypoetry"
     - path: "~/.config/systemd/user"
+    - path: "~/.config/tmux"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
     - path: "~/.ssh"

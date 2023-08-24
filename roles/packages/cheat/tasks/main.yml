@@ -45,6 +45,8 @@
 
 - name: decompress GZIP file
   ansible.builtin.command: find "{{ cheat_temp.path }}" -name '*.gz' -exec gzip -d {} \;
+  when:
+    - cheat_temp.path is defined
 
 - name: install cheat {{ releases.json.tag_name }}
   become: true
