@@ -10,4 +10,4 @@ gcalcli \
   | head -1 | awk -F"\t" '{print $2"-"$4"|"$5"|"$6}' > $t
 mv $t ~/.next-meeting.txt
 
-gcalcli remind 10 "notify-send -u critical -i appointment-soon -a gcalcli %s"
+gcalcli remind 2 "notify-send -u critical -i appointment-soon -a gcalcli %s"
