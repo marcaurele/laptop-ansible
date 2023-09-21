@@ -172,6 +172,9 @@
     - role: packages/cheat
       tags: cheat
 
+    - role: packages/sops
+      tags: sops
+
     #- role: packages/audible
     #  tags: audible
     #  when: private_node
