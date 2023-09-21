@@ -172,6 +172,9 @@
     - role: packages/cheat
       tags: cheat
 
+    - role: packages/bandwhich
+      tags: bandwhich
+
     - role: packages/sops
       tags: sops
 
