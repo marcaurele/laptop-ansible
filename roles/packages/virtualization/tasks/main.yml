@@ -16,7 +16,6 @@
     - lxd-tools
     - vagrant
     - virt-manager
-    - zfsutils-linux
 
 - name: add groups to {{ username }}
   become: true
