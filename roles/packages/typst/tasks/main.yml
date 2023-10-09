@@ -1,0 +1,32 @@
+---
+
+- name: check typst releases
+  uri:
+    url: https://api.github.com/repos/typst/typst/releases/latest
+    return_content: yes
+  register: releases
+
+- name: check if typst is already installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/typst
+  register: typst_stat
+
+- name: check local typst version
+  ansible.builtin.command: /usr/local/bin/typst --version
+  register: typst_version
+  when:
+  - typst_stat.stat.exists
+  changed_when: false
+
+- name: download typst {{ releases.json.tag_name }}
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+    remote_src: true
+    include: ["typst-x86_64-unknown-linux-musl/typst"]
+    extra_opts: ["--strip-components=1"]
+    dest: /usr/local/bin/
+  diff: false
+  when:
+    - not ansible_check_mode
+    - not typst_stat.stat.exists or (releases.json.tag_name[1:] not in typst_version.stdout_lines[0])

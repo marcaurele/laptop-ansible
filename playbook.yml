@@ -148,6 +148,9 @@
     - role: packages/pandoc
       tags: pandoc
 
+    - role: packages/typst
+      tags: typst
+
     - role: packages/dbeaver
       tags: dbeaver
 
