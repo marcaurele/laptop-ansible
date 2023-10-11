@@ -78,7 +78,6 @@
 
     - role: packages/hashicorp/tfenv
       tags: tfenv
-      when: not private_node
 
     - role: packages/hashicorp/terraform-docs
       tags: terraform-docs

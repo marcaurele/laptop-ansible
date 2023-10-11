@@ -27,13 +27,6 @@
       - vagrant
       - vault
 
-- name: install Terraform
-  become: true
-  ansible.builtin.apt:
-    pkg:
-      - terraform
-  when: private_node
-
 - name: deactivate nomad service
   become: true
   ansible.builtin.systemd:
