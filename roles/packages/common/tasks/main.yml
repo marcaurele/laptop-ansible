@@ -61,9 +61,9 @@
 - name: remove extra packages
   become: true
   ansible.builtin.apt:
-    name: "{{ packages_absent_extra | join(',') }}"
+    name: "{{ ( (packages_absent_extra | default([])) + (packages_absent_extra_private | default([])) + (packages_absent_extra_work | default([])) ) | join(',') }}"
     state: absent
-  when: packages_absent_extra is defined
+    purge: true
 
 - name: install extra packages
   become: true

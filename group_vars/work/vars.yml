@@ -18,8 +18,8 @@ nodejs:
 # packages_extra:
 #  - gcalcli
 
-# packages_absent_extra:
-#   - awscli
+packages_absent_extra_work:
+  - awscli
 
 #pip_extra_index_url: "{{ vault_pip_extra_index_url }}"
 

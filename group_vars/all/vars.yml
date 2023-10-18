@@ -28,6 +28,7 @@ locales:
 packages_absent_extra:
   - pulseaudio
   - remmina
+  - terraform
 
 packages_directory: "~/soft"
 
