@@ -1,0 +1,20 @@
+---
+
+# https://github.com/localsend/localsend
+
+- name: check localsend latest release
+  uri:
+    url: https://api.github.com/repos/localsend/localsend/releases/latest
+    return_content: true
+  register: localsend_release
+  tags: system
+
+- name: install or upgrade localsend {{ localsend_release.json.name }}
+  become: true
+  apt:
+    deb: "{{ localsend_release.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `linux`)].browser_download_url | [0]') }}"
+    state: present
+  when:
+    - not ansible_check_mode
+    - ansible_facts.packages['localsend'] is not defined or not ansible_facts.packages['localsend'][0]['version'].startswith(localsend_release.json.name)
+  tags: system

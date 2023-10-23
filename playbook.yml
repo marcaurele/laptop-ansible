@@ -50,6 +50,9 @@
     - role: packages/desktop
       tags: desktop
 
+    - role: packages/localsend
+      tags: localsend
+
     - role: packages/python
       tags: python
 
