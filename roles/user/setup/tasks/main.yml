@@ -70,6 +70,7 @@
     mode: "{{ item.mode|default('') }}"
   loop:
     - path: "~/.config"
+    - path: "~/.config/dunst"
     - path: "~/.config/nvim"
     - path: "~/.config/pypoetry"
     - path: "~/.config/systemd/user"
