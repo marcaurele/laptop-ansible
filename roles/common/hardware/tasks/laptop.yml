@@ -1,7 +1,7 @@
 ---
 
 - name: install firmware for Debian devices
-  become: yes
+  become: true
   apt:
     pkg:
       - firmware-linux
@@ -11,7 +11,7 @@
   when: ansible_distribution == 'Debian'
 
 - name: install firmwares for Dell XPS 13 9360
-  become: yes
+  become: true
   apt:
     pkg:
     - firmware-atheros
@@ -19,7 +19,7 @@
   when: ansible_system_vendor == "Dell Inc." and ansible_product_name == "XPS 13 9360"
 
 - name: install firmwares for ThinkPad X1 Carbon 6th
-  become: yes
+  become: true
   apt:
     pkg:
     - firmware-iwlwifi
