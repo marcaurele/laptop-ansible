@@ -29,6 +29,8 @@ packages_absent_extra:
   - pulseaudio
   - remmina
   - terraform
+  - vagrant
+  - vault
 
 packages_directory: "~/soft"
 

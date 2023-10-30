@@ -24,8 +24,6 @@
     pkg:
       - consul
       - nomad
-      - vagrant
-      - vault
 
 - name: deactivate nomad service
   become: true
