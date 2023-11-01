@@ -8,6 +8,13 @@
   register: apt_source
   tags: system, root
 
+- name: set package preferences between testing and unstable
+  become: true
+  template:
+    src: apt-preferences.j2
+    dest: /etc/apt/preferences.d/apt-default.pref
+  tags: system, root
+
 - name: update package cache
   become: true
   apt:

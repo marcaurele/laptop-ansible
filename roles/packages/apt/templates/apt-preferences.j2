@@ -1,8 +1,10 @@
 ####################################
 # {{ ansible_managed }}
-# Default {{ item.name }} priorities
+# Default debian priorities
 ####################################
+{% for item in debian_releases %}
 
 Package: *
 Pin: release a={{ item.name }}
 Pin-Priority: {{ item.priority }}
+{% endfor %}

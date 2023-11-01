@@ -10,6 +10,16 @@ config:
   dir: ~/.config
   zsh: ~/.zsh_config
 
+debian_releases:
+  - name: testing
+    priority: 800
+    security: yes
+  - name: unstable
+    priority: -1
+    security: no
+
+debian_unstable_is_active: "{{ debian_releases|selectattr('name', 'eq', 'unstable')|length > 0}}"
+
 git: "{{ vault_git }}"
 
 gpg: "{{ vault_gpg }}"
