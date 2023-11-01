@@ -2,12 +2,29 @@
 
 - name: set firefox package name
   set_fact:
-    firefox_package: "firefox{% if ansible_distribution == 'Debian' %}-esr{% endif %}"
+    firefox_package: "firefox{% if not debian_unstable_is_active %}-esr{% endif %}"
+
+# - name: set firefox package name for uninstall in case
+#   set_fact:
+#     firefox_uninstall_package: "firefox{% if debian_unstable_is_active %}-esr{% endif %}"
+
+# - name: remove any previous firefox
+#   become: true
+#   ansible.builtin.apt:
+#     name: "{{ firefox_uninstall_package }}"
+#     state: absent
 
 - name: install firefox
   become: true
   ansible.builtin.apt:
-    name: "{{ firefox_package }}"
+    name: firefox
+    default_release: unstable
+  when: debian_unstable_is_active
+
+- name: install firefox-esr
+  become: true
+  ansible.builtin.apt:
+    name: firefox-esr
 
 - name: check browser preferences
   command: xdg-settings get default-web-browser
