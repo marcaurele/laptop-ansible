@@ -14,7 +14,6 @@
     - libvirt-dev
     - lxd
     - lxd-tools
-    - vagrant
     - virt-manager
 
 - name: add groups to {{ username }}
