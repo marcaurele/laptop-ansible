@@ -33,8 +33,8 @@
 	releasetag-v = tag --annotate -m "🔖 v-$(date -I)" v-$(date -I)
 [apply]
         whitespace = nowarn
-#[blame]
-#	ignoreRevsFile = .git-blame-ignore-revs
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
 [color]
         diff = auto
         status = auto
@@ -43,7 +43,8 @@
 [commit]
         gpgsign = true
 [core]
-	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes
+        excludesfile = ~/.gitignore_global
         editor = vim
 [diff]
         compactionHeuristic = true
@@ -70,3 +71,6 @@
 [push]
         default = current
 	gpgsign = if-asked
+[diff "sqlite3"]
+        binary = true
+        textconv = "echo .dump | sqlite3"
