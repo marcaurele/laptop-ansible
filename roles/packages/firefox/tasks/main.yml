@@ -31,8 +31,30 @@
   register: browser_prefs
   changed_when: false
 
-- name: set browser preferences for firefox
+- name: set system browser preferences to use firefox
+  become: true
+  become_user: "{{ username }}"
   command: "xdg-settings set default-web-browser {{ firefox_package }}.desktop"
   when:
     - not ansible_check_mode
     - browser_prefs.stdout != firefox_package + ".desktop"
+
+- name: list all firefox profiles
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.find:
+    file_type: directory
+    path: "~/.mozilla/firefox/"
+    patterns: ["*.default*"]
+  register: firefox_profiles
+
+- name: set firefox preferences
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: user.js.j2
+    dest: "{{ item.path }}/user.js"
+  loop: "{{ firefox_profiles.files }}"
+  when:
+    - firefox_profiles is defined
+    - not firefox_profiles.failed
