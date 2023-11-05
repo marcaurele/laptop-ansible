@@ -22,3 +22,6 @@ alias gitprune="git branch | grep -vFf <(git branch -r | cut -d'/' -f2-) | xargs
 # Keyboard
 alias kus="setxkbmap us -variant altgr-intl -option -option ctrl:nocaps -option compose:rctl-altgr"
 alias kch="setxkbmap ch fr -option -option ctrl:nocaps"
+
+# Audio tools
+alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
