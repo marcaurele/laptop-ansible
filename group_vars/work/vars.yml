@@ -21,7 +21,7 @@ nodejs:
 packages_absent_extra_work:
   - awscli
 
-#pip_extra_index_url: "{{ vault_pip_extra_index_url }}"
+pip_extra_index_url: "{{ vault_pip_extra_index_url }}"
 
 private_node: false
 
