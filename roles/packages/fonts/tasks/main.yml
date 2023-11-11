@@ -3,14 +3,10 @@
 # Waiting for bug to fixed: https://github.com/ansible/ansible/pull/79518
 # https://github.com/ansible/ansible/issues/64016
 
-- name: install iA fonts
+- name: check fonts files
   become: true
-  ansible.builtin.get_url:
-    url: "{{ item }}"
-    dest: "/usr/local/share/fonts/{{ item | urlsplit('path') | basename }}"
-    mode: 0644
-    force: false
-  when: not ("/usr/local/share/fonts/{{ item | urlsplit('path') | basename }}") is exists
+  ansible.builtin.stat:
+    path: "/usr/local/share/fonts/{{ item | urlsplit('path') | basename }}"
   loop:
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Bold.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duo/Static/iAWriterDuoS-BoldItalic.ttf
@@ -18,10 +14,6 @@
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Regular.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duo/Variable/iAWriterDuoV-Italic.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duo/Variable/iAWriterDuoV.ttf
-    - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duospace/TTF%20(PC)/iAWriterDuospace-Bold.ttf
-    - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duospace/TTF%20(PC)/iAWriterDuospace-BoldItalic.ttf
-    - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duospace/TTF%20(PC)/iAWriterDuospace-Italic.ttf
-    - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Duospace/TTF%20(PC)/iAWriterDuospace-Regular.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Mono/Static/iAWriterMonoS-Bold.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Mono/Static/iAWriterMonoS-BoldItalic.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Mono/Static/iAWriterMonoS-Italic.ttf
@@ -34,7 +26,20 @@
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Quattro/Static/iAWriterQuattroS-Regular.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Quattro/Variable/iAWriterQuattroV-Italic.ttf
     - https://github.com/iaolo/iA-Fonts/raw/master/iA%20Writer%20Quattro/Variable/iAWriterQuattroV.ttf
+  register: iafonts_stat
+
+- name: install iA fonts
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ item.item }}"
+    dest: "/usr/local/share/fonts/{{ item.item | urlsplit('path') | basename }}"
+    mode: 0644
+    force: false
+  when: not item.stat.exists
+  loop: "{{ iafonts_stat.results }}"
+  register: iafonts_downloaded
 
 - name: rebuild font cache
   become: true
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
+  when: iafonts_downloaded.changed
