@@ -1,0 +1,64 @@
+---
+
+- name: check monaspace releases
+  uri:
+    url: https://api.github.com/repos/githubnext/monaspace/releases/latest
+    return_content: yes
+  register: monaspace_release
+
+- name: create fonts directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/share/fonts/monaspace/
+    state: directory
+
+- name: check fonts version file
+  become: true
+  ansible.builtin.stat:
+    path: "/usr/local/share/fonts/monaspace/{{ monaspace_release.json.tag_name }}.version"
+  register: monaspace_local_version
+
+- name: download fonts
+  ansible.builtin.git:
+    depth: 1
+    dest: /tmp/monaspace
+    repo: https://github.com/githubnext/monaspace.git
+  when: not monaspace_local_version.stat.exists
+
+- name: clear fonts directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/share/fonts/monaspace/
+    state: absent
+  diff: false
+  when: not monaspace_local_version.stat.exists
+
+- name: create fonts directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/share/fonts/monaspace/
+    state: directory
+
+- name: copy otf fonts
+  become: true
+  ansible.builtin.shell: cp /tmp/monaspace/fonts/otf/*.otf /usr/local/share/fonts/monaspace/
+  when: not monaspace_local_version.stat.exists
+
+- name: copy variables fonts
+  become: true
+  ansible.builtin.shell: cp /tmp/monaspace/fonts/variable/*.ttf /usr/local/share/fonts/monaspace/
+  when: not monaspace_local_version.stat.exists
+
+- name: set version
+  become: true
+  ansible.builtin.command:
+    cmd: touch /usr/local/share/fonts/monaspace/{{monaspace_release.json.tag_name }}.version
+  when: not monaspace_local_version.stat.exists
+
+- name: delete download
+  become: true
+  ansible.builtin.file:
+    path: /tmp/monaspace
+    state: absent
+  diff: false
+  when: not monaspace_local_version.stat.exists
