@@ -178,16 +178,19 @@
     background = "#263238"
     foreground = "#556064"
     timeout = 10
+    fullscreen = pushback
 
 [urgency_normal]
     background = "#263238"
     foreground = "#F9FAF9"
-    timeout = 10
+    timeout = 30
+    fullscreen = delay
 
 [urgency_critical]
     background = "#D62929"
     foreground = "#F9FAF9"
     timeout = 0
+    fullscreen = show
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -209,76 +212,10 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
-
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[Claws Mail]
-#    appname = claws-mail
-#    category = email.arrived
-#    urgency = normal
-#    background = "#2F899E"
-#    foreground = "#FFA247"
-#
-#[mute.sh]
-#     appname = mute
-#     category = mute.sound
-#     script = mute.sh
-#
-#[JDownloader]
-#    appname = JDownloader
-#    category = JD
-#    background = "#FFA247"
-#    foreground = "#FFFFFF"
-#
-#[newsbeuter]
-#    summary = *Feeds*
-#    background = "#A8EB41"
-#    foreground = "#FFFFFF"
-#
-[irc]
-        appname = weechat
-        timeout = 0
-        background = "#0033bb"
-        foreground = "#dddddd"
-#
-[weechat hl]
-     appname = weechat
-     category = weechat.HL
-     background = "#FF5C47"
-     foreground = "#FFFFFF"
-#
-[weechat pm]
-     appname = weechat
-     category = weechat.PM
-     background = "#D53B84"
-     foreground = "#FFFFFF"
+[gcalendar]
+    appname = "Firefox"
+    timeout = 0
+    body = "[0-9][0-9]:[0-9][0-9] – [0-9][0-9]:[0-9][0-9]*"
+    urgency = critical
+    background = "#3B5B66"
+    fullscreen = show
