@@ -1,4 +1,5 @@
 # {{ ansible_managed }}
+# https://sw.kovidgoyal.net/kitty/conf/
 
 update_check_interval 0
 enable_audio_bell     no
@@ -8,6 +9,7 @@ font_family      Monaspace Neon
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
+url_style        dotted
 
 cursor_shape          block
 cursor_blink_interval 0
@@ -15,6 +17,9 @@ shell_integration     no-cursor
 
 copy_on_select clipboard
 map shift+ctrl+v paste_from_buffer clipboard
+
+mouse_map left click ungrabbed no_op
+mouse_map ctrl+left release grabbed,ungrabbed mouse_handle_click link
 
 background #212121
 foreground #cdcdcd
