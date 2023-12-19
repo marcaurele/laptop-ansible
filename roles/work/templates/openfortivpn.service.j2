@@ -7,10 +7,10 @@ Documentation=man:openfortivpn(1)
 [Service]
 Type=notify
 PrivateTmp=true
-ExecStart=/usr/bin/openfortivpn -c /etc/openfortivpn/%I.conf
+ExecStart=/bin/sh -c '/usr/bin/openfortivpn -c /etc/openfortivpn/%I.conf --password="`systemd-ask-password --no-tty --id=openfortivpn "Enter VPN password,TOTP for %I:")`"'
+NotifyAccess=all
 OOMScoreAdjust=-100
-Restart=on-failure
-RestartSec=30
+Restart=no
 
 [Install]
 WantedBy=multi-user.target

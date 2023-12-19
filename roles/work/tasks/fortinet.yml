@@ -1,5 +1,10 @@
 ---
 
+# Some links
+# SAML integration not baked in: https://github.com/adrienverge/openfortivpn/pull/1042
+# SAML login with cookie: https://github.com/adrienverge/openfortivpn/pull/1042#issuecomment-1344211491
+# nmcli: https://gitlab.gnome.org/GNOME/NetworkManager-fortisslvpn
+
 - name: install OpenFortiVPN
   become: true
   ansible.builtin.apt:
