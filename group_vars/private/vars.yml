@@ -1,9 +1,12 @@
 ---
 
+# packages_absent_extra_private:
+
 packages_extra: # Debian packages
   - task-english
 
 private_node: true
-username: marco
 
-# packages_absent_extra_private:
+# sudo_private:
+
+username: marco

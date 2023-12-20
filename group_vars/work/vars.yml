@@ -6,6 +6,8 @@ aws_config_extra: "{{ vault_aws_config_extra }}"
 
 company: "{{ vault_company }}"
 
+company_vpn: "{{ vault_company_vpn }}"
+
 email_work: "{{ vault_email }}"
 
 git_work: "{{ vault_git_work }}"
@@ -30,8 +32,13 @@ python_tools_extra:
     extra:
       - fido2
 
-username: "{{ vault_username }}"
+sudo_work:
+  - /usr/bin/systemctl status openfortivpn@work.service
+  - /usr/bin/systemctl start openfortivpn@work.service
+  - /usr/bin/systemctl stop openfortivpn@work.service
+  - /usr/bin/systemctl restart openfortivpn@work.service
+  - /usr/bin/systemd-tty-ask-password-agent
 
-company_vpn: "{{ vault_company_vpn }}"
+username: "{{ vault_username }}"
 
 vpn_ips: "{{vault_vpn_ips }}"

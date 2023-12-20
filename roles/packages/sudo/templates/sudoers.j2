@@ -2,6 +2,12 @@
 {% for cmd in sudo %}
 {{ username }}    ALL=NOPASSWD: {{ cmd }}
 {% endfor %}
+{% for cmd in sudo_private | default([]) %}
+{{ username }}    ALL=NOPASSWD: {{ cmd }}
+{% endfor %}
+{% for cmd in sudo_work | default([]) %}
+{{ username }}    ALL=NOPASSWD: {{ cmd }}
+{% endfor %}
 
 # Keep the DEBIAN_FRONTEND
 Defaults:%sudo env_keep += "DEBIAN_FRONTEND EDITOR"
