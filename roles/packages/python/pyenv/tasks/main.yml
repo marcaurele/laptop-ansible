@@ -15,6 +15,7 @@
     dest: "~/.pyenv"
     repo: "https://github.com/pyenv/pyenv.git"
     update: true
+    force: true
     verify_commit: false
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
