@@ -20,6 +20,10 @@ debian_releases:
 
 debian_unstable_is_active: "{{ debian_releases|selectattr('name', 'eq', 'unstable')|length > 0}}"
 
+debian_package_pinning:
+  - package: firefox
+    release: unstable
+
 git: "{{ vault_git }}"
 
 gpg: "{{ vault_gpg }}"

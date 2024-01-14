@@ -8,3 +8,9 @@ Package: *
 Pin: release a={{ item.name }}
 Pin-Priority: {{ item.priority }}
 {% endfor %}
+
+{% for item in debian_package_pinning %}
+Package: {{ item.package }}
+Pin: release a={{ item.release }}
+Pin-Priority: 100
+{% endfor %}
