@@ -1,0 +1,19 @@
+---
+
+- name: add repository GPG key for mise
+  become: true
+  ansible.builtin.get_url:
+    url:  https://mise.jdx.dev/gpg-key.pub
+    dest: /etc/apt/trusted.gpg.d/mise.asc
+
+- name: add repository for mise
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/mise.asc] https://mise.jdx.dev/deb stable main
+
+- name: install mise
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - mise
+    state: latest

@@ -53,6 +53,9 @@
     - role: packages/localsend
       tags: localsend
 
+    - role: packages/mise
+      tags: mise
+
     - role: packages/python
       tags: python
 
