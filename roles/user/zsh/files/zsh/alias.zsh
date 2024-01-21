@@ -446,3 +446,4 @@ colortest() {
 
 # Extra command aliases
 (( $+commands[docker] )) && alias ocrmypdf='docker run --rm -v "$(pwd):/app" -u "$(id -u):$(id -g)" jbarlow83/ocrmypdf'
+alias ocrallpdf="find . -printf '%p\n' -name '*.pdf' -exec ocrmypdf '{}' '{}' \;"
