@@ -31,7 +31,6 @@
     - not ansible_check_mode
     - not cheat_stat.stat.exists or cheat_latest_version not in cheat_version.stdout_lines[0]
   diff: false
-  notify: clean cheat temporary download directory
 
 - name: download cheat {{ releases.json.tag_name }}
   ansible.builtin.get_url:

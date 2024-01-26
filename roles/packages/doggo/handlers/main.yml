@@ -1,7 +1,0 @@
----
-
-- name: clean doggo temporary download directory
-  ansible.builtin.file:
-    path: "{{ doggo_temp.path }}"
-    state: absent
-  diff: false

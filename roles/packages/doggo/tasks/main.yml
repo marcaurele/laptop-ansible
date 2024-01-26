@@ -31,7 +31,6 @@
     - not ansible_check_mode
     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
   diff: false
-  notify: clean doggo temporary download directory
 
 - name: download doggo {{ releases.json.tag_name }}
   ansible.builtin.unarchive:

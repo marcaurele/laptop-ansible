@@ -21,7 +21,6 @@
   ansible.builtin.tempfile:
     state: directory
   register: mani_temp
-  notify: clean mani temporary download directory
   when:
     - not ansible_check_mode
     - not mani_stat.stat.exists or (releases.json.tag_name[1:] not in mani_version.stdout_lines[0])

@@ -32,7 +32,6 @@
     - not ansible_check_mode
     - not awscli_stat.stat.exists or awscli_latest_version not in awscli_version.stdout_lines[0]
   diff: false
-  notify: clean awscli temporary download directory
 
 - name: download awscli archive {{ awscli_latest_version }}
   ansible.builtin.unarchive:

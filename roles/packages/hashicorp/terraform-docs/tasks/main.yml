@@ -21,7 +21,6 @@
   ansible.builtin.tempfile:
     state: directory
   register: tfdocs_temp
-  notify: clean tfdocs temporary download directory
   when:
     - not ansible_check_mode
     - not tfdocs_stat.stat.exists or (releases.json.tag_name[1:] not in tfdocs_version.stdout_lines[0])

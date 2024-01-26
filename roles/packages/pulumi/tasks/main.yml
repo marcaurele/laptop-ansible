@@ -21,7 +21,6 @@
   ansible.builtin.tempfile:
     state: directory
   register: pulumi_temp
-  notify: clean pulumi temporary download directory
   when:
     - not ansible_check_mode
     - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])

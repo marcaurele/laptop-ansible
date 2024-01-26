@@ -1,7 +1,0 @@
----
-
-- name: clean tfdocs temporary download directory
-  ansible.builtin.file:
-    path: "{{ tfdocs_temp.path }}"
-    state: absent
-  diff: false
