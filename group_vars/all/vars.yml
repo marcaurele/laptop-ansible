@@ -1,7 +1,7 @@
 ---
 bluetooth:
   Policy:
-    AutoEnable: false
+    AutoEnable: true
 
 code_directory: "~/code"
 code_projects: "{{ vault_code_projects }}"
