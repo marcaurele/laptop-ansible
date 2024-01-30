@@ -29,7 +29,7 @@ git: "{{ vault_git }}"
 gpg: "{{ vault_gpg }}"
 
 kdrive:
-  version: "3.3.7.20221109"
+  version: "3.5.7.20240124"
 
 lunii:
   version: "2.2.271"

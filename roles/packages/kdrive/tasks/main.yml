@@ -14,7 +14,7 @@
   become: true
   get_url:
     dest: "/usr/local/bin/kDrive.AppImage"
-    url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{ kdrive.version }}.AppImage"
+    url: "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-{{ kdrive.version }}-amd64.AppImage"
     owner: root
     group: root
     mode: "0755"
