@@ -1,0 +1,34 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    desc: Display help when no argument is given to task
+    cmds:
+      - task: help
+        silent: true
+
+  help:
+    desc: List all available tasks (default)
+    cmds:
+      - task --list-all
+
+  local:
+    desc: run ansible playbook on this local host
+    cmds:
+      - pipenv run ./update-local.sh {{.CLI_ARGS}}
+
+  rebuild:
+    desc: rebuild the pipenv environment
+    cmds:
+      - rm -rf .venv
+      - task: sync
+
+  sync:
+    desc: perform a pipenv sync
+    cmds:
+      - pipenv sync
