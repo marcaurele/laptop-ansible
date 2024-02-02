@@ -68,3 +68,4 @@ sudo:
   - /usr/sbin/shutdown
   - /usr/sbin/halt
   - /usr/sbin/rfkill
+  - /usr/bin/udevadm trigger
