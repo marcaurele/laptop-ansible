@@ -35,11 +35,15 @@
         whitespace = nowarn
 # [blame]
 # 	ignoreRevsFile = .git-blame-ignore-revs
+[branch]
+        sort = -committerdate
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
+[column]
+        ui = auto
 [commit]
         gpgsign = true
 [core]
@@ -48,6 +52,9 @@
         editor = vim
 [diff]
         compactionHeuristic = true
+[diff "sqlite3"]
+        binary = true
+        textconv = "echo .dump | sqlite3"
 [difftool]
         prompt = false
 [filter "lfs"]
@@ -71,6 +78,5 @@
 [push]
         default = current
 	gpgsign = if-asked
-[diff "sqlite3"]
-        binary = true
-        textconv = "echo .dump | sqlite3"
+[rerere]
+        enabled = true
