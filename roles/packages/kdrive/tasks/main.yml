@@ -1,5 +1,11 @@
 ---
 
+- name: install libfuse2 required by AppImage
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - libfuse2
+
 - name: check kdrive local binary
   stat:
     path: "/usr/local/bin/kDrive.AppImage"
