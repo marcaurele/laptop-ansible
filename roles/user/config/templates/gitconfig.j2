@@ -12,6 +12,7 @@
 	path = .gitconfig_work
 {% endif %}
 [alias]
+        bb = !git for-each-ref --color --sort=-committerdate --format=$'%(color:red)%(ahead-behind:HEAD)\t%(color:blue)%(re    fname:short)\t%(color:yellow)%(committerdate:relative)\t%(color:default)%(describe)' refs/heads/ --no-merged | sed 's/ /\t/    ' | column --separator=$'\t' --table --table-columns='Ahead,Behind,Branch Name,Last Commit,Description'
         br = branch
         ci = commit
         clonebig = clone --filter=blob:none
