@@ -12,17 +12,18 @@
 	path = .gitconfig_work
 {% endif %}
 [alias]
-        co = checkout
-        ci = commit
-        st = status
         br = branch
+        ci = commit
+        clonebig = clone --filter=blob:none
+        co = checkout
+        commend = commit --amend --no-edit --date=now
+        count = !git shortlog -sn
+        please = push --force-with-lease
 	pushmr = push -o merge_request.create
         promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        count   = !git shortlog -sn
-        please = push --force-with-lease
-        commend = commit --amend --no-edit --date=now
         shorty = status --short --branch
+        st = status
+        wtf = !$ZSH/bin/git-wtf
         ls = log --graph --pretty=format:\"%C(auto)%h%<(3)%d %s %C(bold blue)(%cr, %an)%Creset%n\" --abbrev-commit --all --find-copies -M --stat
         floge = log --graph --abbrev-commit --decorate --date=relative --all
         flog = log --graph --oneline --decorate --all
