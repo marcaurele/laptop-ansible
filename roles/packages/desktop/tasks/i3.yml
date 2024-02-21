@@ -1,7 +1,7 @@
 ---
 
 - name: install i3 packages
-  become: yes
+  become: true
   package:
     pkg: "{{ item }}"
   with_together:
@@ -13,42 +13,42 @@
     - powerline
 
 - name: configure a i3lock on sleep
-  become: yes
+  become: true
   template:
     src: i3lock-sleep.service.j2
     dest: /etc/systemd/system/i3lock-sleep@.service
 
 - name: create i3 config directory
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "~/.config/i3"
     state: directory
 
 - name: configure i3
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: i3-config.j2
     dest: ~/.config/i3/config
 
 - name: configure i3 status
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: i3-status.conf.j2
     dest: ~/.i3status.conf
 
 - name: configure i3blocks
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: i3-blocks.conf.j2
     dest: ~/.i3blocks.conf
 
 - name: enable i3lock on sleep service for {{ username }}
-  become: yes
+  become: true
   systemd:
-    enabled: yes
+    enabled: true
     name: "i3lock-sleep@{{ username }}.service"
-    daemon_reload: yes
+    daemon_reload: true

@@ -1,7 +1,7 @@
 ---
 
 - name: configure sshd
-  become: yes
+  become: true
   template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
@@ -11,7 +11,7 @@
   notify: restart ssh
 
 - name: add authorized ssh keys for root
-  become: yes
+  become: true
   authorized_key:
     key: https://github.com/marcaurele.keys
     comment: "github user key for marcaurele"

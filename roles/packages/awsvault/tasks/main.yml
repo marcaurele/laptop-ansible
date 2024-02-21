@@ -3,7 +3,7 @@
 - name: check aws-vault releases
   uri:
     url: https://api.github.com/repos/99designs/aws-vault/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: check aws-vault locally

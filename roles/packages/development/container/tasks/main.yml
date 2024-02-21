@@ -1,7 +1,7 @@
 ---
 
 - name: install container packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - buildah

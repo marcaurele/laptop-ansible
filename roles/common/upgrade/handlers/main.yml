@@ -1,7 +1,7 @@
 ---
 
 - name: reboot
-  become: yes
+  become: true
   shell: sleep 2 && /sbin/reboot
   poll: 0
   async: 1

@@ -1,7 +1,7 @@
 ---
 
 - name: create docker cli plugins directory
-  become: yes
+  become: true
   file:
     path: /usr/local/lib/docker/cli-plugins
     state: directory
@@ -9,7 +9,7 @@
 - name: check docker buildx latest release
   uri:
     url: https://api.github.com/repos/docker/buildx/releases/latest
-    return_content: yes
+    return_content: true
   register: latest_release
   tags: system
 

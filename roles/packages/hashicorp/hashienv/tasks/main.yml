@@ -1,7 +1,7 @@
 ---
 
 - name: copy hashienv script
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.copy:
     src: hashienv

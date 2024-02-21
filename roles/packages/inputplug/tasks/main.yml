@@ -1,20 +1,20 @@
 ---
 
 - name: install inputplug
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - inputplug
 
 - name: create inputplug config directory
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "~/.config/inputplug"
     state: directory
 
 - name: install inputplug event script
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: input-event.j2
@@ -23,7 +23,7 @@
   register: inputplug_script
 
 - name: install service file for inputplug
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: systemd.service.j2
@@ -31,19 +31,19 @@
   register: inputplug_service
 
 - name: service daemon reload
-  become: yes
+  become: true
   become_user: "{{ username }}"
   systemd:
-    daemon_reload: yes
+    daemon_reload: true
     scope: user
   when: inputplug_service.changed or inputplug_script.changed
 
 - name: activate inputplug service
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.systemd:
-    enabled: yes
+    enabled: true
     state: started
     name: inputplug.service
     scope: user
-  ignore_errors: yes
+  ignore_errors: true

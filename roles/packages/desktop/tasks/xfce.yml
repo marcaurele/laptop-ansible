@@ -1,13 +1,13 @@
 ---
 
 - name: install xfce4 terminal
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - xfce4-terminal
 
 - name: create xfce config directory
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "~/.config/xfce4/terminal/colorschemes"
@@ -15,7 +15,7 @@
   when: ansible_facts.packages['xfce4-terminal'] is defined
 
 - name: install selected xfce themes
-  become: yes
+  become: true
   become_user: "{{ username }}"
   copy:
     src: "xfce-themes/"
@@ -23,7 +23,7 @@
   when: ansible_facts.packages['xfce4-terminal'] is defined
 
 - name: configure xfce
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: xfce-terminalrc.j2

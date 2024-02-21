@@ -3,7 +3,7 @@
 - name: check exoscale-cli releases
   uri:
     url: https://api.github.com/repos/exoscale/cli/releases
-    return_content: yes
+    return_content: true
   register: exocli_release
 
 - name: set fact for exoscale-cli latest release
@@ -33,14 +33,14 @@
   get_url:
     url: '{{ exocli_deb_release.browser_download_url }}'
     dest: '/tmp/{{ exocli_deb_release.name }}'
-    force: yes
+    force: true
   when: exocli_install
 
 - name: download latest exoscale-cli release signature {{ exocli_latest_release.name }}
   get_url:
     url: '{{ exocli_deb_pgp.browser_download_url }}'
     dest: '/tmp/{{ exocli_deb_pgp.name }}'
-    force: yes
+    force: true
   register: exocli_download_sig
   when: exocli_install
 
@@ -50,7 +50,7 @@
   changed_when: false
 
 # - name: install or upgrade exoscale-cli {{ exocli_latest_release.name }}
-#   become: yes
+#   become: true
 #   apt:
 #     deb: '/tmp/{{ exocli_deb_release.name }}'
 #     state: present

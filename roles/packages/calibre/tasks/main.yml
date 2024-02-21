@@ -1,7 +1,7 @@
 ---
 
 - name: install calibre
-  become: yes
+  become: true
   apt:
     pkg: calibre
   tags: system, root

@@ -1,12 +1,12 @@
 ---
 
 - name: install sudo
-  become: yes
+  become: true
   ansible.builtin.apt:
     name: sudo
 
 - name: configure sudo
-  become: yes
+  become: true
   lineinfile:
     path: /etc/sudoers
     state: present
@@ -15,10 +15,10 @@
     validate: '/usr/sbin/visudo -cf %s'
 
 - name: add {{ username }} to sudo group
-  become: yes
+  become: true
   user:
     name: "{{ username }}"
-    append: yes
+    append: true
     groups:
       - sudo
 

@@ -4,14 +4,14 @@
 # https://en.code-bude.net/2017/02/12/how-to-convert-audible-aax-files-to-mp3-in-linux/
 
 - name: directory for audible tools
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: ~/audible
     state: directory
 
 - name: install audible tools to easily move to non-DRM files
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - ffmpeg
@@ -19,14 +19,14 @@
     - mp4v2-utils
 
 - name: install tools to extract Audible info
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
-    clone: yes
-    accept_hostkey: yes
+    clone: true
+    accept_hostkey: true
     dest: "~/audible/{{ item.dest }}/"
     repo: "{{ item.url }}"
-    update: yes
+    update: true
     verify_commit: no
   loop:
     - url: https://github.com/KrumpetPirate/AAXtoMP3.git

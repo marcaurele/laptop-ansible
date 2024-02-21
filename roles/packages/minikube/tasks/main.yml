@@ -3,14 +3,14 @@
 - name: check minikube releases
   uri:
     url: https://api.github.com/repos/kubernetes/minikube/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
   tags:
     - system
     - minikube
 
 - name: install or upgrade minikube {{ releases.json.tag_name[1:] }}
-  become: yes
+  become: true
   apt:
     deb: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `minikube`) && contains(name, `.deb`)].browser_download_url | [0]') }}"
     state: present

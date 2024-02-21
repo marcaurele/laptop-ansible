@@ -1,14 +1,14 @@
 ---
 
 - name: install ZSH
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - zplug
     - zsh
 
 - name: create ZSH alias config directory
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "{{ config.zsh }}"
@@ -16,7 +16,7 @@
   tags: user
 
 - name: copy ZSH config files
-  become: yes
+  become: true
   become_user: "{{ username }}"
   copy:
     src: "."
@@ -25,7 +25,7 @@
   tags: user
 
 - name: install config dot files
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
@@ -37,7 +37,7 @@
   tags: user
 
 - name: change {{ username }} shell to ZSH
-  become: yes
+  become: true
   user:
     name: "{{ username }}"
     shell: "/usr/bin/zsh"

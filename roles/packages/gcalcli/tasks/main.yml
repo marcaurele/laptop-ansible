@@ -1,19 +1,19 @@
 
 - name: install gcalcli
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - gcalcli
 
 - name: configure default calendar
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: gcalclirc.j2
     dest: "~/.gcalclirc"
 
 - name: install script for next meeting
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: next-meeting.j2
@@ -21,7 +21,7 @@
     mode: "0750"
 
 - name: install service file for next-meeting
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: systemd.service.j2
@@ -29,7 +29,7 @@
   register: nextmeeting_service
 
 - name: install service timer file for next-meeting
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: systemd.timer.j2
@@ -37,29 +37,29 @@
   register: nextmeeting_timer
 
 - name: service daemon reload
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
     scope: user
   when: nextmeeting_service.changed or nextmeeting_timer.changed
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: configure next-meeting service
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.systemd:
-    enabled: yes
+    enabled: true
     name: next-meeting.service
     scope: user
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: configure next-meeting timer
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.systemd:
-    enabled: yes
+    enabled: true
     name: next-meeting.timer
     state: started
     scope: user
-  ignore_errors: yes
+  ignore_errors: true

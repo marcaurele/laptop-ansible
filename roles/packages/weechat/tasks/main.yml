@@ -1,14 +1,14 @@
 ---
 
 - name: install weechat and plugins
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - weechat
     - python-notify2
 
 - name: install weechat plugin notify
-  become: yes
+  become: true
   become_user: "{{ username }}"
   get_url:
     url: https://weechat.org/files/scripts/notify.py

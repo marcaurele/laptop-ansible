@@ -10,9 +10,9 @@
   include_tasks: buildx.yml
 
 - name: add {{ username }} to docker group
-  become: yes
+  become: true
   user:
     name: "{{ username }}"
-    append: yes
+    append: true
     groups:
       - docker

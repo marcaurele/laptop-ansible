@@ -3,12 +3,12 @@
 - name: check balena-etcher latest release
   uri:
     url: https://api.github.com/repos/balena-io/etcher/releases/latest
-    return_content: yes
+    return_content: true
   register: etcher_release
   tags: system
 
 - name: install or upgrade balena-etcher {{ etcher_release.json.name }}
-  become: yes
+  become: true
   apt:
     deb: "{{ etcher_release.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
     state: present

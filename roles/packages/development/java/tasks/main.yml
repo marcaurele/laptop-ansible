@@ -1,7 +1,7 @@
 ---
 
 - name: install java packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - maven
@@ -9,6 +9,6 @@
     - openjdk-14-jdk
 
 - name: change default java alternatives
-  become: yes
+  become: true
   command: update-java-alternatives -s java-1.8.0-openjdk-amd64
   tags: never

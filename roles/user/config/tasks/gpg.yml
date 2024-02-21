@@ -1,7 +1,7 @@
 ---
 
 - name: create directories
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "{{ item.path }}"
@@ -13,7 +13,7 @@
   tags: user
 
 - name: install config dot files
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"

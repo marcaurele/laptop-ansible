@@ -3,7 +3,7 @@
 - name: check doggo releases
   uri:
     url: https://api.github.com/repos/mr-karan/doggo/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: set latest doggo version

@@ -3,7 +3,7 @@
 - name: check mani releases
   ansible.builtin.uri:
     url: https://api.github.com/repos/alajmo/mani/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: check if mani is already installed

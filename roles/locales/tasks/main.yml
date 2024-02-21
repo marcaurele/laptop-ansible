@@ -1,7 +1,7 @@
 ---
 
 - name: create locales
-  become: yes
+  become: true
   locale_gen:
     name: "{{ item }}"
     state: present
@@ -9,7 +9,7 @@
   tags: system, root
 
 - name: configure default locales
-  become: yes
+  become: true
   template:
     src: locale.j2
     dest: /etc/default/locale

@@ -3,7 +3,7 @@
 - name: check flyctl latest release
   ansible.builtin.uri:
     url: https://api.github.com/repos/superfly/flyctl/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: check if flyctl is already installed

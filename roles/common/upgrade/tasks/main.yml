@@ -1,12 +1,12 @@
 ---
 
 - name: apt cache update
-  become: yes
+  become: true
   apt:
-    update_cache: yes
+    update_cache: true
 
 - name: apt dist-upgrade
-  become: yes
+  become: true
   apt:
     upgrade: dist
   register: apt_upgrade
@@ -17,15 +17,15 @@
   when: apt_upgrade is defined
 
 - name: install unattended-upgrades
-  become: yes
+  become: true
   apt: pkg=unattended-upgrades state=latest
 
 - name: remove useless packages from the cache
-  become: yes
+  become: true
   apt:
-    autoclean: yes
+    autoclean: true
 
 - name: remove dependencies that are no longer required
-  become: yes
+  become: true
   apt:
-    autoremove: yes
+    autoremove: true

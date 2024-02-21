@@ -13,7 +13,7 @@ config:
 debian_releases:
   - name: testing
     priority: 800
-    security: yes
+    security: true
   - name: unstable
     priority: -1
     security: no

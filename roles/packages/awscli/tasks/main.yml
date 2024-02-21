@@ -14,7 +14,7 @@
 - name: check awscli tags
   uri:
     url: https://api.github.com/repos/aws/aws-cli/tags
-    return_content: yes
+    return_content: true
   register: awscli_tags
   tags: system
 
@@ -60,7 +60,7 @@
     - awscli_stat.stat.exists
 
 - name: install aws config
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: aws_config.j2

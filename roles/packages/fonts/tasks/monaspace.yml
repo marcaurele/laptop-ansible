@@ -3,7 +3,7 @@
 - name: check monaspace releases
   uri:
     url: https://api.github.com/repos/githubnext/monaspace/releases/latest
-    return_content: yes
+    return_content: true
   register: monaspace_release
 
 - name: create fonts directory

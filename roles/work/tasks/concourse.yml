@@ -6,7 +6,7 @@
     return_content: true
     timeout: 1
   register: concourse_api_info
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: check if fly is already installed
   stat:

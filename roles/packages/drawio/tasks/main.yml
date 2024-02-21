@@ -3,12 +3,12 @@
 - name: check drawio releases
   uri:
     url: https://api.github.com/repos/jgraph/drawio-desktop/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
   tags: system
 
 - name: install or upgrade draw.io desktop {{ releases.json.name }}
-  become: yes
+  become: true
   apt:
     deb: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
     state: present

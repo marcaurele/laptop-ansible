@@ -1,25 +1,25 @@
 ---
 
 - name: add repository GPG key for GitHub CLI
-  become: yes
+  become: true
   ansible.builtin.get_url:
     url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
     dest: /etc/apt/trusted.gpg.d/githubcli.gpg
 
 - name: add repository for GitHub CLI
-  become: yes
+  become: true
   apt_repository:
     repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages stable  main"
 
 - name: install GitHub CLI
-  become: yes
+  become: true
   apt:
     name: gh
     state: latest
   register: gh_install
 
 - name: gh completion configuration
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.shell: "gh completion -s zsh > {{ config.zsh }}/github/_gh"
   when: gh_install.changed

@@ -3,21 +3,21 @@
 - name: fetch release info for PyCharm
   ansible.builtin.uri:
     url: "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true&type=release&build="
-    return_content: yes
+    return_content: true
   register: pycharm_release
 
 - name: "install PyCharm {{ pycharm_release.json.PCC[0].version }} - build: {{ pycharm_release.json.PCC[0].build }}"
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.unarchive:
-    remote_src: yes
+    remote_src: true
     src: "{{ pycharm_release.json.PCC[0].downloads.linux.link }}"
     dest: "{{ packages_directory }}/"
     creates: "{{ packages_directory }}/pycharm-community-{{ pycharm_release.json.PCC[0].version }}/"
   diff: false
 
 - name: link pycharm
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.file:
     state: link

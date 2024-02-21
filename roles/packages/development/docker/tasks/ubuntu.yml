@@ -14,7 +14,7 @@
     update_cache: true
 
 - name: install docker packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     name:
     - docker-ce

@@ -3,7 +3,7 @@
 - name: check pulumi releases
   ansible.builtin.uri:
     url: https://api.github.com/repos/pulumi/pulumi/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: check if pulumi is already installed

@@ -12,7 +12,7 @@
   tags: user
 
 - name: install config dot files
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
@@ -42,7 +42,7 @@
 - include_tasks: gpg.yml
 
 - name: install config dot files on work node
-  become: yes
+  become: true
   become_user: "{{ username }}"
   template:
     src: "{{ item.src }}"
@@ -54,18 +54,18 @@
       dest: "~/.gitconfig_work"
 
 - name: clone projects
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
-    clone: yes
-    accept_hostkey: yes
+    clone: true
+    accept_hostkey: true
     dest: "{{ item.dest }}"
     repo: "{{ item.url }}"
     update: no
     verify_commit: no
   loop: "{{ code_projects }}"
   tags: user
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install custom scripts
   become: true

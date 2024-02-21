@@ -3,7 +3,7 @@
 - name: check terraform-docs latest release
   ansible.builtin.uri:
     url: https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest
-    return_content: yes
+    return_content: true
   register: releases
 
 - name: check if terraform-docs is already installed
@@ -48,7 +48,7 @@
     - tfdocs_temp.path is defined
 
 - name: terraform-docs completion
-  become: yes
+  become: true
   become_user: "{{ username }}"
   ansible.builtin.shell: "terraform-docs completion zsh > {{ config.zsh }}/hashicorp/_terraform-docs"
   when:
