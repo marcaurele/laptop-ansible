@@ -30,4 +30,4 @@
   ansible.builtin.systemd:
     name: nomad
     state: stopped
-    enabled: no
+    enabled: false

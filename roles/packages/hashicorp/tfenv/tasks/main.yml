@@ -14,8 +14,8 @@
     clone: true
     dest: "~/.tfenv"
     repo: "https://github.com/tfutils/tfenv.git"
-    update: no
-    verify_commit: no
+    update: false
+    verify_commit: false
     version: "{{ release.json.tag_name }}"
   when: not ansible_check_mode
 

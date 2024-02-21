@@ -27,7 +27,7 @@
     dest: "~/audible/{{ item.dest }}/"
     repo: "{{ item.url }}"
     update: true
-    verify_commit: no
+    verify_commit: false
   loop:
     - url: https://github.com/KrumpetPirate/AAXtoMP3.git
       dest: AAXtoMP3

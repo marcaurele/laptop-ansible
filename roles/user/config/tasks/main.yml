@@ -61,8 +61,8 @@
     accept_hostkey: true
     dest: "{{ item.dest }}"
     repo: "{{ item.url }}"
-    update: no
-    verify_commit: no
+    update: false
+    verify_commit: false
   loop: "{{ code_projects }}"
   tags: user
   ignore_errors: true

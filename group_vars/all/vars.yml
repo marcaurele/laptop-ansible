@@ -16,7 +16,7 @@ debian_releases:
     security: true
   - name: unstable
     priority: -1
-    security: no
+    security: false
 
 debian_unstable_is_active: "{{ debian_releases|selectattr('name', 'eq', 'unstable')|length > 0}}"
 

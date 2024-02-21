@@ -4,14 +4,14 @@
   become: true
   stat:
     path: "/home/{{ username }}"
-    get_checksum: no
+    get_checksum: false
   register: user_home
   tags: system, root
 
 - name: prompting for {{ username }} password if needed
   pause:
     prompt: "Give a password for {{ username }}"
-    echo: no
+    echo: false
   when: not user_home.stat.exists
   register: user_password
   tags: system, root
