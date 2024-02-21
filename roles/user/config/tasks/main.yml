@@ -3,7 +3,7 @@
 - name: add authorized ssh keys for {{ username }}
   become: true
   become_user: "{{ username }}"
-  authorized_key:
+  ansible.builtin.authorized_key:
     key: https://github.com/marcaurele.keys
     comment: "github user key for marcaurele"
     state: present
@@ -14,7 +14,7 @@
 - name: install config dot files
   become: true
   become_user: "{{ username }}"
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode | default('0644')}}"
@@ -44,7 +44,7 @@
 - name: install config dot files on work node
   become: true
   become_user: "{{ username }}"
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode | default('0644')}}"
@@ -56,7 +56,7 @@
 - name: clone projects
   become: true
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     clone: true
     accept_hostkey: true
     dest: "{{ item.dest }}"
@@ -69,7 +69,7 @@
 
 - name: install custom scripts
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: "/usr/local/bin/{{ company }}chat"
     mode: 0755
     owner: root
@@ -78,3 +78,24 @@
       #!/bin/sh -e
       /usr/bin/chromium --profile-directory=Default --app-id=mdpkiolbdkhdjpekfbkbmhigcaggjagi
   when: not private_node
+
+- name: check if kDrive-foliate directory exists
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.stat:
+    path: "~/kDrive/Foliate-settings"
+  register: kdrive_foliate
+  tags: foliate
+
+- name: configure foliate settings directory to be synced
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    state: link
+    force: yes
+    src: "~/kDrive/Foliate-settings"
+    dest: "~/.local/share/com.github.johnfactotum.Foliate"
+  when:
+  - ansible_facts.packages['foliate'] is defined
+  - kdrive_foliate.stat.exists
+  tags: foliate

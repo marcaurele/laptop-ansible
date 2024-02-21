@@ -13,6 +13,7 @@
     - curl
     - dnsutils
     - flameshot
+    - foliate
     - git
     - git-lfs
     - gpg
