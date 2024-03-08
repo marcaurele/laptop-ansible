@@ -47,6 +47,7 @@
     - qrencode
     - scdaemon
     - screenfetch
+    - shellcheck
     - sudo
     - tmate
     - uuid
