@@ -14,6 +14,7 @@
     - dnsutils
     - flameshot
     - foliate
+    - fzf
     - git
     - git-lfs
     - gpg

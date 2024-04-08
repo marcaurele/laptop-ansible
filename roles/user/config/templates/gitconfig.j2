@@ -19,6 +19,7 @@
         co = checkout
         commend = commit --amend --no-edit --date=now
         count = !git shortlog -sn
+        fixup = !git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup
         please = push --force-with-lease
 	pushmr = push -o merge_request.create
         promote = !$ZSH/bin/git-promote
@@ -81,6 +82,8 @@
         autoSetupRemote = true
         default = current
         gpgSign = if-asked
+[rebase]
+        autosquash = true
 [rerere]
         enabled = true
 [tag]
