@@ -32,3 +32,8 @@ tasks:
     desc: perform a pipenv sync
     cmds:
       - pipenv sync
+
+  vault-edit:
+    desc: perform an Ansible vault command
+    cmds:
+      - pipenv run ansible-vault edit {{.CLI_ARGS}}
