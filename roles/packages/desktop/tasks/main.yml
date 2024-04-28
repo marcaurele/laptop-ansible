@@ -22,7 +22,7 @@
     - fonts-symbola
     - gimp
     - gocryptfs
-    - heif-thumbnailer
+    - heif-gdk-pixbuf
     - hunspell-en-us
     - hunspell-fr-revised
     - inkscape
