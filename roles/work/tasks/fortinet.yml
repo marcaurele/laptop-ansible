@@ -1,54 +1,9 @@
 ---
 
-# Some links
-# SAML integration not baked in: https://github.com/adrienverge/openfortivpn/pull/1042
-# SAML login with cookie: https://github.com/adrienverge/openfortivpn/pull/1042#issuecomment-1344211491
-# nmcli: https://gitlab.gnome.org/GNOME/NetworkManager-fortisslvpn
-
-- name: install OpenFortiVPN
+- name: install OpenConnect tool for Fortinet VPN
   become: true
   ansible.builtin.apt:
     pkg:
-      - openfortivpn
-
-- name: configure OpenFortiVPN
-  become: true
-  ansible.builtin.template:
-    src: openfortivpn.conf.j2
-    dest: /etc/openfortivpn/work.conf
-
-- name: configure OpenFortiVPN routes
-  become: true
-  ansible.builtin.template:
-    src: openfortivpn-pppd.j2
-    dest: /etc/ppp/ip-up.d/fortivpn
-    mode: 0755
-
-- name: install service file
-  become: true
-  ansible.builtin.template:
-    src: openfortivpn.service.j2
-    dest: /lib/systemd/system/openfortivpn@.service
-  register: openfortivpn_service
-
-- name: enable systemd service for OpenFortiVPN
-  become: true
-  ansible.builtin.systemd:
-    name: "openfortivpn@work"
-    enabled: true
-    daemon_reload: true
-  ignore_errors: true
-  when: openfortivpn_service.changed
-
-# - name: install service override file to use systemd-creds
-#   become: true
-#   ansible.builtin.template:
-#     src: openfortivpn-override.conf
-#     dest: /etc/systemd/system/openfortivpn@work.service.d/override.conf
-#   register: openfortivpn_override
-
-# - name: reload systemd daemon
-#   become: true
-#   ansible.builtin.systemd:
-#     daemon_reload: true
-#   when: openfortivpn_override.changed
+      - openconnect
+      - network-manager-openconnect
+      - network-manager-openconnect-gnome
