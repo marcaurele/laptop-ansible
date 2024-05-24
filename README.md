@@ -70,6 +70,9 @@ LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#
 
 ## VPN connection
 
+> [!WARNING]
+> Currently holding the network-manager package as the openconnect plugin seems to fail to correctly setup the configuration: `sudo apt-mark hold network-manager=1.46.0-2`.
+
 ### WireGuard
 
 To create the set of keys:
