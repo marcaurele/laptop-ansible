@@ -125,3 +125,7 @@ trust A8:5B:78:A0:37:48
 ```
 
 _To pair with the MX Ergo, don't open the BT manager but do everything from the command line._
+
+## Tips
+
+To clear an entry from the ZSH history: `sed -i '/myword/d' $HISTFILE`.
