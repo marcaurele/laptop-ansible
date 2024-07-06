@@ -99,3 +99,10 @@
   - ansible_facts.packages['foliate'] is defined
   - kdrive_foliate.stat.exists
   tags: foliate
+
+- name: copy Solarized theme for vim
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.get_url:
+    dest: "~/.vim/colors/solarized.vim"
+    url: https://github.com/altercation/vim-colors-solarized/raw/master/colors/solarized.vim

@@ -75,6 +75,8 @@
     - path: "~/.config/pypoetry"
     - path: "~/.config/systemd/user"
     - path: "~/.config/tmux"
+    - path: "~/.vim"
+    - path: "~/.vim/colors"
     - path: "~/Private"
     - path: "{{ packages_directory }}"
     - path: "~/.ssh"
