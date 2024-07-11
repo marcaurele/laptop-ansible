@@ -12,6 +12,11 @@ tasks:
       - task: help
         silent: true
 
+  fix-pipx:
+    desc: Fix pipx standard problem with a reinstall-all
+    cmds:
+      - pipx reinstall-all
+
   help:
     desc: List all available tasks (default)
     cmds:
@@ -21,6 +26,11 @@ tasks:
     desc: run ansible playbook on this local host
     cmds:
       - pipenv run ./update-local.sh {{.CLI_ARGS}}
+
+  lock:
+    desc: perform a pipenv lock
+    cmds:
+      - pipenv lock
 
   rebuild:
     desc: rebuild the pipenv environment
