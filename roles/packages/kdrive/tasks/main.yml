@@ -26,7 +26,7 @@
     mode: "0755"
   when:
     - not ansible_check_mode
-    - not kdrive_stat.stat.exists or (kdrive.version.split('.')[:-1] | join('.')) not in kdrive_version.stdout_lines[0]
+    - not kdrive_stat.stat.exists or (kdrive.version.split('.')[:-1] | join('.')) not in kdrive_version.stdout_lines[1]
 
 - name: link kDrive
   become: true
