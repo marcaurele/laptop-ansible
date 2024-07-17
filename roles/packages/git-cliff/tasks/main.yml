@@ -1,0 +1,55 @@
+---
+
+- name: check git-cliff releases
+  uri:
+    url: https://api.github.com/repos/orhun/git-cliff/releases/latest
+    return_content: true
+  register: releases
+
+- name: set latest git-cliff version
+  set_fact:
+    gitcliff_latest_version: "{{ releases.json.tag_name }}"
+  when: not ansible_check_mode
+
+- name: check local git-cliff
+  stat:
+    path: /usr/local/bin/git-cliff
+  register: gitcliff_stat
+
+- name: check local git-cliff version
+  command: /usr/local/bin/git-cliff --version
+  register: gitcliff_version
+  changed_when: false
+  when: gitcliff_stat.stat.exists
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: git-cliff
+  register: gitcliff_temp
+  when:
+    - not ansible_check_mode
+    - not gitcliff_stat.stat.exists or gitcliff_latest_version[1:] not in gitcliff_version.stdout_lines[0]
+  diff: false
+
+- name: download git-cliff {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ gitcliff_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux-musl`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+    remote_src: true
+    extra_opts:
+    - --strip-components=1
+  register: gitcliff_download
+  diff: false
+  when:
+    - gitcliff_temp.path is defined
+
+- name: install git-cliff {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ gitcliff_temp.path }}/git-cliff"
+    dest: "/usr/local/bin/git-cliff"
+    remote_src: true
+    mode: 0755
+  when:
+    - gitcliff_temp.path is defined

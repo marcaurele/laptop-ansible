@@ -236,5 +236,8 @@
     - role: packages/taskfile
       tags: taskfile
 
+    - role: packages/git-cliff
+      tags: git-cliff
+
   tags:
     - packages
