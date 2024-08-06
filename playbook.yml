@@ -239,5 +239,8 @@
     - role: packages/git-cliff
       tags: git-cliff
 
+    - role: packages/lazydocker
+      tags: lazydocker
+
   tags:
     - packages
