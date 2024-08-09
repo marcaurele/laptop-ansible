@@ -26,6 +26,13 @@
     path: "{{ config.zsh }}/hashicorp"
     state: directory
 
+- name: hashicorp terraform module-plugins shared directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "~/.terraform.d/plugins"
+    state: directory
+
 - name: tfenv configuration
   become: true
   become_user: "{{ username }}"
