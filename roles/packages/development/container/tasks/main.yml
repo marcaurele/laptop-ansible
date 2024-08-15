@@ -6,4 +6,4 @@
     name:
     - buildah
     - podman
-  tags: never
+    state: absent
