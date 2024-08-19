@@ -40,6 +40,7 @@ locales:
   - en_CA.UTF-8
 
 packages_absent_extra:
+  - firmware-nvidia-graphics
   - openfortivpn
   - pulseaudio
   - remmina
