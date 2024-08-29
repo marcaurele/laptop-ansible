@@ -193,9 +193,6 @@
     - role: user/zsh
       tags: user, zsh
 
-    #- role: packages/jetbrains/intellij
-    #  tags: intellij
-
     - role: packages/jetbrains/pycharm
       tags: pycharm
 
