@@ -213,10 +213,6 @@
       tags: calibre
       when: private_node
 
-    #- role: packages/mattermost-desktop
-    #  tags: mattermost
-    #  when: not private_node
-
     - role: packages/awscli
       tags: awscli
       when: not private_node
