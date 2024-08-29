@@ -107,9 +107,6 @@
     - role: packages/gh
       tags: gh
 
-    #- role: packages/development/java
-    #  tags: dev, java
-
     - role: packages/development/container
       tags: dev, container
 
