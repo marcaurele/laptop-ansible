@@ -199,9 +199,6 @@
     - role: packages/jetbrains/pycharm
       tags: pycharm
 
-    #- role: packages/joplin
-    #  tags: joplin
-
     - role: packages/kdrive
       tags: kdrive
 
