@@ -1,0 +1,65 @@
+---
+
+- name: check uv releases
+  uri:
+    url: https://api.github.com/repos/astral-sh/uv/releases/latest
+    return_content: true
+  register: releases
+
+- name: set latest uv version
+  set_fact:
+    uv_latest_version: "{{ releases.json.tag_name }}"
+  when: not ansible_check_mode
+
+- name: check local uv
+  stat:
+    path: /usr/local/bin/uv
+  register: uv_stat
+
+- name: check local uv version
+  command: /usr/local/bin/uv --version
+  register: uv_version
+  changed_when: false
+  when: uv_stat.stat.exists
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: uv
+  register: uv_temp
+  when:
+    - not ansible_check_mode
+    - not uv_stat.stat.exists or uv_latest_version not in uv_version.stdout_lines[0]
+  diff: false
+
+- name: download uv {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ uv_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux-musl`) && contains(name, `aarch64`)].browser_download_url | [0]') }}"
+    remote_src: true
+    extra_opts:
+    - --strip-components=1
+  register: uv_download
+  diff: false
+  when:
+    - uv_temp.path is defined
+
+- name: install uv {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ uv_temp.path }}/uv"
+    dest: "/usr/local/bin/uv"
+    remote_src: true
+    mode: 0755
+  when:
+    - uv_temp.path is defined
+
+- name: install uvx {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ uv_temp.path }}/uvx"
+    dest: "/usr/local/bin/uvx"
+    remote_src: true
+    mode: 0755
+  when:
+    - uv_temp.path is defined

@@ -211,5 +211,8 @@
     - role: packages/development/devbox
       tags: devbox
 
+    - role: packages/python/uv
+      tags: uv
+
   tags:
     - packages
