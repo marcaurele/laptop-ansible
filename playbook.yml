@@ -135,9 +135,6 @@
       tags: work
       when: not private_node
 
-    #- role: packages/minikube
-    #  tags: minikube
-
     - role: packages/firefox
       tags: firefox
 
