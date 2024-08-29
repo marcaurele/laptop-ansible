@@ -95,10 +95,6 @@
     - role: packages/visualcode
       tags: vscode
 
-    #- role: packages/helm
-    #  tags: helm, k8s
-    #  when: not private_node
-
     - role: packages/development/toolbox
       tags: dev, toolbox
 
