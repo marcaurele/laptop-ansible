@@ -183,10 +183,6 @@
     - role: packages/sops
       tags: sops
 
-    #- role: packages/audible
-    #  tags: audible
-    #  when: private_node
-
     - role: user/config
       tags: user, config
 
