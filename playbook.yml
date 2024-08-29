@@ -144,9 +144,6 @@
     #- role: packages/dropbox
     #  tags: dropbox
 
-    #- role: packages/sublime
-    #  tags: sublime
-
     - role: packages/doggo
       tags: doggo
 
