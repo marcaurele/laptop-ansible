@@ -214,5 +214,8 @@
     - role: packages/python/uv
       tags: uv
 
+    - role: packages/cyme
+      tags: cyme
+
   tags:
     - packages
