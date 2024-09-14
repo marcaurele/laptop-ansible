@@ -35,7 +35,7 @@
 - name: download uv {{ releases.json.tag_name }}
   ansible.builtin.unarchive:
     dest: "{{ uv_temp.path }}"
-    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux-musl`) && contains(name, `aarch64`)].browser_download_url | [0]') }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux-musl`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
     remote_src: true
     extra_opts:
     - --strip-components=1
