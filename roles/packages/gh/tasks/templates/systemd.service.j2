@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Get GH notifications counter
+
+[Service]
+Type=Oneshot
+ExecStart=/home/{{ username }}/bin/gh-notification-counter

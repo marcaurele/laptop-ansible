@@ -23,3 +23,62 @@
   become_user: "{{ username }}"
   ansible.builtin.shell: "gh completion -s zsh > {{ config.zsh }}/github/_gh"
   when: gh_install.changed
+
+- name: install script for gh-notification-counter
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: gh-notification-counter.j2
+    dest: "~/bin/gh-notification-counter"
+    mode: "0750"
+  when: not private_node
+
+- name: install service file for gh-notification-counter
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: systemd.service.j2
+    dest: "~/.config/systemd/user/gh-notification-counter.service"
+  register: ghcounter_service
+  when: not private_node
+
+- name: install service timer file for gh-notification-counter
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: systemd.timer.j2
+    dest: "~/.config/systemd/user/gh-notification-counter.timer"
+  register: ghcounter_timer
+  when: not private_node
+
+- name: service daemon reload
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    daemon_reload: true
+    scope: user
+  when:
+    - ghcounter_service.changed or ghcounter_timer.changed
+    - not private_node
+  ignore_errors: true
+
+- name: configure gh-notification-counter service
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    enabled: true
+    name: gh-notification-counter.service
+    scope: user
+  ignore_errors: true
+  when: not private_node
+
+- name: configure gh-notification-counter timer
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    enabled: true
+    name: gh-notification-counter.timer
+    state: started
+    scope: user
+  ignore_errors: true
+  when: not private_node

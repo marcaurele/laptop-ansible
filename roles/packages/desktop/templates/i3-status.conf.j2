@@ -13,6 +13,7 @@ general {
 
 {% if not private_node %}
 order += "read_file gcal"
+order += "read_file GH"
 {% endif %}
 order += "ipv6"
 order += "disk /"
@@ -77,6 +78,14 @@ path_exists VPN {
 {% endif %}
         color_good = "#ffcf40"
 }
+
+{% if not private_node %}
+read_file GH  {
+        path = "/home/{{ username }}/.gh-inbox-counter.txt"
+        color_good = "#eeeeee"
+        format = "%title: %content"
+}
+{% endif %}
 
 {% if not private_node %}
 read_file gcal {

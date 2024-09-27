@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+# {{ ansible_managed }}
+t=$(mktemp)
+gh api notifications | jq -r '.|length' > $t
+mv $t ~/.gh-inbox-counter.txt
