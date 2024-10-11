@@ -10,7 +10,7 @@
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: gcalclirc.j2
-    dest: "~/.gcalclirc"
+    dest: "~/.config/gcalcli/gcalclirc"
 
 - name: install script for next meeting
   become: true

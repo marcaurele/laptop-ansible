@@ -3,9 +3,11 @@
 t=$(mktemp)
 gcalcli \
     agenda "$(date -d '-15 min' +'%F %R')" "$(date '+%F 23:59')" \
+    --calendar={{ email_work }} \
     --tsv \
     --nodeclined \
     --nostarted \
     --details location \
   | sed -n '2p' | awk -F"\t" '{print $2"-"$4"|"$5"|"$6}' > $t
+cat $t
 mv $t ~/.next-meeting.txt
