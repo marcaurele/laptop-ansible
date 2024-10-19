@@ -189,11 +189,9 @@
 
     - role: packages/awscli
       tags: awscli
-      when: not private_node
 
     - role: packages/awsvault
       tags: awsvault
-      when: not private_node
 
     - role: packages/gcalcli
       tags: gcalcli
