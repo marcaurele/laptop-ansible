@@ -4,6 +4,8 @@ aws_config: "{{ vault_aws_config }}"
 
 aws_config_extra: "{{ vault_aws_config_extra }}"
 
+company: "{{ vault_company }}"
+
 # packages_absent_extra_private:
 
 packages_extra: # Debian packages
