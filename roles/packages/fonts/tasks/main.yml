@@ -6,8 +6,14 @@
 - name: install monaspace Fonts
   include_tasks: monaspace.yml
 
-- name: install local fonts
-  include_tasks: local.yml
+- name: install fonts
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/usr/local/share/fonts/{{ item | basename }}"
+    mode: 0644
+  loop: "{{ fonts }}"
+  register: local_fonts
   vars:
     fonts:
       - "Montserrat/Montserrat-Italic-VariableFont_wght.ttf"
