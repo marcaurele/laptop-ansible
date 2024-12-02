@@ -6,7 +6,17 @@
 - name: install monaspace Fonts
   include_tasks: monaspace.yml
 
+- name: install local fonts
+  include_tasks: local.yml
+  vars:
+    fonts:
+      - "Montserrat/Montserrat-Italic-VariableFont_wght.ttf"
+      - "Montserrat/Montserrat-VariableFont_wght.ttf"
+      - "Oswald/Oswald-VariableFont_wght.ttf"
+      - "Source_Code_Pro/SourceCodePro-Italic-VariableFont_wght.ttf"
+      - "Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf"
+
 - name: rebuild font cache
   become: true
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
-  when: iafonts_downloaded.changed or monaspace_local_version.changed
+  when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
