@@ -215,5 +215,8 @@
     - role: packages/cyme
       tags: cyme
 
+    - role: packages/jwt
+      tags: jwt
+
   tags:
     - packages
