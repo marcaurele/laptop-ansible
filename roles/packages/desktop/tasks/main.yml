@@ -18,7 +18,7 @@
     - calibre
     - "chromium{% if ansible_distribution == 'Ubuntu' %}-browser{% endif %}"
     - dictionaries-common
-    - evolution
+#    - evolution
     - fonts-symbola
     - gimp
     - gocryptfs
