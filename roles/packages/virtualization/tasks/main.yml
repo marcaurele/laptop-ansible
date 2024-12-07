@@ -3,6 +3,7 @@
 - name: install virtualization packages
   become: true
   ansible.builtin.apt:
+    state: absent
     name:
     - cloud-image-utils
     - genisoimage
@@ -20,9 +21,10 @@
   become: true
   user:
     name: "{{ username }}"
-    state: present
+    state: absent
     append: true
     groups:
       - libvirt
       - lxd
   tags: user, root
+  ignore_errors: true
