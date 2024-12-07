@@ -25,25 +25,25 @@ tasks:
   local:
     desc: run ansible playbook on this local host
     cmds:
-      - pipenv run ./update-local.sh {{.CLI_ARGS}}
+      - uv run ./update-local.sh {{.CLI_ARGS}}
 
   lock:
-    desc: perform a pipenv lock
+    desc: perform a uv lock
     cmds:
-      - pipenv lock
+      - uv lock
 
   rebuild:
-    desc: rebuild the pipenv environment
+    desc: rebuild the uv environment
     cmds:
       - rm -rf .venv
       - task: sync
 
   sync:
-    desc: perform a pipenv sync
+    desc: perform a uv sync
     cmds:
-      - pipenv sync
+      - uv sync
 
   vault-edit:
     desc: perform an Ansible vault command
     cmds:
-      - pipenv run ansible-vault edit {{.CLI_ARGS}}
+      - uv run ansible-vault edit {{.CLI_ARGS}}
