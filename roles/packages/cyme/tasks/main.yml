@@ -6,12 +6,12 @@
     return_content: true
   register: latest_release
 
-- name: install latest cyme
+- name: install or upgrade cyme {{ latest_release.json.tag_name }}
   become: true
   apt:
     deb: "{{ latest_release.json |to_json|from_json| json_query('assets[?contains(name, `amd64`) && contains(name, `deb`)].browser_download_url | [0]') }}"
     state: present
   when:
     - not ansible_check_mode
-    - ansible_facts.packages['cyme'] is not defined or ansible_facts.packages['cyme'][0]['version'] != latest_release.json.tag_name
+    - ansible_facts.packages['cyme'] is not defined or ansible_facts.packages['cyme'][0]['version'] != latest_release.json.tag_name[1:]
   tags: system
