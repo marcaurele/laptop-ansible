@@ -7,7 +7,7 @@
   register: last_release
   tags: system
 
-- name: install or upgrade pandoc
+- name: install or upgrade pandoc {{ last_release.json.tag_name }}
   become: true
   apt:
     deb: "{{ last_release.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
