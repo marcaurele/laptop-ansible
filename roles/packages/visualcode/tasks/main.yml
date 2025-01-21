@@ -6,6 +6,13 @@
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/trusted.gpg.d/microsoft.asc
 
+- name: remove repository added by MS for Visual Studio Code
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
+    filename: vscode
+    state: absent
+
 - name: add repository for Visual Studio Code
   become: true
   apt_repository:
@@ -25,3 +32,10 @@
     regexp: ^deb (.*) (https?)://(.*)
     line: deb \g<1> https://\g<3>
     backrefs: true
+
+- name: remove repository added by MS for Visual Studio Code
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
+    filename: vscode
+    state: absent
