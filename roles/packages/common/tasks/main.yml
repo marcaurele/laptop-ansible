@@ -39,6 +39,7 @@
     - openssh-server
     - openssl
     - paperkey
+    - parallel
     - pass
     - pass-extension-otp
     - pigz
