@@ -12,11 +12,6 @@ tasks:
       - task: help
         silent: true
 
-  fix-pipx:
-    desc: Fix pipx standard problem with a reinstall-all
-    cmds:
-      - pipx reinstall-all
-
   help:
     desc: List all available tasks (default)
     cmds:

@@ -42,6 +42,7 @@ locales:
 packages_absent_extra:
   - firmware-nvidia-graphics
   - openfortivpn
+  - pipenv
   - pulseaudio
   - remmina
   - terraform

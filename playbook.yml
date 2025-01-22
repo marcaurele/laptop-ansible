@@ -59,14 +59,9 @@
     - role: packages/python
       tags: python
 
-    - role: packages/python/pyenv
-      tags: pyenv
-
-    - role: packages/python/pipx
-      tags: pipx
-
     - role: packages/python/poetry
       tags: poetry
+      when: not private_mode
 
     - role: packages/pulumi
       tags: pulumi, never
