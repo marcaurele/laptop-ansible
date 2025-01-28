@@ -1,22 +1,15 @@
 ---
 
-- name: fetch latest release for tfenv
-  uri:
-    url: https://api.github.com/repos/tfutils/tfenv/releases/latest
-    return_content: true
-  register: release
-  tags: system
-
 - name: install tfenv as git checkout
   become: true
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     clone: true
     dest: "~/.tfenv"
-    repo: "https://github.com/tfutils/tfenv.git"
-    update: false
-    verify_commit: false
-    version: "{{ release.json.tag_name }}"
+    repo: "https://github.com/opentofu/tfenv.git"
+    version: "add-opentofu-support"
+    update: true
+  diff: false
   when: not ansible_check_mode
 
 - name: hashicorp configuration directory
