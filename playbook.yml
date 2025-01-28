@@ -61,7 +61,7 @@
 
     - role: packages/python/poetry
       tags: poetry
-      when: not private_mode
+      when: not private_node
 
     - role: packages/pulumi
       tags: pulumi, never
