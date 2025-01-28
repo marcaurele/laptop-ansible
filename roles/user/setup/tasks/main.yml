@@ -72,7 +72,6 @@
     - path: "~/.config"
     - path: "~/.config/dunst"
     - path: "~/.config/nvim"
-    - path: "~/.config/pypoetry"
     - path: "~/.config/systemd/user"
     - path: "~/.config/tmux"
     - path: "~/.vim"
