@@ -22,3 +22,6 @@ alias aws-prod-django='aws_describe_instances_table prod django'
 alias aws-staging-django='aws_describe_instances_table staging django'
 alias aws-prod-celery='_aws_describe_instances_table_celery prod'
 alias aws-staging-celery='_aws_describe_instances_table_celery staging'
+
+alias vpn-on="/usr/bin/expect -c 'spawn nmcli connection up {{ company }} --ask; expect \"Username\"; send \"{{ username }}\r\"; expect -re \"Password\" {; send -- [exec pass {{ company }}/jumpcloud | head -1]; send \",\"; send -- [exec pass otp {{ company }}/jumpcloud]\r; }; interact; puts \"\nDone\n\"; exit;'"
+alias vpn-off="nmcli connection down {{ company }}"
