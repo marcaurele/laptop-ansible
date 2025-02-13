@@ -21,6 +21,22 @@
       - "Oswald/Oswald-VariableFont_wght.ttf"
       - "Source_Code_Pro/SourceCodePro-Italic-VariableFont_wght.ttf"
       - "Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Black.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-BlackItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Bold.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-BoldItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-ExtraBold.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-ExtraBoldItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-ExtraLight.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-ExtraLightItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Italic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Light.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-LightItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Medium.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-MediumItalic.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-Regular.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-SemiBold.ttf"
+      - "Source_Code_Pro/static/SourceCodePro-SemiBoldItalic.ttf"
 
 - name: rebuild font cache
   become: true
