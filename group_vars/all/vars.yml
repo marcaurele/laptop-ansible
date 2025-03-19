@@ -48,6 +48,7 @@ packages_absent_extra:
   - terraform
   - vagrant
   - vault
+  - vlc
 
 packages_directory: "~/soft"
 

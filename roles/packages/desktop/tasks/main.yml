@@ -28,6 +28,7 @@
     - inkscape
     - libreoffice
     - lxappearance
+    - mpv
     - network-manager
     - network-manager-gnome
     - pasystray
@@ -35,7 +36,6 @@
     - rdesktop
     - telegram-desktop
     - treesheets
-    - vlc
     - suckless-tools
     - x11-xkb-utils
     - xclip
