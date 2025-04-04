@@ -206,5 +206,8 @@
     - role: packages/jwt
       tags: jwt
 
+    - role: packages/exercism
+      tags: exercism
+
   tags:
     - packages

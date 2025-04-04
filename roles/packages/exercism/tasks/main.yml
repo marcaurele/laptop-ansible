@@ -1,0 +1,64 @@
+---
+
+- name: check exercism releases
+  uri:
+    url: https://api.github.com/repos/exercism/cli/releases/latest
+    return_content: true
+  register: releases
+
+- name: set latest exercism version
+  set_fact:
+    exercism_latest_version: "{{ releases.json.tag_name[1:] }}"
+  when: not ansible_check_mode
+
+- name: check local exercism
+  stat:
+    path: /usr/local/bin/exercism
+  register: exercism_stat
+
+- name: check local exercism version
+  command: /usr/local/bin/exercism version
+  register: exercism_version
+  changed_when: false
+  when: exercism_stat.stat.exists
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: exercism
+  register: exercism_temp
+  when:
+    - not ansible_check_mode
+    - not exercism_stat.stat.exists or exercism_latest_version not in exercism_version.stdout_lines[0]
+  diff: false
+
+- name: download exercism {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ exercism_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+    remote_src: true
+  register: exercism_download
+  diff: false
+  when:
+    - exercism_temp.path is defined
+
+- name: install exercism {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ exercism_temp.path }}/exercism"
+    dest: "/usr/local/bin/exercism"
+    remote_src: true
+    mode: 0755
+  when:
+    - exercism_temp.path is defined
+
+- name: install exercism zsh {{ releases.json.tag_name }} completion
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: "{{ exercism_temp.path }}/shell/exercism_completion.zsh"
+    dest: "{{ config.zsh }}/zsh/exercism.zsh"
+    remote_src: true
+    mode: 0755
+  when:
+    - exercism_temp.path is defined
