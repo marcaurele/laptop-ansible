@@ -55,10 +55,6 @@
 - name: install exercism zsh {{ releases.json.tag_name }} completion
   become: true
   become_user: "{{ username }}"
-  copy:
-    src: "{{ exercism_temp.path }}/shell/exercism_completion.zsh"
-    dest: "{{ config.zsh }}/zsh/exercism.zsh"
-    remote_src: true
-    mode: 0755
+  ansible.builtin.shell: "exercism completion zsh > {{ config.zsh }}/zsh/exercism.zsh"
   when:
     - exercism_temp.path is defined
