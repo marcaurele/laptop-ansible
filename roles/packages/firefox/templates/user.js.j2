@@ -6,3 +6,108 @@
 //   - 1 = send the header only when clicking on links and similar elements,
 //   - 2 = (default) send on all requests (e.g. images, links, etc.).
 user_pref("network.http.referer.defaultPolicy", 1);
+
+
+// Extra pref from https://github.com/pyllyukko/user.js/blob/master/user.js
+
+// PREF: Disable Location-Aware Browsing (geolocation)
+// https://www.mozilla.org/en-US/firefox/geolocation/
+user_pref("geo.enabled", false);
+
+// PREF: When geolocation is enabled, use Mozilla geolocation service instead of Google
+// https://bugzilla.mozilla.org/show_bug.cgi?id=689252
+user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+
+// PREF: Disable "beacon" asynchronous HTTP transfers (used for analytics)
+// https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon
+user_pref("beacon.enabled", false);
+
+// PREF: Disable speech recognition
+// https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html
+// https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
+// https://wiki.mozilla.org/HTML5_Speech_API
+user_pref("media.webspeech.recognition.enable", false);
+
+// PREF: Disable speech synthesis
+// https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
+user_pref("media.webspeech.synth.enabled", false);
+
+// PREF: When browser pings are enabled, only allow pinging the same host as the origin page
+// http://kb.mozillazine.org/Browser.send_pings.require_same_host
+user_pref("browser.send_pings.require_same_host", true);
+
+// PREF: Disable gamepad API to prevent USB device enumeration
+// https://www.w3.org/TR/gamepad/
+// https://trac.torproject.org/projects/tor/ticket/13023
+user_pref("dom.gamepad.enabled", false);
+
+// PREF: Disable GeoIP lookup on your address to set default search engine region
+// https://trac.torproject.org/projects/tor/ticket/16254
+// https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine
+user_pref("browser.search.countryCode", "CH");
+user_pref("browser.search.region", "CH");
+user_pref("browser.search.geoip.url", "");
+
+// PREF: Don't try to guess domain names when entering an invalid domain name in URL bar
+// http://www-archive.mozilla.org/docs/end-user/domain-guessing.html
+user_pref("browser.fixup.alternate.enabled", false);
+
+// PREF: Disable Flash Player NPAPI plugin
+// http://kb.mozillazine.org/Flash_plugin
+user_pref("plugin.state.flash", 0);
+
+// PREF: Disable Gnome Shell Integration NPAPI plugin
+user_pref("plugin.state.libgnome-shell-browser-plugin", 0);
+
+// PREF: Disable remote debugging
+// https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Debugging_Firefox_Desktop
+// https://developer.mozilla.org/en-US/docs/Tools/Tools_Toolbox#Advanced_settings
+user_pref("devtools.debugger.remote-enabled", false);
+user_pref("devtools.chrome.enabled", false);
+user_pref("devtools.debugger.force-local", true);
+
+// PREF: Enable Firefox Tracking Protection
+// https://wiki.mozilla.org/Security/Tracking_protection
+// https://support.mozilla.org/en-US/kb/tracking-protection-firefox
+// https://support.mozilla.org/en-US/kb/tracking-protection-pbm
+// https://kontaxis.github.io/trackingprotectionfirefox/
+// https://feeding.cloud.geek.nz/posts/how-tracking-protection-works-in-firefox/
+user_pref("privacy.trackingprotection.enabled", true);
+user_pref("privacy.trackingprotection.pbmode.enabled", true);
+
+// PREF: Enable blocking reported web forgeries
+// https://wiki.mozilla.org/Security/Safe_Browsing
+// http://kb.mozillazine.org/Safe_browsing
+// https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work
+// http://forums.mozillazine.org/viewtopic.php?f=39&t=2711237&p=12896849#p12896849
+// CIS 2.3.4
+user_pref("browser.safebrowsing.phishing.enabled", true);
+
+// PREF: Enable blocking reported attack sites
+// http://kb.mozillazine.org/Browser.safebrowsing.malware.enabled
+// CIS 2.3.5
+user_pref("browser.safebrowsing.malware.enabled", true);
+
+// PREF: Disable querying Google Application Reputation database for downloaded binary files
+// https://www.mozilla.org/en-US/firefox/39.0/releasenotes/
+// https://wiki.mozilla.org/Security/Application_Reputation
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+
+// PREF: Disable Pocket
+// https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
+// https://github.com/pyllyukko/user.js/issues/143
+user_pref("browser.pocket.enabled", false);
+user_pref("extensions.pocket.enabled", false);
+
+// PREF: Disable "Recommended by Pocket" in Firefox Quantum
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+
+// PREF: When sending Referer across domains, only send scheme, host, and port in the Referer header
+// https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
+user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+
+// PREF: Make sure that third-party cookies (if enabled) never persist beyond the session.
+// https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
+// http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly
+// https://developer.mozilla.org/en-US/docs/Cookies_Preferences_in_Mozilla#network.cookie.thirdparty.sessionOnly
+user_pref("network.cookie.thirdparty.sessionOnly", true);
