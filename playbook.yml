@@ -209,5 +209,8 @@
     - role: packages/exercism
       tags: exercism
 
+    - role: packages/jujutsu
+      tags: jj
+
   tags:
     - packages

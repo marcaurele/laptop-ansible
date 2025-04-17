@@ -1,0 +1,53 @@
+---
+
+- name: check jj releases
+  uri:
+    url: https://api.github.com/repos/jj-vcs/jj/releases/latest
+    return_content: true
+  register: releases
+
+- name: set latest jj version
+  set_fact:
+    jj_latest_version: "{{ releases.json.tag_name[1:] }}"
+  when: not ansible_check_mode
+
+- name: check local jj
+  stat:
+    path: /usr/local/bin/jj
+  register: jj_stat
+
+- name: check local jj version
+  command: /usr/local/bin/jj --version
+  register: jj_version
+  changed_when: false
+  when: jj_stat.stat.exists
+
+- name: create temporary directory for install archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: jj
+  register: jj_temp
+  when:
+    - not ansible_check_mode
+    - not jj_stat.stat.exists or jj_latest_version not in jj_version.stdout_lines[0]
+  diff: false
+
+- name: download jj {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ jj_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+    remote_src: true
+  register: jj_download
+  diff: false
+  when:
+    - jj_temp.path is defined
+
+- name: install jj {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ jj_temp.path }}/jj"
+    dest: "/usr/local/bin/jj"
+    remote_src: true
+    mode: 0755
+  when:
+    - jj_temp.path is defined
