@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 no-greeting
 
-default-key 9E5E851AF9FCCFA20FA49965887CC10F998EBC42
+default-key {{ gpg_default_key }}
 #default-recipient some-user-id
 default-recipient-self
 
@@ -19,7 +19,7 @@ use-agent
 #batch
 no-emit-version
 cert-digest-algo SHA512
-no-comments 
+no-comments
 personal-cipher-preferences AES AES256 AES192 CAST5
 personal-digest-preferences SHA512 SHA384 SHA256 SHA224
 #ignore-time-conflict

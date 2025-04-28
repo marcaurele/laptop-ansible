@@ -6,6 +6,8 @@ aws_config_extra: "{{ vault_aws_config_extra }}"
 
 company: "{{ vault_company }}"
 
+gpg_default_key: "{{ vault_gpg_default_key }}"
+
 # packages_absent_extra_private:
 
 packages_extra: # Debian packages
