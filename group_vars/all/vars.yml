@@ -28,6 +28,8 @@ git: "{{ vault_git }}"
 
 gpg: "{{ vault_gpg }}"
 
+gpg_default_key: "{{ vault_gpg_default_key }}"
+
 kdrive:
   version: "3.5.7.20240124"
 

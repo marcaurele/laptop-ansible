@@ -12,8 +12,6 @@ email_work: "{{ vault_email }}"
 
 git_work: "{{ vault_git_work }}"
 
-gpg_default_key: "{{ vault_default_gpg_key }}"
-
 grub_parameter: "--unrestricted"
 
 nodejs:
