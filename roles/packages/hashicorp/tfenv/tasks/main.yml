@@ -1,16 +1,16 @@
 ---
 
-- name: install tfenv as git checkout
-  become: true
-  become_user: "{{ username }}"
-  ansible.builtin.git:
-    clone: true
-    dest: "~/.tfenv"
-    repo: "https://github.com/opentofu/tfenv.git"
-    version: "add-opentofu-support"
-    update: true
-  diff: false
-  when: not ansible_check_mode
+# - name: install tfenv as git checkout
+#   become: true
+#   become_user: "{{ username }}"
+#   ansible.builtin.git:
+#     clone: true
+#     dest: "~/.tfenv"
+#     repo: "https://github.com/opentofu/tfenv.git"
+#     version: "add-opentofu-support"
+#     update: true
+#   diff: false
+#   when: not ansible_check_mode
 
 - name: hashicorp configuration directory
   become: true
