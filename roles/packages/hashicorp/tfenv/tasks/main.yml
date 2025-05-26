@@ -1,34 +1,23 @@
 ---
+# Moved to terraform-switcher instead
 
-# - name: install tfenv as git checkout
-#   become: true
-#   become_user: "{{ username }}"
-#   ansible.builtin.git:
-#     clone: true
-#     dest: "~/.tfenv"
-#     repo: "https://github.com/opentofu/tfenv.git"
-#     version: "add-opentofu-support"
-#     update: true
-#   diff: false
-#   when: not ansible_check_mode
+- name: clear tfenv
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "~/.tfenv"
+    state: absent
 
-- name: hashicorp configuration directory
+- name: clear hashicorp configuration directory
   become: true
   become_user: "{{ username }}"
   ansible.builtin.file:
     path: "{{ config.zsh }}/hashicorp"
-    state: directory
+    state: absent
 
-- name: hashicorp terraform module-plugins shared directory
+- name: clear hashicorp terraform module-plugins shared directory
   become: true
   become_user: "{{ username }}"
   ansible.builtin.file:
     path: "~/.terraform.d/plugins"
-    state: directory
-
-- name: tfenv configuration
-  become: true
-  become_user: "{{ username }}"
-  ansible.builtin.template:
-    src: tfenv.zsh
-    dest: "{{ config.zsh }}/hashicorp/tfenv.zsh"
+    state: absent
