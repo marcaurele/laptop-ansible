@@ -24,10 +24,18 @@
     pkg:
       - consul
       - nomad
+      - terraform-switcher
 
 - name: deactivate nomad service
   become: true
   ansible.builtin.systemd:
     name: nomad
+    state: stopped
+    enabled: false
+
+- name: deactivate consul service
+  become: true
+  ansible.builtin.systemd:
+    name: consul
     state: stopped
     enabled: false
