@@ -108,6 +108,17 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 // PREF: Make sure that third-party cookies (if enabled) never persist beyond the session.
 // https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
-// http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly
+// https://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly
 // https://developer.mozilla.org/en-US/docs/Cookies_Preferences_in_Mozilla#network.cookie.thirdparty.sessionOnly
 user_pref("network.cookie.thirdparty.sessionOnly", true);
+
+// PREF: Display a notification bar when websites offer data for offline use
+// https://kb.mozillazine.org/Browser.offline-apps.notify
+user_pref("browser.offline-apps.notify",			true);
+
+// PREF: Controls the default permission for websites to send desktop notifications.
+// - 0: to prompt the user for permission each time (default),
+// - 1: to allow notifications,
+// - 2: to block them.
+// https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/
+user_pref("permissions.default.desktop-notification", 2);
