@@ -200,6 +200,9 @@
     - role: packages/python/uv
       tags: uv
 
+    - role: packages/python/ruff
+      tags: ruff
+
     - role: packages/cyme
       tags: cyme
 
