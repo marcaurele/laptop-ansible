@@ -6,36 +6,23 @@
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/trusted.gpg.d/microsoft.asc
 
-- name: remove repository added by MS for Visual Studio Code
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
-    filename: vscode
-    state: absent
-
 - name: add repository for Visual Studio Code
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.asc] https://packages.microsoft.com/repos/code stable main
     filename: vscode
 
+- name: Set default to not install MS apt and key
+  become: true
+  ansible.builtin.debconf:
+    name: code
+    question: code/add-microsoft-repo
+    value: false
+    vtype: boolean
+
 - name: install code
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - code
-
-- name: replace package repository url
-  become: true
-  lineinfile:
-    path: /etc/apt/sources.list.d/vscode.list
-    regexp: ^deb (.*) (https?)://(.*)
-    line: deb \g<1> https://\g<3>
-    backrefs: true
-
-- name: remove repository added by MS for Visual Studio Code
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
-    filename: vscode
-    state: absent
+    state: latest
