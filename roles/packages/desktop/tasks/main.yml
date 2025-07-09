@@ -34,7 +34,7 @@
     - pasystray
     - pavucontrol
     - rdesktop
-    - telegram-desktop
+#    - telegram-desktop
     - treesheets
     - suckless-tools
     - x11-xkb-utils

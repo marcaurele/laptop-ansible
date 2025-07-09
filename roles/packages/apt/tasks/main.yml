@@ -6,6 +6,7 @@
     src: sources.list.j2
     dest: /etc/apt/sources.list
   register: apt_source
+  when: ansible_distribution == 'Debian'
   tags: system, root
 
 - name: set package preferences between testing and unstable
@@ -13,6 +14,7 @@
   template:
     src: apt-preferences.j2
     dest: /etc/apt/preferences.d/apt-default.pref
+  when: ansible_distribution == 'Debian'
   tags: system, root
 
 - name: update package cache
