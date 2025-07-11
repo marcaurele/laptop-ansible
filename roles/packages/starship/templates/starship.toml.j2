@@ -1,0 +1,46 @@
+# {{ ansible_managed }}
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+[cmd_duration]
+show_milliseconds = true
+
+[directory]
+truncation_length = 8
+
+[golang]
+disabled = true
+
+[helm]
+disabled = true
+
+[jobs]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[package]
+disabled = true
+
+[python]
+disabled = true
+
+[sudo]
+disabled = false
+format = '[$symbol]($style)'
+
+[terraform]
+disabled = true
+
+[time]
+disabled = false
+
+[vagrant]
+disabled = true

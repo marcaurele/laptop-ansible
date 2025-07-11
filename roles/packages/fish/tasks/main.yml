@@ -1,0 +1,24 @@
+---
+
+- name: install fish shell
+  become: true
+  ansible.builtin.apt:
+    name:
+    - fish
+
+- name: create fish config directories
+  become: true
+  become_user: "{{ username }}"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "~/.config/fish"
+  - "~/.config/fish/conf.d"
+
+- name: configure fish
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: config.fish.j2
+    dest: "~/.config/fish/config.fish"

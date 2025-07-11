@@ -1,0 +1,21 @@
+---
+
+- name: install starship shell prompt
+  become: true
+  ansible.builtin.apt:
+    name:
+    - starship
+
+- name: configuration for starship
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: starship.toml.j2
+    dest: "~/.config/starship.toml"
+
+- name: configure fish with starship
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: starship.fish.j2
+    dest: "~/.config/fish/conf.d/starship.fish"

@@ -161,6 +161,12 @@
     - role: user/zsh
       tags: user, zsh
 
+    - role: packages/fish
+      tags: fish
+
+    - role: packages/starship
+      tags: starship
+
     - role: packages/jetbrains/pycharm
       tags: pycharm
 
