@@ -75,3 +75,5 @@ sudo:
   - /usr/sbin/halt
   - /usr/sbin/rfkill
   - /usr/bin/udevadm trigger
+
+user_shell: /usr/bin/fish

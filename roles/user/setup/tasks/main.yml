@@ -85,3 +85,10 @@
     - path: "{{ code_directory }}"
     - path: "~/bin"
   tags: user
+
+- name: change {{ username }} shell to {{ user_shell }}
+  become: true
+  user:
+    name: "{{ username }}"
+    shell: "{{ user_shell }}"
+  tags: user, root

@@ -35,10 +35,3 @@
     - src: zshrc.j2
       dest: "~/.zshrc"
   tags: user
-
-- name: change {{ username }} shell to ZSH
-  become: true
-  user:
-    name: "{{ username }}"
-    shell: "/usr/bin/zsh"
-  tags: user, root
