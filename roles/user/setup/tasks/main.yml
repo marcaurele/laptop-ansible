@@ -86,9 +86,9 @@
     - path: "~/bin"
   tags: user
 
-- name: change {{ username }} shell to {{ user_shell }}
+- name: change {{ username }} shell to {{ shell.name }}
   become: true
   user:
     name: "{{ username }}"
-    shell: "{{ user_shell }}"
+    shell: "{{ shell.location }}"
   tags: user, root

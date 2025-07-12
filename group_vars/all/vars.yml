@@ -76,4 +76,6 @@ sudo:
   - /usr/sbin/rfkill
   - /usr/bin/udevadm trigger
 
-user_shell: /usr/bin/fish
+shell:
+  name: fish
+  location: /usr/bin/fish
