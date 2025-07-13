@@ -221,5 +221,8 @@
     - role: packages/jujutsu
       tags: jj
 
+    - role: packages/darkman
+      tags: darkman
+
   tags:
     - packages

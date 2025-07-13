@@ -1,0 +1,88 @@
+---
+
+# TODO: build it with makedeb
+
+# - name: darkman code git checkout
+#   become: true
+#   become_user: "{{ username }}"
+#   ansible.builtin.git:
+#     clone: true
+#     dest: "/tmp/darkman"
+#     repo: "https://gitlab.com/WhyNotHugo/darkman.git"
+#     version: "v"
+#     update: true
+#   diff: false
+#   when: not ansible_check_mode
+
+- name: fetch darkman tags
+  ansible.builtin.uri:
+    url: https://gitlab.com/api/v4/projects/23104371/repository/tags
+    return_content: true
+  register: darkman_tags
+
+- name: create darkman config directory
+  become: true
+  become_user: "{{ username }}"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "~/.config/darkman"
+
+- name: copy configurations
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: config.yaml.j2
+    dest: "~/.config/darkman/config.yaml"
+
+- name: create darkman script directories
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "/usr/local/share/dark-mode.d"
+  - "/usr/local/share/light-mode.d"
+
+- name: copy scripts
+  become: true
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  with_items:
+  - src: desktop-notification.sh.j2
+    dest: "/usr/local/share/dark-mode.d/desktop-notification.sh"
+    icon: "weather-clear-night"
+    text: "switching to dark mode"
+  - src: desktop-notification.sh.j2
+    dest: "/usr/local/share/light-mode.d/desktop-notification.sh"
+    icon: "weather-clear"
+    text: "switching to light mode"
+  - src: gtk3-theme.sh.j2
+    dest: "/usr/local/share/dark-mode.d/gtk3-theme.sh"
+    theme: "Adwaita-dark"
+  - src: gtk3-theme.sh.j2
+    dest: "/usr/local/share/light-mode.d/gtk3-theme.sh"
+    theme: "Adwaita"
+
+- name: copy systemd service file for darkman
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: "darkman.service.j2"
+    dest: "~/.config/systemd/user/darkman.service"
+  register: darkman_service
+
+- name: install user service for darkman
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    scope: user
+    name: darkman
+    state: started
+  when:
+    - darkman_service.changed
+  ignore_errors: true
