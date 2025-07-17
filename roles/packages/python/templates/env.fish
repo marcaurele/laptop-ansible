@@ -1,3 +1,3 @@
 # {{ ansible_managed }}
 # Don't write *.pyc files on the filesystem, slower but code is always up to date
-export PYTHONDONTWRITEBYTECODE=True
+set -x PYTHONDONTWRITEBYTECODE True

@@ -13,12 +13,19 @@
     path: "{{ item }}"
     state: directory
   with_items:
-  - "~/.config/fish"
-  - "~/.config/fish/conf.d"
+  - "{{ config.fish }}"
+  - "{{ config.fish }}/completions"
+  - "{{ config.fish }}/conf.d"
+  - "{{ config.fish }}/functions"
 
 - name: configure fish
   become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
-    src: config.fish.j2
-    dest: "~/.config/fish/config.fish"
+    src: "{{ item.src}}"
+    dest: "{{ item.dest}}"
+  with_items:
+  - src: config.fish
+    dest: "{{ config.fish }}/config.fish"
+  - src: abbrs.fish
+    dest: "{{ config.fish }}/conf.d/abbrs.fish"

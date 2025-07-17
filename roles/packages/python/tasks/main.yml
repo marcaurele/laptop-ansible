@@ -30,5 +30,10 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
-    src: env.zsh
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+  - src: env.zsh
     dest: "{{ config.zsh }}/python/env.zsh"
+  - src: env.zsh
+    dest: "{{ config.fish }}/conf.d/python.fish"
