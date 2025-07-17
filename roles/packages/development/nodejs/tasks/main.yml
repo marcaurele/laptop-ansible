@@ -23,3 +23,5 @@
   apt:
     pkg:
       - nodejs
+    state: absent
+    purge: true
