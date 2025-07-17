@@ -38,7 +38,7 @@
     path: "{{ config.zsh }}/awsvault"
     state: directory
 
-- name: awsvault zsh configuration
+- name: awsvault configuration
   become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
@@ -49,3 +49,7 @@
       dest: "{{ config.zsh }}/awsvault/completion.zsh"
     - src: env.zsh
       dest: "{{ config.zsh }}/awsvault/env.zsh"
+    - src: completion.fish
+      dest: "{{ config.fish }}/completions/aws-vault.fish"
+    - src: config.fish
+      dest: "{{ config.fish }}/conf.d/aws-vault.fish"

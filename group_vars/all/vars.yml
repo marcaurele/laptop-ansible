@@ -8,6 +8,7 @@ code_projects: "{{ vault_code_projects }}"
 
 config:
   dir: ~/.config
+  fish: ~/.config/fish
   zsh: ~/.zsh_config
 
 debian_releases:
