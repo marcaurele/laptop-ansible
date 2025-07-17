@@ -17,5 +17,10 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
-    src: env.zsh
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_tems:
+  - src: env.zsh
     dest: "{{ config.zsh }}/rust/env.zsh"
+  - src: env.fish
+    dest: "{{ config.fish }}/conf.d/rust.fish"
