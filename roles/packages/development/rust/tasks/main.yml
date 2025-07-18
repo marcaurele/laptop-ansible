@@ -19,8 +19,11 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  with_tems:
+  when: ansible_facts.packages[item.shell] is defined
+  with_items:
   - src: env.zsh
     dest: "{{ config.zsh }}/rust/env.zsh"
+    shell: zsh
   - src: env.fish
     dest: "{{ config.fish }}/conf.d/rust.fish"
+    shell: fish
