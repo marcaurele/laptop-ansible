@@ -1,0 +1,57 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    desc: Display help when no argument is given to task
+    cmds:
+    - task: help
+      silent: true
+
+  facts:
+    desc: view Ansible facts
+    cmds:
+    - uv run ansible localhost -m ansible.builtin.setup
+
+  help:
+    desc: List all available tasks (default)
+    cmds:
+    - task --list-all
+
+  local:
+    desc: run ansible playbook on this local host
+    cmds:
+    - uv run ansible-playbook --ask-become-pass --connection local --limit {{.HOSTNAME}} {{.CLI_ARGS}} playbook.yml
+    vars:
+      HOSTNAME:
+        sh: hostname --short
+
+  lock:
+    desc: perform a uv lock
+    cmds:
+    - uv lock
+
+  rebuild:
+    desc: rebuild the uv environment
+    cmds:
+    - rm -rf .venv
+    - task: sync
+
+  sync:
+    desc: perform a uv sync
+    cmds:
+    - uv sync
+
+  vagrant:
+    desc: run ansible playbook against the vagrant host
+    cmds:
+    - uv run ansible-playbook -i inventory-vagrant.py -i hosts-vagrant.yml {{.CLI_ARGS}} playbook.yml
+
+  vault-edit:
+    desc: perform an Ansible vault command
+    cmds:
+    - uv run ansible-vault edit {{.CLI_ARGS}}

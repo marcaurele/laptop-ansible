@@ -13,6 +13,8 @@ Debian ~~or Ubuntu~~ distributions. It is based on:
 
 Its goal is to keep all my configurations and system state under this playbook in order to restore a working laptop within less than 1 hour.
 
+See status of todos in the [issues](https://github.com/marcaurele/laptop-ansible/issues).
+
 ## Run the installation
 
 You should install the base OS with a SSH server and run the playbook from
@@ -20,19 +22,19 @@ another host initially which will create the user. After the 1st run, you can
 run the `update.sh` script from the user home.
 
 ```console
-./update.sh
+task local
 ```
 
 ## Test on vagrant box
 
 ```console
-./vagrant-test.sh
+task vagrant
 ```
 
 ## Get current host facts
 
 ```console
-ansible localhost -m ansible.builtin.setup
+task facts
 ```
 
 ## LUKFS & LVM
@@ -89,11 +91,15 @@ LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#
 
 To create the set of keys:
 
-    wg genkey | tee vpn-client-private.key | wg pubkey > vpn-client-public.key
+```console
+wg genkey | tee vpn-client-private.key | wg pubkey > vpn-client-public.key
+```
 
 To import connection in the NetworkManager:
 
-    nmcli connection import type wireguard file <file.conf>
+```console
+nmcli connection import type wireguard file <file.conf>
+```
 
 ### AWS IP ranges in routes
 
@@ -140,4 +146,4 @@ _To pair with the MX Ergo, don't open the BT manager but do everything from the 
 
 ## Tips
 
-To clear an entry from the ZSH history: `sed -i '/myword/d' $HISTFILE`.
+_None for now._
