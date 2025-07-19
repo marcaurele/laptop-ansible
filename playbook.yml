@@ -53,8 +53,14 @@
     - role: packages/localsend
       tags: localsend
 
-    - role: packages/python
+    - role: packages/development/python
       tags: python
+
+    - role: packages/development/python/uv
+      tags: uv
+
+    - role: packages/development/python/ruff
+      tags: ruff
 
     # TO CLEAR
     - role: packages/pulumi
@@ -198,12 +204,6 @@
 
     - role: packages/development/devbox
       tags: devbox
-
-    - role: packages/python/uv
-      tags: uv
-
-    - role: packages/python/ruff
-      tags: ruff
 
     - role: packages/cyme
       tags: cyme
