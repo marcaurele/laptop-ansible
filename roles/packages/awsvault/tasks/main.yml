@@ -37,6 +37,7 @@
   ansible.builtin.file:
     path: "{{ config.zsh }}/awsvault"
     state: directory
+  when: ansible_facts.packages["zsh"] is defined
 
 - name: awsvault configuration
   become: true
@@ -44,12 +45,17 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+  when: ansible_facts.packages[item.shell] is defined
   loop:
     - src: completion.zsh
       dest: "{{ config.zsh }}/awsvault/completion.zsh"
+      shell: zsh
     - src: env.zsh
       dest: "{{ config.zsh }}/awsvault/env.zsh"
+      shell: zsh
     - src: completion.fish
       dest: "{{ config.fish }}/completions/aws-vault.fish"
+      shell: fish
     - src: env.fish
       dest: "{{ config.fish }}/conf.d/aws-vault.fish"
+      shell: fish

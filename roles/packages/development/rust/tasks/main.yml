@@ -12,6 +12,7 @@
   ansible.builtin.file:
     path: "{{ config.zsh }}/rust"
     state: directory
+  when: ansible_facts.packages["zsh"] is defined
 
 - name: rust configuration
   become: true

@@ -22,7 +22,9 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.shell: "gh completion -s fish > {{ config.fish }}/completions/github.fish"
-  when: gh_install.changed
+  when:
+  - gh_install.changed
+  - ansible_facts.packages["fish"] is defined
 
 - name: install script for gh-notification-counter
   become: true

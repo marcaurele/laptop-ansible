@@ -12,6 +12,7 @@
   ansible.builtin.file:
     path: "{{ config.zsh }}/golang"
     state: directory
+  when: ansible_facts.packages["zsh"] is defined
 
 - name: golang configuration
   become: true
@@ -19,9 +20,12 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+  when: ansible_facts.packages[item.shell] is defined
   with_items:
   - src: env.zsh
     dest: "{{ config.zsh }}/golang/env.zsh"
+    shell: zsh
   - src: env.fish
     dest: "{{ config.fish }}/conf.d/golang.fish"
+    shell: fish
 

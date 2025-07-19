@@ -3,7 +3,7 @@
 - name: remove balena-etcher
   become: true
   apt:
-    deb: "balena-etcher"
+    name: "balena-etcher"
     state: absent
 
 # - name: check balena-etcher latest release

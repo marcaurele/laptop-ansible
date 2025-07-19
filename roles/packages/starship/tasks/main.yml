@@ -19,3 +19,4 @@
   ansible.builtin.template:
     src: starship.fish.j2
     dest: "~/.config/fish/conf.d/starship.fish"
+  when: ansible_facts.packages["fish"] is defined

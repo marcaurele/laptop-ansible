@@ -59,4 +59,6 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.shell: "doggo completion fish > {{ config.fish }}/completions/doggo.fish"
-  when: doggo_install.changed
+  when:
+    - doggo_install.changed
+    - ansible_facts.packages["fish"] is defined

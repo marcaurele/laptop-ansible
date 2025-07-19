@@ -33,4 +33,7 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.shell: "flyctl completion fish > {{ config.fish }}/completions/flyctl.fish"
-  when: fly_install.changed
+  when:
+  - fly_install.changed
+  - ansible_facts.packages["fish"] is defined
+

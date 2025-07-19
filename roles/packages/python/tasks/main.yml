@@ -15,7 +15,6 @@
     path: "{{ item }}"
     state: directory
   loop:
-    - "{{ config.zsh }}/python"
     - "{{ config.dir }}/pip"
 
 - name: configure pip
@@ -32,8 +31,11 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+  when: ansible_facts.packages[item.shell] is defined
   with_items:
   - src: env.zsh
     dest: "{{ config.zsh }}/python/env.zsh"
+    shell: zsh
   - src: env.fish
     dest: "{{ config.fish }}/conf.d/python.fish"
+    shell: fish
