@@ -1,48 +1,60 @@
 ---
 
-- name: check pulumi releases
-  ansible.builtin.uri:
-    url: https://api.github.com/repos/pulumi/pulumi/releases/latest
-    return_content: true
-  register: releases
-
-- name: check if pulumi is already installed
-  ansible.builtin.stat:
-    path: /usr/local/bin/pulumi
-  register: pulumi_stat
-
-- name: check local pulumi version
-  ansible.builtin.command: /usr/local/bin/pulumi version
-  register: pulumi_version
-  when: pulumi_stat.stat.exists
-  changed_when: false
-
-- name: create temporary directory
-  ansible.builtin.tempfile:
-    state: directory
-  register: pulumi_temp
-  when:
-    - not ansible_check_mode
-    - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
-
-- name: download pulumi {{ releases.json.tag_name }}
-  ansible.builtin.unarchive:
-    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x64`)].browser_download_url | [0]') }}"
-    remote_src: true
-    dest: "{{ pulumi_temp.path }}"
-  diff: false
-  when:
-    - pulumi_temp.path is defined
-
-- name: move pulumi binary
+- name: clear pulumi install
   become: true
-  ansible.builtin.copy:
-    src: "{{ pulumi_temp.path }}/pulumi/pulumi"
-    remote_src: true
-    dest: /usr/local/bin/pulumi
-    owner: root
-    group: root
-    mode: 0755
-  diff: false
-  when:
-    - pulumi_temp.path is defined
+  ansible.builtin.file:
+    path: /usr/local/bin/pulumi
+    state: absent
+
+# - name: check pulumi releases
+#   ansible.builtin.uri:
+#     url: https://api.github.com/repos/pulumi/pulumi/releases/latest
+#     return_content: true
+#   register: releases
+#   tags: never
+
+# - name: check if pulumi is already installed
+#   ansible.builtin.stat:
+#     path: /usr/local/bin/pulumi
+#   register: pulumi_stat
+#   tags: never
+
+# - name: check local pulumi version
+#   ansible.builtin.command: /usr/local/bin/pulumi version
+#   register: pulumi_version
+#   when: pulumi_stat.stat.exists
+#   changed_when: false
+#   tags: never
+
+# - name: create temporary directory
+#   ansible.builtin.tempfile:
+#     state: directory
+#   register: pulumi_temp
+#   when:
+#     - not ansible_check_mode
+#     - not pulumi_stat.stat.exists or (releases.json.tag_name not in pulumi_version.stdout_lines[0])
+#   tags: never
+
+# - name: download pulumi {{ releases.json.tag_name }}
+#   ansible.builtin.unarchive:
+#     src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `x64`)].browser_download_url | [0]') }}"
+#     remote_src: true
+#     dest: "{{ pulumi_temp.path }}"
+#   diff: false
+#   when:
+#     - pulumi_temp.path is defined
+#   tags: never
+
+# - name: move pulumi binary
+#   become: true
+#   ansible.builtin.copy:
+#     src: "{{ pulumi_temp.path }}/pulumi/pulumi"
+#     remote_src: true
+#     dest: /usr/local/bin/pulumi
+#     owner: root
+#     group: root
+#     mode: 0755
+#   diff: false
+#   when:
+#     - pulumi_temp.path is defined
+#   tags: never

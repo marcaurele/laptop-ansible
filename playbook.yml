@@ -56,8 +56,9 @@
     - role: packages/python
       tags: python
 
+    # TO CLEAR
     - role: packages/pulumi
-      tags: pulumi, never
+      tags: pulumi
 
     - role: packages/flyctl
       tags: flyctl
@@ -98,13 +99,13 @@
     - role: packages/development/docker
       tags: dev, docker
 
+    # TO CLEAR
     - role: packages/development/nodejs
-      tags: dev, javascript, nodejs, never
-      when: nodejs is defined
+      tags: dev, javascript, nodejs
 
+    # TO CLEAR
     - role: packages/development/yarn
       tags: dev, javascript, yarn
-      when: not private_node
 
     - role: work
       tags: work
