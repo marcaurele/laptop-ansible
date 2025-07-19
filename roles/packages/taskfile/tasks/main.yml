@@ -15,4 +15,11 @@
   when:
     - not ansible_check_mode
     - ansible_facts.packages['task'] is not defined or not ansible_facts.packages['task'][0]['version'].startswith(releases.json.name)
+  register: task_install
   tags: system
+
+- name: Task completion configuration
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.shell: "task --completion fish > {{ config.fish }}/completions/task.fish"
+  when: task_install.changed

@@ -21,7 +21,7 @@
 - name: gh completion configuration
   become: true
   become_user: "{{ username }}"
-  ansible.builtin.shell: "gh completion -s zsh > {{ config.zsh }}/github/_gh"
+  ansible.builtin.shell: "gh completion -s fish > {{ config.fish }}/completions/github.fish"
   when: gh_install.changed
 
 - name: install script for gh-notification-counter

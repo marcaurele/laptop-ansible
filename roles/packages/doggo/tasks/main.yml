@@ -53,24 +53,10 @@
     mode: 0755
   when:
     - doggo_temp.path is defined
+  register: doggo_install
 
-# - name: doggo configuration directory
-#   become: true
-#   become_user: "{{ username }}"
-#   ansible.builtin.file:
-#     path: "{{ config.zsh }}/doggo"
-#     state: directory
-#   when:
-#     - not ansible_check_mode
-#     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
-
-# - name: doggo zsh configuration
-#   become: true
-#   become_user: "{{ username }}"
-#   ansible.builtin.copy:
-#     src: "{{ doggo_temp.path }}/completions/doggo.zsh"
-#     dest: "{{ config.zsh }}/doggo/completion.zsh"
-#     mode: 0644
-#   when:
-#     - not ansible_check_mode
-#     - not doggo_stat.stat.exists or doggo_latest_version not in doggo_version.stdout_lines[0]
+- name: doggo completion configuration
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.shell: "doggo completion fish > {{ config.fish }}/completions/doggo.fish"
+  when: doggo_install.changed
