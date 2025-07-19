@@ -51,5 +51,5 @@
       dest: "{{ config.zsh }}/awsvault/env.zsh"
     - src: completion.fish
       dest: "{{ config.fish }}/completions/aws-vault.fish"
-    - src: config.fish
+    - src: env.fish
       dest: "{{ config.fish }}/conf.d/aws-vault.fish"

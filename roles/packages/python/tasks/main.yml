@@ -35,5 +35,5 @@
   with_items:
   - src: env.zsh
     dest: "{{ config.zsh }}/python/env.zsh"
-  - src: env.zsh
+  - src: env.fish
     dest: "{{ config.fish }}/conf.d/python.fish"

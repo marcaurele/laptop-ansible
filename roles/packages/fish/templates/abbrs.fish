@@ -10,3 +10,7 @@ abbr --add -- kch "setxkbmap ch fr -option -option ctrl:nocaps"
 abbr --add -- sshpass "ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 abbr --add -- sshskip "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 abbr --add -- ykforget 'gpg-connect-agent "scd serialno" "learn --force" /bye'
+
+abbr --add -- screen-disable-blank "xset -dpms s off"
+abbr --add -- screen-enable-blank "xset -dpms s on"
+abbr --add -- ocrallpdf "find . -printf '%p\n' -name '*.pdf' -exec ocrmypdf '{}' '{}' \;"

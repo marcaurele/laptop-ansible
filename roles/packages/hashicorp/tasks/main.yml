@@ -39,3 +39,13 @@
     name: consul
     state: stopped
     enabled: false
+
+- name: hashicorp configuration for CaaS
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+  - src: env.fish
+    dest: "{{ config.fish }}/conf.d/hashicorp.fish"
