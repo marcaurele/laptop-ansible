@@ -126,8 +126,9 @@
     - role: packages/dbeaver
       tags: dbeaver
 
+    # TO CLEAR
     - role: packages/balena-etcher
-      tags: balena-etcher, never
+      tags: balena-etcher
 
     - role: packages/drawio
       tags: drawio
@@ -154,7 +155,7 @@
       tags: user, config
 
     - role: user/zsh
-      tags: user, zsh, never
+      tags: user, zsh
 
     - role: packages/fish
       tags: fish
