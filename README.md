@@ -1,11 +1,23 @@
-# Ansible playbook to configure my laptop
+# Ansible playbook to configure my laptops
 
 This playbook is my laptop's configuration for both private and work, running
-Debian or Ubuntu distributions. You should install the base OS with a SSH server
-and run the playbook from another host initialy which will create the user.
-After the 1st run, you can run the `update.sh` script from the user home.
+Debian ~~or Ubuntu~~ distributions. It is based on:
+
+- i3
+- fish shell
+- development for:
+  - Python
+  - Golang
+  - Rust
+  - Terraform, Consul, Nomad, Vault
+
+Its goal is to keep all my configurations and system state under this playbook in order to restore a working laptop within less than 1 hour.
 
 ## Run the installation
+
+You should install the base OS with a SSH server and run the playbook from
+another host initially which will create the user. After the 1st run, you can
+run the `update.sh` script from the user home.
 
 ```console
 ./update.sh
