@@ -29,11 +29,11 @@
     - role: common/hardware
       tags: hardware, system
 
-    - role: packages/sshd
-      tags: ssh
-
     - role: user/setup
       tags: user
+
+    - role: packages/sshd
+      tags: ssh
 
     - role: packages/sudo
       tags: sudo
@@ -113,10 +113,6 @@
     - role: packages/development/yarn
       tags: dev, javascript, yarn
 
-    - role: work
-      tags: work
-      when: not private_node
-
     - role: packages/firefox
       tags: firefox
 
@@ -156,9 +152,6 @@
 
     - role: packages/sops
       tags: sops
-
-    - role: user/config
-      tags: user, config
 
     - role: user/zsh
       tags: user, zsh
@@ -219,6 +212,13 @@
 
     - role: packages/darkman
       tags: darkman
+
+    - role: user/config
+      tags: user, config
+
+    - role: work
+      tags: work
+      when: not private_node
 
   tags:
     - packages
