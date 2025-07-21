@@ -48,6 +48,6 @@
     dest: "{{ item.dest }}"
   when: ansible_facts.packages[item.shell] is defined
   with_items:
-  - src: env.fish
+  - src: config.fish
     dest: "{{ config.fish }}/conf.d/hashicorp.fish"
     shell: fish

@@ -13,11 +13,13 @@
     - keeper
 
 - name: copy configurations
+  become: true
+  become_user: "{{ username }}"
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   loop:
-    - src: aliases.zsh
-      dest: "{{ config.zsh }}/work/aliases.zsh"
-    - src: env.zsh
-      dest: "{{ config.zsh }}/work/env.zsh"
+    - src: config.fish
+      dest: "{{ config.fish }}/conf.d/work.fish"
+    - src: functions.fish
+      dest: "{{ config.fish }}/functions/work.fish"
