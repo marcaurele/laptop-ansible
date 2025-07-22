@@ -171,6 +171,9 @@
     - role: packages/awsvault
       tags: awsvault
 
+    - role: packages/hcloud
+      tags: hcloud
+
     - role: packages/gcalcli
       tags: gcalcli
       when: not private_node
