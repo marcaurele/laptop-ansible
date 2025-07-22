@@ -13,6 +13,8 @@
 - name: Configure system
   hosts: [all]
   roles:
+
+# CORE
     - role: locales
       tags: locales
 
@@ -32,6 +34,7 @@
     - role: user/setup
       tags: user
 
+# SYSTEM
     - role: packages/sshd
       tags: ssh
 
@@ -47,12 +50,11 @@
     - role: packages/inputplug
       tags: inputplug
 
-    - role: packages/desktop
-      tags: desktop
+    - role: packages/virtualization
+      tags: virtualization
+      when: private_node
 
-    - role: packages/localsend
-      tags: localsend
-
+# DEVELOPMENT
     - role: packages/development/python
       tags: python
 
@@ -62,42 +64,11 @@
     - role: packages/development/python/ruff
       tags: ruff
 
-    # TO CLEAR
-    - role: packages/pulumi
-      tags: pulumi
-
-    - role: packages/flyctl
-      tags: flyctl
-      when: private_node
-
-    - role: packages/virtualization
-      tags: virtualization
-      when: private_node
-
-    - role: packages/hashicorp
-      tags: hashicorp
-
-    - role: packages/hashicorp/terraform-docs
-      tags: terraform-docs
-      when: not private_node
-
-    - role: packages/hashicorp/hashienv
-      tags: hashienv
-
-    - role: packages/visualcode
-      tags: vscode
-
-    - role: packages/development/toolbox
-      tags: dev, toolbox
-
-    - role: packages/development/rust
-      tags: dev, rust
-
     - role: packages/development/golang
       tags: dev, golang
 
-    - role: packages/gh
-      tags: gh
+    - role: packages/development/rust
+      tags: dev, rust
 
     - role: packages/development/container
       tags: dev, container
@@ -105,13 +76,38 @@
     - role: packages/development/docker
       tags: dev, docker
 
-    # TO CLEAR
-    - role: packages/development/nodejs
-      tags: dev, javascript, nodejs
+    - role: packages/lazydocker
+      tags: lazydocker
 
-    # TO CLEAR
-    - role: packages/development/yarn
-      tags: dev, javascript, yarn
+    - role: packages/development/devbox
+      tags: devbox
+
+    - role: packages/development/toolbox
+      tags: dev, toolbox
+
+
+# PACKAGES
+    - role: packages/desktop
+      tags: desktop
+
+    - role: packages/localsend
+      tags: localsend
+
+    - role: packages/flyctl
+      tags: flyctl
+      when: private_node
+
+    - role: packages/hashicorp
+      tags: hashicorp
+
+    - role: packages/hashicorp/hashienv
+      tags: hashienv
+
+    - role: packages/visualcode
+      tags: vscode
+
+    - role: packages/gh
+      tags: gh
 
     - role: packages/firefox
       tags: firefox
@@ -127,10 +123,6 @@
 
     - role: packages/dbeaver
       tags: dbeaver
-
-    # TO CLEAR
-    - role: packages/balena-etcher
-      tags: balena-etcher
 
     - role: packages/drawio
       tags: drawio
@@ -152,9 +144,6 @@
 
     - role: packages/sops
       tags: sops
-
-    - role: user/zsh
-      tags: user, zsh
 
     - role: packages/fish
       tags: fish
@@ -192,12 +181,6 @@
     - role: packages/git-cliff
       tags: git-cliff
 
-    - role: packages/lazydocker
-      tags: lazydocker
-
-    - role: packages/development/devbox
-      tags: devbox
-
     - role: packages/cyme
       tags: cyme
 
@@ -218,6 +201,26 @@
 
     - role: work
       tags: work
+      when: not private_node
+
+# TO CLEAR
+    - role: user/zsh
+      tags: user, zsh
+
+    - role: packages/pulumi
+      tags: pulumi
+
+    - role: packages/balena-etcher
+      tags: balena-etcher
+
+    - role: packages/development/nodejs
+      tags: dev, javascript, nodejs
+
+    - role: packages/development/yarn
+      tags: dev, javascript, yarn
+
+    - role: packages/hashicorp/terraform-docs
+      tags: terraform-docs
       when: not private_node
 
   tags:
