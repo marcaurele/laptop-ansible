@@ -207,8 +207,6 @@
       when: not private_node
 
 # TO CLEAR
-    - role: user/zsh
-      tags: user, zsh
 
   tags:
     - packages
