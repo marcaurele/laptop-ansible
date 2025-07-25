@@ -1,10 +1,12 @@
 # {{ ansible_managed }}
-abbr --add -- vpn-off "nmcli connection down {{ company }}"
-abbr --add -- curljwt 'curl --silent -H "Authorization: Bearer $JWT_TOKEN"'
-
 if command -sq aws-vault
     set -x KEEPER_CONFIG_FILE ~/.config/keeper/config.json
 end
+
+abbr --add -- curljwt "curl --silent -H 'Authorization: Bearer $JWT_TOKEN'"
+
+# vpn-on is a script file
+abbr --add -- vpn-off "nmcli connection down {{ company }}"
 
 # AWS related stuff
 function aws-describe-instances-table -a env type
@@ -16,3 +18,5 @@ end
 
 alias aws-prod-django="aws-describe-instances-table prod django"
 alias aws-prod-celery="aws-describe-instances-table prod celery"
+alias aws-staging-django="aws-describe-instances-table staging django"
+alias aws-staging-celery="aws-describe-instances-table staging celery"
