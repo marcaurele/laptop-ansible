@@ -219,8 +219,5 @@
     - role: packages/development/nodejs
       tags: dev, javascript, nodejs
 
-    - role: packages/development/yarn
-      tags: dev, javascript, yarn
-
   tags:
     - packages
