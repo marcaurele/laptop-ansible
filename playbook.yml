@@ -213,8 +213,5 @@
     - role: packages/pulumi
       tags: pulumi
 
-    - role: packages/balena-etcher
-      tags: balena-etcher
-
   tags:
     - packages
