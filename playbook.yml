@@ -216,8 +216,5 @@
     - role: packages/balena-etcher
       tags: balena-etcher
 
-    - role: packages/development/nodejs
-      tags: dev, javascript, nodejs
-
   tags:
     - packages
