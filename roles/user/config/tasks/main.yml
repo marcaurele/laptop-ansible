@@ -39,6 +39,8 @@
       dest: "~/.config/tmux/tmux.conf"
     - src: mpv.conf.j2
       dest: ~/.config/mpv/mpv.conf
+    - src: config.fish
+      dest: ~/.config/fish/conf.d/user.fish
   tags: user
 
 - include_tasks: gpg.yml
