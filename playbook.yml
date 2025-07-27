@@ -52,7 +52,6 @@
 
     - role: packages/virtualization
       tags: virtualization
-      when: private_node
 
 # DEVELOPMENT
     - role: packages/development/python

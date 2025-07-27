@@ -3,28 +3,28 @@
 - name: install virtualization packages
   become: true
   ansible.builtin.apt:
-    state: absent
+    # state: absent
     name:
-    - cloud-image-utils
-    - genisoimage
-    - qemu
-    - qemu-kvm
-    - libvirt-clients
-    - libvirt-daemon
-    - libvirt-daemon-system
-    - libvirt-dev
+    # - cloud-image-utils
+    # - genisoimage
+    # - qemu
+    # - qemu-kvm
+    # - libvirt-clients
+    # - libvirt-daemon
+    # - libvirt-daemon-system
+    # - libvirt-dev
     - lxd
     - lxd-tools
-    - virt-manager
+    # - virt-manager
 
 - name: add groups to {{ username }}
   become: true
   user:
     name: "{{ username }}"
-    state: absent
+    # state: absent
     append: true
     groups:
-      - libvirt
+      # - libvirt
       - lxd
   tags: user, root
   ignore_errors: true
