@@ -11,6 +11,8 @@ Debian ~~or Ubuntu~~ distributions. It is based on:
   - Rust
   - Terraform, Consul, Nomad, Vault
 
+Command shortcuts are available with a [Taskfile](https://taskfile.dev/), see `task` to list them all.
+
 Its goal is to keep all my configurations and system state under this playbook in order to restore a working laptop within less than 1 hour.
 
 See status of todos in the [issues](https://github.com/marcaurele/laptop-ansible/issues).
@@ -49,12 +51,12 @@ CD before performing the installation. After booting on the live CD:
 2. Create the LUKS container: `cryptsetup luksFormat /dev/nvmen0p3`
    (see to change defaults)
 3. Open the container: `cryptsetup luksOpen /dev/nvmen0p3 cryptlvm`
-4. Create a physical volume on top of the opnened LUKFS container:
+4. Create a physical volume on top of the opened LUKFS container:
    `pvcreate /dev/mapper/cryptlvm`
 5. Create a volume group: `vgcreate vglaptop /dev/mapper/cryptlvm`
 6. Create the logical volumes for `/root`, `/home`...:
    - `lvcreate -L 70G vglaptop -n root`
-   - `lvcreate -L 8G vglaptop -n swap`
+   - `lvcreate -L 16G vglaptop -n swap` (A little extra than the physical memory)
    - `lvcreate -l 100%FREE vglaptop -n home`
 7. Format the filesystems:
    - `mkfs.ext4 /dev/vglaptop/root`
@@ -83,9 +85,6 @@ In case there's some info on [Archlinux - LVM on
 LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS).
 
 ## VPN connection
-
-> [!WARNING]
-> Currently holding the network-manager package as the openconnect plugin seems to fail to correctly setup the configuration: `sudo apt-mark hold network-manager=1.46.0-2`.
 
 ### WireGuard
 
