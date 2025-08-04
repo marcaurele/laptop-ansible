@@ -150,9 +150,6 @@
     - role: packages/starship
       tags: starship
 
-    - role: packages/jetbrains/pycharm
-      tags: pycharm
-
     - role: packages/kdrive
       tags: kdrive
 
@@ -206,6 +203,9 @@
       when: not private_node
 
 # TO CLEAR
+    - role: packages/jetbrains/pycharm
+      tags: pycharm, never
+
 
   tags:
     - packages
