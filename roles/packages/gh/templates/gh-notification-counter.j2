@@ -2,4 +2,6 @@
 # {{ ansible_managed }}
 t=$(mktemp)
 gh api notifications | jq -r '.|length' > $t
+echo " • " >> $t
+gh api -X GET search/issues -f q="is:open is:pr user-review-requested:marcaurele archived:false draft:false" | jq -r '.total_count' >> $t
 mv $t ~/.gh-inbox-counter.txt
