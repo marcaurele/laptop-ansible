@@ -22,6 +22,7 @@
         fixup = !git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup
         please = push --force-with-lease
 	pushmr = push -o merge_request.create
+	pushmrauto = push -o merge_request.create -o merge_request.auto_merge
         promote = !$ZSH/bin/git-promote
         shorty = status --short --branch
         st = status

@@ -38,7 +38,7 @@ gpg: "{{ vault_gpg }}"
 gpg_default_key: "{{ vault_gpg_default_key }}"
 
 kdrive:
-  version: "3.7.2.20250703"
+  version: "3.7.4.20250805"
 
 lunii:
   version: "2.2.271"
