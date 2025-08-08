@@ -1,0 +1,52 @@
+---
+
+- name: check zed releases
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/zed-industries/zed/releases/latest
+    return_content: true
+  register: releases
+
+- name: set latest zed version
+  vset_fact:
+    zed_latest_version: "{{ releases.json.tag_name[1:] }}"
+  when: not ansible_check_mode
+
+- name: check local zed
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.stat:
+    path: ~/bin/zed
+  register: zed_stat
+
+- name: check local zed version
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.command: ~/bin/zed --version
+  register: zed_version
+  changed_when: false
+  when: zed_stat.stat.exists
+
+- name: download zed {{ releases.json.tag_name }}
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.unarchive:
+    dest: "{{ packages_directory }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `zed-linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+    remote_src: true
+    mode: 0755
+  register: zed_download
+  diff: false
+  when:
+    - not ansible_check_mode
+    - not zed_stat.stat.exists or zed_latest_version not in zed_version.stdout_lines[0]
+
+- name: install zed {{ releases.json.tag_name }}
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    src: "{{ packages_directory }}/zed.app/bin/zed"
+    dest: "~/bin/zed"
+    state: link
+  when:
+    - not ansible_check_mode
+    - not zed_stat.stat.exists or zed_latest_version not in zed_version.stdout_lines[0]

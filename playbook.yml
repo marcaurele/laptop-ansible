@@ -195,6 +195,9 @@
     - role: packages/darkman
       tags: darkman
 
+    - role: packages/zed
+      tags: zed
+
     - role: user/config
       tags: user, config
 
