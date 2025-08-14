@@ -1,5 +1,4 @@
 ---
-
 - name: check zed releases
   ansible.builtin.uri:
     url: https://api.github.com/repos/zed-industries/zed/releases/latest
@@ -7,7 +6,7 @@
   register: releases
 
 - name: set latest zed version
-  vset_fact:
+  set_fact:
     zed_latest_version: "{{ releases.json.tag_name[1:] }}"
   when: not ansible_check_mode
 
@@ -50,3 +49,17 @@
   when:
     - not ansible_check_mode
     - not zed_stat.stat.exists or zed_latest_version not in zed_version.stdout_lines[0]
+
+- name: zed configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    dest: "~/.config/zed/"
+    state: directory
+
+- name: zed settings
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: zed.json
+    dest: "~/.config/zed/settings.json"
