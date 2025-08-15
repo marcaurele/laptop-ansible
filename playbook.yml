@@ -149,6 +149,7 @@
 
     - role: packages/kdrive
       tags: kdrive
+      when: private_node
 
     - role: packages/lunii
       tags: lunii
