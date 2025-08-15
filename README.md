@@ -145,4 +145,4 @@ _To pair with the MX Ergo, don't open the BT manager but do everything from the 
 
 ## Tips
 
-_None for now._
+- For Debian codename changes, run once `sudo apt-get update --allow-releaseinfo-change` to accept the change to the next version.
