@@ -86,3 +86,6 @@ sudo:
   - /usr/sbin/halt
   - /usr/sbin/rfkill
   - /usr/bin/udevadm trigger
+
+zed:
+  disable_ai: false

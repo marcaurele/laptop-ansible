@@ -8,11 +8,25 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ui_font_size": 13,
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "html": true
+  },
+  "auto_update": false,
   "buffer_font_size": 12,
+  "disable_ai": {{ zed.disable_ai | lower }},
+  "format_on_save": "on",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
   "theme": {
     "mode": "system",
     "light": "Catppuccin Frappé",
     "dark": "Catppuccin Frappé"
-  }
+  },
+  "ui_font_size": 13,
+  "wrap_guides": [80, 100, 120]
 }

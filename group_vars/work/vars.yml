@@ -39,3 +39,6 @@ sudo_work:
 username: "{{ vault_username }}"
 
 vpn_ips: "{{vault_vpn_ips }}"
+
+zed:
+  disable_ai: true
