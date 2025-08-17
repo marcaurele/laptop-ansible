@@ -1,5 +1,4 @@
 ---
-
 - name: add authorized ssh keys for {{ username }}
   become: true
   become_user: "{{ username }}"
@@ -83,12 +82,12 @@
       /usr/bin/chromium --profile-directory=Default --app-id=mdpkiolbdkhdjpekfbkbmhigcaggjagi
   when: not private_node
 
-- name: check if kDrive-foliate directory exists
+- name: check if MyDrive-foliate directory exists
   become: true
   become_user: "{{ username }}"
   ansible.builtin.stat:
-    path: "~/kDrive/Foliate-settings"
-  register: kdrive_foliate
+    path: "~/MyDrive/Foliate-settings"
+  register: mydrive_foliate
   tags: foliate
 
 - name: configure foliate settings directory to be synced
@@ -97,11 +96,11 @@
   ansible.builtin.file:
     state: link
     force: yes
-    src: "~/kDrive/Foliate-settings"
+    src: "~/MyDrive/Foliate-settings"
     dest: "~/.local/share/com.github.johnfactotum.Foliate"
   when:
-  - ansible_facts.packages['foliate'] is defined
-  - kdrive_foliate.stat.exists
+    - ansible_facts.packages['foliate'] is defined
+    - mydrive_foliate.stat.exists
   tags: foliate
 
 - name: copy Solarized theme for vim

@@ -147,10 +147,6 @@
     - role: packages/starship
       tags: starship
 
-    - role: packages/kdrive
-      tags: kdrive
-      when: private_node
-
     - role: packages/lunii
       tags: lunii
       when: private_node
