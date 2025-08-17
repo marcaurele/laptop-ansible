@@ -1,5 +1,4 @@
 ---
-
 - name: install iA Fonts
   include_tasks: iafonts.yml
 
@@ -40,5 +39,11 @@
 
 - name: rebuild font cache
   become: true
+  ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
+  when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
+
+- name: rebuild font cache
+  become: true
+  become_user: "{{ username }}"
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
   when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
