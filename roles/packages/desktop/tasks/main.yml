@@ -1,46 +1,46 @@
 ---
-
 - name: install Debian packages
   become: true
   ansible.builtin.apt:
     name:
-    - task-desktop
-    - task-gnome-desktop
+      - task-desktop
+      - task-gnome-desktop
   when: ansible_distribution == "Debian"
 
 - name: install desktop
   become: true
   ansible.builtin.apt:
     name:
-    - autorandr
-    - blueman
-    - brightnessctl
-    - calibre
-    - "chromium{% if ansible_distribution == 'Ubuntu' %}-browser{% endif %}"
-    - dictionaries-common
-#    - evolution
-    - fonts-symbola
-    - gimp
-    - gocryptfs
-    - heif-gdk-pixbuf
-    - hunspell-en-us
-    - hunspell-fr-revised
-    - inkscape
-    - libreoffice
-    - lxappearance
-    - mpv
-    - network-manager
-    - network-manager-gnome
-    - pasystray
-    - pavucontrol
-    - rdesktop
-#    - telegram-desktop
-    - treesheets
-    - suckless-tools
-    - x11-xkb-utils
-    - xclip
-    - xinput
-    - xsettingsd
+      - autorandr
+      - blueman
+      - brightnessctl
+      - calibre
+      - "chromium{% if ansible_distribution == 'Ubuntu' %}-browser{% endif %}"
+      - dictionaries-common
+      #    - evolution
+      - fonts-symbola
+      - gimp
+      - gocryptfs
+      - heif-gdk-pixbuf
+      - hunspell-en-us
+      - hunspell-fr-revised
+      - inkscape
+      - libreoffice
+      - lxappearance
+      - mpv
+      - network-manager
+      - network-manager-gnome
+      - pasystray
+      - pavucontrol
+      - rdesktop
+      #    - telegram-desktop
+      - treesheets
+      - suckless-tools
+      - syncthing-gtk
+      - x11-xkb-utils
+      - xclip
+      - xinput
+      - xsettingsd
 
 - name: configure xorg rules
   become: true
@@ -49,8 +49,8 @@
     dest: "/etc/X11/xorg.conf.d/{{ item.dest }}"
     mode: 0644
   loop:
-#    - src: 00-keyboard.conf.j2
-#      dest: 00-keyboard.conf
+    #    - src: 00-keyboard.conf.j2
+    #      dest: 00-keyboard.conf
     - src: 30-touchpad.conf.j2
       dest: 30-touchpad.conf
     - src: 31-mouse.conf.j2
@@ -77,3 +77,10 @@
 
 - name: import kitty tasks
   import_tasks: kitty.yml
+
+- name: syncthing fix
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "~/.local/state/syncthing/"
+    state: directory
