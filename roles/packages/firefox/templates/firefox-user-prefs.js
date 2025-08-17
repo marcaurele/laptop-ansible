@@ -7,7 +7,6 @@
 //   - 2 = (default) send on all requests (e.g. images, links, etc.).
 user_pref("network.http.referer.defaultPolicy", 1);
 
-
 // Extra pref from https://github.com/pyllyukko/user.js/blob/master/user.js
 
 // PREF: Disable Location-Aware Browsing (geolocation)
@@ -16,7 +15,10 @@ user_pref("geo.enabled", false);
 
 // PREF: When geolocation is enabled, use Mozilla geolocation service instead of Google
 // https://bugzilla.mozilla.org/show_bug.cgi?id=689252
-user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+user_pref(
+  "geo.wifi.uri",
+  "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%",
+);
 
 // PREF: Disable "beacon" asynchronous HTTP transfers (used for analytics)
 // https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon
@@ -114,7 +116,7 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
 
 // PREF: Display a notification bar when websites offer data for offline use
 // https://kb.mozillazine.org/Browser.offline-apps.notify
-user_pref("browser.offline-apps.notify",			true);
+user_pref("browser.offline-apps.notify", true);
 
 // PREF: Controls the default permission for websites to send desktop notifications.
 // - 0: to prompt the user for permission each time (default),
@@ -124,5 +126,6 @@ user_pref("browser.offline-apps.notify",			true);
 user_pref("permissions.default.desktop-notification", 2);
 
 // ML/AP
-user_pref("browser.ml.chat.enabled", false)
-user_pref("browser.ml.chat.sidebar", false)
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+user_pref("extensions.ml.enabled", false);

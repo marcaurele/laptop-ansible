@@ -1,5 +1,4 @@
 ---
-
 - name: set firefox package name
   set_fact:
     firefox_package: "firefox{% if not debian_unstable_is_active %}-esr{% endif %}"
@@ -20,15 +19,15 @@
     name: firefox
     default_release: unstable
   when:
-  - debian_unstable_is_active
-  - ansible_distribution == 'Debian'
+    - debian_unstable_is_active
+    - ansible_distribution == 'Debian'
 
 - name: install firefox-esr
   become: true
   ansible.builtin.apt:
     name: firefox-esr
   when:
-  - ansible_distribution == 'Debian'
+    - ansible_distribution == 'Debian'
 
 - name: check browser preferences
   command: xdg-settings get default-web-browser
@@ -57,7 +56,7 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.template:
-    src: user.js.j2
+    src: firefox-user-prefs.js
     dest: "{{ item.path }}/user.js"
   loop: "{{ firefox_profiles.files }}"
   when:
