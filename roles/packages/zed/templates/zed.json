@@ -12,7 +12,9 @@
     "catppuccin": true,
     "dockerfile": true,
     "git-firefly": true,
-    "html": true
+    "html": true,
+    "terraform": true,
+    "toml": true
   },
   "auto_update": false,
   "buffer_font_size": 11,
