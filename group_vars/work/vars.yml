@@ -1,5 +1,4 @@
 ---
-
 aws_config: "{{ vault_aws_config }}"
 
 aws_config_extra: "{{ vault_aws_config_extra }}"
