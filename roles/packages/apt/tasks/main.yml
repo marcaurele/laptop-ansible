@@ -2,8 +2,8 @@
 - name: configuring APT sources
   become: true
   template:
-    src: sources.list.j2
-    dest: /etc/apt/sources.list
+    src: debian.sources
+    dest: /etc/apt/sources.list.d/debian.sources
   register: apt_source
   when: ansible_distribution == 'Debian'
   tags: system, root

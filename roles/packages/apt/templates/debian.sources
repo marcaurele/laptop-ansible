@@ -1,0 +1,48 @@
+# {{ ansible_managed }}
+
+# testing APT sources
+Types: deb
+URIs: https://debian.ethz.ch/debian/
+Suites: testing
+Components: main  contrib non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://debian.ethz.ch/debian/
+Suites: testing-updates
+Components: main  contrib non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+{% if debian_unstable_is_active %}
+# unstable APT sources
+X-Repolib-Name: Debian unstable
+Types: deb
+URIs: https://debian.ethz.ch/debian/
+Suites: unstable
+Components: main  contrib non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+{% endif %}
+
+# testing security APT sources
+X-Repolib-Name: Debian Testing Security
+Types: deb
+URIs: https://security.debian.org/debian-security/
+Suites: testing-security
+Components: main  contrib non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+Enabled: No
+URIs: https://snapshot.debian.org/archive/debian/{{ lookup('pipe', 'date -d \"30 day ago\" +\"%Y%m%d\"') }}
+Suites: testing
+Components: main  contrib non-free-firmware
+Check-Valid-Until: no
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+Enabled: No
+URIs: https://snapshot.debian.org/archive/debian/{{ lookup('pipe', 'date -d \"30 day ago\" +\"%Y%m%d\"') }}
+Suites: testing-updates
+Components: main  contrib non-free-firmware
+Check-Valid-Until: no
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
