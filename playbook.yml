@@ -20,6 +20,9 @@
       tags: apt
       when: ansible_os_family == "Debian"
 
+    - role: packages/sudo
+      tags: sudo
+
     - role: common/configuration
       tags: configuration
 
@@ -35,9 +38,6 @@
     # SYSTEM
     - role: packages/sshd
       tags: ssh
-
-    - role: packages/sudo
-      tags: sudo
 
     - role: packages/common
       tags: common
