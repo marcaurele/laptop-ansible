@@ -7,4 +7,5 @@ requires-python = ">=3.12"
 dependencies = [
     "ansible>=11.1.0",
     "jmespath>=1.0.1",
+    "passlib>=1.7.4",
 ]
