@@ -45,8 +45,8 @@ To customize the LUKFS and LVM setup, the disk should be laid out using a live
 CD before performing the installation. After booting on the live CD:
 
 1. Partition the disk for:
-   - EFI volume (~500MB)
-   - /boot (~700MB)
+   - EFI volume (~500MB) + bootable flag. If there is an existing partition, it must be first deleted to avoid an error message.
+   - /boot (~700MB) using ext2 (no need for journaled FS) without the bootable flag
    - a single partition with the rest to crypt
 2. Create the LUKS container: `cryptsetup luksFormat /dev/nvmen0p3`
    (see to change defaults)
@@ -76,7 +76,7 @@ CD before performing the installation. After booting on the live CD:
     - `mount -t sysfs sys /sys`
     - `mount -t devpts devpts /dev/pts`
 11. Setup crypttab (grep uuid from `blkid | grep LUKS`):
-        ``echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'`none luks" > /etc/crypttab``
+    ``echo "cryptlvm `blkid| grep LUK | awk -F '"' '{printf "UUID=" $2}'`none luks" > /etc/crypttab``
 12. Rebuild boot files:
     - `update-initramfs -c -k all`
     - `update-grub` or `grub-mkconfig -o /boot/grub/grub.cfg`
