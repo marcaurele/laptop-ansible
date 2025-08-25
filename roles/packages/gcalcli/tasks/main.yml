@@ -1,9 +1,15 @@
-
 - name: install gcalcli
   become: true
   ansible.builtin.apt:
     name:
-    - gcalcli
+      - gcalcli
+
+- name: gcalcli configuration directory
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    dest: "~/.config/gcalcli"
+    state: directory
 
 - name: configure default calendar
   become: true

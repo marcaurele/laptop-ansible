@@ -1,5 +1,4 @@
 ---
-
 - name: check awscli local binary
   stat:
     path: /usr/local/bin/aws
@@ -58,6 +57,14 @@
   when:
     - awscli_temp.path is defined
     - awscli_stat.stat.exists
+
+- name: aws config directory
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "~/.aws"
+    state: directory
+  when: not private_node
 
 - name: install aws config
   become: true

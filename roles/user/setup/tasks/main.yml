@@ -1,5 +1,4 @@
 ---
-
 - name: check home directory for {{ username }}
   become: true
   stat:
@@ -74,6 +73,7 @@
     - path: "~/.config/nvim"
     - path: "~/.config/systemd/user"
     - path: "~/.config/tmux"
+    - path: "~/.config/mpv"
     - path: "~/.vim"
     - path: "~/.vim/colors"
     - path: "~/Private"
