@@ -1,10 +1,9 @@
 ---
-
 - name: install inputplug
   become: true
   ansible.builtin.apt:
     name:
-    - inputplug
+      - inputplug
 
 - name: create inputplug config directory
   become: true
@@ -37,6 +36,7 @@
     daemon_reload: true
     scope: user
   when: inputplug_service.changed or inputplug_script.changed
+  # ignore_errors: true
 
 - name: activate inputplug service
   become: true
