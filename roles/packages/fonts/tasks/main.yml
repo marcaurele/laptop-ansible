@@ -1,9 +1,11 @@
 ---
 - name: install iA Fonts
   include_tasks: iafonts.yml
+  # tags: never
 
 - name: install monaspace Fonts
   include_tasks: monaspace.yml
+  # tags: never
 
 - name: install fonts
   become: true
@@ -36,14 +38,17 @@
       - "Source_Code_Pro/static/SourceCodePro-Regular.ttf"
       - "Source_Code_Pro/static/SourceCodePro-SemiBold.ttf"
       - "Source_Code_Pro/static/SourceCodePro-SemiBoldItalic.ttf"
+  # tags: never
 
 - name: rebuild font cache
   become: true
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
   when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
+  # tags: never
 
 - name: rebuild font cache
   become: true
   become_user: "{{ username }}"
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
   when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
+  # tags: never

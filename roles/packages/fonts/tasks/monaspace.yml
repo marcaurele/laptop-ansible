@@ -1,5 +1,4 @@
 ---
-
 - name: check monaspace releases
   uri:
     url: https://api.github.com/repos/githubnext/monaspace/releases/latest
