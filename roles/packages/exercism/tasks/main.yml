@@ -1,5 +1,4 @@
 ---
-
 - name: check exercism releases
   uri:
     url: https://api.github.com/repos/exercism/cli/releases/latest
@@ -52,9 +51,9 @@
   when:
     - exercism_temp.path is defined
 
-- name: install exercism zsh {{ releases.json.tag_name }} completion
+- name: install exercism fish {{ releases.json.tag_name }} completion
   become: true
   become_user: "{{ username }}"
-  ansible.builtin.shell: "exercism completion zsh > {{ config.zsh }}/zsh/exercism.zsh"
+  ansible.builtin.shell: "exercism completion fish > {{ config.fish }}/completions/exercism.fish"
   when:
     - exercism_temp.path is defined
