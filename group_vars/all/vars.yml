@@ -52,6 +52,7 @@ packages_absent_extra:
   - pulseaudio
   - remmina
   - terraform
+  - terraform-switcher
   - vagrant
   - vault
   - vlc

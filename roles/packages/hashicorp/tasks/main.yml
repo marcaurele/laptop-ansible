@@ -1,5 +1,4 @@
 ---
-
 - name: add repository GPG key for HashiCorp
   become: true
   ansible.builtin.get_url:
@@ -24,7 +23,6 @@
     pkg:
       - consul
       - nomad
-      - terraform-switcher
 
 - name: deactivate nomad service
   become: true
@@ -48,6 +46,6 @@
     dest: "{{ item.dest }}"
   when: ansible_facts.packages[item.shell] is defined
   with_items:
-  - src: config.fish
-    dest: "{{ config.fish }}/conf.d/hashicorp.fish"
-    shell: fish
+    - src: config.fish
+      dest: "{{ config.fish }}/conf.d/hashicorp.fish"
+      shell: fish
