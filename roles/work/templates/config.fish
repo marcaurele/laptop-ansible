@@ -3,7 +3,7 @@ if command -sq aws-vault
     set -x KEEPER_CONFIG_FILE ~/.config/keeper/config.json
 end
 
-abbr --add -- curljwt "curl --silent -H 'Authorization: Bearer $JWT_TOKEN'"
+abbr --add -- curljwt "curl --silent -H \"Authorization: Bearer $JWT_TOKEN\""
 
 # vpn-on is a script file
 abbr --add -- vpn-off "nmcli connection down {{ company }}"
