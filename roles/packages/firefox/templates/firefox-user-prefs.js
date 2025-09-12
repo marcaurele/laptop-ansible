@@ -5,7 +5,7 @@
 //   - 0 = never send the header,
 //   - 1 = send the header only when clicking on links and similar elements,
 //   - 2 = (default) send on all requests (e.g. images, links, etc.).
-user_pref("network.http.referer.defaultPolicy", 1);
+user_pref("network.http.referer.defaultPolicy", 2);
 
 // Extra pref from https://github.com/pyllyukko/user.js/blob/master/user.js
 
