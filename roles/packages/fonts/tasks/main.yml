@@ -5,7 +5,8 @@
 
 - name: install monaspace Fonts
   include_tasks: monaspace.yml
-  # tags: never
+  tags: never
+  # Needs to be correctly done, very today
 
 - name: install fonts
   become: true
@@ -43,12 +44,14 @@
 - name: rebuild font cache
   become: true
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
-  when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
+  when: iafonts_downloaded.changed or local_fonts.changed
+  # when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
   # tags: never
 
 - name: rebuild font cache
   become: true
   become_user: "{{ username }}"
   ansible.builtin.command: /usr/bin/fc-cache /usr/local/share/fonts
-  when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
+  when: iafonts_downloaded.changed or local_fonts.changed
+  # when: iafonts_downloaded.changed or monaspace_local_version.changed or local_fonts.changed
   # tags: never
