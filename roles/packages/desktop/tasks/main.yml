@@ -32,6 +32,7 @@
       - network-manager-gnome
       - pasystray
       - pavucontrol
+      - pulseaudio-utils # for pactl
       - rdesktop
       #    - telegram-desktop
       - treesheets
