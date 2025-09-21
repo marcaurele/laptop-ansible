@@ -12,6 +12,7 @@
     "catppuccin": true,
     "dockerfile": true,
     "git-firefly": true,
+    "fish": true,
     "html": true,
     "terraform": true,
     "toml": true
