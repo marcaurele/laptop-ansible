@@ -29,7 +29,6 @@
     name:
       - apt-transport-https
       - curl
-      - gpg
       - python3-apt
       - sequoia-chameleon-gnupg
       - snapd
