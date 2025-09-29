@@ -146,3 +146,14 @@ _To pair with the MX Ergo, don't open the BT manager but do everything from the 
 ## Tips
 
 - For Debian codename changes, run once `sudo apt-get update --allow-releaseinfo-change` to accept the change to the next version.
+
+## Notes
+
+### Dell XPS 15
+
+- <https://github.com/cloudxabide/Dell_XPS15_9520_Linux>
+- <https://wiki.debian.org/NvidiaGraphicsDrivers>
+- <https://github.com/bayasdev/envycontrol>
+- <https://wiki.archlinux.org/title/Bumblebee#Installation>
+- <https://wiki.archlinux.org/title/NVIDIA_Optimus>
+- <https://wiki.archlinux.org/title/Dell_XPS_15>
