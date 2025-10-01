@@ -1,7 +1,7 @@
 ---
 - name: check aws-vault releases
   uri:
-    url: https://api.github.com/repos/ByteNess/aws-vault/releases/latest
+    url: https://api.github.com/repos/pix4d/aws-vault/releases/latest
     return_content: true
   register: releases
 
@@ -20,15 +20,35 @@
   changed_when: false
   when: awsvault_stat.stat.exists
 
-- name: install or upgrade aws-vault {{ releases.json.tag_name[1:] }}
-  become: true
-  get_url:
-    dest: "/usr/local/bin/aws-vault"
-    mode: 0755
-    url: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
+- name: create temporary directory for archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: awsvault
+  register: awsvault_temp
   when:
     - not ansible_check_mode
-    - not awsvault_stat.stat.exists or awsvault_version.stderr != releases.json.tag_name
+    - not awsvault_stat.stat.exists or releases.json.tag_name != awsvault_version.stderr
+  diff: false
+
+- name: download aws-vault {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ awsvault_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`) && contains(name, `tar.gz`)].browser_download_url | [0]') }}"
+    remote_src: true
+  register: awsvault_download
+  diff: false
+  when:
+    - awsvault_temp.path is defined
+
+- name: install or upgrade aws-vault {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ awsvault_temp.path }}/aws-vault"
+    dest: "/usr/local/bin/aws-vault"
+    remote_src: true
+    mode: 0755
+  when:
+    - awsvault_temp.path is defined
 
 - name: awsvault configuration
   become: true
