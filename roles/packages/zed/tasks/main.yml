@@ -39,10 +39,6 @@
     - not ansible_check_mode
     - not zed_stat.stat.exists or zed_latest_version not in zed_version.stdout_lines[0]
 
-- debug: var=zed_latest_version
-- debug: var=zed_version.stdout_lines
-- debug: var=zed_stat.stat
-
 - name: install zed {{ releases.json.tag_name }}
   become: true
   become_user: "{{ username }}"
