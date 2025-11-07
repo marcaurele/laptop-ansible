@@ -55,10 +55,10 @@
     - doggo_temp.path is defined
   register: doggo_install
 
-- name: doggo completion configuration
+- name: doggo completions configuration
   become: true
   become_user: "{{ username }}"
-  ansible.builtin.shell: "doggo completion fish > {{ config.fish }}/completions/doggo.fish"
+  ansible.builtin.shell: "doggo completions fish > {{ config.fish }}/completions/doggo.fish"
   when:
     - doggo_install.changed
     - ansible_facts.packages["fish"] is defined
