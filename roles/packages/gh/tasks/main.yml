@@ -1,15 +1,30 @@
 ---
-
 - name: add repository GPG key for GitHub CLI
   become: true
   ansible.builtin.get_url:
     url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
     dest: /etc/apt/trusted.gpg.d/githubcli.gpg
 
+- name: clean old APT files
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/{{ item }}"
+    state: absent
+  diff: false
+  loop:
+    - "cli_github_com_packages.list"
+    - "cli_github_com_packages.list.bak"
+
 - name: add repository for GitHub CLI
   become: true
-  apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/githubcli.gpg] https://cli.github.com/packages stable  main"
+  ansible.builtin.deb822_repository:
+    name: github
+    types: deb
+    uris: https://cli.github.com/packages
+    suites: stable
+    components: main
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/githubcli.gpg
 
 - name: install GitHub CLI
   become: true
@@ -23,8 +38,8 @@
   become_user: "{{ username }}"
   ansible.builtin.shell: "gh completion -s fish > {{ config.fish }}/completions/github.fish"
   when:
-  - gh_install.changed
-  - ansible_facts.packages["fish"] is defined
+    - gh_install.changed
+    - ansible_facts.packages["fish"] is defined
 
 - name: install script for gh-notification-counter
   become: true

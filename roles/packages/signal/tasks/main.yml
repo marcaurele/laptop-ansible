@@ -1,15 +1,30 @@
 ---
-
 - name: add repository GPG key for Signal
   become: true
   ansible.builtin.get_url:
     url: https://updates.signal.org/desktop/apt/keys.asc
     dest: /etc/apt/trusted.gpg.d/signal.asc
 
+- name: clean old APT files
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/{{ item }}"
+    state: absent
+  diff: false
+  loop:
+    - "updates_signal_org_desktop_apt.list"
+    - "updates_signal_org_desktop_apt.list.bak"
+
 - name: add repository for Signal
   become: true
-  apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/signal.asc] https://updates.signal.org/desktop/apt xenial main
+  ansible.builtin.deb822_repository:
+    name: signal
+    types: deb
+    uris: https://updates.signal.org/desktop/apt
+    suites: xenial
+    components: main
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/signal.asc
 
 - name: install Signal
   become: true

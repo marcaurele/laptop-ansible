@@ -8,6 +8,16 @@
   when: ansible_distribution == 'Debian'
   tags: system, root
 
+- name: clean old APT files
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/{{ item }}"
+    state: absent
+  diff: false
+  loop:
+    - "sources.list~"
+    - "sources.list.bak"
+
 - name: set package preferences between testing and unstable
   become: true
   template:

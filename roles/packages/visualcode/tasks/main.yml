@@ -1,16 +1,30 @@
 ---
-
 - name: add repository GPG key for Visual Studio Code
   become: true
   ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/trusted.gpg.d/microsoft.asc
 
+- name: clean old APT files
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/{{ item }}"
+    state: absent
+  diff: false
+  loop:
+    - "vscode.list"
+    - "vscode.list.bak"
+
 - name: add repository for Visual Studio Code
   become: true
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.asc] https://packages.microsoft.com/repos/code stable main
-    filename: vscode
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: deb
+    uris: https://packages.microsoft.com/repos/code
+    suites: stable
+    components: main
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/microsoft.asc
 
 - name: Set default to not install MS apt and key
   become: true

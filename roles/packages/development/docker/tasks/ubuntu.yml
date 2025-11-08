@@ -1,5 +1,4 @@
 ---
-
 - name: add repository GPG key for Docker
   become: true
   ansible.builtin.get_url:
@@ -8,14 +7,18 @@
 
 - name: add docker repository
   become: true
-  apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
-    state: present
-    update_cache: true
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: deb
+    uris: https://download.docker.com/linux/{{ ansible_distribution | lower }}
+    suites: { { ansible_distribution_release } }
+    components: stable
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/docker.asc
 
 - name: install docker packages
   become: true
   ansible.builtin.apt:
     name:
-    - docker-ce
-    - docker-ce-cli
+      - docker-ce
+      - docker-ce-cli

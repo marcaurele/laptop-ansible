@@ -1,15 +1,30 @@
 ---
-
 - name: add repository GPG key for Brave
   become: true
   ansible.builtin.get_url:
     url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     dest: /etc/apt/trusted.gpg.d/brave-browser.gpg
 
+- name: clean old APT files
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/{{ item }}"
+    state: absent
+  diff: false
+  loop:
+    - "brave_browser_apt_release_s3_brave_com.list"
+    - "brave_browser_apt_release_s3_brave_com.list.bak"
+
 - name: add repository for Brave
   become: true
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/brave-browser.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main
+  ansible.builtin.deb822_repository:
+    name: brave
+    types: deb
+    uris: https://brave-browser-apt-release.s3.brave.com/
+    suites: stable
+    components: main
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/brave-browser.gpg
 
 - name: install Brave
   become: true
