@@ -15,6 +15,7 @@
     state: absent
   diff: false
   loop:
+    - "sources.list"
     - "sources.list~"
     - "sources.list.bak"
 
