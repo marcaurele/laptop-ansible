@@ -31,3 +31,8 @@
     - not ansible_check_mode
     - not concourse_api_info.failed
     - not fly_stat.stat.exists or (concourse_api_info.json.version not in fly_version.stdout_lines[0])
+
+- name: update internal fly_helper cli
+  become: true
+  become_user: "{{ username }}"
+  command: ~/bin/fly_helper update
