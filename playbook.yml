@@ -196,6 +196,9 @@
     - role: packages/zed
       tags: zed
 
+    - role: packages/terraform-switcher
+      tags: tfswitch
+
     - role: user/config
       tags: user, config
 

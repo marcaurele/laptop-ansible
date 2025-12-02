@@ -1,0 +1,66 @@
+---
+- name: check terraform-switcher releases
+  uri:
+    url: https://api.github.com/repos/warrensbox/terraform-switcher/releases/latest
+    return_content: true
+  register: releases
+
+- name: check terraform-switcher locally
+  become: true
+  become_user: "{{ username }}"
+  stat:
+    path: /usr/local/bin/tfswitch
+  register: tfswitch_stat
+
+- name: check terraform-switcher local version
+  become: true
+  become_user: "{{ username }}"
+  command: /usr/local/bin/tfswitch --version
+  register: tfswitch_version
+  changed_when: false
+  when: tfswitch_stat.stat.exists
+
+- name: create temporary directory for archive
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: terraform-switcher
+  register: tfswitch_temp
+  when:
+    - not ansible_check_mode
+    - not tfswitch_stat.stat.exists or releases.json.tag_name != tfswitch_version.stderr
+  diff: false
+
+- name: download terraform-switcher {{ releases.json.tag_name }}
+  ansible.builtin.unarchive:
+    dest: "{{ tfswitch_temp.path }}"
+    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`) && contains(name, `tar.gz`)].browser_download_url | [0]') }}"
+    remote_src: true
+  register: tfswitch_download
+  diff: false
+  when:
+    - tfswitch_temp.path is defined
+
+- name: install or upgrade terraform-switcher {{ releases.json.tag_name }}
+  become: true
+  copy:
+    src: "{{ tfswitch_temp.path }}/tfswitch"
+    dest: "/usr/local/bin/tfswitch"
+    remote_src: true
+    mode: 0755
+  when:
+    - tfswitch_temp.path is defined
+
+- name: terraform-switcher configuration
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  when: ansible_facts.packages[item.shell] is defined
+  loop:
+    - src: completion.fish
+      dest: "{{ config.fish }}/completions/terraform-switcher.fish"
+      shell: fish
+    # - src: env.fish
+    #   dest: "{{ config.fish }}/conf.d/aws-vault.fish"
+    #   shell: fish
