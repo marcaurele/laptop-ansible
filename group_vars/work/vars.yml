@@ -3,6 +3,8 @@ aws_config: "{{ vault_aws_config }}"
 
 aws_config_extra: "{{ vault_aws_config_extra }}"
 
+aws_tf_profile : "{{ vault_aws_tf_profile }}"
+
 company: "{{ vault_company }}"
 
 company_vpn: "{{ vault_company_vpn }}"

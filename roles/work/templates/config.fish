@@ -20,3 +20,7 @@ alias aws-prod-django="aws-describe-instances-table prod django"
 alias aws-prod-celery="aws-describe-instances-table prod celery"
 alias aws-staging-django="aws-describe-instances-table staging django"
 alias aws-staging-celery="aws-describe-instances-table staging celery"
+
+# Terraform/Opentofu shortcuts
+abbr --add -- tfprod "TF_WORKSPACE=production aws-vault exec {{ aws_tf_profile }} --"
+abbr --add -- tfstag "TF_WORKSPACE=staging aws-vault exec {{ aws_tf_profile }} --"
