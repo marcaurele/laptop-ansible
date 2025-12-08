@@ -51,7 +51,17 @@ tasks:
     cmds:
     - uv run ansible-playbook -i inventory-vagrant.py -i hosts-vagrant.yml {{.CLI_ARGS}} playbook.yml
 
+  vault-decrypt:
+    desc: perform an Ansible vault decrypt command
+    cmds:
+    - uv run ansible-vault decrypt {{.CLI_ARGS}}
+
   vault-edit:
     desc: perform an Ansible vault command
     cmds:
     - uv run ansible-vault edit {{.CLI_ARGS}}
+
+  vault-encrypt:
+    desc: perform an Ansible vault encrypt command
+    cmds:
+    - uv run ansible-vault encrypt {{.CLI_ARGS}}
