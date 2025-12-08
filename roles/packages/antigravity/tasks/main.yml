@@ -1,0 +1,25 @@
+---
+- name: add repository GPG key for Google Antigravity
+  become: true
+  ansible.builtin.get_url:
+    url: https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg
+    dest: /etc/apt/trusted.gpg.d/google-antigravity.gpg
+  register: apt_deb_signing_gpg
+
+- name: add repository for Google Antigravity
+  become: true
+  ansible.builtin.deb822_repository:
+    name: antigravity
+    types: deb
+    uris: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/
+    suites: antigravity-debian
+    components: main
+    architectures: amd64
+    signed_by: "{{ apt_deb_signing_gpg.dest }}"
+
+- name: install/update Google Antigravity
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    pkg: antigravity
+    state: latest

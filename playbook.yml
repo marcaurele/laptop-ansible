@@ -199,6 +199,10 @@
     - role: packages/terraform-switcher
       tags: tfswitch
 
+    - role: packages/antigravity
+      tags: antigravity
+      when: not private_mode
+
     - role: user/config
       tags: user, config
 
