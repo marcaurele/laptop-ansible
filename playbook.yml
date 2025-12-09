@@ -201,7 +201,7 @@
 
     - role: packages/antigravity
       tags: antigravity
-      when: not private_mode
+      when: not private_node
 
     - role: user/config
       tags: user, config
