@@ -128,4 +128,5 @@ user_pref("permissions.default.desktop-notification", 2);
 // ML/AP
 user_pref("browser.ml.enable", false);
 user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.linkPreview.enabled", false);
 user_pref("extensions.ml.enabled", false);
