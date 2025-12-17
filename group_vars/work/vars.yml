@@ -31,10 +31,6 @@ python_tools_extra:
       - fido2
 
 sudo_work:
-  - /usr/bin/systemctl status openfortivpn@work.service
-  - /usr/bin/systemctl start openfortivpn@work.service
-  - /usr/bin/systemctl stop openfortivpn@work.service
-  - /usr/bin/systemctl restart openfortivpn@work.service
   - /usr/bin/systemd-tty-ask-password-agent
 
 username: "{{ vault_username }}"
