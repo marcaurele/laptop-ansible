@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 # Remove once https://github.com/warrensbox/terraform-switcher/issues/537 is implemented
 set -l COMMAND tfswitch
 

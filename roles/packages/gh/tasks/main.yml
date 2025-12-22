@@ -40,6 +40,7 @@
   when:
     - gh_install.changed
     - ansible_facts.packages["fish"] is defined
+  tags: never  # Completions is install in vendor dir
 
 - name: install script for gh-notification-counter
   become: true

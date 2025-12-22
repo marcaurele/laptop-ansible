@@ -59,7 +59,7 @@
   when: ansible_facts.packages[item.shell] is defined
   loop:
     - src: completion.fish
-      dest: "{{ config.fish }}/completions/terraform-switcher.fish"
+      dest: "{{ config.fish }}/completions/tfswitch.fish"
       shell: fish
     # - src: env.fish
     #   dest: "{{ config.fish }}/conf.d/aws-vault.fish"
