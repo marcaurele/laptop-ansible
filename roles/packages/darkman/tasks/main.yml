@@ -1,29 +1,64 @@
 ---
 
-# TODO: build it with makedeb
-
-# - name: darkman code git checkout
-#   become: true
-#   become_user: "{{ username }}"
-#   ansible.builtin.git:
-#     clone: true
-#     dest: "/tmp/darkman"
-#     repo: "https://gitlab.com/WhyNotHugo/darkman.git"
-#     version: "v"
-#     update: true
-#   diff: false
-#   when: not ansible_check_mode
-
 - name: fetch darkman tags
   ansible.builtin.uri:
     url: https://gitlab.com/api/v4/projects/23104371/repository/tags
     return_content: true
   register: darkman_tags
 
+- name: check local darkman
+  ansible.builtin.stat:
+    path: /usr/local/bin/darkman
+  register: darkman_stat
+
+- name: check local darkman version
+  ansible.builtin.command: /usr/local/bin/darkman --version
+  register: darkman_version
+  changed_when: false
+  when: darkman_stat.stat.exists
+
+- name: set darkman version
+  ansible.builtin.set_fact:
+    darkman_remote_version: "{{ darkman_tags.json |to_json|from_json| json_query('max_by(@, &name).name') }}"
+
+- name: darkman code git checkout
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    clone: true
+    dest: "/tmp/darkman"
+    repo: "https://gitlab.com/WhyNotHugo/darkman.git"
+    version: "{{ darkman_remote_version }}"
+    update: true
+  diff: false
+  when:
+    - not ansible_check_mode
+    - darkman_remote_version not in darkman_version.stdout_lines[0]
+
+- name: build darkman
+  become: true
+  become_user: "{{ username }}"
+  community.general.make:
+    chdir: /tmp/darkman
+  when:
+    - not ansible_check_mode
+    - darkman_remote_version not in darkman_version.stdout_lines[0]
+
+- name: install darkman {{ darkman_remote_version }}
+  become: true
+  community.general.make:
+    chdir: /tmp/darkman
+    target: install
+    params:
+      PREFIX: /usr/local
+  when:
+    - not ansible_check_mode
+    - darkman_remote_version not in darkman_version.stdout_lines[0]
+
 - name: create darkman config directory
   become: true
   become_user: "{{ username }}"
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
   with_items:
@@ -38,34 +73,32 @@
 
 - name: create darkman script directories
   become: true
-  file:
-    path: "{{ item }}"
+  ansible.builtin.file:
+    path: "/usr/local/share/darkman"
     state: directory
+
+- name: clear old darkman script directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
   with_items:
   - "/usr/local/share/dark-mode.d"
   - "/usr/local/share/light-mode.d"
 
-- name: copy scripts
+- name: copy darkman scripts
   become: true
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: 0755
   with_items:
-  - src: desktop-notification.sh.j2
-    dest: "/usr/local/share/dark-mode.d/desktop-notification.sh"
-    icon: "weather-clear-night"
-    text: "switching to dark mode"
-  - src: desktop-notification.sh.j2
-    dest: "/usr/local/share/light-mode.d/desktop-notification.sh"
-    icon: "weather-clear"
-    text: "switching to light mode"
-  - src: gtk3-theme.sh.j2
-    dest: "/usr/local/share/dark-mode.d/gtk3-theme.sh"
-    theme: "Adwaita-dark"
-  - src: gtk3-theme.sh.j2
-    dest: "/usr/local/share/light-mode.d/gtk3-theme.sh"
-    theme: "Adwaita"
+  - src: desktop-notification.sh
+    dest: "/usr/local/share/darkman/desktop-notification.sh"
+  - src: gtk3-color.sh
+    dest: "/usr/local/share/darkman/gtk3-color.sh"
+  - src: gtk3-theme.sh
+    dest: "/usr/local/share/darkman/gtk3-theme.sh"
 
 - name: copy systemd service file for darkman
   become: true
