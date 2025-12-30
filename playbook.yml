@@ -199,6 +199,9 @@
     - role: packages/terraform-switcher
       tags: tfswitch
 
+    - role: packages/hermit
+      tags: hermit
+
     - role: packages/antigravity
       tags: antigravity
       when: not private_node
