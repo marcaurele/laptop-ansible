@@ -24,6 +24,7 @@ $kotlin\
 $haskell\
 $python\
 [](fg:color_blue bg:color_bg3)\
+${custom.devbox}\
 $docker_context\
 $conda\
 [](fg:color_bg3 bg:color_bg1)\
@@ -126,6 +127,15 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 ### DEV ###
 ###########
 
+[custom.devbox]
+description = "Shows an indicator when inside a Devbox shell"
+symbol = ""
+style = "bg:color_bg3"
+command = "env | grep -E '^DEVBOX_PROJECT_ROOT=' | rev | cut -d'/' -f 1 | rev"
+format = '[[ $symbol( devbox\[$output\]) ](fg:color_fg0 bg:color_bg3)]($style)'
+when = "env | grep -E '^DEVBOX_SHELL_ENABLED='"
+ignore_timeout = true
+
 [c]
 symbol = " "
 style = "bg:color_blue"
@@ -133,12 +143,12 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [conda]
 style = "bg:color_bg3"
-format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
+format = '[[ $symbol( $environment) ](fg:color_fg0 bg:color_bg3)]($style)'
 
 [docker_context]
 symbol = ""
 style = "bg:color_bg3"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+format = '[[ $symbol( $context) ](fg:color_fg0 bg:color_bg3)]($style)'
 
 [git_branch]
 symbol = ""

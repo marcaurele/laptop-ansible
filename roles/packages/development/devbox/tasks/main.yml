@@ -51,3 +51,11 @@
     mode: 0755
   when:
     - devbox_temp.path is defined
+
+- name: devbox configuration
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.template:
+    src: devbox.fish
+    dest: "{{ config.fish }}/conf.d/devbox.fish"
+  when: ansible_facts.packages["fish"] is defined
