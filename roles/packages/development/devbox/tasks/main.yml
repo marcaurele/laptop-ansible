@@ -59,3 +59,11 @@
     src: devbox.fish
     dest: "{{ config.fish }}/conf.d/devbox.fish"
   when: ansible_facts.packages["fish"] is defined
+
+- name: devbox completion
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.shell: "/usr/local/bin/devbox completion fish > {{ config.fish }}/completions/devbox.fish"
+  when:
+    - ansible_facts.packages["fish"] is defined
+    - devbox_temp.path is defined
