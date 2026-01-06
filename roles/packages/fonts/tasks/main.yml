@@ -1,4 +1,10 @@
 ---
+
+- name: install font packages
+  become: true
+  ansible.builtin.apt:
+    name: fonttools
+
 - name: install iA Fonts
   include_tasks: iafonts.yml
   # tags: never
