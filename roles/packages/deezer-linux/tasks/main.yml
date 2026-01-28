@@ -1,0 +1,19 @@
+---
+
+- name: check deezer-linux releases
+  uri:
+    url: https://api.github.com/repos/aunetx/deezer-linux/releases/latest
+    return_content: true
+  register: releases
+  tags: system
+
+- name: install or upgrade Deezer linux {{ releases.json.name }}
+  become: true
+  apt:
+    deb: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `deb`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
+    state: present
+  when:
+    - not ansible_check_mode
+    - ansible_facts.packages['deezer-linux'] is not defined or not ansible_facts.packages['deezer-linux'][0]['version'].startswith(releases.json.name)
+  register: task_install
+  tags: system

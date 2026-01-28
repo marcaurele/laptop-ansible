@@ -203,6 +203,9 @@
       tags: antigravity
       when: not private_node
 
+    - role: packages/deezer-linux
+      tags: deezer
+
     - role: user/config
       tags: user, config
 
