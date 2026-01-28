@@ -213,9 +213,5 @@
       tags: work
       when: not private_node
 
-    # TO CLEAR
-    - role: packages/jetbrains/pycharm
-      tags: pycharm, never
-
   tags:
     - packages
