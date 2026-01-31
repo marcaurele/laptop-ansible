@@ -46,6 +46,7 @@
     - pwgen
     - qpdf
     - qrencode
+    - rpi-imager
     - scdaemon
     - screenfetch
     - shellcheck
