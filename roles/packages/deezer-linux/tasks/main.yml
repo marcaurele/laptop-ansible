@@ -14,6 +14,6 @@
     state: present
   when:
     - not ansible_check_mode
-    - ansible_facts.packages['deezer-linux'] is not defined or not ansible_facts.packages['deezer-linux'][0]['version'].startswith(releases.json.name)
+    - ansible_facts.packages['deezer-linux'] is not defined or ansible_facts.packages['deezer-linux'][0]['version'] not in releases.json.name
   register: task_install
   tags: system
