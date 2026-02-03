@@ -209,6 +209,9 @@
     - role: packages/ttl
       tags: ttl
 
+    - role: packages/gopass
+      tags: gopass
+
     - role: user/config
       tags: user, config
 

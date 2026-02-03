@@ -1,0 +1,25 @@
+---
+- name: add repository GPG key for gopass
+  become: true
+  ansible.builtin.get_url:
+    url: https://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg
+    dest: /etc/apt/trusted.gpg.d/gopass-archive-keyring.gpg
+  register: apt_deb_signing_gpg
+
+- name: add repository for gopass
+  become: true
+  ansible.builtin.deb822_repository:
+    name: gopass
+    types: deb
+    uris: https://packages.gopass.pw/repos/gopass
+    suites: stable
+    components: main
+    architectures: all amd64 arm64 armhf
+    signed_by: "{{ apt_deb_signing_gpg.dest }}"
+
+- name: install/update gopass
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    pkg: gopass
+    state: present
