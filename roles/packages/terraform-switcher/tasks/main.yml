@@ -27,7 +27,7 @@
   register: tfswitch_temp
   when:
     - not ansible_check_mode
-    - not tfswitch_stat.stat.exists or releases.json.tag_name != tfswitch_version.stderr
+    - not tfswitch_stat.stat.exists or releases.json.tag_name not in tfswitch_version.stdout
   diff: false
 
 - name: download terraform-switcher {{ releases.json.tag_name }}
