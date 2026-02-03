@@ -5,6 +5,7 @@
     url: https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg
     dest: /etc/apt/trusted.gpg.d/google-antigravity.gpg
   register: apt_deb_signing_gpg
+  # tags: never
 
 - name: add repository for Google Antigravity
   become: true
@@ -16,8 +17,25 @@
     components: main
     architectures: amd64
     signed_by: "{{ apt_deb_signing_gpg.dest }}"
+  # tags: never
 
-- name: install/update Google Antigravity
+- name: clean APT GPG key for Google Antigravity
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/trusted.gpg.d/google-antigravity.gpg
+    state: absent
+  diff: false
+  tags: never
+
+- name: clean APT for Google Antigravity
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/antigravity.sources
+    state: absent
+  diff: false
+  tags: never
+
+- name: install/update/uninstall Google Antigravity
   become: true
   ansible.builtin.apt:
     update_cache: true
