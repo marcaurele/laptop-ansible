@@ -78,6 +78,7 @@
 
 - name: import kitty tasks
   import_tasks: kitty.yml
+  when: ansible_facts.packages['kitty'] is defined
 
 - name: syncthing fix
   become: true
