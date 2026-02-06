@@ -40,6 +40,9 @@
       tags: user
 
     # SYSTEM
+    - role: packages/firewall
+      tags: firewall
+
     - role: packages/sshd
       tags: ssh
 

@@ -1,0 +1,32 @@
+---
+
+- name: install firewall tool
+  become: true
+  ansible.builtin.apt:
+    name:
+    - ufw
+
+- name: activate ufw
+  become: true
+  community.general.ufw:
+    state: enabled
+
+- name: configure default outgoing
+  become: true
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+
+- name: configure default incoming
+  become: true
+  community.general.ufw:
+    direction: incoming
+    default: deny
+
+- name: configure firewall
+  become: true
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+    comment: ssh traffic rate-limited
