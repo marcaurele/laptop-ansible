@@ -90,6 +90,9 @@
     - role: packages/desktop
       tags: desktop
 
+    - role: packages/kitty
+      tags: kitty
+
     - role: packages/localsend
       tags: localsend
 

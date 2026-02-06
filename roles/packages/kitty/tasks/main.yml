@@ -20,12 +20,10 @@
   become: true
   become_user: "{{ username }}"
   template:
-    src: kitty.conf.j2
-    dest: ~/.config/kitty/kitty.conf
-
-- name: configure kitty theme
-  become: true
-  become_user: "{{ username }}"
-  template:
-    src: kitty-mab-theme.conf
-    dest: ~/.config/kitty/themes/mab.conf
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - src: kitty-mab-theme.conf
+      dest: ~/.config/kitty/themes/mab.conf
+    - src: kitty.conf
+      dest: ~/.config/kitty/kitty.conf
