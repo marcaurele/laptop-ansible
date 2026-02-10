@@ -166,7 +166,7 @@
       when: private_node
 
     - role: packages/awscli
-      tags: awscli
+      tags: awscli, never
 
     - role: packages/awsvault
       tags: awsvault
