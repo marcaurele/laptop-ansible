@@ -31,3 +31,9 @@
   when:
     - not ansible_check_mode
     - not zen_stat.stat.exists or releases.json.tag_name not in zen_version.stdout
+
+- name: install zen desktop alias
+  become: true
+  ansible.builtin.template:
+    src: zen.desktop
+    dest: /usr/local/share/applications/zen.desktop

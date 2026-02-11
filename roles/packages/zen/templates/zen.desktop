@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=true
+Exec=/usr/local/bin/zen %u
+Name=Zen
+Comment=Custom definition for Zen
