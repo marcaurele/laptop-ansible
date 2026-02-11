@@ -13,8 +13,8 @@
     # - libvirt-daemon
     # - libvirt-daemon-system
     # - libvirt-dev
-    - lxd
-    - lxd-tools
+    - incus
+    - incus-extra
     # - virt-manager
 
 - name: add groups to {{ username }}
@@ -25,6 +25,7 @@
     append: true
     groups:
       # - libvirt
-      - lxd
+      # - lxd
+      - incus-admin
   tags: user, root
   ignore_errors: true

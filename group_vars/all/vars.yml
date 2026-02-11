@@ -47,6 +47,8 @@ locales:
 
 packages_absent_extra:
   - firmware-nvidia-graphics
+  - lxd
+  - lxd-tools
   - pipenv
   - pulseaudio
   - remmina
