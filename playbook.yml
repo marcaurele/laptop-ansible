@@ -218,6 +218,9 @@
     - role: packages/gopass
       tags: gopass
 
+    - role: packages/zen
+      tags: zen
+
     - role: user/config
       tags: user, config
 
