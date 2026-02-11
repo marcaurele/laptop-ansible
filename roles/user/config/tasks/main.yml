@@ -109,3 +109,17 @@
   ansible.builtin.get_url:
     dest: "~/.vim/colors/solarized.vim"
     url: https://github.com/altercation/vim-colors-solarized/raw/master/colors/solarized.vim
+
+- name: check browser preferences
+  command: xdg-settings get default-web-browser
+  register: browser_prefs
+  changed_when: false
+
+- name: set system browser preferences
+  become: true
+  become_user: "{{ username }}"
+  command: "xdg-settings set default-web-browser {{ defaults.browser }}.desktop"
+  when:
+    - not ansible_check_mode
+    - browser_prefs.stdout != defaults.browser + ".desktop"
+    - ansible_distribution == 'Debian'

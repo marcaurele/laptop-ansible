@@ -31,6 +31,9 @@ debian_package_pinning:
   - package: firefox
     release: unstable
 
+defaults:
+  browser: userapp-Zen-5BDIK3 # zen
+
 git: "{{ vault_git }}"
 
 gpg: "{{ vault_gpg }}"
@@ -46,6 +49,7 @@ locales:
   - en_CA.UTF-8
 
 packages_absent_extra:
+  - firefox-esr
   - firmware-nvidia-graphics
   - lxd
   - lxd-tools

@@ -22,27 +22,6 @@
     - debian_unstable_is_active
     - ansible_distribution == 'Debian'
 
-- name: install firefox-esr
-  become: true
-  ansible.builtin.apt:
-    name: firefox-esr
-  when:
-    - ansible_distribution == 'Debian'
-
-- name: check browser preferences
-  command: xdg-settings get default-web-browser
-  register: browser_prefs
-  changed_when: false
-
-- name: set system browser preferences to use firefox
-  become: true
-  become_user: "{{ username }}"
-  command: "xdg-settings set default-web-browser {{ firefox_package }}.desktop"
-  when:
-    - not ansible_check_mode
-    - browser_prefs.stdout != firefox_package + ".desktop"
-    - ansible_distribution == 'Debian'
-
 - name: list all firefox profiles
   become: true
   become_user: "{{ username }}"
