@@ -1,0 +1,33 @@
+config: {}
+networks:
+- config:
+    ipv4.address: auto
+    ipv6.address: none
+  description: ""
+  name: incusbr0
+  type: ""
+  project: default
+storage_pools:
+- config:
+    size: 30GiB
+  description: ""
+  name: default
+  driver: btrfs
+storage_volumes: []
+profiles:
+- config: {}
+  description: ""
+  devices:
+    eth0:
+      name: eth0
+      network: incusbr0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default
+  project: default
+projects: []
+certificates: []
+cluster: null

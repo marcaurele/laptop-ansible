@@ -1,0 +1,30 @@
+---
+
+- name: install incus packages
+  become: true
+  ansible.builtin.apt:
+    name:
+    - incus
+    - incus-extra
+
+- name: add groups to {{ username }}
+  become: true
+  user:
+    name: "{{ username }}"
+    append: true
+    groups:
+      - incus-admin
+  tags: user, root
+  ignore_errors: true
+
+- name: create incus config directory
+  become: true
+  file:
+    path: "/etc/incus"
+    state: directory
+
+- name: incus preseed configuration
+  become: true
+  template:
+    src: preseed.yml
+    dest: /etc/incus/preseed.yml

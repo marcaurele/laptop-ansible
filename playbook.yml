@@ -55,8 +55,8 @@
     - role: packages/inputplug
       tags: inputplug
 
-    - role: packages/virtualization
-      tags: virtualization
+    - role: packages/incus
+      tags: incus
 
     # DEVELOPMENT
     - role: packages/development/python
