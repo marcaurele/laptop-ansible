@@ -30,5 +30,4 @@
     - qtbase5-dev
     - qttools5-dev-tools
     - tidy
-    - yq
     - zlib1g-dev
