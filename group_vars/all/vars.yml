@@ -61,7 +61,6 @@ packages_absent_extra:
   - vagrant
   - vault
   - vlc
-  - yq
 
 packages_directory: "~/soft"
 
