@@ -4,3 +4,4 @@
   community.general.snap:
     name:
       - telegram-desktop
+      - yq
