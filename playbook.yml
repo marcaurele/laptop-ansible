@@ -56,7 +56,7 @@
       tags: inputplug
 
     - role: packages/virtualization
-      tags: virtualization, never
+      tags: virtualization
 
     # DEVELOPMENT
     - role: packages/development/python
