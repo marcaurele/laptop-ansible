@@ -1,53 +1,59 @@
 ---
 
-- name: check lazydocker releases
-  uri:
-    url: https://api.github.com/repos/jesseduffield/lazydocker/releases/latest
-    return_content: true
-  register: releases
+# - name: check lazydocker releases
+#   uri:
+#     url: https://api.github.com/repos/jesseduffield/lazydocker/releases/latest
+#     return_content: true
+#   register: releases
 
-- name: set latest lazydocker version
-  set_fact:
-    lazydocker_latest_version: "{{ releases.json.tag_name[1:] }}"
-  when: not ansible_check_mode
+# - name: set latest lazydocker version
+#   set_fact:
+#     lazydocker_latest_version: "{{ releases.json.tag_name[1:] }}"
+#   when: not ansible_check_mode
 
-- name: check local lazydocker
-  stat:
-    path: /usr/local/bin/lazydocker
-  register: lazydocker_stat
+# - name: check local lazydocker
+#   stat:
+#     path: /usr/local/bin/lazydocker
+#   register: lazydocker_stat
 
-- name: check local lazydocker version
-  command: /usr/local/bin/lazydocker --version
-  register: lazydocker_version
-  changed_when: false
-  when: lazydocker_stat.stat.exists
+# - name: check local lazydocker version
+#   command: /usr/local/bin/lazydocker --version
+#   register: lazydocker_version
+#   changed_when: false
+#   when: lazydocker_stat.stat.exists
 
-- name: create temporary directory for install archive
-  ansible.builtin.tempfile:
-    state: directory
-    suffix: lazydocker
-  register: lazydocker_temp
-  when:
-    - not ansible_check_mode
-    - not lazydocker_stat.stat.exists or lazydocker_latest_version not in lazydocker_version.stdout_lines[0]
-  diff: false
+# - name: create temporary directory for install archive
+#   ansible.builtin.tempfile:
+#     state: directory
+#     suffix: lazydocker
+#   register: lazydocker_temp
+#   when:
+#     - not ansible_check_mode
+#     - not lazydocker_stat.stat.exists or lazydocker_latest_version not in lazydocker_version.stdout_lines[0]
+#   diff: false
 
-- name: download lazydocker {{ releases.json.tag_name }}
-  ansible.builtin.unarchive:
-    dest: "{{ lazydocker_temp.path }}"
-    src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `Linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
-    remote_src: true
-  register: lazydocker_download
-  diff: false
-  when:
-    - lazydocker_temp.path is defined
+# - name: download lazydocker {{ releases.json.tag_name }}
+#   ansible.builtin.unarchive:
+#     dest: "{{ lazydocker_temp.path }}"
+#     src: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `Linux`) && contains(name, `x86_64`)].browser_download_url | [0]') }}"
+#     remote_src: true
+#   register: lazydocker_download
+#   diff: false
+#   when:
+#     - lazydocker_temp.path is defined
 
-- name: install lazydocker {{ releases.json.tag_name }}
+# - name: install lazydocker {{ releases.json.tag_name }}
+#   become: true
+#   copy:
+#     src: "{{ lazydocker_temp.path }}/lazydocker"
+#     dest: "/usr/local/bin/lazydocker"
+#     remote_src: true
+#     mode: 0755
+#   when:
+#     - lazydocker_temp.path is defined
+
+- name: remove local lazydocker
   become: true
-  copy:
-    src: "{{ lazydocker_temp.path }}/lazydocker"
-    dest: "/usr/local/bin/lazydocker"
-    remote_src: true
-    mode: 0755
-  when:
-    - lazydocker_temp.path is defined
+  ansible.builtin.file:
+    path: /usr/local/bin/lazydocker
+    state: absent

@@ -81,7 +81,7 @@
       tags: dev, docker
 
     - role: packages/lazydocker
-      tags: lazydocker
+      tags: lazydocker # to delete
 
     - role: packages/development/devbox
       tags: devbox
