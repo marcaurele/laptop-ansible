@@ -1,18 +1,33 @@
 ---
 
-- name: include distribution based Docker installation
-  include_tasks: "{{ ansible_distribution | lower }}.yml"
+# - name: include distribution based Docker installation
+#   include_tasks: "{{ ansible_distribution | lower }}.yml"
 
-- name: install docker compose plugin
-  include_tasks: compose.yml
+# - name: install docker compose plugin
+#   include_tasks: compose.yml
 
-- name: install docker buildx plugin
-  include_tasks: buildx.yml
+# - name: install docker buildx plugin
+#   include_tasks: buildx.yml
 
-- name: add {{ username }} to docker group
+# - name: add {{ username }} to docker group
+#   become: true
+#   user:
+#     name: "{{ username }}"
+#     append: true
+#     groups:
+#       - docker
+
+- name: remove docker plugins
   become: true
-  user:
-    name: "{{ username }}"
-    append: true
-    groups:
-      - docker
+  ansible.builtin.file:
+    path: /usr/local/lib/docker
+    state: absent
+
+- name: remove docker packages
+  become: true
+  ansible.builtin.apt:
+    name:
+    - docker.io
+    state: absent
+    autoremove: true
+    purge: true
