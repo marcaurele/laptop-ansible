@@ -32,7 +32,7 @@ debian_package_pinning:
     release: unstable
 
 defaults:
-  browser: zen
+  browser: firefox
 
 git: "{{ vault_git }}"
 
