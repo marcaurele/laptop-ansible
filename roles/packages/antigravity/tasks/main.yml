@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.get_url:
     url: https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg
-    dest: /etc/apt/trusted.gpg.d/google-antigravity.gpg
+    dest: /etc/apt/trusted.gpg.d/google-antigravity.asc
   register: apt_deb_signing_gpg
   # tags: never
 
@@ -25,15 +25,22 @@
     path: /etc/apt/trusted.gpg.d/google-antigravity.gpg
     state: absent
   diff: false
-  tags: never
 
-- name: clean APT for Google Antigravity
-  become: true
-  ansible.builtin.file:
-    path: /etc/apt/sources.list.d/antigravity.sources
-    state: absent
-  diff: false
-  tags: never
+# - name: clean APT GPG key for Google Antigravity
+#   become: true
+#   ansible.builtin.file:
+#     path: /etc/apt/trusted.gpg.d/google-antigravity.asc
+#     state: absent
+#   diff: false
+#   tags: never
+
+# - name: clean APT for Google Antigravity
+#   become: true
+#   ansible.builtin.file:
+#     path: /etc/apt/sources.list.d/antigravity.sources
+#     state: absent
+#   diff: false
+#   tags: never
 
 - name: install/update/uninstall Google Antigravity
   become: true
