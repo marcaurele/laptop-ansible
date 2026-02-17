@@ -17,6 +17,12 @@
 #     groups:
 #       - docker
 
+- name: remove docker group
+  become: true
+  ansible.builtin.group:
+    name: docker
+    state: absent
+
 - name: remove docker plugins
   become: true
   ansible.builtin.file:
