@@ -27,3 +27,5 @@
       dest: ~/.config/kitty/themes/mab.conf
     - src: kitty.conf
       dest: ~/.config/kitty/kitty.conf
+    - src: kitty-ssh.conf
+      dest: ~/.config/kitty/ssh.conf
