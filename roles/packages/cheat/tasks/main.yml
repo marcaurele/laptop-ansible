@@ -1,79 +1,14 @@
 ---
 
-- name: check cheat releases
-  uri:
-    url: https://api.github.com/repos/cheat/cheat/releases/latest
-    return_content: true
-  register: releases
-
-- name: set latest cheat version
-  set_fact:
-    cheat_latest_version: "{{ releases.json.tag_name }}"
-  when: not ansible_check_mode
-
-- name: check local cheat
-  stat:
-    path: /usr/local/bin/cheat
-  register: cheat_stat
-
-- name: check local cheat version
-  command: /usr/local/bin/cheat --version
-  register: cheat_version
-  changed_when: false
-  when: cheat_stat.stat.exists
-
-- name: create temporary directory to decompress file
-  ansible.builtin.tempfile:
-    state: directory
-    suffix: cheat
-  register: cheat_temp
-  when:
-    - not ansible_check_mode
-    - not cheat_stat.stat.exists or cheat_latest_version not in cheat_version.stdout_lines[0]
-  diff: false
-
-- name: download cheat {{ releases.json.tag_name }}
-  ansible.builtin.get_url:
-    dest: "{{ cheat_temp.path }}"
-    url: "{{ releases.json |to_json|from_json| json_query('assets[?contains(name, `linux`) && contains(name, `amd64`)].browser_download_url | [0]') }}"
-  register: cheat_download
-  when:
-    - not ansible_check_mode
-    - not cheat_stat.stat.exists or cheat_latest_version not in cheat_version.stdout_lines[0]
-    - cheat_temp.path is defined
-
-- name: decompress GZIP file
-  ansible.builtin.command: find "{{ cheat_temp.path }}" -name '*.gz' -exec gzip -d {} \;
-  when:
-    - cheat_temp.path is defined
-
-- name: install cheat {{ releases.json.tag_name }}
+- name: remove cheat
   become: true
-  copy:
-    src: "{{ cheat_temp.path }}/cheat-linux-amd64"
-    dest: "/usr/local/bin/cheat"
-    remote_src: true
-    mode: 0755
-  when:
-    - cheat_temp.path is defined
+  file:
+    path: "/usr/local/bin/cheat"
+    state: absent
 
-- name: cheat configuration directory
+- name: remove cheat configuration directory
   become: true
   become_user: "{{ username }}"
   ansible.builtin.file:
     path: "{{ config.zsh }}/cheat"
-    state: directory
-  when:
-    - not ansible_check_mode
-    - not cheat_stat.stat.exists or cheat_latest_version not in cheat_version.stdout_lines[0]
-
-# - name: cheat zsh configuration
-#   become: true
-#   become_user: "{{ username }}"
-#   ansible.builtin.copy:
-#     src: "{{ cheat_temp.path }}/completions/cheat.zsh"
-#     dest: "{{ config.zsh }}/cheat/completion.zsh"
-#     mode: 0644
-#   when:
-#     - not ansible_check_mode
-#     - not cheat_stat.stat.exists or cheat_latest_version not in cheat_version.stdout_lines[0]
+    state: absent
