@@ -216,6 +216,9 @@
     - role: packages/zen
       tags: zen
 
+    - role: packages/yq
+      tags: yq
+
     - role: user/config
       tags: user, config
 

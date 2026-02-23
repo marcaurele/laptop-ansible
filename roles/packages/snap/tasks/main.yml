@@ -4,4 +4,10 @@
   community.general.snap:
     name:
       - telegram-desktop
+
+- name: remove snap packages
+  become: true
+  community.general.snap:
+    name:
       - yq
+    state: absent
