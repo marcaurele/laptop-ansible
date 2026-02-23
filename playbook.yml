@@ -80,9 +80,6 @@
     - role: packages/docker
       tags: docker # to delete
 
-    - role: packages/lazydocker
-      tags: lazydocker # to delete
-
     - role: packages/devbox
       tags: devbox
 
