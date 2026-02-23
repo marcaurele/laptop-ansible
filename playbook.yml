@@ -109,9 +109,6 @@
     - role: packages/hashicorp/hashienv
       tags: hashienv
 
-    - role: packages/visualcode
-      tags: vscode
-
     - role: packages/gh
       tags: gh
 
