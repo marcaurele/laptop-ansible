@@ -1,13 +1,5 @@
 ---
-aws_config: "{{ vault_aws_config }}"
-
-aws_config_extra: "{{ vault_aws_config_extra }}"
-
-aws_tf_profile : "{{ vault_aws_tf_profile }}"
-
 company: "{{ vault_company }}"
-
-company_vpn: "{{ vault_company_vpn }}"
 
 email_work: "{{ vault_email }}"
 
@@ -15,27 +7,9 @@ git_work: "{{ vault_git_work }}"
 
 grub_parameter: "--unrestricted"
 
-# packages_extra:
-#  - gcalcli
-
-packages_absent_extra_work:
-  - awscli
-
-pip_extra_index_url: "{{ vault_pip_extra_index_url }}"
-
 private_node: false
 
-python_tools_extra:
-  - name: keepercommander
-    extra:
-      - fido2
-
-sudo_work:
-  - /usr/bin/systemd-tty-ask-password-agent
-
 username: "{{ vault_username }}"
-
-vpn_ips: "{{vault_vpn_ips }}"
 
 zed:
   disable_ai: true

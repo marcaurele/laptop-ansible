@@ -10,7 +10,7 @@ caas:
   nomad_token: "{{ vault_caas.nomad_token }}"
 
 code_directory: "~/code"
-code_projects: "{{ vault_code_projects }}"
+code_projects: "{{ vault_code_projects | default([]) }}"
 
 config:
   dir: ~/.config
