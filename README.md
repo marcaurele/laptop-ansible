@@ -1,5 +1,8 @@
 # Ansible playbook to configure my laptops
 
+> [!WARNING]
+> This repository has moved to <https://codeberg.org/marcaurele/laptop-ansible> and the current version on GitHub has been archived.
+
 This playbook is my laptop's configuration for both private and work, running
 Debian ~~or Ubuntu~~ distributions. It is based on:
 
